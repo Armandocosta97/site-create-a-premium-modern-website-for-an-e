@@ -1,16 +1,9 @@
+import HeroSection from '../components/HeroSection'
+
 export default function Home() {
   return (
     <article aria-labelledby="home-title">
-      <section id="hero" aria-labelledby="home-title">
-        <p>Casa Aurea Events</p>
-        <h1 id="home-title">
-          Premium catering and bar service for elegant events
-        </h1>
-        <p>
-          A refined home page shell for a luxury event catering and bartending
-          brand, ready for the next content tasks.
-        </p>
-      </section>
+      <HeroSection />
 
       <section id="signature-preview" aria-labelledby="signature-preview-title">
         <h2 id="signature-preview-title">Signature services preview</h2>

@@ -17,3 +17,20 @@ Waiting for validation.
 
 TASK page-home-shell completed successfully.
 Build passed.
+Commit created for TASK page-home-shell.
+
+Prepared TASK section-home-hero (Create hero section on home) for execution.
+
+Launching Codex for TASK section-home-hero.
+
+Completed TASK section-home-hero.
+
+Implemented a dedicated home hero in `src/components/HeroSection.jsx` and
+rendered it from `src/pages/Home.jsx`. The section now provides the required
+hero structure, premium brand copy, and two route-based CTAs for the home page.
+
+TASK section-home-hero executed by Codex.
+Waiting for validation.
+
+TASK section-home-hero completed successfully.
+Build passed.
