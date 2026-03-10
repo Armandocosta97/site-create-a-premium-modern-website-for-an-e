@@ -1,0 +1,225 @@
+{
+  "originalPrompt": "Create a premium modern website for an event catering and bartending service called Casa Aurea Events.\n\nThe business offers:\n- high-end catering for weddings, private parties, and corporate events\n- premium mobile bar service\n- elegant signature drink lists\n- curated event styling support\n- full-service hospitality for refined events\n\nThe final website must feel luxurious, polished, trustworthy, and premium.\nIt should look like a real brand that could sell high-ticket catering and event services.\nAvoid generic banquet-hall vibes.\nAvoid cheap party aesthetics.\nAvoid template-looking sections.\nThe tone must be elegant, refined, warm, and aspirational.\n\nARCHITECTURE\nThis must be a real multi-page website.\nDo NOT build it as a single-page website with anchor links.\nDo NOT collapse all content into the homepage.\n\nCreate these real pages with real routes:\n- Home\n- Services\n- Weddings\n- Drink List\n- Gallery\n- About\n- Contact\n\nRequired routes:\n- /\n- /services\n- /weddings\n- /drink-list\n- /gallery\n- /about\n- /contact\n\nNAVIGATION\nHeader navigation must include:\n- Home\n- Services\n- Weddings\n- Drink List\n- Gallery\n- About\n- Contact\n\nNavigation must use real routes, not homepage anchors.\nEach navigation item must point to an actually existing page.\nThe mobile menu must work properly.\n\nGENERAL BRAND DIRECTION\nBrand name: Casa Aurea Events\nPositioning: premium catering and elevated bar service for elegant events\nTarget audience:\n- couples planning weddings\n- people organizing refined private events\n- brands or companies hosting premium corporate evenings\n- clients who care about atmosphere, presentation, and hospitality\n\nBrand values:\n- elegance\n- quality\n- atmosphere\n- attention to detail\n- hospitality\n- modern Italian refinement\n\nVISUAL STYLE\nThe design must feel:\n- sophisticated\n- editorial\n- high-end\n- spacious\n- luminous but rich\n- elegant without being cold\n\nUse a visual language inspired by:\n- modern luxury hospitality\n- destination wedding brands\n- premium cocktail bars\n- boutique event design studios\n\nCOLOR PALETTE\nUse an elegant palette such as:\n- warm ivory / champagne background\n- deep charcoal or espresso for contrast\n- muted gold accents\n- soft taupe / warm beige neutrals\n- optional dark olive or dusty bronze details\n\nTypography:\n- elegant serif or modern editorial serif for headings\n- clean refined sans serif for body text\n- strong hierarchy and generous spacing\n\nLAYOUT RULES\n- mobile first\n- refined responsive layout\n- strong visual hierarchy\n- large premium hero sections\n- full-width media where appropriate\n- max-width containers for readability\n- generous whitespace\n- cards and sections should feel balanced and premium\n- no cramped blocks\n- no cheap gradient-heavy look\n- no excessive animations\n\nIMAGE DIRECTION\nUse high quality Unsplash images.\nSearch themes like:\n- wedding catering\n- elegant table setting\n- luxury wedding dinner\n- bartender cocktail service\n- signature cocktails\n- event catering plated food\n- upscale reception dinner\n- champagne toast\n- stylish private event\n- modern catering presentation\n\nImages must:\n- use object-fit: cover\n- never appear stretched\n- feel coherent and premium\n- support the brand identity\n- help the site feel real and sellable\n\nHOME PAGE\nThe homepage must be a premium overview page, not a dump of all content.\n\nInclude these sections:\n1. Hero\n2. Signature services preview\n3. Weddings highlight\n4. Drink list highlight\n5. Gallery preview\n6. Why clients choose Casa Aurea\n7. Final CTA\n\nHOME HERO\nLarge elegant hero section with strong photography and refined overlay.\nHero content should include:\nEyebrow:\n\"Premium catering & bar service for unforgettable events\"\n\nMain title:\n\"Elegant catering and cocktail experiences for weddings, celebrations, and refined gatherings\"\n\nSubtitle:\n\"Casa Aurea Events creates tailored food and drink experiences with premium hospitality, beautiful presentation, and a modern luxury feel.\"\n\nPrimary CTA:\n\"Request your event proposal\"\n\nSecondary CTA:\n\"Explore our services\"\n\nSERVICES PAGE\nCreate a full dedicated Services page.\n\nInclude:\n- services hero\n- overview intro\n- grid or elegant list of core services\n- premium bartending service\n- catering service\n- wedding service\n- private party service\n- corporate event service\n- event styling / setup support\n- service process or how it works\n- CTA section\n\nService cards should feel polished and convincing.\nEach service must have a title, short description, and premium positioning.\n\nWEDDINGS PAGE\nCreate a dedicated Weddings page for couples.\n\nInclude:\n- romantic but modern hero\n- weddings introduction\n- what Casa Aurea offers for weddings\n- service highlights for aperitivo, dinner, dessert, open bar, toast moments\n- emotional but elegant copy\n- section about customization and atmosphere\n- CTA to request a wedding proposal\n\nThis page should feel particularly aspirational and premium.\n\nDRINK LIST PAGE\nCreate a real dedicated Drink List page.\n\nThis page is important.\nIt should showcase the premium bar side of the business.\n\nInclude:\n- hero section\n- intro explaining the philosophy of the drink program\n- sections for:\n  - Signature Cocktails\n  - Classic Reimagined\n  - Spritz & Aperitivo Selection\n  - Alcohol-free Signature Drinks\n  - Premium Spirits & Bubbles\n- each drink card should include:\n  - drink name\n  - short elegant description\n  - ingredients or flavor profile\n- make the page feel like a luxury event bar menu, not a nightclub menu\n\nThe copy must sound elevated and tasteful.\n\nGALLERY PAGE\nCreate a real Gallery page.\nDo not make it just a tiny preview.\n\nInclude:\n- gallery hero\n- responsive premium image grid\n- images of catering setup, cocktails, table styling, elegant receptions, plated food, celebration atmosphere\n- subtle hover effects\n- clean spacing\n- premium layout\n\nABOUT PAGE\nCreate a dedicated About page.\n\nInclude:\n- brand story hero\n- philosophy section\n- hospitality and quality focus\n- what makes Casa Aurea different\n- elegant copy about care, presentation, timing, and guest experience\n- image + text split sections\n- closing CTA\n\nThis page should build trust and brand depth.\n\nCONTACT PAGE\nCreate a real Contact page.\n\nInclude:\n- contact hero\n- inquiry intro\n- contact info block\n- phone\n- email\n- WhatsApp CTA if it fits cleanly\n- city / service area\n- opening / contact availability\n- event inquiry CTA or simple premium contact form block if suitable\n- strong closing line encouraging contact\n\nUse realistic placeholder details such as:\nAddress / service area:\nTorino and surrounding areas\n\nPhone:\n+39 011 000000\n\nEmail:\nhello@casaaureaevents.it\n\nCONTACT CTA STRATEGY\nThe site must contain meaningful CTAs across pages:\n- request proposal\n- book a call\n- explore services\n- discover drink list\n- contact us for your event\n\nCTA style must remain consistent across pages.\nCTAs must feel premium, clear, and action-oriented.\n\nFOOTER\nCreate a refined dark footer with:\n- brand name\n- short brand line\n- navigation links\n- contact info\n- service area\n- social placeholders\n- copyright\n\nSEO / CONTENT\n- one clear H1 per page\n- polished realistic copy\n- no lorem ipsum\n- no placeholder feel\n- content should sound like a real premium events brand\n- page titles and meta descriptions should exist\n- headings must be meaningful and structured\n\nRESPONSIVE QUALITY\n- fully responsive\n- no horizontal scroll\n- good spacing at all key breakpoints\n- mobile navigation must work\n- cards must stack elegantly\n- sections must remain premium on mobile, tablet, and desktop\n\nQUALITY EXPECTATION\nThe final website must feel like a real premium catering and bar service brand that could be sold to a client.\nIt must look elegant, modern, and credible.\nIt must not feel like a generic food template.\nIt must not feel like a one-page brochure stretched into fake pages.\nEach page must have a real purpose and different content.",
+  "siteName": "site-create-a-premium-modern-website-for-an-e",
+  "businessType": "agency",
+  "architecture": "multi-page",
+  "routing": {
+    "mode": "hash"
+  },
+  "pages": [
+    {
+      "id": "home",
+      "route": "/",
+      "role": "landing",
+      "sections": [
+        {
+          "id": "hero",
+          "type": "hero"
+        },
+        {
+          "id": "signature-preview",
+          "type": "grid-cards-preview"
+        },
+        {
+          "id": "brand-story-preview",
+          "type": "split-content-preview"
+        }
+      ],
+      "ctas": [
+        {
+          "id": "home-primary-cta",
+          "kind": "internal",
+          "placement": "hero",
+          "target": {
+            "type": "route",
+            "value": "/menu"
+          }
+        },
+        {
+          "id": "home-contact-cta",
+          "kind": "internal",
+          "placement": "hero",
+          "target": {
+            "type": "route",
+            "value": "/contatti"
+          }
+        },
+        {
+          "id": "home-whatsapp",
+          "kind": "external",
+          "placement": "floating",
+          "target": {
+            "type": "whatsapp",
+            "value": "whatsapp"
+          }
+        }
+      ]
+    },
+    {
+      "id": "menu",
+      "route": "/menu",
+      "role": "core",
+      "sections": [
+        {
+          "id": "menu-hero",
+          "type": "hero"
+        },
+        {
+          "id": "menu-categories",
+          "type": "menu-categories"
+        }
+      ],
+      "ctas": []
+    },
+    {
+      "id": "chi-siamo",
+      "route": "/chi-siamo",
+      "role": "content",
+      "sections": [
+        {
+          "id": "about-hero",
+          "type": "hero"
+        },
+        {
+          "id": "story",
+          "type": "editorial-content"
+        },
+        {
+          "id": "philosophy",
+          "type": "split-content"
+        }
+      ],
+      "ctas": []
+    },
+    {
+      "id": "gallery",
+      "route": "/gallery",
+      "role": "content",
+      "sections": [
+        {
+          "id": "gallery-hero",
+          "type": "hero"
+        },
+        {
+          "id": "gallery-grid",
+          "type": "image-grid"
+        }
+      ],
+      "ctas": []
+    },
+    {
+      "id": "contatti",
+      "route": "/contatti",
+      "role": "conversion",
+      "sections": [
+        {
+          "id": "contact-hero",
+          "type": "hero"
+        },
+        {
+          "id": "contact-details",
+          "type": "contact-block"
+        },
+        {
+          "id": "opening-hours",
+          "type": "hours-block"
+        }
+      ],
+      "ctas": [
+        {
+          "id": "contatti-whatsapp",
+          "kind": "external",
+          "placement": "body",
+          "target": {
+            "type": "whatsapp",
+            "value": "whatsapp"
+          }
+        },
+        {
+          "id": "contatti-phone",
+          "kind": "external",
+          "placement": "body",
+          "target": {
+            "type": "phone",
+            "value": "phone"
+          }
+        }
+      ]
+    },
+    {
+      "id": "servizi",
+      "route": "/servizi",
+      "role": "hub",
+      "sections": [
+        {
+          "id": "services-hero",
+          "type": "hero"
+        },
+        {
+          "id": "services-overview",
+          "type": "service-list"
+        }
+      ],
+      "ctas": []
+    }
+  ],
+  "navigation": [
+    {
+      "label": "Home",
+      "type": "route",
+      "target": "/"
+    },
+    {
+      "label": "Menu",
+      "type": "route",
+      "target": "/menu"
+    },
+    {
+      "label": "Chi siamo",
+      "type": "route",
+      "target": "/chi-siamo"
+    },
+    {
+      "label": "Gallery",
+      "type": "route",
+      "target": "/gallery"
+    },
+    {
+      "label": "Contatti",
+      "type": "route",
+      "target": "/contatti"
+    },
+    {
+      "label": "Servizi",
+      "type": "route",
+      "target": "/servizi"
+    }
+  ],
+  "theme": {
+    "mode": "derived-from-prompt"
+  },
+  "validation": {
+    "breakpoints": [
+      360,
+      768,
+      1024,
+      1440
+    ],
+    "checks": [
+      "semantic-structure",
+      "navigation-integrity",
+      "cta-integrity",
+      "images-not-broken",
+      "responsive-layout",
+      "placeholder-content-absent"
+    ]
+  },
+  "features": {
+    "gallery": true,
+    "whatsappCta": true,
+    "phoneCta": true,
+    "bookingCta": true,
+    "menuPage": true,
+    "servicesPage": true
+  }
+}
