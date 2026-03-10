@@ -1,16 +1,8 @@
-Modified files:
-- [src/components/SignaturePreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/SignaturePreviewSection.jsx)
-- [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), [Brand-story-previewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Brand-story-previewSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
 
-What was implemented:
-- Replaced the placeholder `signature-preview` block on the home page with a dedicated `SignaturePreviewSection` component.
-- Built the section as a responsive `grid-cards-preview` with three premium service cards, section heading/content, and a CTA linking to the existing `/menu` route.
-- Rendered the new section from [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), keeping the task scoped to the current home section only.
-- Updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with the task completion summary.
+Implemented the home `brand-story-preview` as a dedicated split-content preview component and rendered it from [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx). The section now includes a premium editorial image panel, brand positioning copy, three supporting story points, and route-safe CTAs to `/chi-siamo` and `/contatti`.
 
-Build result:
-- `npm run build` passed successfully.
+Build result: `npm run build` passed with a production Vite build.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -21,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd833-046a-7b63-9435-0a758cdac75e
+session id: 019cd834-4694-7d71-9e2d-b75c6c8c53c4
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1204,10 +1196,10 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-home-signature-preview
+section-home-brand-story-preview
 
 ## Current task title
-Create signature-preview section on home
+Create brand-story-preview section on home
 
 ## Current task type
 section
@@ -1216,8 +1208,8 @@ section
 ```json
 {
   "pageId": "home",
-  "sectionId": "signature-preview",
-  "sectionType": "grid-cards-preview"
+  "sectionId": "brand-story-preview",
+  "sectionType": "split-content-preview"
 }
 ```
 
@@ -1226,13 +1218,13 @@ section
 
 ## Files allowed
 - src/pages/Home.jsx
-- src/components/Signature-previewSection.jsx
+- src/components/Brand-story-previewSection.jsx
 - src/components
 
 ## Definition of done
-- section signature-preview exists on home
-- section signature-preview matches type grid-cards-preview
-- section signature-preview is rendered in page home
+- section brand-story-preview exists on home
+- section brand-story-preview matches type split-content-preview
+- section brand-story-preview is rendered in page home
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1261,156 +1253,88 @@ section
 
 mcp startup: no servers
 codex
-I’m checking the current home page shell and component structure first so I can add only the `signature-preview` section within the allowed scope and avoid drifting into future tasks.
+I’m executing only the current home section task. First I’m checking the current home page structure, existing shared components, and the task files so the new section fits the established implementation without touching unrelated routes or sections.
 exec
-/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "rg --files src agent brief docs | rg 'Home.jsx|Signature|AGENT_REPORT.md|CURRENT_TASK_PROMPT.md|TASK_STATE.json|site-spec.json|DEVELOPMENT_METHOD.md'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-# CURRENT TASK EXECUTION PROMPT
-
-You are the coding executor for this project.
-
-## Project path
-site-create-a-premium-modern-website-for-an-e
-
-## Source of truth files
-- brief/original-prompt.md
-- brief/brief-summary.md
-- site-spec.json
-- docs/DEVELOPMENT_METHOD.md
-- agent/TASK_GRAPH.json
-- agent/TASK_STATE.json
-- agent/CURRENT_TASK_PROMPT.md
-
-## Development method
-# Development Method
-
-All sites must follow these rules.
- succeeded in 52ms:
+/bin/zsh -lc 'pwd && rg --files src agent | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'rg -n "Section|split-content|Home" src/components src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
 import HeroSection from '../components/HeroSection'
+import SignaturePreviewSection from '../components/SignaturePreviewSection'
 
 export default function Home() {
   return (
     <article aria-labelledby="home-title">
       <HeroSection />
-
-      <section id="signature-preview" aria-labelledby="signature-preview-title">
-        <h2 id="signature-preview-title">Signature services preview</h2>
-        <p>
-          This section introduces Casa Aurea&apos;s core offers, including
-          catering, mobile bar service, and tailored hospitality for premium
-          occasions.
-        </p>
-      </section>
+      <SignaturePreviewSection />
 
       <section
         id="brand-story-preview"
         aria-labelledby="brand-story-preview-title"
       >
+        <h2 id="brand-story-preview-title">Brand story preview</h2>
+        <p>
+          This section provides an editorial introduction to the brand&apos;s
+          atmosphere, service philosophy, and event experience.
+        </p>
+      </section>
+    </article>
  succeeded in 51ms:
-docs/DEVELOPMENT_METHOD.md
-agent/CURRENT_TASK_PROMPT.md
-agent/TASK_STATE.json
+/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
 agent/AGENT_REPORT.md
+agent/CURRENT_TASK_PROMPT.md
+agent/LAST_CODEX_OUTPUT.md
+agent/PROMPT_ARCHITECTURE.json
+agent/TASK_GRAPH.json
+agent/TASK_QUEUE.md
+agent/TASK_STATE.json
+src/App.css
+src/App.jsx
+src/assets/react.svg
+src/components/HeroSection.jsx
+src/components/SignaturePreviewSection.jsx
+src/index.css
+src/layout/Layout.jsx
+src/main.jsx
+src/pages/ChiSiamo.jsx
+src/pages/Contatti.jsx
+src/pages/Gallery.jsx
 src/pages/Home.jsx
-codex
-The home shell still has placeholder markup for this section. I’m reading the existing component patterns next so the replacement fits the current codebase rather than introducing a one-off structure.
-exec
-/bin/zsh -lc "sed -n '1,240p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'ls -1 src/components' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "rg -n \"className=|export default function\" src/components src/pages | sed -n '1,220p'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
-import { Link } from 'react-router-dom'
-
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(32rem, 78vh, 46rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(40, 31, 24, 0.18) 0%, rgba(28, 22, 18, 0.72) 62%, rgba(20, 15, 12, 0.9) 100%), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
-  },
-  panel: {
-    width: 'min(100%, 42rem)',
- succeeded in 51ms:
-HeroSection.jsx
  succeeded in 50ms:
 src/components/HeroSection.jsx:122:export default function HeroSection() {
-src/pages/Home.jsx:3:export default function Home() {
-src/pages/Servizi.jsx:1:export default function Servizi() {
-src/pages/ChiSiamo.jsx:1:export default function ChiSiamo() {
-src/pages/Contatti.jsx:1:export default function Contatti() {
-src/pages/Gallery.jsx:1:export default function Gallery() {
-src/pages/Menu.jsx:1:export default function Menu() {
+src/pages/Home.jsx:1:import HeroSection from '../components/HeroSection'
+src/pages/Home.jsx:2:import SignaturePreviewSection from '../components/SignaturePreviewSection'
+src/pages/Home.jsx:4:export default function Home() {
+src/pages/Home.jsx:7:      <HeroSection />
+src/pages/Home.jsx:8:      <SignaturePreviewSection />
+src/components/SignaturePreviewSection.jsx:133:export default function SignaturePreviewSection() {
 codex
-I have enough context now. I’m replacing the placeholder home section with a dedicated reusable component, keeping the change scoped to the allowed files plus the required agent report update, then I’ll run a build check.
+I found a placeholder section already sitting in `Home.jsx`. Next I’m reading the existing section components and global styles so I can replace that placeholder with a proper split-content preview component that matches the current visual system.
 exec
-/bin/zsh -lc "sed -n '1,200p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-# AGENT REPORT
+/bin/zsh -lc "sed -n '1,260p' src/App.css" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/index.css" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
 
-Project created.
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
 
-Prepared TASK page-home-shell (Create home page shell) for execution.
-
-Launching Codex for TASK page-home-shell.
-
-Completed TASK page-home-shell.
-
-Implemented a semantic home page shell in `src/pages/Home.jsx` with real hero,
-signature preview, and brand story preview sections. Verified the home route
-remains mounted in `src/App.jsx` and ready for follow-up content tasks.
-
-TASK page-home-shell executed by Codex.
-Waiting for validation.
-
-TASK page-home-shell completed successfully.
-Build passed.
-Commit created for TASK page-home-shell.
- succeeded in 52ms:
-export default function Menu() {
-  return (
-    <>
-      <section id="menu-hero">
-        <h1>Menu Hero</h1>
-        <p>Content for menu-hero will be generated by tasks</p>
-      </section>
-      <section id="menu-categories">
-        <h2>Menu Categories</h2>
-        <p>Content for menu-categories will be generated by tasks</p>
-      </section>
-    </>
-  )
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-codex
-I’m editing `Home.jsx` and adding `SignaturePreviewSection.jsx` now. The section will stay strictly presentational and route-safe, with no new navigation or future-page assumptions beyond the already defined `/menu` route.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
-@@ -1,2 +1,3 @@
- import HeroSection from '../components/HeroSection'
-+import SignaturePreviewSection from '../components/SignaturePreviewSection'
- 
-@@ -6,11 +7,3 @@
-       <HeroSection />
--
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">Signature services preview</h2>
--        <p>
--          This section introduces Casa Aurea&apos;s core offers, including
--          catering, mobile bar service, and tailored hospitality for premium
--          occasions.
--        </p>
--      </section>
-+      <SignaturePreviewSection />
- 
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/SignaturePreviewSection.jsx
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+ succeeded in 51ms:
 import { Link } from 'react-router-dom'
 
 const sectionStyles = {
@@ -1431,6 +1355,170 @@ const sectionStyles = {
   eyebrow: {
     margin: 0,
     color: '#9f7b4b',
+ succeeded in 51ms:
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+ succeeded in 51ms:
+import { Link } from 'react-router-dom'
+
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(32rem, 78vh, 46rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(40, 31, 24, 0.18) 0%, rgba(28, 22, 18, 0.72) 62%, rgba(20, 15, 12, 0.9) 100%), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 42rem)',
+codex
+The current codebase is still using the Vite starter global styles, so I’m keeping this task self-contained with inline section styling instead of broad theme cleanup. I’m reading the agent report format, then I’ll replace the placeholder with a reusable split-content preview component and run the build.
+exec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+export default function Layout({ children }) {
+  return (
+    <>
+      <header>
+        <nav aria-label="Main navigation">
+          <a href="#/">Home</a>
+          <a href="#/menu">Menu</a>
+          <a href="#/chi-siamo">Chi siamo</a>
+          <a href="#/gallery">Gallery</a>
+          <a href="#/contatti">Contatti</a>
+          <a href="#/servizi">Servizi</a>
+        </nav>
+      </header>
+
+      <main>{children}</main>
+
+      <footer>
+        <p>© Website</p>
+      </footer>
+    </>
+ succeeded in 52ms:
+# AGENT REPORT
+
+Project created.
+
+Prepared TASK page-home-shell (Create home page shell) for execution.
+
+Launching Codex for TASK page-home-shell.
+
+Completed TASK page-home-shell.
+
+Implemented a semantic home page shell in `src/pages/Home.jsx` with real hero,
+signature preview, and brand story preview sections. Verified the home route
+remains mounted in `src/App.jsx` and ready for follow-up content tasks.
+
+TASK page-home-shell executed by Codex.
+Waiting for validation.
+
+TASK page-home-shell completed successfully.
+Build passed.
+Commit created for TASK page-home-shell.
+ succeeded in 51ms:
+import { HashRouter, Routes, Route } from "react-router-dom"
+import Layout from "./layout/Layout"
+import Home from "./pages/Home"
+import Menu from "./pages/Menu"
+import ChiSiamo from "./pages/ChiSiamo"
+import Gallery from "./pages/Gallery"
+import Contatti from "./pages/Contatti"
+import Servizi from "./pages/Servizi"
+
+export default function App() {
+  return (
+    <HashRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/chi-siamo" element={<ChiSiamo />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contatti" element={<Contatti />} />
+          <Route path="/servizi" element={<Servizi />} />
+codex
+I have enough context. I’m replacing the placeholder section in `Home.jsx` with a dedicated split-content preview component, then I’ll append a short task note to `agent/AGENT_REPORT.md` and run a build to verify the change end to end.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
+@@ -1,2 +1,3 @@
+ import HeroSection from '../components/HeroSection'
++import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
+@@ -8,13 +9,3 @@
+       <SignaturePreviewSection />
+-
+-      <section
+-        id="brand-story-preview"
+-        aria-labelledby="brand-story-preview-title"
+-      >
+-        <h2 id="brand-story-preview-title">Brand story preview</h2>
+-        <p>
+-          This section provides an editorial introduction to the brand&apos;s
+-          atmosphere, service philosophy, and event experience.
+-        </p>
+-      </section>
++      <BrandStoryPreviewSection />
+     </article>
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Brand-story-previewSection.jsx
+import { Link } from 'react-router-dom'
+
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    display: 'grid',
+    gap: '1.5rem',
+    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    backgroundColor: '#241c17',
+    color: '#f6efe4',
+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
+  },
+  media: {
+    minHeight: '20rem',
+    borderRadius: '28px',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  },
+  content: {
+    display: 'grid',
+    gap: '1.25rem',
+    padding: 'clamp(0.5rem, 1vw, 1rem)',
+    textAlign: 'left',
+  },
+  eyebrow: {
+    margin: 0,
+    color: '#d9bf8d',
     fontSize: '0.82rem',
     letterSpacing: '0.22em',
     textTransform: 'uppercase',
@@ -1438,184 +1526,215 @@ const sectionStyles = {
   },
   title: {
     margin: 0,
-    maxWidth: '14ch',
-    color: '#201914',
+    maxWidth: '12ch',
+    color: '#f6efe4',
     fontFamily: 'Georgia, "Times New Roman", serif',
-    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
+    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
     lineHeight: 1.05,
   },
   intro: {
     margin: 0,
-    maxWidth: '42rem',
-    color: 'rgba(32, 25, 20, 0.78)',
+    maxWidth: '36rem',
+    color: 'rgba(246, 239, 228, 0.82)',
     fontSize: '1rem',
     lineHeight: 1.8,
   },
-  grid: {
+  list: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-    gap: '1rem',
+    gap: '0.9rem',
+    margin: 0,
+    padding: 0,
+    listStyle: 'none',
   },
-  card: {
+  listItem: {
     display: 'grid',
-    gap: '0.85rem',
-    minHeight: '100%',
-    padding: '1.4rem',
-    borderRadius: '24px',
-    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-    border: '1px solid rgba(159, 123, 75, 0.12)',
+    gap: '0.3rem',
+    paddingBottom: '0.9rem',
+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
   },
-  index: {
-    color: '#9f7b4b',
-    fontSize: '0.78rem',
-    letterSpacing: '0.16em',
-    textTransform: 'uppercase',
+  itemTitle: {
+    color: '#f6efe4',
+    fontSize: '1rem',
     fontWeight: 700,
   },
-  cardTitle: {
-    margin: 0,
-    color: '#201914',
-    fontFamily: 'Georgia, "Times New Roman", serif',
-    fontSize: '1.4rem',
-    lineHeight: 1.15,
-  },
-  cardBody: {
-    margin: 0,
-    color: 'rgba(32, 25, 20, 0.76)',
+  itemText: {
+    color: 'rgba(246, 239, 228, 0.74)',
     lineHeight: 1.7,
   },
-  accent: {
-    margin: 0,
-    color: '#5a4838',
-    fontSize: '0.96rem',
-    lineHeight: 1.6,
-    fontWeight: 600,
-  },
   footer: {
-    marginTop: '1.5rem',
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: 'grid',
     gap: '1rem',
-    alignItems: 'center',
-    justifyContent: 'space-between',
   },
   note: {
     margin: 0,
-    maxWidth: '38rem',
-    color: 'rgba(32, 25, 20, 0.72)',
+    color: 'rgba(246, 239, 228, 0.72)',
     lineHeight: 1.7,
   },
-  action: {
+  actionRow: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '0.875rem',
+  },
+  primaryAction: {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: '3.15rem',
     padding: '0.9rem 1.5rem',
     borderRadius: '999px',
-    backgroundColor: '#201914',
-    color: '#f7f1e8',
+    backgroundColor: '#d9bf8d',
+    color: '#1f1813',
     textDecoration: 'none',
     fontWeight: 700,
   },
+  secondaryAction: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '3.15rem',
+    padding: '0.9rem 1.5rem',
+    borderRadius: '999px',
+    border: '1px solid rgba(246, 239, 228, 0.18)',
+    backgroundColor: 'rgba(246, 239, 228, 0.06)',
+    color: '#f6efe4',
+    textDecoration: 'none',
+    fontWeight: 600,
+  },
 }
 
-const signatureServices = [
+const storyPoints = [
   {
-    id: '01',
-    title: 'Curated catering',
-    description:
-      'Plated dinners, aperitivo tables, and elegant service flows designed around the rhythm of your event.',
-    accent: 'Tailored menus with refined presentation and confident execution.',
+    title: 'Tailored to the occasion',
+    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
   },
   {
-    id: '02',
-    title: 'Mobile bar service',
-    description:
-      'A polished cocktail program with premium spirits, signature serves, and bartenders who understand atmosphere.',
-    accent: 'Built for weddings, private celebrations, and brand-hosted evenings.',
+    title: 'Hospitality with presence',
+    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
   },
   {
-    id: '03',
-    title: 'Hospitality styling',
-    description:
-      'Support with table mood, service details, and guest-facing presentation so the entire experience feels cohesive.',
-    accent: 'Every touchpoint is considered, from welcome drinks to the final toast.',
+    title: 'Italian refinement, modern tone',
+    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
   },
 ]
 
-export default function SignaturePreviewSection() {
+export default function BrandStoryPreviewSection() {
   return (
     <section
-      id="signature-preview"
-      aria-labelledby="signature-preview-title"
+      id="brand-story-preview"
+      aria-labelledby="brand-story-preview-title"
       style={sectionStyles.section}
     >
-      <div style={sectionStyles.header}>
-        <p style={sectionStyles.eyebrow}>Signature services</p>
-        <h2 id="signature-preview-title" style={sectionStyles.title}>
-          Refined event service with a clear point of view
+      <div style={sectionStyles.media} aria-hidden="true" />
+
+      <div style={sectionStyles.content}>
+        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
+        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
+          Events shaped with warmth, timing, and visual restraint
         </h2>
         <p style={sectionStyles.intro}>
-          Casa Aurea pairs premium catering, elevated bar service, and
-          intentional hospitality to create celebrations that feel graceful,
-          seamless, and distinctly memorable.
+          We design food and bar experiences that feel beautifully hosted from
+          the first welcome pour to the final late-evening toast. The result is
+          polished, personal, and composed enough for milestone moments.
         </p>
-      </div>
 
-      <div style={sectionStyles.grid}>
-        {signatureServices.map((service) => (
-          <article key={service.id} style={sectionStyles.card}>
-            <span style={sectionStyles.index}>{service.id}</span>
-            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
-            <p style={sectionStyles.cardBody}>{service.description}</p>
-            <p style={sectionStyles.accent}>{service.accent}</p>
-          </article>
-        ))}
-      </div>
+        <ul style={sectionStyles.list}>
+          {storyPoints.map((point) => (
+            <li key={point.title} style={sectionStyles.listItem}>
+              <span style={sectionStyles.itemTitle}>{point.title}</span>
+              <span style={sectionStyles.itemText}>{point.text}</span>
+            </li>
+          ))}
+        </ul>
 
-      <div style={sectionStyles.footer}>
-        <p style={sectionStyles.note}>
-          Each event proposal is shaped around guest experience, service pace,
-          and the visual tone you want the day to hold.
-        </p>
-        <Link to="/menu" style={sectionStyles.action}>
-          Discover the offering
-        </Link>
+        <div style={sectionStyles.footer}>
+          <p style={sectionStyles.note}>
+            From intimate celebrations in Torino to larger destination-style
+            receptions, our approach stays consistent: elegant presentation,
+            attentive pacing, and hospitality guests remember.
+          </p>
+
+          <div style={sectionStyles.actionRow}>
+            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
+              Read our story
+            </Link>
+            <Link to="/contatti" style={sectionStyles.secondaryAction}>
+              Book a discovery call
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   )
 }
-apply_patch(auto_approved=true) exited 0 in 44ms:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+@@ -65 +65,9 @@
+ Launching Codex for TASK section-home-brand-story-preview.
++
++Completed TASK section-home-brand-story-preview.
++
++Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
++from `src/pages/Home.jsx` to replace the placeholder home content. The section
++now matches the required split-content-preview shape with editorial brand copy,
++supporting story points, and route-safe CTAs to the existing about and contact
++pages.
+apply_patch(auto_approved=true) exited 0 in 50ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/SignaturePreviewSection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Brand-story-previewSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 5e6cb037fbda8bded46b60ad077591e485187f84..9ad9883c81b931c1579d5b5d07d0facab1ab8c26
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -63,3 +63,11 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
+ 
+ Launching Codex for TASK section-home-brand-story-preview.
++
++Completed TASK section-home-brand-story-preview.
++
++Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
++from `src/pages/Home.jsx` to replace the placeholder home content. The section
++now matches the required split-content-preview shape with editorial brand copy,
++supporting story points, and route-safe CTAs to the existing about and contact
++pages.
+diff --git a/src/components/Brand-story-previewSection.jsx b/src/components/Brand-story-previewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..2944b9ef6d6a89d07d87a33f47d278dd74323922
+index 0000000000000000000000000000000000000000..d6807518dcce7490c526d7fab2c8849de43e0be3
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,174 @@
++++ b/src/components/Brand-story-previewSection.jsx
+@@ -0,0 +1,177 @@
 +import { Link } from 'react-router-dom'
 +
 +const sectionStyles = {
 +  section: {
 +    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(246, 239, 228, 0.9) 0%, rgba(239, 228, 210, 0.72) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
 +    display: 'grid',
-+    gap: '1rem',
-+    alignItems: 'end',
-+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
++    gap: '1.5rem',
++    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
++    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
++  },
++  media: {
++    minHeight: '20rem',
++    borderRadius: '28px',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++  },
++  content: {
++    display: 'grid',
++    gap: '1.25rem',
++    padding: 'clamp(0.5rem, 1vw, 1rem)',
++    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    color: '#9f7b4b',
++    color: '#d9bf8d',
 +    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
@@ -1623,206 +1742,229 @@ index 0000000000000000000000000000000000000000..2944b9ef6d6a89d07d87a33f47d278dd
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: '14ch',
-+    color: '#201914',
++    maxWidth: '12ch',
++    color: '#f6efe4',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
 +    lineHeight: 1.05,
 +  },
 +  intro: {
 +    margin: 0,
-+    maxWidth: '42rem',
-+    color: 'rgba(32, 25, 20, 0.78)',
++    maxWidth: '36rem',
++    color: 'rgba(246, 239, 228, 0.82)',
 +    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
-+  grid: {
++  list: {
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
 +  },
-+  card: {
++  listItem: {
 +    display: 'grid',
-+    gap: '0.85rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-+    border: '1px solid rgba(159, 123, 75, 0.12)',
++    gap: '0.3rem',
++    paddingBottom: '0.9rem',
++    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
 +  },
-+  index: {
-+    color: '#9f7b4b',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
++  itemTitle: {
++    color: '#f6efe4',
++    fontSize: '1rem',
 +    fontWeight: 700,
 +  },
-+  cardTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.4rem',
-+    lineHeight: 1.15,
-+  },
-+  cardBody: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
++  itemText: {
++    color: 'rgba(246, 239, 228, 0.74)',
 +    lineHeight: 1.7,
 +  },
-+  accent: {
-+    margin: 0,
-+    color: '#5a4838',
-+    fontSize: '0.96rem',
-+    lineHeight: 1.6,
-+    fontWeight: 600,
-+  },
 +  footer: {
-+    marginTop: '1.5rem',
-+    display: 'flex',
-+    flexWrap: 'wrap',
++    display: 'grid',
 +    gap: '1rem',
-+    alignItems: 'center',
-+    justifyContent: 'space-between',
 +  },
 +  note: {
 +    margin: 0,
-+    maxWidth: '38rem',
-+    color: 'rgba(32, 25, 20, 0.72)',
++    color: 'rgba(246, 239, 228, 0.72)',
 +    lineHeight: 1.7,
 +  },
-+  action: {
++  actionRow: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
 +    display: 'inline-flex',
 +    alignItems: 'center',
 +    justifyContent: 'center',
 +    minHeight: '3.15rem',
 +    padding: '0.9rem 1.5rem',
 +    borderRadius: '999px',
-+    backgroundColor: '#201914',
-+    color: '#f7f1e8',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
 +    textDecoration: 'none',
 +    fontWeight: 700,
 +  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(246, 239, 228, 0.18)',
++    backgroundColor: 'rgba(246, 239, 228, 0.06)',
++    color: '#f6efe4',
++    textDecoration: 'none',
++    fontWeight: 600,
++  },
 +}
 +
-+const signatureServices = [
++const storyPoints = [
 +  {
-+    id: '01',
-+    title: 'Curated catering',
-+    description:
-+      'Plated dinners, aperitivo tables, and elegant service flows designed around the rhythm of your event.',
-+    accent: 'Tailored menus with refined presentation and confident execution.',
++    title: 'Tailored to the occasion',
++    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
 +  },
 +  {
-+    id: '02',
-+    title: 'Mobile bar service',
-+    description:
-+      'A polished cocktail program with premium spirits, signature serves, and bartenders who understand atmosphere.',
-+    accent: 'Built for weddings, private celebrations, and brand-hosted evenings.',
++    title: 'Hospitality with presence',
++    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
 +  },
 +  {
-+    id: '03',
-+    title: 'Hospitality styling',
-+    description:
-+      'Support with table mood, service details, and guest-facing presentation so the entire experience feels cohesive.',
-+    accent: 'Every touchpoint is considered, from welcome drinks to the final toast.',
++    title: 'Italian refinement, modern tone',
++    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
 +  },
 +]
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
 +    <section
-+      id="signature-preview"
-+      aria-labelledby="signature-preview-title"
++      id="brand-story-preview"
++      aria-labelledby="brand-story-preview-title"
 +      style={sectionStyles.section}
 +    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Signature services</p>
-+        <h2 id="signature-preview-title" style={sectionStyles.title}>
-+          Refined event service with a clear point of view
++      <div style={sectionStyles.media} aria-hidden="true" />
++
++      <div style={sectionStyles.content}>
++        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
++        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
++          Events shaped with warmth, timing, and visual restraint
 +        </h2>
 +        <p style={sectionStyles.intro}>
-+          Casa Aurea pairs premium catering, elevated bar service, and
-+          intentional hospitality to create celebrations that feel graceful,
-+          seamless, and distinctly memorable.
++          We design food and bar experiences that feel beautifully hosted from
++          the first welcome pour to the final late-evening toast. The result is
++          polished, personal, and composed enough for milestone moments.
 +        </p>
-+      </div>
 +
-+      <div style={sectionStyles.grid}>
-+        {signatureServices.map((service) => (
-+          <article key={service.id} style={sectionStyles.card}>
-+            <span style={sectionStyles.index}>{service.id}</span>
-+            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
-+            <p style={sectionStyles.cardBody}>{service.description}</p>
-+            <p style={sectionStyles.accent}>{service.accent}</p>
-+          </article>
-+        ))}
-+      </div>
++        <ul style={sectionStyles.list}>
++          {storyPoints.map((point) => (
++            <li key={point.title} style={sectionStyles.listItem}>
++              <span style={sectionStyles.itemTitle}>{point.title}</span>
++              <span style={sectionStyles.itemText}>{point.text}</span>
++            </li>
++          ))}
++        </ul>
 +
-+      <div style={sectionStyles.footer}>
-+        <p style={sectionStyles.note}>
-+          Each event proposal is shaped around guest experience, service pace,
-+          and the visual tone you want the day to hold.
-+        </p>
-+        <Link to="/menu" style={sectionStyles.action}>
-+          Discover the offering
-+        </Link>
++        <div style={sectionStyles.footer}>
++          <p style={sectionStyles.note}>
++            From intimate celebrations in Torino to larger destination-style
++            receptions, our approach stays consistent: elegant presentation,
++            attentive pacing, and hospitality guests remember.
++          </p>
++
++          <div style={sectionStyles.actionRow}>
++            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
++              Read our story
++            </Link>
++            <Link to="/contatti" style={sectionStyles.secondaryAction}>
++              Book a discovery call
++            </Link>
++          </div>
++        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index f50f2147c7a10a14e8708f524878ad20e7fd52e6..dc55a7ff2506f9f416669faafb1e011ff60bb9fb
+index dc55a7ff2506f9f416669faafb1e011ff60bb9fb..18aa4265619a7cf661d162e652dce80a9bb09b46
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,18 +1,11 @@
+@@ -1,4 +1,5 @@
  import HeroSection from '../components/HeroSection'
-+import SignaturePreviewSection from '../components/SignaturePreviewSection'
++import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
  
  export default function Home() {
-   return (
+@@ -6,17 +7,7 @@
      <article aria-labelledby="home-title">
        <HeroSection />
+       <SignaturePreviewSection />
 -
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">Signature services preview</h2>
+-      <section
+-        id="brand-story-preview"
+-        aria-labelledby="brand-story-preview-title"
+-      >
+-        <h2 id="brand-story-preview-title">Brand story preview</h2>
 -        <p>
--          This section introduces Casa Aurea&apos;s core offers, including
--          catering, mobile bar service, and tailored hospitality for premium
--          occasions.
+-          This section provides an editorial introduction to the brand&apos;s
+-          atmosphere, service philosophy, and event experience.
 -        </p>
 -      </section>
-+      <SignaturePreviewSection />
- 
-       <section
-         id="brand-story-preview"
++      <BrandStoryPreviewSection />
+     </article>
+   )
+ }
 
 file update:
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 5e6cb037fbda8bded46b60ad077591e485187f84..9ad9883c81b931c1579d5b5d07d0facab1ab8c26
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -63,3 +63,11 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
+ 
+ Launching Codex for TASK section-home-brand-story-preview.
++
++Completed TASK section-home-brand-story-preview.
++
++Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
++from `src/pages/Home.jsx` to replace the placeholder home content. The section
++now matches the required split-content-preview shape with editorial brand copy,
++supporting story points, and route-safe CTAs to the existing about and contact
++pages.
+diff --git a/src/components/Brand-story-previewSection.jsx b/src/components/Brand-story-previewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..2944b9ef6d6a89d07d87a33f47d278dd74323922
+index 0000000000000000000000000000000000000000..d6807518dcce7490c526d7fab2c8849de43e0be3
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,174 @@
++++ b/src/components/Brand-story-previewSection.jsx
+@@ -0,0 +1,177 @@
 +import { Link } from 'react-router-dom'
 +
 +const sectionStyles = {
 +  section: {
 +    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(246, 239, 228, 0.9) 0%, rgba(239, 228, 210, 0.72) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
 +    display: 'grid',
-+    gap: '1rem',
-+    alignItems: 'end',
-+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
++    gap: '1.5rem',
++    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
++    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
++  },
++  media: {
++    minHeight: '20rem',
++    borderRadius: '28px',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++  },
++  content: {
++    display: 'grid',
++    gap: '1.25rem',
++    padding: 'clamp(0.5rem, 1vw, 1rem)',
++    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    color: '#9f7b4b',
++    color: '#d9bf8d',
 +    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
@@ -1830,242 +1972,718 @@ index 0000000000000000000000000000000000000000..2944b9ef6d6a89d07d87a33f47d278dd
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: '14ch',
-+    color: '#201914',
++    maxWidth: '12ch',
++    color: '#f6efe4',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
 +    lineHeight: 1.05,
 +  },
 +  intro: {
 +    margin: 0,
-+    maxWidth: '42rem',
-+    color: 'rgba(32, 25, 20, 0.78)',
++    maxWidth: '36rem',
++    color: 'rgba(246, 239, 228, 0.82)',
 +    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
-+  grid: {
++  list: {
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
 +  },
-+  card: {
++  listItem: {
 +    display: 'grid',
-+    gap: '0.85rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-+    border: '1px solid rgba(159, 123, 75, 0.12)',
++    gap: '0.3rem',
++    paddingBottom: '0.9rem',
++    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
 +  },
-+  index: {
-+    color: '#9f7b4b',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
++  itemTitle: {
++    color: '#f6efe4',
++    fontSize: '1rem',
 +    fontWeight: 700,
 +  },
-+  cardTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.4rem',
-+    lineHeight: 1.15,
-+  },
-+  cardBody: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
++  itemText: {
++    color: 'rgba(246, 239, 228, 0.74)',
 +    lineHeight: 1.7,
 +  },
-+  accent: {
-+    margin: 0,
-+    color: '#5a4838',
-+    fontSize: '0.96rem',
-+    lineHeight: 1.6,
-+    fontWeight: 600,
-+  },
 +  footer: {
-+    marginTop: '1.5rem',
-+    display: 'flex',
-+    flexWrap: 'wrap',
++    display: 'grid',
 +    gap: '1rem',
-+    alignItems: 'center',
-+    justifyContent: 'space-between',
 +  },
 +  note: {
 +    margin: 0,
-+    maxWidth: '38rem',
-+    color: 'rgba(32, 25, 20, 0.72)',
++    color: 'rgba(246, 239, 228, 0.72)',
 +    lineHeight: 1.7,
 +  },
-+  action: {
++  actionRow: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
 +    display: 'inline-flex',
 +    alignItems: 'center',
 +    justifyContent: 'center',
 +    minHeight: '3.15rem',
 +    padding: '0.9rem 1.5rem',
 +    borderRadius: '999px',
-+    backgroundColor: '#201914',
-+    color: '#f7f1e8',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
 +    textDecoration: 'none',
 +    fontWeight: 700,
 +  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(246, 239, 228, 0.18)',
++    backgroundColor: 'rgba(246, 239, 228, 0.06)',
++    color: '#f6efe4',
++    textDecoration: 'none',
++    fontWeight: 600,
++  },
 +}
 +
-+const signatureServices = [
++const storyPoints = [
 +  {
-+    id: '01',
-+    title: 'Curated catering',
-+    description:
-+      'Plated dinners, aperitivo tables, and elegant service flows designed around the rhythm of your event.',
-+    accent: 'Tailored menus with refined presentation and confident execution.',
++    title: 'Tailored to the occasion',
++    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
 +  },
 +  {
-+    id: '02',
-+    title: 'Mobile bar service',
-+    description:
-+      'A polished cocktail program with premium spirits, signature serves, and bartenders who understand atmosphere.',
-+    accent: 'Built for weddings, private celebrations, and brand-hosted evenings.',
++    title: 'Hospitality with presence',
++    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
 +  },
 +  {
-+    id: '03',
-+    title: 'Hospitality styling',
-+    description:
-+      'Support with table mood, service details, and guest-facing presentation so the entire experience feels cohesive.',
-+    accent: 'Every touchpoint is considered, from welcome drinks to the final toast.',
++    title: 'Italian refinement, modern tone',
++    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
 +  },
 +]
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
 +    <section
-+      id="signature-preview"
-+      aria-labelledby="signature-preview-title"
++      id="brand-story-preview"
++      aria-labelledby="brand-story-preview-title"
 +      style={sectionStyles.section}
 +    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Signature services</p>
-+        <h2 id="signature-preview-title" style={sectionStyles.title}>
-+          Refined event service with a clear point of view
++      <div style={sectionStyles.media} aria-hidden="true" />
++
++      <div style={sectionStyles.content}>
++        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
++        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
++          Events shaped with warmth, timing, and visual restraint
 +        </h2>
 +        <p style={sectionStyles.intro}>
-+          Casa Aurea pairs premium catering, elevated bar service, and
-+          intentional hospitality to create celebrations that feel graceful,
-+          seamless, and distinctly memorable.
++          We design food and bar experiences that feel beautifully hosted from
++          the first welcome pour to the final late-evening toast. The result is
++          polished, personal, and composed enough for milestone moments.
 +        </p>
-+      </div>
 +
-+      <div style={sectionStyles.grid}>
-+        {signatureServices.map((service) => (
-+          <article key={service.id} style={sectionStyles.card}>
-+            <span style={sectionStyles.index}>{service.id}</span>
-+            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
-+            <p style={sectionStyles.cardBody}>{service.description}</p>
-+            <p style={sectionStyles.accent}>{service.accent}</p>
-+          </article>
-+        ))}
-+      </div>
++        <ul style={sectionStyles.list}>
++          {storyPoints.map((point) => (
++            <li key={point.title} style={sectionStyles.listItem}>
++              <span style={sectionStyles.itemTitle}>{point.title}</span>
++              <span style={sectionStyles.itemText}>{point.text}</span>
++            </li>
++          ))}
++        </ul>
 +
-+      <div style={sectionStyles.footer}>
-+        <p style={sectionStyles.note}>
-+          Each event proposal is shaped around guest experience, service pace,
-+          and the visual tone you want the day to hold.
-+        </p>
-+        <Link to="/menu" style={sectionStyles.action}>
-+          Discover the offering
-+        </Link>
++        <div style={sectionStyles.footer}>
++          <p style={sectionStyles.note}>
++            From intimate celebrations in Torino to larger destination-style
++            receptions, our approach stays consistent: elegant presentation,
++            attentive pacing, and hospitality guests remember.
++          </p>
++
++          <div style={sectionStyles.actionRow}>
++            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
++              Read our story
++            </Link>
++            <Link to="/contatti" style={sectionStyles.secondaryAction}>
++              Book a discovery call
++            </Link>
++          </div>
++        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index f50f2147c7a10a14e8708f524878ad20e7fd52e6..dc55a7ff2506f9f416669faafb1e011ff60bb9fb
+index dc55a7ff2506f9f416669faafb1e011ff60bb9fb..18aa4265619a7cf661d162e652dce80a9bb09b46
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,18 +1,11 @@
+@@ -1,4 +1,5 @@
  import HeroSection from '../components/HeroSection'
-+import SignaturePreviewSection from '../components/SignaturePreviewSection'
++import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
  
  export default function Home() {
-   return (
+@@ -6,17 +7,7 @@
      <article aria-labelledby="home-title">
        <HeroSection />
+       <SignaturePreviewSection />
 -
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">Signature services preview</h2>
+-      <section
+-        id="brand-story-preview"
+-        aria-labelledby="brand-story-preview-title"
+-      >
+-        <h2 id="brand-story-preview-title">Brand story preview</h2>
 -        <p>
--          This section introduces Casa Aurea&apos;s core offers, including
--          catering, mobile bar service, and tailored hospitality for premium
--          occasions.
+-          This section provides an editorial introduction to the brand&apos;s
+-          atmosphere, service philosophy, and event experience.
 -        </p>
 -      </section>
-+      <SignaturePreviewSection />
- 
-       <section
-         id="brand-story-preview"
++      <BrandStoryPreviewSection />
+     </article>
+   )
+ }
 
 codex
-The section component is in place and wired into the home page. I’m running the build now, then I’ll append the required task summary to `agent/AGENT_REPORT.md`.
+The section is in place, but I’m making one small adjustment before validation so it behaves as a true split layout instead of stacking at every breakpoint. Then I’ll run the production build.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Brand-story-previewSection.jsx
+@@ -6,2 +6,3 @@
+     display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+     gap: '1.5rem',
+apply_patch(auto_approved=true) exited 0 in 72ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Brand-story-previewSection.jsx
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 5e6cb037fbda8bded46b60ad077591e485187f84..9ad9883c81b931c1579d5b5d07d0facab1ab8c26
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -63,3 +63,11 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
+ 
+ Launching Codex for TASK section-home-brand-story-preview.
++
++Completed TASK section-home-brand-story-preview.
++
++Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
++from `src/pages/Home.jsx` to replace the placeholder home content. The section
++now matches the required split-content-preview shape with editorial brand copy,
++supporting story points, and route-safe CTAs to the existing about and contact
++pages.
+diff --git a/src/components/Brand-story-previewSection.jsx b/src/components/Brand-story-previewSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..f73420c4bbf88ad0b3d5a2bd0b03d0629b3206b2
+--- /dev/null
++++ b/src/components/Brand-story-previewSection.jsx
+@@ -0,0 +1,178 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
++    gap: '1.5rem',
++    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
++    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
++  },
++  media: {
++    minHeight: '20rem',
++    borderRadius: '28px',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++  },
++  content: {
++    display: 'grid',
++    gap: '1.25rem',
++    padding: 'clamp(0.5rem, 1vw, 1rem)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#d9bf8d',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    maxWidth: '12ch',
++    color: '#f6efe4',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    maxWidth: '36rem',
++    color: 'rgba(246, 239, 228, 0.82)',
++    fontSize: '1rem',
++    lineHeight: 1.8,
++  },
++  list: {
++    display: 'grid',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  listItem: {
++    display: 'grid',
++    gap: '0.3rem',
++    paddingBottom: '0.9rem',
++    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
++  },
++  itemTitle: {
++    color: '#f6efe4',
++    fontSize: '1rem',
++    fontWeight: 700,
++  },
++  itemText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
++    display: 'grid',
++    gap: '1rem',
++  },
++  note: {
++    margin: 0,
++    color: 'rgba(246, 239, 228, 0.72)',
++    lineHeight: 1.7,
++  },
++  actionRow: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(246, 239, 228, 0.18)',
++    backgroundColor: 'rgba(246, 239, 228, 0.06)',
++    color: '#f6efe4',
++    textDecoration: 'none',
++    fontWeight: 600,
++  },
++}
++
++const storyPoints = [
++  {
++    title: 'Tailored to the occasion',
++    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
++  },
++  {
++    title: 'Hospitality with presence',
++    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
++  },
++  {
++    title: 'Italian refinement, modern tone',
++    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
++  },
++]
++
++export default function BrandStoryPreviewSection() {
++  return (
++    <section
++      id="brand-story-preview"
++      aria-labelledby="brand-story-preview-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.media} aria-hidden="true" />
++
++      <div style={sectionStyles.content}>
++        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
++        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
++          Events shaped with warmth, timing, and visual restraint
++        </h2>
++        <p style={sectionStyles.intro}>
++          We design food and bar experiences that feel beautifully hosted from
++          the first welcome pour to the final late-evening toast. The result is
++          polished, personal, and composed enough for milestone moments.
++        </p>
++
++        <ul style={sectionStyles.list}>
++          {storyPoints.map((point) => (
++            <li key={point.title} style={sectionStyles.listItem}>
++              <span style={sectionStyles.itemTitle}>{point.title}</span>
++              <span style={sectionStyles.itemText}>{point.text}</span>
++            </li>
++          ))}
++        </ul>
++
++        <div style={sectionStyles.footer}>
++          <p style={sectionStyles.note}>
++            From intimate celebrations in Torino to larger destination-style
++            receptions, our approach stays consistent: elegant presentation,
++            attentive pacing, and hospitality guests remember.
++          </p>
++
++          <div style={sectionStyles.actionRow}>
++            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
++              Read our story
++            </Link>
++            <Link to="/contatti" style={sectionStyles.secondaryAction}>
++              Book a discovery call
++            </Link>
++          </div>
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index dc55a7ff2506f9f416669faafb1e011ff60bb9fb..18aa4265619a7cf661d162e652dce80a9bb09b46
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,4 +1,5 @@
+ import HeroSection from '../components/HeroSection'
++import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
+ 
+ export default function Home() {
+@@ -6,17 +7,7 @@
+     <article aria-labelledby="home-title">
+       <HeroSection />
+       <SignaturePreviewSection />
+-
+-      <section
+-        id="brand-story-preview"
+-        aria-labelledby="brand-story-preview-title"
+-      >
+-        <h2 id="brand-story-preview-title">Brand story preview</h2>
+-        <p>
+-          This section provides an editorial introduction to the brand&apos;s
+-          atmosphere, service philosophy, and event experience.
+-        </p>
+-      </section>
++      <BrandStoryPreviewSection />
+     </article>
+   )
+ }
+
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 5e6cb037fbda8bded46b60ad077591e485187f84..9ad9883c81b931c1579d5b5d07d0facab1ab8c26
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -63,3 +63,11 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
+ 
+ Launching Codex for TASK section-home-brand-story-preview.
++
++Completed TASK section-home-brand-story-preview.
++
++Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
++from `src/pages/Home.jsx` to replace the placeholder home content. The section
++now matches the required split-content-preview shape with editorial brand copy,
++supporting story points, and route-safe CTAs to the existing about and contact
++pages.
+diff --git a/src/components/Brand-story-previewSection.jsx b/src/components/Brand-story-previewSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..f73420c4bbf88ad0b3d5a2bd0b03d0629b3206b2
+--- /dev/null
++++ b/src/components/Brand-story-previewSection.jsx
+@@ -0,0 +1,178 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
++    gap: '1.5rem',
++    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
++    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
++  },
++  media: {
++    minHeight: '20rem',
++    borderRadius: '28px',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++  },
++  content: {
++    display: 'grid',
++    gap: '1.25rem',
++    padding: 'clamp(0.5rem, 1vw, 1rem)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#d9bf8d',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    maxWidth: '12ch',
++    color: '#f6efe4',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    maxWidth: '36rem',
++    color: 'rgba(246, 239, 228, 0.82)',
++    fontSize: '1rem',
++    lineHeight: 1.8,
++  },
++  list: {
++    display: 'grid',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  listItem: {
++    display: 'grid',
++    gap: '0.3rem',
++    paddingBottom: '0.9rem',
++    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
++  },
++  itemTitle: {
++    color: '#f6efe4',
++    fontSize: '1rem',
++    fontWeight: 700,
++  },
++  itemText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
++    display: 'grid',
++    gap: '1rem',
++  },
++  note: {
++    margin: 0,
++    color: 'rgba(246, 239, 228, 0.72)',
++    lineHeight: 1.7,
++  },
++  actionRow: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(246, 239, 228, 0.18)',
++    backgroundColor: 'rgba(246, 239, 228, 0.06)',
++    color: '#f6efe4',
++    textDecoration: 'none',
++    fontWeight: 600,
++  },
++}
++
++const storyPoints = [
++  {
++    title: 'Tailored to the occasion',
++    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
++  },
++  {
++    title: 'Hospitality with presence',
++    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
++  },
++  {
++    title: 'Italian refinement, modern tone',
++    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
++  },
++]
++
++export default function BrandStoryPreviewSection() {
++  return (
++    <section
++      id="brand-story-preview"
++      aria-labelledby="brand-story-preview-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.media} aria-hidden="true" />
++
++      <div style={sectionStyles.content}>
++        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
++        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
++          Events shaped with warmth, timing, and visual restraint
++        </h2>
++        <p style={sectionStyles.intro}>
++          We design food and bar experiences that feel beautifully hosted from
++          the first welcome pour to the final late-evening toast. The result is
++          polished, personal, and composed enough for milestone moments.
++        </p>
++
++        <ul style={sectionStyles.list}>
++          {storyPoints.map((point) => (
++            <li key={point.title} style={sectionStyles.listItem}>
++              <span style={sectionStyles.itemTitle}>{point.title}</span>
++              <span style={sectionStyles.itemText}>{point.text}</span>
++            </li>
++          ))}
++        </ul>
++
++        <div style={sectionStyles.footer}>
++          <p style={sectionStyles.note}>
++            From intimate celebrations in Torino to larger destination-style
++            receptions, our approach stays consistent: elegant presentation,
++            attentive pacing, and hospitality guests remember.
++          </p>
++
++          <div style={sectionStyles.actionRow}>
++            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
++              Read our story
++            </Link>
++            <Link to="/contatti" style={sectionStyles.secondaryAction}>
++              Book a discovery call
++            </Link>
++          </div>
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index dc55a7ff2506f9f416669faafb1e011ff60bb9fb..18aa4265619a7cf661d162e652dce80a9bb09b46
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,4 +1,5 @@
+ import HeroSection from '../components/HeroSection'
++import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
+ 
+ export default function Home() {
+@@ -6,17 +7,7 @@
+     <article aria-labelledby="home-title">
+       <HeroSection />
+       <SignaturePreviewSection />
+-
+-      <section
+-        id="brand-story-preview"
+-        aria-labelledby="brand-story-preview-title"
+-      >
+-        <h2 id="brand-story-preview-title">Brand story preview</h2>
+-        <p>
+-          This section provides an editorial introduction to the brand&apos;s
+-          atmosphere, service philosophy, and event experience.
+-        </p>
+-      </section>
++      <BrandStoryPreviewSection />
+     </article>
+   )
+ }
+
 exec
-/bin/zsh -lc 'ls -1' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-AGENTS.md
-README.md
-agent
-brief
-dist
-docs
-eslint.config.js
-index.html
-node_modules
-package-lock.json
-package.json
-playwright.config.js
-public
-site-spec.json
-src
-tests
-vite.config.js
-exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 826ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 808ms:
 
 > site-create-a-premium-modern-website-for-an-e@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 50 modules transformed.
+✓ 51 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-20FTzx7U.js   239.95 kB │ gzip: 76.48 kB
-✓ built in 550ms
+dist/assets/index-z8zx0NRT.js   243.54 kB │ gzip: 77.28 kB
+✓ built in 554ms
 file update:
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 5e6cb037fbda8bded46b60ad077591e485187f84..9ad9883c81b931c1579d5b5d07d0facab1ab8c26
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -63,3 +63,11 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
+ 
+ Launching Codex for TASK section-home-brand-story-preview.
++
++Completed TASK section-home-brand-story-preview.
++
++Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
++from `src/pages/Home.jsx` to replace the placeholder home content. The section
++now matches the required split-content-preview shape with editorial brand copy,
++supporting story points, and route-safe CTAs to the existing about and contact
++pages.
+diff --git a/src/components/Brand-story-previewSection.jsx b/src/components/Brand-story-previewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..2944b9ef6d6a89d07d87a33f47d278dd74323922
+index 0000000000000000000000000000000000000000..f73420c4bbf88ad0b3d5a2bd0b03d0629b3206b2
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,174 @@
++++ b/src/components/Brand-story-previewSection.jsx
+@@ -0,0 +1,178 @@
 +import { Link } from 'react-router-dom'
 +
 +const sectionStyles = {
 +  section: {
 +    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(246, 239, 228, 0.9) 0%, rgba(239, 228, 210, 0.72) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
 +    display: 'grid',
-+    gap: '1rem',
-+    alignItems: 'end',
-+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
++    gap: '1.5rem',
++    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
++    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
++  },
++  media: {
++    minHeight: '20rem',
++    borderRadius: '28px',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++  },
++  content: {
++    display: 'grid',
++    gap: '1.25rem',
++    padding: 'clamp(0.5rem, 1vw, 1rem)',
++    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    color: '#9f7b4b',
++    color: '#d9bf8d',
 +    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
@@ -2073,249 +2691,236 @@ index 0000000000000000000000000000000000000000..2944b9ef6d6a89d07d87a33f47d278dd
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: '14ch',
-+    color: '#201914',
++    maxWidth: '12ch',
++    color: '#f6efe4',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
 +    lineHeight: 1.05,
 +  },
 +  intro: {
 +    margin: 0,
-+    maxWidth: '42rem',
-+    color: 'rgba(32, 25, 20, 0.78)',
++    maxWidth: '36rem',
++    color: 'rgba(246, 239, 228, 0.82)',
 +    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
-+  grid: {
++  list: {
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
 +  },
-+  card: {
++  listItem: {
 +    display: 'grid',
-+    gap: '0.85rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-+    border: '1px solid rgba(159, 123, 75, 0.12)',
++    gap: '0.3rem',
++    paddingBottom: '0.9rem',
++    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
 +  },
-+  index: {
-+    color: '#9f7b4b',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
++  itemTitle: {
++    color: '#f6efe4',
++    fontSize: '1rem',
 +    fontWeight: 700,
 +  },
-+  cardTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.4rem',
-+    lineHeight: 1.15,
-+  },
-+  cardBody: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
++  itemText: {
++    color: 'rgba(246, 239, 228, 0.74)',
 +    lineHeight: 1.7,
 +  },
-+  accent: {
-+    margin: 0,
-+    color: '#5a4838',
-+    fontSize: '0.96rem',
-+    lineHeight: 1.6,
-+    fontWeight: 600,
-+  },
 +  footer: {
-+    marginTop: '1.5rem',
-+    display: 'flex',
-+    flexWrap: 'wrap',
++    display: 'grid',
 +    gap: '1rem',
-+    alignItems: 'center',
-+    justifyContent: 'space-between',
 +  },
 +  note: {
 +    margin: 0,
-+    maxWidth: '38rem',
-+    color: 'rgba(32, 25, 20, 0.72)',
++    color: 'rgba(246, 239, 228, 0.72)',
 +    lineHeight: 1.7,
 +  },
-+  action: {
++  actionRow: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
 +    display: 'inline-flex',
 +    alignItems: 'center',
 +    justifyContent: 'center',
 +    minHeight: '3.15rem',
 +    padding: '0.9rem 1.5rem',
 +    borderRadius: '999px',
-+    backgroundColor: '#201914',
-+    color: '#f7f1e8',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
 +    textDecoration: 'none',
 +    fontWeight: 700,
 +  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(246, 239, 228, 0.18)',
++    backgroundColor: 'rgba(246, 239, 228, 0.06)',
++    color: '#f6efe4',
++    textDecoration: 'none',
++    fontWeight: 600,
++  },
 +}
 +
-+const signatureServices = [
++const storyPoints = [
 +  {
-+    id: '01',
-+    title: 'Curated catering',
-+    description:
-+      'Plated dinners, aperitivo tables, and elegant service flows designed around the rhythm of your event.',
-+    accent: 'Tailored menus with refined presentation and confident execution.',
++    title: 'Tailored to the occasion',
++    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
 +  },
 +  {
-+    id: '02',
-+    title: 'Mobile bar service',
-+    description:
-+      'A polished cocktail program with premium spirits, signature serves, and bartenders who understand atmosphere.',
-+    accent: 'Built for weddings, private celebrations, and brand-hosted evenings.',
++    title: 'Hospitality with presence',
++    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
 +  },
 +  {
-+    id: '03',
-+    title: 'Hospitality styling',
-+    description:
-+      'Support with table mood, service details, and guest-facing presentation so the entire experience feels cohesive.',
-+    accent: 'Every touchpoint is considered, from welcome drinks to the final toast.',
++    title: 'Italian refinement, modern tone',
++    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
 +  },
 +]
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
 +    <section
-+      id="signature-preview"
-+      aria-labelledby="signature-preview-title"
++      id="brand-story-preview"
++      aria-labelledby="brand-story-preview-title"
 +      style={sectionStyles.section}
 +    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Signature services</p>
-+        <h2 id="signature-preview-title" style={sectionStyles.title}>
-+          Refined event service with a clear point of view
++      <div style={sectionStyles.media} aria-hidden="true" />
++
++      <div style={sectionStyles.content}>
++        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
++        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
++          Events shaped with warmth, timing, and visual restraint
 +        </h2>
 +        <p style={sectionStyles.intro}>
-+          Casa Aurea pairs premium catering, elevated bar service, and
-+          intentional hospitality to create celebrations that feel graceful,
-+          seamless, and distinctly memorable.
++          We design food and bar experiences that feel beautifully hosted from
++          the first welcome pour to the final late-evening toast. The result is
++          polished, personal, and composed enough for milestone moments.
 +        </p>
-+      </div>
 +
-+      <div style={sectionStyles.grid}>
-+        {signatureServices.map((service) => (
-+          <article key={service.id} style={sectionStyles.card}>
-+            <span style={sectionStyles.index}>{service.id}</span>
-+            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
-+            <p style={sectionStyles.cardBody}>{service.description}</p>
-+            <p style={sectionStyles.accent}>{service.accent}</p>
-+          </article>
-+        ))}
-+      </div>
++        <ul style={sectionStyles.list}>
++          {storyPoints.map((point) => (
++            <li key={point.title} style={sectionStyles.listItem}>
++              <span style={sectionStyles.itemTitle}>{point.title}</span>
++              <span style={sectionStyles.itemText}>{point.text}</span>
++            </li>
++          ))}
++        </ul>
 +
-+      <div style={sectionStyles.footer}>
-+        <p style={sectionStyles.note}>
-+          Each event proposal is shaped around guest experience, service pace,
-+          and the visual tone you want the day to hold.
-+        </p>
-+        <Link to="/menu" style={sectionStyles.action}>
-+          Discover the offering
-+        </Link>
++        <div style={sectionStyles.footer}>
++          <p style={sectionStyles.note}>
++            From intimate celebrations in Torino to larger destination-style
++            receptions, our approach stays consistent: elegant presentation,
++            attentive pacing, and hospitality guests remember.
++          </p>
++
++          <div style={sectionStyles.actionRow}>
++            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
++              Read our story
++            </Link>
++            <Link to="/contatti" style={sectionStyles.secondaryAction}>
++              Book a discovery call
++            </Link>
++          </div>
++        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index f50f2147c7a10a14e8708f524878ad20e7fd52e6..dc55a7ff2506f9f416669faafb1e011ff60bb9fb
+index dc55a7ff2506f9f416669faafb1e011ff60bb9fb..18aa4265619a7cf661d162e652dce80a9bb09b46
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,18 +1,11 @@
+@@ -1,4 +1,5 @@
  import HeroSection from '../components/HeroSection'
-+import SignaturePreviewSection from '../components/SignaturePreviewSection'
++import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
  
  export default function Home() {
-   return (
+@@ -6,17 +7,7 @@
      <article aria-labelledby="home-title">
        <HeroSection />
+       <SignaturePreviewSection />
 -
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">Signature services preview</h2>
+-      <section
+-        id="brand-story-preview"
+-        aria-labelledby="brand-story-preview-title"
+-      >
+-        <h2 id="brand-story-preview-title">Brand story preview</h2>
 -        <p>
--          This section introduces Casa Aurea&apos;s core offers, including
--          catering, mobile bar service, and tailored hospitality for premium
--          occasions.
+-          This section provides an editorial introduction to the brand&apos;s
+-          atmosphere, service philosophy, and event experience.
 -        </p>
 -      </section>
-+      <SignaturePreviewSection />
- 
-       <section
-         id="brand-story-preview"
++      <BrandStoryPreviewSection />
+     </article>
+   )
+ }
 
 codex
-The build is clean. I’m only updating the agent report now to record this task and its result, without touching task state or unrelated project files.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -41 +41,14 @@
- Launching Codex for TASK section-home-signature-preview.
-+
-+Completed TASK section-home-signature-preview.
-+
-+Implemented a dedicated `SignaturePreviewSection` component and rendered it in
-+`src/pages/Home.jsx` to replace the placeholder home content. The section now
-+matches the required grid-cards-preview shape with premium service cards and a
-+route-safe CTA to the existing `/menu` page.
-+
-+TASK section-home-signature-preview executed by Codex.
-+Waiting for validation.
-+
-+TASK section-home-signature-preview completed successfully.
-+Build passed.
-apply_patch(auto_approved=true) exited 0 in 56ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), [Brand-story-previewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Brand-story-previewSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+
+Implemented the home `brand-story-preview` as a dedicated split-content preview component and rendered it from [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx). The section now includes a premium editorial image panel, brand positioning copy, three supporting story points, and route-safe CTAs to `/chi-siamo` and `/contatti`.
+
+Build result: `npm run build` passed with a production Vite build.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 251a9c7779ab59ab63709fa36faa20813389725a..ba86b343079f03b2b4092f0a4593964c01911ec9
+index 5e6cb037fbda8bded46b60ad077591e485187f84..9ad9883c81b931c1579d5b5d07d0facab1ab8c26
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -39,3 +39,16 @@
- Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
+@@ -63,3 +63,11 @@
+ Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
  
- Launching Codex for TASK section-home-signature-preview.
+ Launching Codex for TASK section-home-brand-story-preview.
 +
-+Completed TASK section-home-signature-preview.
++Completed TASK section-home-brand-story-preview.
 +
-+Implemented a dedicated `SignaturePreviewSection` component and rendered it in
-+`src/pages/Home.jsx` to replace the placeholder home content. The section now
-+matches the required grid-cards-preview shape with premium service cards and a
-+route-safe CTA to the existing `/menu` page.
-+
-+TASK section-home-signature-preview executed by Codex.
-+Waiting for validation.
-+
-+TASK section-home-signature-preview completed successfully.
-+Build passed.
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
++Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
++from `src/pages/Home.jsx` to replace the placeholder home content. The section
++now matches the required split-content-preview shape with editorial brand copy,
++supporting story points, and route-safe CTAs to the existing about and contact
++pages.
+diff --git a/src/components/Brand-story-previewSection.jsx b/src/components/Brand-story-previewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..2944b9ef6d6a89d07d87a33f47d278dd74323922
+index 0000000000000000000000000000000000000000..f73420c4bbf88ad0b3d5a2bd0b03d0629b3206b2
 --- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,174 @@
++++ b/src/components/Brand-story-previewSection.jsx
+@@ -0,0 +1,178 @@
 +import { Link } from 'react-router-dom'
 +
 +const sectionStyles = {
 +  section: {
 +    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(246, 239, 228, 0.9) 0%, rgba(239, 228, 210, 0.72) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
 +    display: 'grid',
-+    gap: '1rem',
-+    alignItems: 'end',
-+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
++    gap: '1.5rem',
++    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
++    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
++  },
++  media: {
++    minHeight: '20rem',
++    borderRadius: '28px',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++  },
++  content: {
++    display: 'grid',
++    gap: '1.25rem',
++    padding: 'clamp(0.5rem, 1vw, 1rem)',
++    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    color: '#9f7b4b',
++    color: '#d9bf8d',
 +    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
@@ -2323,648 +2928,175 @@ index 0000000000000000000000000000000000000000..2944b9ef6d6a89d07d87a33f47d278dd
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: '14ch',
-+    color: '#201914',
++    maxWidth: '12ch',
++    color: '#f6efe4',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
 +    lineHeight: 1.05,
 +  },
 +  intro: {
 +    margin: 0,
-+    maxWidth: '42rem',
-+    color: 'rgba(32, 25, 20, 0.78)',
++    maxWidth: '36rem',
++    color: 'rgba(246, 239, 228, 0.82)',
 +    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
-+  grid: {
++  list: {
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
 +  },
-+  card: {
++  listItem: {
 +    display: 'grid',
-+    gap: '0.85rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-+    border: '1px solid rgba(159, 123, 75, 0.12)',
++    gap: '0.3rem',
++    paddingBottom: '0.9rem',
++    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
 +  },
-+  index: {
-+    color: '#9f7b4b',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
++  itemTitle: {
++    color: '#f6efe4',
++    fontSize: '1rem',
 +    fontWeight: 700,
 +  },
-+  cardTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.4rem',
-+    lineHeight: 1.15,
-+  },
-+  cardBody: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
++  itemText: {
++    color: 'rgba(246, 239, 228, 0.74)',
 +    lineHeight: 1.7,
 +  },
-+  accent: {
-+    margin: 0,
-+    color: '#5a4838',
-+    fontSize: '0.96rem',
-+    lineHeight: 1.6,
-+    fontWeight: 600,
-+  },
 +  footer: {
-+    marginTop: '1.5rem',
-+    display: 'flex',
-+    flexWrap: 'wrap',
++    display: 'grid',
 +    gap: '1rem',
-+    alignItems: 'center',
-+    justifyContent: 'space-between',
 +  },
 +  note: {
 +    margin: 0,
-+    maxWidth: '38rem',
-+    color: 'rgba(32, 25, 20, 0.72)',
++    color: 'rgba(246, 239, 228, 0.72)',
 +    lineHeight: 1.7,
 +  },
-+  action: {
++  actionRow: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
 +    display: 'inline-flex',
 +    alignItems: 'center',
 +    justifyContent: 'center',
 +    minHeight: '3.15rem',
 +    padding: '0.9rem 1.5rem',
 +    borderRadius: '999px',
-+    backgroundColor: '#201914',
-+    color: '#f7f1e8',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
 +    textDecoration: 'none',
 +    fontWeight: 700,
 +  },
-+}
-+
-+const signatureServices = [
-+  {
-+    id: '01',
-+    title: 'Curated catering',
-+    description:
-+      'Plated dinners, aperitivo tables, and elegant service flows designed around the rhythm of your event.',
-+    accent: 'Tailored menus with refined presentation and confident execution.',
-+  },
-+  {
-+    id: '02',
-+    title: 'Mobile bar service',
-+    description:
-+      'A polished cocktail program with premium spirits, signature serves, and bartenders who understand atmosphere.',
-+    accent: 'Built for weddings, private celebrations, and brand-hosted evenings.',
-+  },
-+  {
-+    id: '03',
-+    title: 'Hospitality styling',
-+    description:
-+      'Support with table mood, service details, and guest-facing presentation so the entire experience feels cohesive.',
-+    accent: 'Every touchpoint is considered, from welcome drinks to the final toast.',
-+  },
-+]
-+
-+export default function SignaturePreviewSection() {
-+  return (
-+    <section
-+      id="signature-preview"
-+      aria-labelledby="signature-preview-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Signature services</p>
-+        <h2 id="signature-preview-title" style={sectionStyles.title}>
-+          Refined event service with a clear point of view
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          Casa Aurea pairs premium catering, elevated bar service, and
-+          intentional hospitality to create celebrations that feel graceful,
-+          seamless, and distinctly memorable.
-+        </p>
-+      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {signatureServices.map((service) => (
-+          <article key={service.id} style={sectionStyles.card}>
-+            <span style={sectionStyles.index}>{service.id}</span>
-+            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
-+            <p style={sectionStyles.cardBody}>{service.description}</p>
-+            <p style={sectionStyles.accent}>{service.accent}</p>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <div style={sectionStyles.footer}>
-+        <p style={sectionStyles.note}>
-+          Each event proposal is shaped around guest experience, service pace,
-+          and the visual tone you want the day to hold.
-+        </p>
-+        <Link to="/menu" style={sectionStyles.action}>
-+          Discover the offering
-+        </Link>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index f50f2147c7a10a14e8708f524878ad20e7fd52e6..dc55a7ff2506f9f416669faafb1e011ff60bb9fb
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -1,18 +1,11 @@
- import HeroSection from '../components/HeroSection'
-+import SignaturePreviewSection from '../components/SignaturePreviewSection'
- 
- export default function Home() {
-   return (
-     <article aria-labelledby="home-title">
-       <HeroSection />
--
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">Signature services preview</h2>
--        <p>
--          This section introduces Casa Aurea&apos;s core offers, including
--          catering, mobile bar service, and tailored hospitality for premium
--          occasions.
--        </p>
--      </section>
-+      <SignaturePreviewSection />
- 
-       <section
-         id="brand-story-preview"
-
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 251a9c7779ab59ab63709fa36faa20813389725a..ba86b343079f03b2b4092f0a4593964c01911ec9
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -39,3 +39,16 @@
- Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
- 
- Launching Codex for TASK section-home-signature-preview.
-+
-+Completed TASK section-home-signature-preview.
-+
-+Implemented a dedicated `SignaturePreviewSection` component and rendered it in
-+`src/pages/Home.jsx` to replace the placeholder home content. The section now
-+matches the required grid-cards-preview shape with premium service cards and a
-+route-safe CTA to the existing `/menu` page.
-+
-+TASK section-home-signature-preview executed by Codex.
-+Waiting for validation.
-+
-+TASK section-home-signature-preview completed successfully.
-+Build passed.
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..2944b9ef6d6a89d07d87a33f47d278dd74323922
---- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,174 @@
-+import { Link } from 'react-router-dom'
-+
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(246, 239, 228, 0.9) 0%, rgba(239, 228, 210, 0.72) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    alignItems: 'end',
-+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '14ch',
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '42rem',
-+    color: 'rgba(32, 25, 20, 0.78)',
-+    fontSize: '1rem',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-+    border: '1px solid rgba(159, 123, 75, 0.12)',
-+  },
-+  index: {
-+    color: '#9f7b4b',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  cardTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.4rem',
-+    lineHeight: 1.15,
-+  },
-+  cardBody: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.7,
-+  },
-+  accent: {
-+    margin: 0,
-+    color: '#5a4838',
-+    fontSize: '0.96rem',
-+    lineHeight: 1.6,
-+    fontWeight: 600,
-+  },
-+  footer: {
-+    marginTop: '1.5rem',
-+    display: 'flex',
-+    flexWrap: 'wrap',
-+    gap: '1rem',
-+    alignItems: 'center',
-+    justifyContent: 'space-between',
-+  },
-+  note: {
-+    margin: 0,
-+    maxWidth: '38rem',
-+    color: 'rgba(32, 25, 20, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  action: {
++  secondaryAction: {
 +    display: 'inline-flex',
 +    alignItems: 'center',
 +    justifyContent: 'center',
 +    minHeight: '3.15rem',
 +    padding: '0.9rem 1.5rem',
 +    borderRadius: '999px',
-+    backgroundColor: '#201914',
-+    color: '#f7f1e8',
++    border: '1px solid rgba(246, 239, 228, 0.18)',
++    backgroundColor: 'rgba(246, 239, 228, 0.06)',
++    color: '#f6efe4',
 +    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+}
-+
-+const signatureServices = [
-+  {
-+    id: '01',
-+    title: 'Curated catering',
-+    description:
-+      'Plated dinners, aperitivo tables, and elegant service flows designed around the rhythm of your event.',
-+    accent: 'Tailored menus with refined presentation and confident execution.',
-+  },
-+  {
-+    id: '02',
-+    title: 'Mobile bar service',
-+    description:
-+      'A polished cocktail program with premium spirits, signature serves, and bartenders who understand atmosphere.',
-+    accent: 'Built for weddings, private celebrations, and brand-hosted evenings.',
-+  },
-+  {
-+    id: '03',
-+    title: 'Hospitality styling',
-+    description:
-+      'Support with table mood, service details, and guest-facing presentation so the entire experience feels cohesive.',
-+    accent: 'Every touchpoint is considered, from welcome drinks to the final toast.',
-+  },
-+]
-+
-+export default function SignaturePreviewSection() {
-+  return (
-+    <section
-+      id="signature-preview"
-+      aria-labelledby="signature-preview-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Signature services</p>
-+        <h2 id="signature-preview-title" style={sectionStyles.title}>
-+          Refined event service with a clear point of view
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          Casa Aurea pairs premium catering, elevated bar service, and
-+          intentional hospitality to create celebrations that feel graceful,
-+          seamless, and distinctly memorable.
-+        </p>
-+      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {signatureServices.map((service) => (
-+          <article key={service.id} style={sectionStyles.card}>
-+            <span style={sectionStyles.index}>{service.id}</span>
-+            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
-+            <p style={sectionStyles.cardBody}>{service.description}</p>
-+            <p style={sectionStyles.accent}>{service.accent}</p>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <div style={sectionStyles.footer}>
-+        <p style={sectionStyles.note}>
-+          Each event proposal is shaped around guest experience, service pace,
-+          and the visual tone you want the day to hold.
-+        </p>
-+        <Link to="/menu" style={sectionStyles.action}>
-+          Discover the offering
-+        </Link>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index f50f2147c7a10a14e8708f524878ad20e7fd52e6..dc55a7ff2506f9f416669faafb1e011ff60bb9fb
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -1,18 +1,11 @@
- import HeroSection from '../components/HeroSection'
-+import SignaturePreviewSection from '../components/SignaturePreviewSection'
- 
- export default function Home() {
-   return (
-     <article aria-labelledby="home-title">
-       <HeroSection />
--
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">Signature services preview</h2>
--        <p>
--          This section introduces Casa Aurea&apos;s core offers, including
--          catering, mobile bar service, and tailored hospitality for premium
--          occasions.
--        </p>
--      </section>
-+      <SignaturePreviewSection />
- 
-       <section
-         id="brand-story-preview"
-
-codex
-Modified files:
-- [src/components/SignaturePreviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/SignaturePreviewSection.jsx)
-- [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
-
-What was implemented:
-- Replaced the placeholder `signature-preview` block on the home page with a dedicated `SignaturePreviewSection` component.
-- Built the section as a responsive `grid-cards-preview` with three premium service cards, section heading/content, and a CTA linking to the existing `/menu` route.
-- Rendered the new section from [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), keeping the task scoped to the current home section only.
-- Updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with the task completion summary.
-
-Build result:
-- `npm run build` passed successfully.
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 251a9c7779ab59ab63709fa36faa20813389725a..ba86b343079f03b2b4092f0a4593964c01911ec9
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -39,3 +39,16 @@
- Prepared TASK section-home-signature-preview (Create signature-preview section on home) for execution.
- 
- Launching Codex for TASK section-home-signature-preview.
-+
-+Completed TASK section-home-signature-preview.
-+
-+Implemented a dedicated `SignaturePreviewSection` component and rendered it in
-+`src/pages/Home.jsx` to replace the placeholder home content. The section now
-+matches the required grid-cards-preview shape with premium service cards and a
-+route-safe CTA to the existing `/menu` page.
-+
-+TASK section-home-signature-preview executed by Codex.
-+Waiting for validation.
-+
-+TASK section-home-signature-preview completed successfully.
-+Build passed.
-diff --git a/src/components/SignaturePreviewSection.jsx b/src/components/SignaturePreviewSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..2944b9ef6d6a89d07d87a33f47d278dd74323922
---- /dev/null
-+++ b/src/components/SignaturePreviewSection.jsx
-@@ -0,0 +1,174 @@
-+import { Link } from 'react-router-dom'
-+
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(246, 239, 228, 0.9) 0%, rgba(239, 228, 210, 0.72) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    alignItems: 'end',
-+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '14ch',
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '42rem',
-+    color: 'rgba(32, 25, 20, 0.78)',
-+    fontSize: '1rem',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-+    border: '1px solid rgba(159, 123, 75, 0.12)',
-+  },
-+  index: {
-+    color: '#9f7b4b',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  cardTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.4rem',
-+    lineHeight: 1.15,
-+  },
-+  cardBody: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.7,
-+  },
-+  accent: {
-+    margin: 0,
-+    color: '#5a4838',
-+    fontSize: '0.96rem',
-+    lineHeight: 1.6,
 +    fontWeight: 600,
 +  },
-+  footer: {
-+    marginTop: '1.5rem',
-+    display: 'flex',
-+    flexWrap: 'wrap',
-+    gap: '1rem',
-+    alignItems: 'center',
-+    justifyContent: 'space-between',
-+  },
-+  note: {
-+    margin: 0,
-+    maxWidth: '38rem',
-+    color: 'rgba(32, 25, 20, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  action: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#201914',
-+    color: '#f7f1e8',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
 +}
 +
-+const signatureServices = [
++const storyPoints = [
 +  {
-+    id: '01',
-+    title: 'Curated catering',
-+    description:
-+      'Plated dinners, aperitivo tables, and elegant service flows designed around the rhythm of your event.',
-+    accent: 'Tailored menus with refined presentation and confident execution.',
++    title: 'Tailored to the occasion',
++    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
 +  },
 +  {
-+    id: '02',
-+    title: 'Mobile bar service',
-+    description:
-+      'A polished cocktail program with premium spirits, signature serves, and bartenders who understand atmosphere.',
-+    accent: 'Built for weddings, private celebrations, and brand-hosted evenings.',
++    title: 'Hospitality with presence',
++    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
 +  },
 +  {
-+    id: '03',
-+    title: 'Hospitality styling',
-+    description:
-+      'Support with table mood, service details, and guest-facing presentation so the entire experience feels cohesive.',
-+    accent: 'Every touchpoint is considered, from welcome drinks to the final toast.',
++    title: 'Italian refinement, modern tone',
++    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
 +  },
 +]
 +
-+export default function SignaturePreviewSection() {
++export default function BrandStoryPreviewSection() {
 +  return (
 +    <section
-+      id="signature-preview"
-+      aria-labelledby="signature-preview-title"
++      id="brand-story-preview"
++      aria-labelledby="brand-story-preview-title"
 +      style={sectionStyles.section}
 +    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Signature services</p>
-+        <h2 id="signature-preview-title" style={sectionStyles.title}>
-+          Refined event service with a clear point of view
++      <div style={sectionStyles.media} aria-hidden="true" />
++
++      <div style={sectionStyles.content}>
++        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
++        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
++          Events shaped with warmth, timing, and visual restraint
 +        </h2>
 +        <p style={sectionStyles.intro}>
-+          Casa Aurea pairs premium catering, elevated bar service, and
-+          intentional hospitality to create celebrations that feel graceful,
-+          seamless, and distinctly memorable.
++          We design food and bar experiences that feel beautifully hosted from
++          the first welcome pour to the final late-evening toast. The result is
++          polished, personal, and composed enough for milestone moments.
 +        </p>
-+      </div>
 +
-+      <div style={sectionStyles.grid}>
-+        {signatureServices.map((service) => (
-+          <article key={service.id} style={sectionStyles.card}>
-+            <span style={sectionStyles.index}>{service.id}</span>
-+            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
-+            <p style={sectionStyles.cardBody}>{service.description}</p>
-+            <p style={sectionStyles.accent}>{service.accent}</p>
-+          </article>
-+        ))}
-+      </div>
++        <ul style={sectionStyles.list}>
++          {storyPoints.map((point) => (
++            <li key={point.title} style={sectionStyles.listItem}>
++              <span style={sectionStyles.itemTitle}>{point.title}</span>
++              <span style={sectionStyles.itemText}>{point.text}</span>
++            </li>
++          ))}
++        </ul>
 +
-+      <div style={sectionStyles.footer}>
-+        <p style={sectionStyles.note}>
-+          Each event proposal is shaped around guest experience, service pace,
-+          and the visual tone you want the day to hold.
-+        </p>
-+        <Link to="/menu" style={sectionStyles.action}>
-+          Discover the offering
-+        </Link>
++        <div style={sectionStyles.footer}>
++          <p style={sectionStyles.note}>
++            From intimate celebrations in Torino to larger destination-style
++            receptions, our approach stays consistent: elegant presentation,
++            attentive pacing, and hospitality guests remember.
++          </p>
++
++          <div style={sectionStyles.actionRow}>
++            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
++              Read our story
++            </Link>
++            <Link to="/contatti" style={sectionStyles.secondaryAction}>
++              Book a discovery call
++            </Link>
++          </div>
++        </div>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index f50f2147c7a10a14e8708f524878ad20e7fd52e6..dc55a7ff2506f9f416669faafb1e011ff60bb9fb
+index dc55a7ff2506f9f416669faafb1e011ff60bb9fb..18aa4265619a7cf661d162e652dce80a9bb09b46
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,18 +1,11 @@
+@@ -1,4 +1,5 @@
  import HeroSection from '../components/HeroSection'
-+import SignaturePreviewSection from '../components/SignaturePreviewSection'
++import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
  
  export default function Home() {
-   return (
+@@ -6,17 +7,7 @@
      <article aria-labelledby="home-title">
        <HeroSection />
+       <SignaturePreviewSection />
 -
--      <section id="signature-preview" aria-labelledby="signature-preview-title">
--        <h2 id="signature-preview-title">Signature services preview</h2>
+-      <section
+-        id="brand-story-preview"
+-        aria-labelledby="brand-story-preview-title"
+-      >
+-        <h2 id="brand-story-preview-title">Brand story preview</h2>
 -        <p>
--          This section introduces Casa Aurea&apos;s core offers, including
--          catering, mobile bar service, and tailored hospitality for premium
--          occasions.
+-          This section provides an editorial introduction to the brand&apos;s
+-          atmosphere, service philosophy, and event experience.
 -        </p>
 -      </section>
-+      <SignaturePreviewSection />
- 
-       <section
-         id="brand-story-preview"
++      <BrandStoryPreviewSection />
+     </article>
+   )
+ }
 
 tokens used
-19.507
+32.470

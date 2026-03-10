@@ -58,3 +58,22 @@ Waiting for validation.
 
 TASK section-home-signature-preview completed successfully.
 Build passed.
+Commit created for TASK section-home-signature-preview.
+
+Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
+
+Launching Codex for TASK section-home-brand-story-preview.
+
+Completed TASK section-home-brand-story-preview.
+
+Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
+from `src/pages/Home.jsx` to replace the placeholder home content. The section
+now matches the required split-content-preview shape with editorial brand copy,
+supporting story points, and route-safe CTAs to the existing about and contact
+pages.
+
+TASK section-home-brand-story-preview executed by Codex.
+Waiting for validation.
+
+TASK section-home-brand-story-preview completed successfully.
+Build passed.
