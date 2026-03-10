@@ -219,6 +219,23 @@ Build passed.
 
 Implemented a dedicated `Menu-categoriesSection` component in
 
+Prepared TASK cta-contatti-contatti-phone (Add CTA contatti-phone on contatti) for execution.
+
+Launching Codex for TASK cta-contatti-contatti-phone.
+
+Completed TASK cta-contatti-contatti-phone.
+
+Implemented a dedicated `ContactPhoneCta` component in
+`src/components/ContactPhoneCta.jsx` and rendered it from
+`src/pages/Contatti.jsx`. The contact page now exposes the required body phone
+CTA with a valid `tel:+39011000000` destination and contact-oriented copy.
+
+TASK cta-contatti-contatti-phone executed by Codex.
+Waiting for validation.
+
+TASK cta-contatti-contatti-phone completed successfully.
+Build passed.
+
 Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
 
 Launching Codex for TASK section-contatti-contact-details.
@@ -551,4 +568,15 @@ TASK cta-contatti-contatti-whatsapp executed by Codex.
 Waiting for validation.
 
 TASK cta-contatti-contatti-whatsapp completed successfully.
+Build passed.
+Commit created for TASK cta-contatti-contatti-whatsapp.
+
+Prepared TASK cta-contatti-contatti-phone (Add CTA contatti-phone on contatti) for execution.
+
+Launching Codex for TASK cta-contatti-contatti-phone.
+
+TASK cta-contatti-contatti-phone executed by Codex.
+Waiting for validation.
+
+TASK cta-contatti-contatti-phone completed successfully.
 Build passed.
