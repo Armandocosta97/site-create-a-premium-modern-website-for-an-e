@@ -1,18 +1,11 @@
 import HeroSection from '../components/HeroSection'
+import SignaturePreviewSection from '../components/SignaturePreviewSection'
 
 export default function Home() {
   return (
     <article aria-labelledby="home-title">
       <HeroSection />
-
-      <section id="signature-preview" aria-labelledby="signature-preview-title">
-        <h2 id="signature-preview-title">Signature services preview</h2>
-        <p>
-          This section introduces Casa Aurea&apos;s core offers, including
-          catering, mobile bar service, and tailored hospitality for premium
-          occasions.
-        </p>
-      </section>
+      <SignaturePreviewSection />
 
       <section
         id="brand-story-preview"
