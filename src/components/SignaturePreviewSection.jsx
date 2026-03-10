@@ -40,7 +40,7 @@ const sectionStyles = {
   },
   grid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
     gap: '1rem',
   },
   card: {
@@ -97,12 +97,14 @@ const sectionStyles = {
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: '3.15rem',
+    maxWidth: '100%',
     padding: '0.9rem 1.5rem',
     borderRadius: '999px',
     backgroundColor: '#201914',
     color: '#f7f1e8',
     textDecoration: 'none',
     fontWeight: 700,
+    textAlign: 'center',
   },
 }
 

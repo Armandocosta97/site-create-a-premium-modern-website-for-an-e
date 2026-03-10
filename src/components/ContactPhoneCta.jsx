@@ -45,6 +45,7 @@ const sectionStyles = {
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: '3.5rem',
+    maxWidth: '100%',
     padding: '0.95rem 1.5rem',
     borderRadius: '999px',
     backgroundColor: '#201914',
@@ -52,6 +53,7 @@ const sectionStyles = {
     textDecoration: 'none',
     fontWeight: 700,
     boxShadow: '0 18px 40px rgba(32, 25, 20, 0.14)',
+    textAlign: 'center',
   },
   supportText: {
     margin: 0,

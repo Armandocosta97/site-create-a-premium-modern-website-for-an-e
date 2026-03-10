@@ -38,7 +38,7 @@ const sectionStyles = {
   },
   grid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))',
     gap: '1rem',
   },
   card: {
@@ -93,7 +93,7 @@ const sectionStyles = {
   },
   processList: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 180px), 1fr))',
     gap: '0.9rem',
     margin: 0,
     padding: 0,
@@ -141,12 +141,14 @@ const sectionStyles = {
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: '3.15rem',
+    maxWidth: '100%',
     padding: '0.9rem 1.5rem',
     borderRadius: '999px',
     backgroundColor: '#201914',
     color: '#f7f1e8',
     textDecoration: 'none',
     fontWeight: 700,
+    textAlign: 'center',
   },
 }
 

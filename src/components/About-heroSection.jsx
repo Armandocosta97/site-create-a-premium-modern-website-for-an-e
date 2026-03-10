@@ -46,7 +46,7 @@ const heroStyles = {
   highlights: {
     marginTop: '1.5rem',
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 10rem), 1fr))',
     gap: '0.875rem',
   },
   highlightCard: {

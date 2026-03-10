@@ -43,6 +43,7 @@ const whatsappHref =
 export default function FloatingWhatsAppButton() {
   return (
     <a
+      className="floating-whatsapp-button"
       href={whatsappHref}
       target="_blank"
       rel="noreferrer"
@@ -62,8 +63,8 @@ export default function FloatingWhatsAppButton() {
       </svg>
 
       <span style={whatsappStyles.labelGroup}>
-        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
-        <span style={whatsappStyles.label}>Book a quick conversation</span>
+        <span data-whatsapp-copy="eyebrow" style={whatsappStyles.eyebrow}>WhatsApp</span>
+        <span data-whatsapp-copy="label" style={whatsappStyles.label}>Book a quick conversation</span>
       </span>
     </a>
   )

@@ -4,7 +4,7 @@ const sectionStyles = {
   section: {
     marginTop: 'clamp(3rem, 7vw, 5rem)',
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))',
     gap: '1.5rem',
     alignItems: 'stretch',
   },
@@ -114,6 +114,7 @@ const sectionStyles = {
     alignItems: 'center',
     justifyContent: 'center',
     width: 'fit-content',
+    maxWidth: '100%',
     minHeight: '3.1rem',
     padding: '0.9rem 1.5rem',
     borderRadius: '999px',
@@ -121,6 +122,7 @@ const sectionStyles = {
     color: '#221914',
     textDecoration: 'none',
     fontWeight: 700,
+    textAlign: 'center',
   },
 }
 

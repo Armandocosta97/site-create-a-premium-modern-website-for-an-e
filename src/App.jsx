@@ -1,4 +1,5 @@
 import { HashRouter, Routes, Route } from "react-router-dom"
+import "./App.css"
 import Layout from "./layout/Layout"
 import Home from "./pages/Home"
 import Menu from "./pages/Menu"

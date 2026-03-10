@@ -31,7 +31,7 @@ export default function Contatti() {
 
       <OpeningHoursSection />
 
-      <section aria-label="Contact closing note">
+      <section aria-label="Contact closing note" className="page-closing-note">
         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
       </section>
     </article>
