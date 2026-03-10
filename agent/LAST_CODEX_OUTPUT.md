@@ -1,8 +1,8 @@
-Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), [HeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/HeroSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+Modified files: [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-Implemented the `home-primary-cta` on the home hero by making [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx) explicitly pass the primary CTA config into the shared [HeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/HeroSection.jsx). The CTA remains visible in the hero and routes to the valid hash-router destination `/menu` with the required label “Request your event proposal”.
+Implemented the `home-contact-cta` in the home hero by explicitly passing a secondary CTA from [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx). It is visible in the hero and points to the valid internal route `/contatti` with the label `Contact us for your event`. I also logged the task completion in [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
 
-Build result: `npm run build` passed.
+Build result: `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd835-9705-76f1-a319-dae4d54fe17e
+session id: 019cd836-7044-7270-91f9-2c6446e3b1f2
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1196,10 +1196,10 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-cta-home-home-primary-cta
+cta-home-home-contact-cta
 
 ## Current task title
-Add CTA home-primary-cta on home
+Add CTA home-contact-cta on home
 
 ## Current task type
 cta
@@ -1208,11 +1208,11 @@ cta
 ```json
 {
   "pageId": "home",
-  "ctaId": "home-primary-cta",
+  "ctaId": "home-contact-cta",
   "ctaKind": "internal",
   "destination": {
     "type": "route",
-    "value": "/menu"
+    "value": "/contatti"
   },
   "placement": "hero"
 }
@@ -1226,9 +1226,9 @@ cta
 - src/components
 
 ## Definition of done
-- CTA home-primary-cta exists on home
-- CTA home-primary-cta is visible in placement hero
-- CTA home-primary-cta points to a valid destination
+- CTA home-contact-cta exists on home
+- CTA home-contact-cta is visible in placement hero
+- CTA home-contact-cta points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1257,25 +1257,12 @@ cta
 
 mcp startup: no servers
 codex
-I’m checking the current home page implementation and the existing component structure first so I can add only the required hero CTA to the allowed files without drifting into other tasks.
+I’m implementing the current home CTA task only. First I’m checking the current home hero and shared button/link components so I can add the `/contatti` CTA without disturbing the rest of the page.
 exec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
 /bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'rg -n "Button|Link|CTA|contatti|/contatti|hero" src/components src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
 /bin/zsh -lc 'rg --files src agent brief docs | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-import HeroSection from '../components/HeroSection'
-import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
-import SignaturePreviewSection from '../components/SignaturePreviewSection'
-
-export default function Home() {
-  return (
-    <article aria-labelledby="home-title">
-      <HeroSection />
-      <SignaturePreviewSection />
-      <BrandStoryPreviewSection />
-    </article>
-  )
-}
- succeeded in 52ms:
 # CURRENT TASK EXECUTION PROMPT
 
 You are the coding executor for this project.
@@ -1296,6 +1283,46 @@ site-create-a-premium-modern-website-for-an-e
 # Development Method
 
 All sites must follow these rules.
+ succeeded in 52ms:
+import HeroSection from '../components/HeroSection'
+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+import SignaturePreviewSection from '../components/SignaturePreviewSection'
+
+export default function Home() {
+  return (
+    <article aria-labelledby="home-title">
+      <HeroSection
+        primaryCta={{
+          label: 'Request your event proposal',
+          to: '/menu',
+        }}
+      />
+      <SignaturePreviewSection />
+      <BrandStoryPreviewSection />
+    </article>
+  )
+}
+ succeeded in 52ms:
+src/pages/Menu.jsx:4:      <section id="menu-hero">
+src/pages/Menu.jsx:6:        <p>Content for menu-hero will be generated by tasks</p>
+src/components/HeroSection.jsx:1:import { Link } from 'react-router-dom'
+src/components/HeroSection.jsx:3:const heroStyles = {
+src/components/HeroSection.jsx:129:  to: '/contatti',
+src/components/HeroSection.jsx:137:    <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
+src/components/HeroSection.jsx:138:      <div style={heroStyles.panel}>
+src/components/HeroSection.jsx:139:        <p style={heroStyles.eyebrow}>
+src/components/HeroSection.jsx:142:        <h1 id="home-title" style={heroStyles.title}>
+src/components/HeroSection.jsx:146:        <p style={heroStyles.body}>
+src/components/HeroSection.jsx:152:        <div style={heroStyles.actions}>
+src/components/HeroSection.jsx:153:          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
+src/components/HeroSection.jsx:155:          </Link>
+src/components/HeroSection.jsx:156:          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
+src/components/HeroSection.jsx:158:          </Link>
+src/components/HeroSection.jsx:161:        <div style={heroStyles.details}>
+src/components/HeroSection.jsx:163:            <div key={item.label} style={heroStyles.detailCard}>
+src/components/HeroSection.jsx:164:              <span style={heroStyles.detailLabel}>{item.label}</span>
+src/components/HeroSection.jsx:165:              <span style={heroStyles.detailText}>{item.text}</span>
+src/pages/Contatti.jsx:4:      <section id="contact-hero">
  succeeded in 52ms:
 agent/AGENT_REPORT.md
 agent/CURRENT_TASK_PROMPT.md
@@ -1318,93 +1345,10 @@ src/layout/Layout.jsx
 src/main.jsx
 src/pages/ChiSiamo.jsx
 codex
-The home page currently mounts a shared `HeroSection` with no CTA props visible from `Home.jsx`. I’m reading the hero and router setup next so the CTA points to the spec-valid route and stays compatible with the hash router.
+The hero component already supports two CTAs, and the secondary slot is wired to `/contatti` by default. I’m confirming whether the home page is explicitly passing that CTA or relying on an implicit default, then I’ll make the smallest change that satisfies the task and update the task report.
 exec
-/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
-import { Link } from 'react-router-dom'
-
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(32rem, 78vh, 46rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(40, 31, 24, 0.18) 0%, rgba(28, 22, 18, 0.72) 62%, rgba(20, 15, 12, 0.9) 100%), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
-  },
-  panel: {
-    width: 'min(100%, 42rem)',
- succeeded in 50ms:
-export default function Menu() {
-  return (
-    <>
-      <section id="menu-hero">
-        <h1>Menu Hero</h1>
-        <p>Content for menu-hero will be generated by tasks</p>
-      </section>
-      <section id="menu-categories">
-        <h2>Menu Categories</h2>
-        <p>Content for menu-categories will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
- succeeded in 51ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/ChiSiamo"
-import Gallery from "./pages/Gallery"
-import Contatti from "./pages/Contatti"
-import Servizi from "./pages/Servizi"
-
-export default function App() {
-  return (
-    <HashRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/chi-siamo" element={<ChiSiamo />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contatti" element={<Contatti />} />
-          <Route path="/servizi" element={<Servizi />} />
-codex
-The primary CTA is already visually present in the shared hero, but it’s hardcoded inside the component. I’m making the home page explicitly provide that CTA so this task is satisfied in a page-scoped, reusable way without changing router behavior.
-exec
-/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
-{
-  "name": "site-create-a-premium-modern-website-for-an-e",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test:ui": "playwright test"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@playwright/test": "^1.58.2",
- succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,200p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 50ms:
 # AGENT REPORT
 
 Project created.
@@ -1425,228 +1369,126 @@ Waiting for validation.
 TASK page-home-shell completed successfully.
 Build passed.
 Commit created for TASK page-home-shell.
+ succeeded in 50ms:
+import { Link } from 'react-router-dom'
+
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(32rem, 78vh, 46rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(40, 31, 24, 0.18) 0%, rgba(28, 22, 18, 0.72) 62%, rgba(20, 15, 12, 0.9) 100%), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 42rem)',
 codex
-I’m editing the shared hero to accept CTA configuration from `Home.jsx`, then I’ll append the task result to `agent/AGENT_REPORT.md` and run the build check.
+I’ve confirmed the current behavior is only correct by component default, and the label is mismatched with the contact destination. I’m making the home page pass the contact CTA explicitly so the task is satisfied at the page level and the hero config is unambiguous.
 file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
-@@ -7,3 +7,8 @@
-     <article aria-labelledby="home-title">
--      <HeroSection />
-+      <HeroSection
-+        primaryCta={{
-+          label: 'Request your event proposal',
-+          to: '/menu',
-+        }}
-+      />
-       <SignaturePreviewSection />
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/HeroSection.jsx
-@@ -121,3 +121,16 @@
- 
--export default function HeroSection() {
-+const defaultPrimaryCta = {
-+  label: 'Request your event proposal',
-+  to: '/menu',
-+}
-+
-+const defaultSecondaryCta = {
-+  label: 'Explore our services',
-+  to: '/contatti',
-+}
-+
-+export default function HeroSection({
-+  primaryCta = defaultPrimaryCta,
-+  secondaryCta = defaultSecondaryCta,
-+}) {
-   return (
-@@ -139,7 +152,7 @@
-         <div style={heroStyles.actions}>
--          <Link to="/menu" style={heroStyles.primaryAction}>
--            Request your event proposal
-+          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
-+            {primaryCta.label}
-           </Link>
--          <Link to="/contatti" style={heroStyles.secondaryAction}>
--            Explore our services
-+          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
-+            {secondaryCta.label}
-           </Link>
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -84 +84,10 @@
- Launching Codex for TASK cta-home-home-primary-cta.
+@@ -107 +107,10 @@
+ Launching Codex for TASK cta-home-home-contact-cta.
 +
-+Completed TASK cta-home-home-primary-cta.
++Completed TASK cta-home-home-contact-cta.
 +
-+Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
-+`src/components/HeroSection.jsx` so the page now explicitly provides the
-+required `home-primary-cta` label and valid `/menu` destination in the hero.
++Bound the home hero contact CTA explicitly from `src/pages/Home.jsx` so the
++secondary hero action now resolves to the valid `/contatti` route with
++contact-oriented copy instead of relying on component defaults.
 +
-+TASK cta-home-home-primary-cta executed by Codex.
++TASK cta-home-home-contact-cta executed by Codex.
 +Waiting for validation.
-apply_patch(auto_approved=true) exited 0 in 44ms:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
+@@ -12,2 +12,6 @@
+         }}
++        secondaryCta={{
++          label: 'Contact us for your event',
++          to: '/contatti',
++        }}
+       />
+apply_patch(auto_approved=true) exited 0 in 39ms:
 Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/HeroSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 297edbe7823fddfbb15b49ce13e6662d2fa064db..aee5124c296e0322dbf8482a12c2ca499adcb884
+index 770423687baae2e68e9ba51d86a1d1c863606c29..e2bcd45c9b505031ccf1ac3d16a7856ecb712f09
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -82,3 +82,12 @@
- Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
+@@ -105,3 +105,12 @@
+ Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
  
- Launching Codex for TASK cta-home-home-primary-cta.
+ Launching Codex for TASK cta-home-home-contact-cta.
 +
-+Completed TASK cta-home-home-primary-cta.
++Completed TASK cta-home-home-contact-cta.
 +
-+Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
-+`src/components/HeroSection.jsx` so the page now explicitly provides the
-+required `home-primary-cta` label and valid `/menu` destination in the hero.
++Bound the home hero contact CTA explicitly from `src/pages/Home.jsx` so the
++secondary hero action now resolves to the valid `/contatti` route with
++contact-oriented copy instead of relying on component defaults.
 +
-+TASK cta-home-home-primary-cta executed by Codex.
++TASK cta-home-home-contact-cta executed by Codex.
 +Waiting for validation.
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index e09c897fe99a19d7ac947c0ad74385e2a62d0cb6..9abea574c8bbfe0e71b00a367df5b2df4cf7dde6
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -119,7 +119,20 @@
-   },
- ]
- 
--export default function HeroSection() {
-+const defaultPrimaryCta = {
-+  label: 'Request your event proposal',
-+  to: '/menu',
-+}
-+
-+const defaultSecondaryCta = {
-+  label: 'Explore our services',
-+  to: '/contatti',
-+}
-+
-+export default function HeroSection({
-+  primaryCta = defaultPrimaryCta,
-+  secondaryCta = defaultSecondaryCta,
-+}) {
-   return (
-     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
-       <div style={heroStyles.panel}>
-@@ -137,11 +150,11 @@
-         </p>
- 
-         <div style={heroStyles.actions}>
--          <Link to="/menu" style={heroStyles.primaryAction}>
--            Request your event proposal
-+          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
-+            {primaryCta.label}
-           </Link>
--          <Link to="/contatti" style={heroStyles.secondaryAction}>
--            Explore our services
-+          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
-+            {secondaryCta.label}
-           </Link>
-         </div>
- 
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 18aa4265619a7cf661d162e652dce80a9bb09b46..69bfc2e5823192bfce6396bac5bc689ace396034
+index 69bfc2e5823192bfce6396bac5bc689ace396034..ef5813cca6a8811a162967d2365dc47b9837258b
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -5,7 +5,12 @@
- export default function Home() {
-   return (
-     <article aria-labelledby="home-title">
--      <HeroSection />
-+      <HeroSection
-+        primaryCta={{
-+          label: 'Request your event proposal',
-+          to: '/menu',
+@@ -10,6 +10,10 @@
+           label: 'Request your event proposal',
+           to: '/menu',
+         }}
++        secondaryCta={{
++          label: 'Contact us for your event',
++          to: '/contatti',
 +        }}
-+      />
+       />
        <SignaturePreviewSection />
        <BrandStoryPreviewSection />
-     </article>
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 297edbe7823fddfbb15b49ce13e6662d2fa064db..aee5124c296e0322dbf8482a12c2ca499adcb884
+index 770423687baae2e68e9ba51d86a1d1c863606c29..e2bcd45c9b505031ccf1ac3d16a7856ecb712f09
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -82,3 +82,12 @@
- Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
+@@ -105,3 +105,12 @@
+ Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
  
- Launching Codex for TASK cta-home-home-primary-cta.
+ Launching Codex for TASK cta-home-home-contact-cta.
 +
-+Completed TASK cta-home-home-primary-cta.
++Completed TASK cta-home-home-contact-cta.
 +
-+Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
-+`src/components/HeroSection.jsx` so the page now explicitly provides the
-+required `home-primary-cta` label and valid `/menu` destination in the hero.
++Bound the home hero contact CTA explicitly from `src/pages/Home.jsx` so the
++secondary hero action now resolves to the valid `/contatti` route with
++contact-oriented copy instead of relying on component defaults.
 +
-+TASK cta-home-home-primary-cta executed by Codex.
++TASK cta-home-home-contact-cta executed by Codex.
 +Waiting for validation.
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index e09c897fe99a19d7ac947c0ad74385e2a62d0cb6..9abea574c8bbfe0e71b00a367df5b2df4cf7dde6
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -119,7 +119,20 @@
-   },
- ]
- 
--export default function HeroSection() {
-+const defaultPrimaryCta = {
-+  label: 'Request your event proposal',
-+  to: '/menu',
-+}
-+
-+const defaultSecondaryCta = {
-+  label: 'Explore our services',
-+  to: '/contatti',
-+}
-+
-+export default function HeroSection({
-+  primaryCta = defaultPrimaryCta,
-+  secondaryCta = defaultSecondaryCta,
-+}) {
-   return (
-     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
-       <div style={heroStyles.panel}>
-@@ -137,11 +150,11 @@
-         </p>
- 
-         <div style={heroStyles.actions}>
--          <Link to="/menu" style={heroStyles.primaryAction}>
--            Request your event proposal
-+          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
-+            {primaryCta.label}
-           </Link>
--          <Link to="/contatti" style={heroStyles.secondaryAction}>
--            Explore our services
-+          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
-+            {secondaryCta.label}
-           </Link>
-         </div>
- 
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 18aa4265619a7cf661d162e652dce80a9bb09b46..69bfc2e5823192bfce6396bac5bc689ace396034
+index 69bfc2e5823192bfce6396bac5bc689ace396034..ef5813cca6a8811a162967d2365dc47b9837258b
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -5,7 +5,12 @@
- export default function Home() {
-   return (
-     <article aria-labelledby="home-title">
--      <HeroSection />
-+      <HeroSection
-+        primaryCta={{
-+          label: 'Request your event proposal',
-+          to: '/menu',
+@@ -10,6 +10,10 @@
+           label: 'Request your event proposal',
+           to: '/menu',
+         }}
++        secondaryCta={{
++          label: 'Contact us for your event',
++          to: '/contatti',
 +        }}
-+      />
+       />
        <SignaturePreviewSection />
        <BrandStoryPreviewSection />
-     </article>
 
+codex
+The code change is in place. I’m running a build now to make sure the explicit hero CTA wiring didn’t introduce any regressions.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 742ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 735ms:
 vite v7.3.1 building client environment for production...
 transforming...
 ✓ 51 modules transformed.
@@ -1654,350 +1496,81 @@ rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-C4AVsXE6.js   243.69 kB │ gzip: 77.33 kB
-✓ built in 566ms
+dist/assets/index-CHKiPs4C.js   243.75 kB │ gzip: 77.35 kB
+✓ built in 551ms
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 297edbe7823fddfbb15b49ce13e6662d2fa064db..aee5124c296e0322dbf8482a12c2ca499adcb884
+index 770423687baae2e68e9ba51d86a1d1c863606c29..e2bcd45c9b505031ccf1ac3d16a7856ecb712f09
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -82,3 +82,12 @@
- Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
+@@ -105,3 +105,12 @@
+ Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
  
- Launching Codex for TASK cta-home-home-primary-cta.
+ Launching Codex for TASK cta-home-home-contact-cta.
 +
-+Completed TASK cta-home-home-primary-cta.
++Completed TASK cta-home-home-contact-cta.
 +
-+Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
-+`src/components/HeroSection.jsx` so the page now explicitly provides the
-+required `home-primary-cta` label and valid `/menu` destination in the hero.
++Bound the home hero contact CTA explicitly from `src/pages/Home.jsx` so the
++secondary hero action now resolves to the valid `/contatti` route with
++contact-oriented copy instead of relying on component defaults.
 +
-+TASK cta-home-home-primary-cta executed by Codex.
++TASK cta-home-home-contact-cta executed by Codex.
 +Waiting for validation.
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index e09c897fe99a19d7ac947c0ad74385e2a62d0cb6..9abea574c8bbfe0e71b00a367df5b2df4cf7dde6
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -119,7 +119,20 @@
-   },
- ]
- 
--export default function HeroSection() {
-+const defaultPrimaryCta = {
-+  label: 'Request your event proposal',
-+  to: '/menu',
-+}
-+
-+const defaultSecondaryCta = {
-+  label: 'Explore our services',
-+  to: '/contatti',
-+}
-+
-+export default function HeroSection({
-+  primaryCta = defaultPrimaryCta,
-+  secondaryCta = defaultSecondaryCta,
-+}) {
-   return (
-     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
-       <div style={heroStyles.panel}>
-@@ -137,11 +150,11 @@
-         </p>
- 
-         <div style={heroStyles.actions}>
--          <Link to="/menu" style={heroStyles.primaryAction}>
--            Request your event proposal
-+          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
-+            {primaryCta.label}
-           </Link>
--          <Link to="/contatti" style={heroStyles.secondaryAction}>
--            Explore our services
-+          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
-+            {secondaryCta.label}
-           </Link>
-         </div>
- 
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 18aa4265619a7cf661d162e652dce80a9bb09b46..69bfc2e5823192bfce6396bac5bc689ace396034
+index 69bfc2e5823192bfce6396bac5bc689ace396034..ef5813cca6a8811a162967d2365dc47b9837258b
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -5,7 +5,12 @@
- export default function Home() {
-   return (
-     <article aria-labelledby="home-title">
--      <HeroSection />
-+      <HeroSection
-+        primaryCta={{
-+          label: 'Request your event proposal',
-+          to: '/menu',
+@@ -10,6 +10,10 @@
+           label: 'Request your event proposal',
+           to: '/menu',
+         }}
++        secondaryCta={{
++          label: 'Contact us for your event',
++          to: '/contatti',
 +        }}
-+      />
+       />
        <SignaturePreviewSection />
        <BrandStoryPreviewSection />
-     </article>
 
 codex
-The implementation is in place and the build passed. I’m making the report consistent with the project’s existing task log format, then I’ll summarize the modified files and result.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -93 +93,4 @@
- Waiting for validation.
-+
-+TASK cta-home-home-primary-cta completed successfully.
-+Build passed.
-apply_patch(auto_approved=true) exited 0 in 85ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+Modified files: [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+
+Implemented the `home-contact-cta` in the home hero by explicitly passing a secondary CTA from [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx). It is visible in the hero and points to the valid internal route `/contatti` with the label `Contact us for your event`. I also logged the task completion in [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+
+Build result: `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 297edbe7823fddfbb15b49ce13e6662d2fa064db..0bd8dd0acdc7710e58e7c46214ce09b59453964c
+index 770423687baae2e68e9ba51d86a1d1c863606c29..e2bcd45c9b505031ccf1ac3d16a7856ecb712f09
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -82,3 +82,15 @@
- Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
+@@ -105,3 +105,12 @@
+ Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
  
- Launching Codex for TASK cta-home-home-primary-cta.
+ Launching Codex for TASK cta-home-home-contact-cta.
 +
-+Completed TASK cta-home-home-primary-cta.
++Completed TASK cta-home-home-contact-cta.
 +
-+Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
-+`src/components/HeroSection.jsx` so the page now explicitly provides the
-+required `home-primary-cta` label and valid `/menu` destination in the hero.
++Bound the home hero contact CTA explicitly from `src/pages/Home.jsx` so the
++secondary hero action now resolves to the valid `/contatti` route with
++contact-oriented copy instead of relying on component defaults.
 +
-+TASK cta-home-home-primary-cta executed by Codex.
++TASK cta-home-home-contact-cta executed by Codex.
 +Waiting for validation.
-+
-+TASK cta-home-home-primary-cta completed successfully.
-+Build passed.
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index e09c897fe99a19d7ac947c0ad74385e2a62d0cb6..9abea574c8bbfe0e71b00a367df5b2df4cf7dde6
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -119,7 +119,20 @@
-   },
- ]
- 
--export default function HeroSection() {
-+const defaultPrimaryCta = {
-+  label: 'Request your event proposal',
-+  to: '/menu',
-+}
-+
-+const defaultSecondaryCta = {
-+  label: 'Explore our services',
-+  to: '/contatti',
-+}
-+
-+export default function HeroSection({
-+  primaryCta = defaultPrimaryCta,
-+  secondaryCta = defaultSecondaryCta,
-+}) {
-   return (
-     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
-       <div style={heroStyles.panel}>
-@@ -137,11 +150,11 @@
-         </p>
- 
-         <div style={heroStyles.actions}>
--          <Link to="/menu" style={heroStyles.primaryAction}>
--            Request your event proposal
-+          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
-+            {primaryCta.label}
-           </Link>
--          <Link to="/contatti" style={heroStyles.secondaryAction}>
--            Explore our services
-+          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
-+            {secondaryCta.label}
-           </Link>
-         </div>
- 
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 18aa4265619a7cf661d162e652dce80a9bb09b46..69bfc2e5823192bfce6396bac5bc689ace396034
+index 69bfc2e5823192bfce6396bac5bc689ace396034..ef5813cca6a8811a162967d2365dc47b9837258b
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -5,7 +5,12 @@
- export default function Home() {
-   return (
-     <article aria-labelledby="home-title">
--      <HeroSection />
-+      <HeroSection
-+        primaryCta={{
-+          label: 'Request your event proposal',
-+          to: '/menu',
+@@ -10,6 +10,10 @@
+           label: 'Request your event proposal',
+           to: '/menu',
+         }}
++        secondaryCta={{
++          label: 'Contact us for your event',
++          to: '/contatti',
 +        }}
-+      />
+       />
        <SignaturePreviewSection />
        <BrandStoryPreviewSection />
-     </article>
-
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 297edbe7823fddfbb15b49ce13e6662d2fa064db..0bd8dd0acdc7710e58e7c46214ce09b59453964c
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -82,3 +82,15 @@
- Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
- 
- Launching Codex for TASK cta-home-home-primary-cta.
-+
-+Completed TASK cta-home-home-primary-cta.
-+
-+Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
-+`src/components/HeroSection.jsx` so the page now explicitly provides the
-+required `home-primary-cta` label and valid `/menu` destination in the hero.
-+
-+TASK cta-home-home-primary-cta executed by Codex.
-+Waiting for validation.
-+
-+TASK cta-home-home-primary-cta completed successfully.
-+Build passed.
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index e09c897fe99a19d7ac947c0ad74385e2a62d0cb6..9abea574c8bbfe0e71b00a367df5b2df4cf7dde6
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -119,7 +119,20 @@
-   },
- ]
- 
--export default function HeroSection() {
-+const defaultPrimaryCta = {
-+  label: 'Request your event proposal',
-+  to: '/menu',
-+}
-+
-+const defaultSecondaryCta = {
-+  label: 'Explore our services',
-+  to: '/contatti',
-+}
-+
-+export default function HeroSection({
-+  primaryCta = defaultPrimaryCta,
-+  secondaryCta = defaultSecondaryCta,
-+}) {
-   return (
-     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
-       <div style={heroStyles.panel}>
-@@ -137,11 +150,11 @@
-         </p>
- 
-         <div style={heroStyles.actions}>
--          <Link to="/menu" style={heroStyles.primaryAction}>
--            Request your event proposal
-+          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
-+            {primaryCta.label}
-           </Link>
--          <Link to="/contatti" style={heroStyles.secondaryAction}>
--            Explore our services
-+          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
-+            {secondaryCta.label}
-           </Link>
-         </div>
- 
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 18aa4265619a7cf661d162e652dce80a9bb09b46..69bfc2e5823192bfce6396bac5bc689ace396034
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -5,7 +5,12 @@
- export default function Home() {
-   return (
-     <article aria-labelledby="home-title">
--      <HeroSection />
-+      <HeroSection
-+        primaryCta={{
-+          label: 'Request your event proposal',
-+          to: '/menu',
-+        }}
-+      />
-       <SignaturePreviewSection />
-       <BrandStoryPreviewSection />
-     </article>
-
-codex
-Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), [HeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/HeroSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
-
-Implemented the `home-primary-cta` on the home hero by making [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx) explicitly pass the primary CTA config into the shared [HeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/HeroSection.jsx). The CTA remains visible in the hero and routes to the valid hash-router destination `/menu` with the required label “Request your event proposal”.
-
-Build result: `npm run build` passed.
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 297edbe7823fddfbb15b49ce13e6662d2fa064db..0bd8dd0acdc7710e58e7c46214ce09b59453964c
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -82,3 +82,15 @@
- Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
- 
- Launching Codex for TASK cta-home-home-primary-cta.
-+
-+Completed TASK cta-home-home-primary-cta.
-+
-+Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
-+`src/components/HeroSection.jsx` so the page now explicitly provides the
-+required `home-primary-cta` label and valid `/menu` destination in the hero.
-+
-+TASK cta-home-home-primary-cta executed by Codex.
-+Waiting for validation.
-+
-+TASK cta-home-home-primary-cta completed successfully.
-+Build passed.
-diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
-index e09c897fe99a19d7ac947c0ad74385e2a62d0cb6..9abea574c8bbfe0e71b00a367df5b2df4cf7dde6
---- a/src/components/HeroSection.jsx
-+++ b/src/components/HeroSection.jsx
-@@ -119,7 +119,20 @@
-   },
- ]
- 
--export default function HeroSection() {
-+const defaultPrimaryCta = {
-+  label: 'Request your event proposal',
-+  to: '/menu',
-+}
-+
-+const defaultSecondaryCta = {
-+  label: 'Explore our services',
-+  to: '/contatti',
-+}
-+
-+export default function HeroSection({
-+  primaryCta = defaultPrimaryCta,
-+  secondaryCta = defaultSecondaryCta,
-+}) {
-   return (
-     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
-       <div style={heroStyles.panel}>
-@@ -137,11 +150,11 @@
-         </p>
- 
-         <div style={heroStyles.actions}>
--          <Link to="/menu" style={heroStyles.primaryAction}>
--            Request your event proposal
-+          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
-+            {primaryCta.label}
-           </Link>
--          <Link to="/contatti" style={heroStyles.secondaryAction}>
--            Explore our services
-+          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
-+            {secondaryCta.label}
-           </Link>
-         </div>
- 
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 18aa4265619a7cf661d162e652dce80a9bb09b46..69bfc2e5823192bfce6396bac5bc689ace396034
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -5,7 +5,12 @@
- export default function Home() {
-   return (
-     <article aria-labelledby="home-title">
--      <HeroSection />
-+      <HeroSection
-+        primaryCta={{
-+          label: 'Request your event proposal',
-+          to: '/menu',
-+        }}
-+      />
-       <SignaturePreviewSection />
-       <BrandStoryPreviewSection />
-     </article>
 
 tokens used
-18.269
+18.430

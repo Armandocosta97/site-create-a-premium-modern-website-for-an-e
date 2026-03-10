@@ -100,3 +100,23 @@ Waiting for validation.
 
 TASK cta-home-home-primary-cta completed successfully.
 Build passed.
+Commit created for TASK cta-home-home-primary-cta.
+
+Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
+
+Launching Codex for TASK cta-home-home-contact-cta.
+
+Completed TASK cta-home-home-contact-cta.
+
+Bound the home hero contact CTA explicitly from `src/pages/Home.jsx` so the
+secondary hero action now resolves to the valid `/contatti` route with
+contact-oriented copy instead of relying on component defaults.
+
+TASK cta-home-home-contact-cta executed by Codex.
+Waiting for validation.
+
+TASK cta-home-home-contact-cta executed by Codex.
+Waiting for validation.
+
+TASK cta-home-home-contact-cta completed successfully.
+Build passed.

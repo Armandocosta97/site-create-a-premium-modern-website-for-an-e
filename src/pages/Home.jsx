@@ -10,6 +10,10 @@ export default function Home() {
           label: 'Request your event proposal',
           to: '/menu',
         }}
+        secondaryCta={{
+          label: 'Contact us for your event',
+          to: '/contatti',
+        }}
       />
       <SignaturePreviewSection />
       <BrandStoryPreviewSection />
