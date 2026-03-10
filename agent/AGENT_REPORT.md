@@ -219,6 +219,24 @@ Build passed.
 
 Implemented a dedicated `Menu-categoriesSection` component in
 
+Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-contact-hero.
+
+Completed TASK section-contatti-contact-hero.
+
+Implemented a dedicated `ContactHeroSection` in
+`src/components/Contact-heroSection.jsx` and rendered it from
+`src/pages/Contatti.jsx`. The `contatti` page now exposes the required
+`contact-hero` section as a premium hero with a single `h1`, clear proposal
+copy, and valid email/services CTAs.
+
+TASK section-contatti-contact-hero executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-contact-hero completed successfully.
+Build passed.
+
 Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
 
 Launching Codex for TASK page-contatti-shell.
@@ -452,4 +470,15 @@ TASK page-contatti-shell executed by Codex.
 Waiting for validation.
 
 TASK page-contatti-shell completed successfully.
+Build passed.
+Commit created for TASK page-contatti-shell.
+
+Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-contact-hero.
+
+TASK section-contatti-contact-hero executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-contact-hero completed successfully.
 Build passed.

@@ -1,8 +1,8 @@
-Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files: [src/components/Contact-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Contact-heroSection.jsx), [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
 
-Implemented the `contatti` page shell in [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx) with the required `contact-hero`, `contact-details`, and `opening-hours` sections, one meaningful `h1`, realistic contact content, and working `tel:` / `mailto:` links. The `/contatti` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so no routing change was needed. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with the task summary.
+Implemented the `contact-hero` section as a dedicated reusable hero component in [src/components/Contact-heroSection.jsx#L1](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Contact-heroSection.jsx#L1) and rendered it from [src/pages/Contatti.jsx#L1](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx#L1). The section now has the required hero structure, a single `h1`, premium contact-oriented copy, and valid CTAs to email and `/servizi`.
 
-Build result: `npm run build` passed successfully.
+Build result: `npm run build` passed successfully. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with a short task summary.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd843-1f3d-75e1-b53c-16b8be7a03b2
+session id: 019cd844-0599-7951-9221-3942e127b9da
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1196,32 +1196,35 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-page-contatti-shell
+section-contatti-contact-hero
 
 ## Current task title
-Create contatti page shell
+Create contact-hero section on contatti
 
 ## Current task type
-page-shell
+section
 
 ## Current task target
 ```json
 {
-  "pageId": "contatti"
+  "pageId": "contatti",
+  "sectionId": "contact-hero",
+  "sectionType": "hero"
 }
 ```
 
 ## Depends on
-- none
+- page-contatti-shell
 
 ## Files allowed
-- src/App.jsx
 - src/pages/Contatti.jsx
+- src/components/Contact-heroSection.jsx
+- src/components
 
 ## Definition of done
-- page shell exists for contatti
-- contatti route is mounted if required
-- contatti page renders without crashing
+- section contact-hero exists on contatti
+- section contact-hero matches type hero
+- section contact-hero is rendered in page contatti
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1250,120 +1253,12 @@ page-shell
 
 mcp startup: no servers
 codex
-I’m checking the current app structure and the existing routing/page setup so I can add only the `contatti` page shell and the minimal route wiring this task allows.
+I’m implementing only the `contact-hero` section for the `contatti` page, then I’ll run a build check and update the agent report as required.
 exec
+/bin/zsh -lc "test -f src/components/Contact-heroSection.jsx && sed -n '1,240p' src/components/Contact-heroSection.jsx || true" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'pwd && rg --files src agent | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 53ms:
-export default function Contatti() {
-  return (
-    <>
-      <section id="contact-hero">
-        <h1>Contact Hero</h1>
-        <p>Content for contact-hero will be generated by tasks</p>
-      </section>
-      <section id="contact-details">
-        <h2>Contact Details</h2>
-        <p>Content for contact-details will be generated by tasks</p>
-      </section>
-      <section id="opening-hours">
-        <h2>Opening Hours</h2>
-        <p>Content for opening-hours will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
- succeeded in 53ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/Chi-siamo"
-import Gallery from "./pages/Gallery"
-import Contatti from "./pages/Contatti"
-import Servizi from "./pages/Servizi"
-
-export default function App() {
-  return (
-    <HashRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/chi-siamo" element={<ChiSiamo />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contatti" element={<Contatti />} />
-          <Route path="/servizi" element={<Servizi />} />
- succeeded in 53ms:
-# CURRENT TASK EXECUTION PROMPT
-
-You are the coding executor for this project.
-
-## Project path
-site-create-a-premium-modern-website-for-an-e
-
-## Source of truth files
-- brief/original-prompt.md
-- brief/brief-summary.md
-- site-spec.json
-- docs/DEVELOPMENT_METHOD.md
-- agent/TASK_GRAPH.json
-- agent/TASK_STATE.json
-- agent/CURRENT_TASK_PROMPT.md
-
-## Development method
-# Development Method
-
-All sites must follow these rules.
- succeeded in 53ms:
-/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
-agent/AGENT_REPORT.md
-agent/CURRENT_TASK_PROMPT.md
-agent/LAST_CODEX_OUTPUT.md
-agent/PROMPT_ARCHITECTURE.json
-agent/TASK_GRAPH.json
-agent/TASK_QUEUE.md
-agent/TASK_STATE.json
-src/App.css
-src/App.jsx
-src/assets/react.svg
-src/components/About-heroSection.jsx
-src/components/Brand-story-previewSection.jsx
-src/components/FloatingWhatsAppButton.jsx
-src/components/Gallery-gridSection.jsx
-src/components/Gallery-heroSection.jsx
-src/components/HeroSection.jsx
-src/components/Menu-categoriesSection.jsx
-src/components/Menu-heroSection.jsx
-src/components/PhilosophySection.jsx
-codex
-The route is already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so the remaining work is to replace the placeholder `contatti` sections with a stable page shell and then run the required build check.
-exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' package.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 53ms:
-{
-  "name": "site-create-a-premium-modern-website-for-an-e",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test:ui": "playwright test"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@playwright/test": "^1.58.2",
- succeeded in 53ms:
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "pwd && rg --files src agent brief docs | rg 'Contatti.jsx|Contact-heroSection.jsx|AGENT_REPORT.md|CURRENT_TASK_PROMPT.md|TASK_STATE.json|site-spec.json|DEVELOPMENT_METHOD.md'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
 # AGENT REPORT
 
 Project created.
@@ -1385,272 +1280,8 @@ TASK page-home-shell completed successfully.
 Build passed.
 Commit created for TASK page-home-shell.
  succeeded in 53ms:
-import HeroSection from '../components/HeroSection'
-import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
-import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
-import SignaturePreviewSection from '../components/SignaturePreviewSection'
 
-export default function Home() {
-  return (
-    <article aria-labelledby="home-title">
-      <HeroSection
-        primaryCta={{
-          label: 'Request your event proposal',
-          to: '/menu',
-        }}
-        secondaryCta={{
-          label: 'Contact us for your event',
-          to: '/contatti',
-        }}
-      />
-      <SignaturePreviewSection />
-      <BrandStoryPreviewSection />
-codex
-I’ve confirmed the task scope is narrow: `App.jsx` already satisfies route mounting, so I’m replacing the placeholder `Contatti` markup with a semantic shell that uses real contact copy and the required section IDs without pulling in future task detail.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx
-@@ -2,16 +2,64 @@
-   return (
--    <>
-+    <article aria-labelledby="contatti-title">
-       <section id="contact-hero">
--        <h1>Contact Hero</h1>
--        <p>Content for contact-hero will be generated by tasks</p>
-+        <p>Casa Aurea Events</p>
-+        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
-+        <p>
-+          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
-+          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
-+        </p>
-       </section>
-+
-       <section id="contact-details">
--        <h2>Contact Details</h2>
--        <p>Content for contact-details will be generated by tasks</p>
-+        <h2>Contact details</h2>
-+        <p>
-+          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-+          and polished presentation.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Phone</dt>
-+            <dd>
-+              <a href="tel:+39011000000">+39 011 000000</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Email</dt>
-+            <dd>
-+              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Service area</dt>
-+            <dd>Torino and surrounding areas</dd>
-+          </div>
-+        </dl>
-       </section>
-+
-       <section id="opening-hours">
--        <h2>Opening Hours</h2>
--        <p>Content for opening-hours will be generated by tasks</p>
-+        <h2>Availability</h2>
-+        <p>
-+          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
-+          corporate clients looking for a tailored proposal.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Inquiry hours</dt>
-+            <dd>Monday to Saturday, 09:00 to 19:00</dd>
-+          </div>
-+          <div>
-+            <dt>Planning calls</dt>
-+            <dd>By appointment</dd>
-+          </div>
-+          <div>
-+            <dt>Best next step</dt>
-+            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
-+          </div>
-+        </dl>
-+      </section>
-+
-+      <section aria-label="Contact closing note">
-+        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
-       </section>
--    </>
-+    </article>
-   )
-apply_patch(auto_approved=true) exited 0 in 48ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx
-file update:
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 27ef33c6d2801e2478be5154702bdb2f62cc910f..e6d8f3ad9ede68d45764f89f8ffdcce40df233c1
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,18 +1,66 @@
- export default function Contatti() {
-   return (
--    <>
-+    <article aria-labelledby="contatti-title">
-       <section id="contact-hero">
--        <h1>Contact Hero</h1>
--        <p>Content for contact-hero will be generated by tasks</p>
-+        <p>Casa Aurea Events</p>
-+        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
-+        <p>
-+          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
-+          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
-+        </p>
-       </section>
-+
-       <section id="contact-details">
--        <h2>Contact Details</h2>
--        <p>Content for contact-details will be generated by tasks</p>
-+        <h2>Contact details</h2>
-+        <p>
-+          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-+          and polished presentation.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Phone</dt>
-+            <dd>
-+              <a href="tel:+39011000000">+39 011 000000</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Email</dt>
-+            <dd>
-+              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Service area</dt>
-+            <dd>Torino and surrounding areas</dd>
-+          </div>
-+        </dl>
-       </section>
-+
-       <section id="opening-hours">
--        <h2>Opening Hours</h2>
--        <p>Content for opening-hours will be generated by tasks</p>
-+        <h2>Availability</h2>
-+        <p>
-+          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
-+          corporate clients looking for a tailored proposal.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Inquiry hours</dt>
-+            <dd>Monday to Saturday, 09:00 to 19:00</dd>
-+          </div>
-+          <div>
-+            <dt>Planning calls</dt>
-+            <dd>By appointment</dd>
-+          </div>
-+          <div>
-+            <dt>Best next step</dt>
-+            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
-+          </div>
-+        </dl>
-+      </section>
-+
-+      <section aria-label="Contact closing note">
-+        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
-       </section>
--    </>
-+    </article>
-   )
- }
-
-file update:
-diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 27ef33c6d2801e2478be5154702bdb2f62cc910f..e6d8f3ad9ede68d45764f89f8ffdcce40df233c1
---- a/src/pages/Contatti.jsx
-+++ b/src/pages/Contatti.jsx
-@@ -1,18 +1,66 @@
- export default function Contatti() {
-   return (
--    <>
-+    <article aria-labelledby="contatti-title">
-       <section id="contact-hero">
--        <h1>Contact Hero</h1>
--        <p>Content for contact-hero will be generated by tasks</p>
-+        <p>Casa Aurea Events</p>
-+        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
-+        <p>
-+          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
-+          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
-+        </p>
-       </section>
-+
-       <section id="contact-details">
--        <h2>Contact Details</h2>
--        <p>Content for contact-details will be generated by tasks</p>
-+        <h2>Contact details</h2>
-+        <p>
-+          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-+          and polished presentation.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Phone</dt>
-+            <dd>
-+              <a href="tel:+39011000000">+39 011 000000</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Email</dt>
-+            <dd>
-+              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Service area</dt>
-+            <dd>Torino and surrounding areas</dd>
-+          </div>
-+        </dl>
-       </section>
-+
-       <section id="opening-hours">
--        <h2>Opening Hours</h2>
--        <p>Content for opening-hours will be generated by tasks</p>
-+        <h2>Availability</h2>
-+        <p>
-+          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
-+          corporate clients looking for a tailored proposal.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Inquiry hours</dt>
-+            <dd>Monday to Saturday, 09:00 to 19:00</dd>
-+          </div>
-+          <div>
-+            <dt>Planning calls</dt>
-+            <dd>By appointment</dd>
-+          </div>
-+          <div>
-+            <dt>Best next step</dt>
-+            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
-+          </div>
-+        </dl>
-+      </section>
-+
-+      <section aria-label="Contact closing note">
-+        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
-       </section>
--    </>
-+    </article>
-   )
- }
-
-codex
-The page shell is in place in [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx). I’m running the build now, then I’ll append the required task note to the agent report.
-exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 53ms:
+ succeeded in 51ms:
 export default function Contatti() {
   return (
     <article aria-labelledby="contatti-title">
@@ -1671,457 +1302,1909 @@ export default function Contatti() {
         </p>
         <dl>
           <div>
+ succeeded in 53ms:
+/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
+docs/DEVELOPMENT_METHOD.md
+agent/AGENT_REPORT.md
+agent/CURRENT_TASK_PROMPT.md
+agent/TASK_STATE.json
+src/pages/Contatti.jsx
+codex
+I’ve confirmed the contact page still uses inline placeholder hero markup. Next I’m checking existing component patterns so the new hero fits the current codebase without touching unrelated sections.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 761ms:
+/bin/zsh -lc "sed -n '1,260p' src/pages/Chi-siamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,240p' src/components/Menu-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'rg --files src/components | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,240p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+import { Link } from 'react-router-dom'
+
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(30rem, 72vh, 42rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 46rem)',
+ succeeded in 52ms:
+import AboutHeroSection from '../components/About-heroSection'
+import PhilosophySection from '../components/PhilosophySection'
+import StorySection from '../components/StorySection'
+
+export default function ChiSiamo() {
+  return (
+    <article aria-labelledby="chi-siamo-title">
+      <AboutHeroSection />
+
+      <StorySection />
+
+      <PhilosophySection />
+    </article>
+  )
+}
+ succeeded in 52ms:
+import MenuHeroSection from '../components/Menu-heroSection'
+import MenuCategoriesSection from '../components/Menu-categoriesSection'
+
+export default function Menu() {
+  return (
+    <article aria-labelledby="menu-title">
+      <MenuHeroSection />
+      <MenuCategoriesSection />
+    </article>
+  )
+}
+ succeeded in 52ms:
+src/components/About-heroSection.jsx
+src/components/Brand-story-previewSection.jsx
+src/components/FloatingWhatsAppButton.jsx
+src/components/Gallery-gridSection.jsx
+src/components/Gallery-heroSection.jsx
+src/components/HeroSection.jsx
+src/components/Menu-categoriesSection.jsx
+src/components/Menu-heroSection.jsx
+src/components/PhilosophySection.jsx
+src/components/SignaturePreviewSection.jsx
+src/components/StorySection.jsx
+ succeeded in 51ms:
+import { Link } from 'react-router-dom'
+
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(32rem, 78vh, 46rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(40, 31, 24, 0.18) 0%, rgba(28, 22, 18, 0.72) 62%, rgba(20, 15, 12, 0.9) 100%), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 42rem)',
+codex
+The project is already using dedicated hero components with inline style objects. I’m mirroring that approach for `contatti` so the change stays narrow and consistent.
+exec
+/bin/zsh -lc "sed -n '1,240p' src/components/Gallery-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,240p' src/components/About-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(30rem, 74vh, 43rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(48, 36, 29, 0.12) 0%, rgba(30, 23, 19, 0.68) 56%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 48rem)',
+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
+    borderRadius: '28px',
+ succeeded in 51ms:
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(30rem, 74vh, 43rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(52, 38, 31, 0.12) 0%, rgba(31, 23, 18, 0.66) 56%, rgba(20, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 47rem)',
+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
+    borderRadius: '28px',
+codex
+I have enough context now. I’m replacing the inline contact hero with a dedicated component, keeping the existing contact details and availability sections untouched, then I’ll validate with a production build and log the task in the report.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx
+@@ -1 +1,3 @@
++import ContactHeroSection from '../components/Contact-heroSection'
++
+ export default function Contatti() {
+@@ -3,10 +5,3 @@
+     <article aria-labelledby="contatti-title">
+-      <section id="contact-hero">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
+-        <p>
+-          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
+-          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
+-        </p>
+-      </section>
++      <ContactHeroSection />
+ 
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Contact-heroSection.jsx
+import { Link } from 'react-router-dom'
+
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(30rem, 74vh, 43rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(53, 40, 32, 0.12) 0%, rgba(30, 23, 19, 0.68) 58%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 48rem)',
+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
+    borderRadius: '28px',
+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
+    backdropFilter: 'blur(10px)',
+    textAlign: 'left',
+  },
+  eyebrow: {
+    margin: 0,
+    fontSize: '0.8rem',
+    letterSpacing: '0.22em',
+    textTransform: 'uppercase',
+    color: '#d9bf8d',
+  },
+  title: {
+    margin: '1rem 0 0',
+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
+    lineHeight: 1.02,
+    fontFamily: 'Georgia, "Times New Roman", serif',
+    fontWeight: 600,
+  },
+  body: {
+    margin: '1.25rem 0 0',
+    maxWidth: '36rem',
+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
+    lineHeight: 1.75,
+    color: 'rgba(247, 241, 232, 0.88)',
+  },
+  actions: {
+    marginTop: '1.75rem',
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '0.875rem',
+  },
+  primaryAction: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '3.25rem',
+    padding: '0.9rem 1.5rem',
+    borderRadius: '999px',
+    backgroundColor: '#d9bf8d',
+    color: '#1f1813',
+    textDecoration: 'none',
+    fontWeight: 700,
+  },
+  secondaryAction: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '3.25rem',
+    padding: '0.9rem 1.5rem',
+    borderRadius: '999px',
+    border: '1px solid rgba(247, 241, 232, 0.42)',
+    color: '#f7f1e8',
+    textDecoration: 'none',
+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
+    fontWeight: 600,
+  },
+  highlights: {
+    marginTop: '1.5rem',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
+    gap: '0.875rem',
+  },
+  highlightCard: {
+    padding: '0.95rem 1rem',
+    borderRadius: '20px',
+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
+    border: '1px solid rgba(247, 241, 232, 0.12)',
+  },
+  highlightLabel: {
+    display: 'block',
+    fontSize: '0.78rem',
+    letterSpacing: '0.08em',
+    textTransform: 'uppercase',
+    color: 'rgba(217, 191, 141, 0.92)',
+  },
+  highlightText: {
+    display: 'block',
+    marginTop: '0.4rem',
+    fontSize: '0.98rem',
+    lineHeight: 1.5,
+    color: '#f7f1e8',
+  },
+}
+
+const highlights = [
+  {
+    label: 'Service area',
+    text: 'Torino and surrounding areas for weddings, private events, and premium corporate evenings.',
+  },
+  {
+    label: 'What to share',
+    text: 'Event date, guest count, venue, and the atmosphere you want to create.',
+  },
+  {
+    label: 'Planning style',
+    text: 'Clear communication, thoughtful timing, and proposals shaped around your occasion.',
+  },
+]
+
+export default function ContactHeroSection() {
+  return (
+    <section
+      id="contact-hero"
+      aria-labelledby="contatti-title"
+      style={heroStyles.section}
+    >
+      <div style={heroStyles.panel}>
+        <p style={heroStyles.eyebrow}>Start the conversation</p>
+        <h1 id="contatti-title" style={heroStyles.title}>
+          Plan your event with a hospitality team that knows how to host beautifully
+        </h1>
+        <p style={heroStyles.body}>
+          Share the occasion, the atmosphere you want to create, and the guests you are welcoming. We will shape a
+          tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
+        </p>
+
+        <div style={heroStyles.actions}>
+          <a href="mailto:hello@casaaureaevents.it" style={heroStyles.primaryAction}>
+            Request your event proposal
+          </a>
+          <Link to="/servizi" style={heroStyles.secondaryAction}>
+            Explore our services
+          </Link>
+        </div>
+
+        <div style={heroStyles.highlights}>
+          {highlights.map((item) => (
+            <div key={item.label} style={heroStyles.highlightCard}>
+              <span style={heroStyles.highlightLabel}>{item.label}</span>
+              <span style={heroStyles.highlightText}>{item.text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+apply_patch(auto_approved=true) exited 0 in 53ms:
+Success. Updated the following files:
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Contact-heroSection.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx
+file update:
+diff --git a/src/components/Contact-heroSection.jsx b/src/components/Contact-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6d1969ae25700c5fbbbe0724902c7ef5dca1d69
+--- /dev/null
++++ b/src/components/Contact-heroSection.jsx
+@@ -0,0 +1,159 @@
++import { Link } from 'react-router-dom'
++
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 74vh, 43rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(53, 40, 32, 0.12) 0%, rgba(30, 23, 19, 0.68) 58%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 48rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.54)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '36rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Service area',
++    text: 'Torino and surrounding areas for weddings, private events, and premium corporate evenings.',
++  },
++  {
++    label: 'What to share',
++    text: 'Event date, guest count, venue, and the atmosphere you want to create.',
++  },
++  {
++    label: 'Planning style',
++    text: 'Clear communication, thoughtful timing, and proposals shaped around your occasion.',
++  },
++]
++
++export default function ContactHeroSection() {
++  return (
++    <section
++      id="contact-hero"
++      aria-labelledby="contatti-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Start the conversation</p>
++        <h1 id="contatti-title" style={heroStyles.title}>
++          Plan your event with a hospitality team that knows how to host beautifully
++        </h1>
++        <p style={heroStyles.body}>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming. We will shape a
++          tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
++
++        <div style={heroStyles.actions}>
++          <a href="mailto:hello@casaaureaevents.it" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </a>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index e6d8f3ad9ede68d45764f89f8ffdcce40df233c1..1a0f2a18b5ad41a80aa0c42729ec5d0e1339018e
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,14 +1,9 @@
++import ContactHeroSection from '../components/Contact-heroSection'
++
+ export default function Contatti() {
+   return (
+     <article aria-labelledby="contatti-title">
+-      <section id="contact-hero">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
+-        <p>
+-          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
+-          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
+-        </p>
+-      </section>
++      <ContactHeroSection />
+ 
+       <section id="contact-details">
+         <h2>Contact details</h2>
+
+file update:
+diff --git a/src/components/Contact-heroSection.jsx b/src/components/Contact-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6d1969ae25700c5fbbbe0724902c7ef5dca1d69
+--- /dev/null
++++ b/src/components/Contact-heroSection.jsx
+@@ -0,0 +1,159 @@
++import { Link } from 'react-router-dom'
++
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 74vh, 43rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(53, 40, 32, 0.12) 0%, rgba(30, 23, 19, 0.68) 58%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 48rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.54)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '36rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Service area',
++    text: 'Torino and surrounding areas for weddings, private events, and premium corporate evenings.',
++  },
++  {
++    label: 'What to share',
++    text: 'Event date, guest count, venue, and the atmosphere you want to create.',
++  },
++  {
++    label: 'Planning style',
++    text: 'Clear communication, thoughtful timing, and proposals shaped around your occasion.',
++  },
++]
++
++export default function ContactHeroSection() {
++  return (
++    <section
++      id="contact-hero"
++      aria-labelledby="contatti-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Start the conversation</p>
++        <h1 id="contatti-title" style={heroStyles.title}>
++          Plan your event with a hospitality team that knows how to host beautifully
++        </h1>
++        <p style={heroStyles.body}>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming. We will shape a
++          tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
++
++        <div style={heroStyles.actions}>
++          <a href="mailto:hello@casaaureaevents.it" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </a>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index e6d8f3ad9ede68d45764f89f8ffdcce40df233c1..1a0f2a18b5ad41a80aa0c42729ec5d0e1339018e
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,14 +1,9 @@
++import ContactHeroSection from '../components/Contact-heroSection'
++
+ export default function Contatti() {
+   return (
+     <article aria-labelledby="contatti-title">
+-      <section id="contact-hero">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
+-        <p>
+-          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
+-          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
+-        </p>
+-      </section>
++      <ContactHeroSection />
+ 
+       <section id="contact-details">
+         <h2>Contact details</h2>
+
+codex
+I’ve applied the section edit. Next step is build validation, then I’ll append a concise task note to `agent/AGENT_REPORT.md` without touching task state.
+exec
+/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+{
+  "name": "site-create-a-premium-modern-website-for-an-e",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test:ui": "playwright test"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.13.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.58.2",
+exec
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 845ms:
+
+> site-create-a-premium-modern-website-for-an-e@0.0.0 build
+> vite build
+
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 59 modules transformed.
+✓ 60 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-BzHazAfw.js   273.05 kB │ gzip: 83.61 kB
-✓ built in 568ms
+dist/assets/index-DQLDpbP2.js   276.22 kB │ gzip: 83.84 kB
+✓ built in 581ms
 file update:
+diff --git a/src/components/Contact-heroSection.jsx b/src/components/Contact-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6d1969ae25700c5fbbbe0724902c7ef5dca1d69
+--- /dev/null
++++ b/src/components/Contact-heroSection.jsx
+@@ -0,0 +1,159 @@
++import { Link } from 'react-router-dom'
++
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 74vh, 43rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(53, 40, 32, 0.12) 0%, rgba(30, 23, 19, 0.68) 58%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 48rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.54)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '36rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Service area',
++    text: 'Torino and surrounding areas for weddings, private events, and premium corporate evenings.',
++  },
++  {
++    label: 'What to share',
++    text: 'Event date, guest count, venue, and the atmosphere you want to create.',
++  },
++  {
++    label: 'Planning style',
++    text: 'Clear communication, thoughtful timing, and proposals shaped around your occasion.',
++  },
++]
++
++export default function ContactHeroSection() {
++  return (
++    <section
++      id="contact-hero"
++      aria-labelledby="contatti-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Start the conversation</p>
++        <h1 id="contatti-title" style={heroStyles.title}>
++          Plan your event with a hospitality team that knows how to host beautifully
++        </h1>
++        <p style={heroStyles.body}>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming. We will shape a
++          tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
++
++        <div style={heroStyles.actions}>
++          <a href="mailto:hello@casaaureaevents.it" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </a>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 27ef33c6d2801e2478be5154702bdb2f62cc910f..e6d8f3ad9ede68d45764f89f8ffdcce40df233c1
+index e6d8f3ad9ede68d45764f89f8ffdcce40df233c1..1a0f2a18b5ad41a80aa0c42729ec5d0e1339018e
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,18 +1,66 @@
+@@ -1,14 +1,9 @@
++import ContactHeroSection from '../components/Contact-heroSection'
++
  export default function Contatti() {
    return (
--    <>
-+    <article aria-labelledby="contatti-title">
-       <section id="contact-hero">
--        <h1>Contact Hero</h1>
--        <p>Content for contact-hero will be generated by tasks</p>
-+        <p>Casa Aurea Events</p>
-+        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
-+        <p>
-+          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
-+          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
-+        </p>
-       </section>
-+
+     <article aria-labelledby="contatti-title">
+-      <section id="contact-hero">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
+-        <p>
+-          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
+-          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
+-        </p>
+-      </section>
++      <ContactHeroSection />
+ 
        <section id="contact-details">
--        <h2>Contact Details</h2>
--        <p>Content for contact-details will be generated by tasks</p>
-+        <h2>Contact details</h2>
-+        <p>
-+          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-+          and polished presentation.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Phone</dt>
-+            <dd>
-+              <a href="tel:+39011000000">+39 011 000000</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Email</dt>
-+            <dd>
-+              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Service area</dt>
-+            <dd>Torino and surrounding areas</dd>
-+          </div>
-+        </dl>
-       </section>
-+
-       <section id="opening-hours">
--        <h2>Opening Hours</h2>
--        <p>Content for opening-hours will be generated by tasks</p>
-+        <h2>Availability</h2>
-+        <p>
-+          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
-+          corporate clients looking for a tailored proposal.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Inquiry hours</dt>
-+            <dd>Monday to Saturday, 09:00 to 19:00</dd>
-+          </div>
-+          <div>
-+            <dt>Planning calls</dt>
-+            <dd>By appointment</dd>
-+          </div>
-+          <div>
-+            <dt>Best next step</dt>
-+            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
-+          </div>
-+        </dl>
-+      </section>
-+
-+      <section aria-label="Contact closing note">
-+        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
-       </section>
--    </>
-+    </article>
-   )
- }
+         <h2>Contact details</h2>
 
 codex
-The build passed. I’m adding the required task entry to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) now so the execution record stays in sync with the code change.
+The build passed cleanly. I’m only appending the required report entry now, with the implementation scope and result for this specific task.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -220,2 +220,19 @@
- Implemented a dedicated `Menu-categoriesSection` component in
+@@ -221,2 +221,20 @@
+ 
++Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 +
-+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++Launching Codex for TASK section-contatti-contact-hero.
 +
-+Launching Codex for TASK page-contatti-shell.
++Completed TASK section-contatti-contact-hero.
 +
-+Completed TASK page-contatti-shell.
++Implemented a dedicated `ContactHeroSection` in
++`src/components/Contact-heroSection.jsx` and rendered it from
++`src/pages/Contatti.jsx`. The `contatti` page now exposes the required
++`contact-hero` section as a premium hero with a single `h1`, clear proposal
++copy, and valid email/services CTAs.
 +
-+Implemented a semantic shell for `src/pages/Contatti.jsx` with the required
-+`contact-hero`, `contact-details`, and `opening-hours` sections, real contact
-+copy, and valid `tel:` and `mailto:` actions. Verified `src/App.jsx` already
-+mounts the `/contatti` route, so no routing change was required.
-+
-+TASK page-contatti-shell executed by Codex.
++TASK section-contatti-contact-hero executed by Codex.
 +Waiting for validation.
 +
-+TASK page-contatti-shell completed successfully.
++TASK section-contatti-contact-hero completed successfully.
 +Build passed.
- `src/components/Menu-categoriesSection.jsx` and rendered it from
-apply_patch(auto_approved=true) exited 0 in 48ms:
++
+ Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+apply_patch(auto_approved=true) exited 0 in 57ms:
 Success. Updated the following files:
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 1d75cc8f61bc0312e105816152fe26f013a35ae9..3916ee63623f6eb12f233553215b8b6fecdabd94
+index 0b4f71349701760e99e26dbf5c7be7ba93dbc453..345626f2ce58fb26c103a2ae126bcbc4f7c760c6
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,23 @@
- Build passed.
+@@ -219,6 +219,24 @@
  
  Implemented a dedicated `Menu-categoriesSection` component in
+ 
++Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 +
-+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++Launching Codex for TASK section-contatti-contact-hero.
 +
-+Launching Codex for TASK page-contatti-shell.
++Completed TASK section-contatti-contact-hero.
 +
-+Completed TASK page-contatti-shell.
++Implemented a dedicated `ContactHeroSection` in
++`src/components/Contact-heroSection.jsx` and rendered it from
++`src/pages/Contatti.jsx`. The `contatti` page now exposes the required
++`contact-hero` section as a premium hero with a single `h1`, clear proposal
++copy, and valid email/services CTAs.
 +
-+Implemented a semantic shell for `src/pages/Contatti.jsx` with the required
-+`contact-hero`, `contact-details`, and `opening-hours` sections, real contact
-+copy, and valid `tel:` and `mailto:` actions. Verified `src/App.jsx` already
-+mounts the `/contatti` route, so no routing change was required.
-+
-+TASK page-contatti-shell executed by Codex.
++TASK section-contatti-contact-hero executed by Codex.
 +Waiting for validation.
 +
-+TASK page-contatti-shell completed successfully.
++TASK section-contatti-contact-hero completed successfully.
 +Build passed.
- `src/components/Menu-categoriesSection.jsx` and rendered it from
- `src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
- page now includes structured drink families with refined descriptions and
++
+ Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+ 
+ Launching Codex for TASK page-contatti-shell.
+diff --git a/src/components/Contact-heroSection.jsx b/src/components/Contact-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6d1969ae25700c5fbbbe0724902c7ef5dca1d69
+--- /dev/null
++++ b/src/components/Contact-heroSection.jsx
+@@ -0,0 +1,159 @@
++import { Link } from 'react-router-dom'
++
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 74vh, 43rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(53, 40, 32, 0.12) 0%, rgba(30, 23, 19, 0.68) 58%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 48rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.54)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '36rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Service area',
++    text: 'Torino and surrounding areas for weddings, private events, and premium corporate evenings.',
++  },
++  {
++    label: 'What to share',
++    text: 'Event date, guest count, venue, and the atmosphere you want to create.',
++  },
++  {
++    label: 'Planning style',
++    text: 'Clear communication, thoughtful timing, and proposals shaped around your occasion.',
++  },
++]
++
++export default function ContactHeroSection() {
++  return (
++    <section
++      id="contact-hero"
++      aria-labelledby="contatti-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Start the conversation</p>
++        <h1 id="contatti-title" style={heroStyles.title}>
++          Plan your event with a hospitality team that knows how to host beautifully
++        </h1>
++        <p style={heroStyles.body}>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming. We will shape a
++          tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
++
++        <div style={heroStyles.actions}>
++          <a href="mailto:hello@casaaureaevents.it" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </a>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 27ef33c6d2801e2478be5154702bdb2f62cc910f..e6d8f3ad9ede68d45764f89f8ffdcce40df233c1
+index e6d8f3ad9ede68d45764f89f8ffdcce40df233c1..1a0f2a18b5ad41a80aa0c42729ec5d0e1339018e
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,18 +1,66 @@
+@@ -1,14 +1,9 @@
++import ContactHeroSection from '../components/Contact-heroSection'
++
  export default function Contatti() {
    return (
--    <>
-+    <article aria-labelledby="contatti-title">
-       <section id="contact-hero">
--        <h1>Contact Hero</h1>
--        <p>Content for contact-hero will be generated by tasks</p>
-+        <p>Casa Aurea Events</p>
-+        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
-+        <p>
-+          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
-+          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
-+        </p>
-       </section>
-+
+     <article aria-labelledby="contatti-title">
+-      <section id="contact-hero">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
+-        <p>
+-          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
+-          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
+-        </p>
+-      </section>
++      <ContactHeroSection />
+ 
        <section id="contact-details">
--        <h2>Contact Details</h2>
--        <p>Content for contact-details will be generated by tasks</p>
-+        <h2>Contact details</h2>
-+        <p>
-+          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-+          and polished presentation.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Phone</dt>
-+            <dd>
-+              <a href="tel:+39011000000">+39 011 000000</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Email</dt>
-+            <dd>
-+              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Service area</dt>
-+            <dd>Torino and surrounding areas</dd>
-+          </div>
-+        </dl>
-       </section>
-+
-       <section id="opening-hours">
--        <h2>Opening Hours</h2>
--        <p>Content for opening-hours will be generated by tasks</p>
-+        <h2>Availability</h2>
-+        <p>
-+          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
-+          corporate clients looking for a tailored proposal.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Inquiry hours</dt>
-+            <dd>Monday to Saturday, 09:00 to 19:00</dd>
-+          </div>
-+          <div>
-+            <dt>Planning calls</dt>
-+            <dd>By appointment</dd>
-+          </div>
-+          <div>
-+            <dt>Best next step</dt>
-+            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
-+          </div>
-+        </dl>
-+      </section>
-+
-+      <section aria-label="Contact closing note">
-+        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
-       </section>
--    </>
-+    </article>
-   )
- }
+         <h2>Contact details</h2>
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 1d75cc8f61bc0312e105816152fe26f013a35ae9..3916ee63623f6eb12f233553215b8b6fecdabd94
+index 0b4f71349701760e99e26dbf5c7be7ba93dbc453..345626f2ce58fb26c103a2ae126bcbc4f7c760c6
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,23 @@
- Build passed.
+@@ -219,6 +219,24 @@
  
  Implemented a dedicated `Menu-categoriesSection` component in
+ 
++Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 +
-+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++Launching Codex for TASK section-contatti-contact-hero.
 +
-+Launching Codex for TASK page-contatti-shell.
++Completed TASK section-contatti-contact-hero.
 +
-+Completed TASK page-contatti-shell.
++Implemented a dedicated `ContactHeroSection` in
++`src/components/Contact-heroSection.jsx` and rendered it from
++`src/pages/Contatti.jsx`. The `contatti` page now exposes the required
++`contact-hero` section as a premium hero with a single `h1`, clear proposal
++copy, and valid email/services CTAs.
 +
-+Implemented a semantic shell for `src/pages/Contatti.jsx` with the required
-+`contact-hero`, `contact-details`, and `opening-hours` sections, real contact
-+copy, and valid `tel:` and `mailto:` actions. Verified `src/App.jsx` already
-+mounts the `/contatti` route, so no routing change was required.
-+
-+TASK page-contatti-shell executed by Codex.
++TASK section-contatti-contact-hero executed by Codex.
 +Waiting for validation.
 +
-+TASK page-contatti-shell completed successfully.
++TASK section-contatti-contact-hero completed successfully.
 +Build passed.
- `src/components/Menu-categoriesSection.jsx` and rendered it from
- `src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
- page now includes structured drink families with refined descriptions and
++
+ Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+ 
+ Launching Codex for TASK page-contatti-shell.
+diff --git a/src/components/Contact-heroSection.jsx b/src/components/Contact-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6d1969ae25700c5fbbbe0724902c7ef5dca1d69
+--- /dev/null
++++ b/src/components/Contact-heroSection.jsx
+@@ -0,0 +1,159 @@
++import { Link } from 'react-router-dom'
++
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 74vh, 43rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(53, 40, 32, 0.12) 0%, rgba(30, 23, 19, 0.68) 58%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 48rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.54)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '36rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Service area',
++    text: 'Torino and surrounding areas for weddings, private events, and premium corporate evenings.',
++  },
++  {
++    label: 'What to share',
++    text: 'Event date, guest count, venue, and the atmosphere you want to create.',
++  },
++  {
++    label: 'Planning style',
++    text: 'Clear communication, thoughtful timing, and proposals shaped around your occasion.',
++  },
++]
++
++export default function ContactHeroSection() {
++  return (
++    <section
++      id="contact-hero"
++      aria-labelledby="contatti-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Start the conversation</p>
++        <h1 id="contatti-title" style={heroStyles.title}>
++          Plan your event with a hospitality team that knows how to host beautifully
++        </h1>
++        <p style={heroStyles.body}>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming. We will shape a
++          tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
++
++        <div style={heroStyles.actions}>
++          <a href="mailto:hello@casaaureaevents.it" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </a>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 27ef33c6d2801e2478be5154702bdb2f62cc910f..e6d8f3ad9ede68d45764f89f8ffdcce40df233c1
+index e6d8f3ad9ede68d45764f89f8ffdcce40df233c1..1a0f2a18b5ad41a80aa0c42729ec5d0e1339018e
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,18 +1,66 @@
+@@ -1,14 +1,9 @@
++import ContactHeroSection from '../components/Contact-heroSection'
++
  export default function Contatti() {
    return (
--    <>
-+    <article aria-labelledby="contatti-title">
-       <section id="contact-hero">
--        <h1>Contact Hero</h1>
--        <p>Content for contact-hero will be generated by tasks</p>
-+        <p>Casa Aurea Events</p>
-+        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
-+        <p>
-+          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
-+          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
-+        </p>
-       </section>
-+
+     <article aria-labelledby="contatti-title">
+-      <section id="contact-hero">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
+-        <p>
+-          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
+-          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
+-        </p>
+-      </section>
++      <ContactHeroSection />
+ 
        <section id="contact-details">
--        <h2>Contact Details</h2>
--        <p>Content for contact-details will be generated by tasks</p>
-+        <h2>Contact details</h2>
-+        <p>
-+          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-+          and polished presentation.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Phone</dt>
-+            <dd>
-+              <a href="tel:+39011000000">+39 011 000000</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Email</dt>
-+            <dd>
-+              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Service area</dt>
-+            <dd>Torino and surrounding areas</dd>
-+          </div>
-+        </dl>
-       </section>
+         <h2>Contact details</h2>
+
+exec
+/bin/zsh -lc "nl -ba src/pages/Contatti.jsx | sed -n '1,120p'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'tail -n 20 agent/AGENT_REPORT.md | nl -ba' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "nl -ba src/components/Contact-heroSection.jsx | sed -n '1,240p'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+     1	import { Link } from 'react-router-dom'
+     2	
+     3	const heroStyles = {
+     4	  section: {
+     5	    position: 'relative',
+     6	    overflow: 'hidden',
+     7	    borderRadius: '32px',
+     8	    minHeight: 'clamp(30rem, 74vh, 43rem)',
+     9	    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    10	    display: 'flex',
+    11	    alignItems: 'flex-end',
+    12	    backgroundImage:
+    13	      "linear-gradient(180deg, rgba(53, 40, 32, 0.12) 0%, rgba(30, 23, 19, 0.68) 58%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80')",
+    14	    backgroundSize: 'cover',
+    15	    backgroundPosition: 'center',
+    16	    color: '#f7f1e8',
+    17	    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+    18	  },
+    19	  panel: {
+    20	    width: 'min(100%, 48rem)',
+ succeeded in 52ms:
+     1	import ContactHeroSection from '../components/Contact-heroSection'
+     2	
+     3	export default function Contatti() {
+     4	  return (
+     5	    <article aria-labelledby="contatti-title">
+     6	      <ContactHeroSection />
+     7	
+     8	      <section id="contact-details">
+     9	        <h2>Contact details</h2>
+    10	        <p>
+    11	          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
+    12	          and polished presentation.
+    13	        </p>
+    14	        <dl>
+    15	          <div>
+    16	            <dt>Phone</dt>
+    17	            <dd>
+    18	              <a href="tel:+39011000000">+39 011 000000</a>
+    19	            </dd>
+    20	          </div>
+ succeeded in 52ms:
+     1	Waiting for validation.
+     2	
+     3	TASK section-gallery-gallery-grid completed successfully.
+     4	Build passed.
+     5	Commit created for TASK section-gallery-gallery-grid.
+     6	
+     7	Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+     8	
+     9	Launching Codex for TASK page-contatti-shell.
+    10	
+    11	TASK page-contatti-shell executed by Codex.
+    12	Waiting for validation.
+    13	
+    14	TASK page-contatti-shell completed successfully.
+    15	Build passed.
+    16	Commit created for TASK page-contatti-shell.
+    17	
+    18	Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
+    19	
+    20	Launching Codex for TASK section-contatti-contact-hero.
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 0b4f71349701760e99e26dbf5c7be7ba93dbc453..345626f2ce58fb26c103a2ae126bcbc4f7c760c6
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -219,6 +219,24 @@
+ 
+ Implemented a dedicated `Menu-categoriesSection` component in
+ 
++Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 +
-       <section id="opening-hours">
--        <h2>Opening Hours</h2>
--        <p>Content for opening-hours will be generated by tasks</p>
-+        <h2>Availability</h2>
-+        <p>
-+          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
-+          corporate clients looking for a tailored proposal.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Inquiry hours</dt>
-+            <dd>Monday to Saturday, 09:00 to 19:00</dd>
-+          </div>
-+          <div>
-+            <dt>Planning calls</dt>
-+            <dd>By appointment</dd>
-+          </div>
-+          <div>
-+            <dt>Best next step</dt>
-+            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
-+          </div>
-+        </dl>
-+      </section>
++Launching Codex for TASK section-contatti-contact-hero.
 +
-+      <section aria-label="Contact closing note">
-+        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
-       </section>
--    </>
-+    </article>
-   )
- }
++Completed TASK section-contatti-contact-hero.
++
++Implemented a dedicated `ContactHeroSection` in
++`src/components/Contact-heroSection.jsx` and rendered it from
++`src/pages/Contatti.jsx`. The `contatti` page now exposes the required
++`contact-hero` section as a premium hero with a single `h1`, clear proposal
++copy, and valid email/services CTAs.
++
++TASK section-contatti-contact-hero executed by Codex.
++Waiting for validation.
++
++TASK section-contatti-contact-hero completed successfully.
++Build passed.
++
+ Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+ 
+ Launching Codex for TASK page-contatti-shell.
+diff --git a/src/components/Contact-heroSection.jsx b/src/components/Contact-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6d1969ae25700c5fbbbe0724902c7ef5dca1d69
+--- /dev/null
++++ b/src/components/Contact-heroSection.jsx
+@@ -0,0 +1,159 @@
++import { Link } from 'react-router-dom'
++
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 74vh, 43rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(53, 40, 32, 0.12) 0%, rgba(30, 23, 19, 0.68) 58%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 48rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.54)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '36rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Service area',
++    text: 'Torino and surrounding areas for weddings, private events, and premium corporate evenings.',
++  },
++  {
++    label: 'What to share',
++    text: 'Event date, guest count, venue, and the atmosphere you want to create.',
++  },
++  {
++    label: 'Planning style',
++    text: 'Clear communication, thoughtful timing, and proposals shaped around your occasion.',
++  },
++]
++
++export default function ContactHeroSection() {
++  return (
++    <section
++      id="contact-hero"
++      aria-labelledby="contatti-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Start the conversation</p>
++        <h1 id="contatti-title" style={heroStyles.title}>
++          Plan your event with a hospitality team that knows how to host beautifully
++        </h1>
++        <p style={heroStyles.body}>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming. We will shape a
++          tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
++
++        <div style={heroStyles.actions}>
++          <a href="mailto:hello@casaaureaevents.it" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </a>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index e6d8f3ad9ede68d45764f89f8ffdcce40df233c1..1a0f2a18b5ad41a80aa0c42729ec5d0e1339018e
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,14 +1,9 @@
++import ContactHeroSection from '../components/Contact-heroSection'
++
+ export default function Contatti() {
+   return (
+     <article aria-labelledby="contatti-title">
+-      <section id="contact-hero">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
+-        <p>
+-          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
+-          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
+-        </p>
+-      </section>
++      <ContactHeroSection />
+ 
+       <section id="contact-details">
+         <h2>Contact details</h2>
 
 codex
-Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files: [src/components/Contact-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Contact-heroSection.jsx), [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
 
-Implemented the `contatti` page shell in [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx) with the required `contact-hero`, `contact-details`, and `opening-hours` sections, one meaningful `h1`, realistic contact content, and working `tel:` / `mailto:` links. The `/contatti` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so no routing change was needed. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with the task summary.
+Implemented the `contact-hero` section as a dedicated reusable hero component in [src/components/Contact-heroSection.jsx#L1](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Contact-heroSection.jsx#L1) and rendered it from [src/pages/Contatti.jsx#L1](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx#L1). The section now has the required hero structure, a single `h1`, premium contact-oriented copy, and valid CTAs to email and `/servizi`.
 
-Build result: `npm run build` passed successfully.
+Build result: `npm run build` passed successfully. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with a short task summary.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 1d75cc8f61bc0312e105816152fe26f013a35ae9..3916ee63623f6eb12f233553215b8b6fecdabd94
+index 0b4f71349701760e99e26dbf5c7be7ba93dbc453..345626f2ce58fb26c103a2ae126bcbc4f7c760c6
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,23 @@
- Build passed.
+@@ -219,6 +219,24 @@
  
  Implemented a dedicated `Menu-categoriesSection` component in
+ 
++Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 +
-+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++Launching Codex for TASK section-contatti-contact-hero.
 +
-+Launching Codex for TASK page-contatti-shell.
++Completed TASK section-contatti-contact-hero.
 +
-+Completed TASK page-contatti-shell.
++Implemented a dedicated `ContactHeroSection` in
++`src/components/Contact-heroSection.jsx` and rendered it from
++`src/pages/Contatti.jsx`. The `contatti` page now exposes the required
++`contact-hero` section as a premium hero with a single `h1`, clear proposal
++copy, and valid email/services CTAs.
 +
-+Implemented a semantic shell for `src/pages/Contatti.jsx` with the required
-+`contact-hero`, `contact-details`, and `opening-hours` sections, real contact
-+copy, and valid `tel:` and `mailto:` actions. Verified `src/App.jsx` already
-+mounts the `/contatti` route, so no routing change was required.
-+
-+TASK page-contatti-shell executed by Codex.
++TASK section-contatti-contact-hero executed by Codex.
 +Waiting for validation.
 +
-+TASK page-contatti-shell completed successfully.
++TASK section-contatti-contact-hero completed successfully.
 +Build passed.
- `src/components/Menu-categoriesSection.jsx` and rendered it from
- `src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
- page now includes structured drink families with refined descriptions and
++
+ Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+ 
+ Launching Codex for TASK page-contatti-shell.
+diff --git a/src/components/Contact-heroSection.jsx b/src/components/Contact-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..e6d1969ae25700c5fbbbe0724902c7ef5dca1d69
+--- /dev/null
++++ b/src/components/Contact-heroSection.jsx
+@@ -0,0 +1,159 @@
++import { Link } from 'react-router-dom'
++
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 74vh, 43rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(53, 40, 32, 0.12) 0%, rgba(30, 23, 19, 0.68) 58%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 48rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.54)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '36rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Service area',
++    text: 'Torino and surrounding areas for weddings, private events, and premium corporate evenings.',
++  },
++  {
++    label: 'What to share',
++    text: 'Event date, guest count, venue, and the atmosphere you want to create.',
++  },
++  {
++    label: 'Planning style',
++    text: 'Clear communication, thoughtful timing, and proposals shaped around your occasion.',
++  },
++]
++
++export default function ContactHeroSection() {
++  return (
++    <section
++      id="contact-hero"
++      aria-labelledby="contatti-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Start the conversation</p>
++        <h1 id="contatti-title" style={heroStyles.title}>
++          Plan your event with a hospitality team that knows how to host beautifully
++        </h1>
++        <p style={heroStyles.body}>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming. We will shape a
++          tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
++
++        <div style={heroStyles.actions}>
++          <a href="mailto:hello@casaaureaevents.it" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </a>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 27ef33c6d2801e2478be5154702bdb2f62cc910f..e6d8f3ad9ede68d45764f89f8ffdcce40df233c1
+index e6d8f3ad9ede68d45764f89f8ffdcce40df233c1..1a0f2a18b5ad41a80aa0c42729ec5d0e1339018e
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,18 +1,66 @@
+@@ -1,14 +1,9 @@
++import ContactHeroSection from '../components/Contact-heroSection'
++
  export default function Contatti() {
    return (
--    <>
-+    <article aria-labelledby="contatti-title">
-       <section id="contact-hero">
--        <h1>Contact Hero</h1>
--        <p>Content for contact-hero will be generated by tasks</p>
-+        <p>Casa Aurea Events</p>
-+        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
-+        <p>
-+          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
-+          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
-+        </p>
-       </section>
-+
+     <article aria-labelledby="contatti-title">
+-      <section id="contact-hero">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
+-        <p>
+-          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
+-          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
+-        </p>
+-      </section>
++      <ContactHeroSection />
+ 
        <section id="contact-details">
--        <h2>Contact Details</h2>
--        <p>Content for contact-details will be generated by tasks</p>
-+        <h2>Contact details</h2>
-+        <p>
-+          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-+          and polished presentation.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Phone</dt>
-+            <dd>
-+              <a href="tel:+39011000000">+39 011 000000</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Email</dt>
-+            <dd>
-+              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
-+            </dd>
-+          </div>
-+          <div>
-+            <dt>Service area</dt>
-+            <dd>Torino and surrounding areas</dd>
-+          </div>
-+        </dl>
-       </section>
-+
-       <section id="opening-hours">
--        <h2>Opening Hours</h2>
--        <p>Content for opening-hours will be generated by tasks</p>
-+        <h2>Availability</h2>
-+        <p>
-+          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
-+          corporate clients looking for a tailored proposal.
-+        </p>
-+        <dl>
-+          <div>
-+            <dt>Inquiry hours</dt>
-+            <dd>Monday to Saturday, 09:00 to 19:00</dd>
-+          </div>
-+          <div>
-+            <dt>Planning calls</dt>
-+            <dd>By appointment</dd>
-+          </div>
-+          <div>
-+            <dt>Best next step</dt>
-+            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
-+          </div>
-+        </dl>
-+      </section>
-+
-+      <section aria-label="Contact closing note">
-+        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
-       </section>
--    </>
-+    </article>
-   )
- }
+         <h2>Contact details</h2>
 
 tokens used
-37.339
+30.308

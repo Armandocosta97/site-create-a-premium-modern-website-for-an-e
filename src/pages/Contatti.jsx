@@ -1,14 +1,9 @@
+import ContactHeroSection from '../components/Contact-heroSection'
+
 export default function Contatti() {
   return (
     <article aria-labelledby="contatti-title">
-      <section id="contact-hero">
-        <p>Casa Aurea Events</p>
-        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
-        <p>
-          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
-          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
-        </p>
-      </section>
+      <ContactHeroSection />
 
       <section id="contact-details">
         <h2>Contact details</h2>
