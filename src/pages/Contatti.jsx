@@ -1,5 +1,6 @@
 import ContactHeroSection from '../components/Contact-heroSection'
 import ContactDetailsSection from '../components/Contact-detailsSection'
+import ContactWhatsAppCta from '../components/ContactWhatsAppCta'
 import OpeningHoursSection from '../components/Opening-hoursSection'
 
 export default function Contatti() {
@@ -8,6 +9,8 @@ export default function Contatti() {
       <ContactHeroSection />
 
       <ContactDetailsSection />
+
+      <ContactWhatsAppCta />
 
       <OpeningHoursSection />
 

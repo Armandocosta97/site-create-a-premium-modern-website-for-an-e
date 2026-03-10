@@ -528,3 +528,27 @@ Waiting for validation.
 
 TASK section-contatti-opening-hours completed successfully.
 Build passed.
+Commit created for TASK section-contatti-opening-hours.
+
+Prepared TASK cta-contatti-contatti-whatsapp (Add CTA contatti-whatsapp on contatti) for execution.
+
+Launching Codex for TASK cta-contatti-contatti-whatsapp.
+
+Completed TASK cta-contatti-contatti-whatsapp.
+
+Implemented an in-page WhatsApp CTA for `src/pages/Contatti.jsx` using the new
+`src/components/ContactWhatsAppCta.jsx` component. The contact page now
+exposes the required body-placed WhatsApp action with a valid
+`https://wa.me/39011000000` destination and inquiry-oriented premium copy.
+
+TASK cta-contatti-contatti-whatsapp executed by Codex.
+Waiting for validation.
+
+TASK cta-contatti-contatti-whatsapp completed successfully.
+Build passed.
+
+TASK cta-contatti-contatti-whatsapp executed by Codex.
+Waiting for validation.
+
+TASK cta-contatti-contatti-whatsapp completed successfully.
+Build passed.

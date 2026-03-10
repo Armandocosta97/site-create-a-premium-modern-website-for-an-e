@@ -1,15 +1,8 @@
-Modified files:
-- [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx)
-- [src/components/Opening-hoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Opening-hoursSection.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx), [src/components/ContactWhatsAppCta.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/ContactWhatsAppCta.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-What was implemented:
-- Replaced the inline opening-hours markup on the contact page with a dedicated `OpeningHoursSection` component.
-- Added a production-ready `hours-block` section with `id="opening-hours"`, a section heading, availability details, and supporting copy consistent with the existing premium contact page style.
-- Rendered the new section from the contatti page to satisfy the task requirement.
+Implemented the `contatti-whatsapp` CTA on the contact page as a visible body section between the contact details and opening-hours blocks. It uses a valid external WhatsApp destination: `https://wa.me/39011000000?...`, opens in a new tab, and keeps the premium visual language already used on the page.
 
-Build result:
-- `npm run build` passed successfully.
+Build result: `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -20,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd846-a00c-70e3-b47e-c5ee002f012e
+session id: 019cd847-c9cd-74a0-9022-3741049b06e7
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1203,20 +1196,25 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-contatti-opening-hours
+cta-contatti-contatti-whatsapp
 
 ## Current task title
-Create opening-hours section on contatti
+Add CTA contatti-whatsapp on contatti
 
 ## Current task type
-section
+cta
 
 ## Current task target
 ```json
 {
   "pageId": "contatti",
-  "sectionId": "opening-hours",
-  "sectionType": "hours-block"
+  "ctaId": "contatti-whatsapp",
+  "ctaKind": "external",
+  "destination": {
+    "type": "whatsapp",
+    "value": "whatsapp"
+  },
+  "placement": "body"
 }
 ```
 
@@ -1225,13 +1223,12 @@ section
 
 ## Files allowed
 - src/pages/Contatti.jsx
-- src/components/Opening-hoursSection.jsx
 - src/components
 
 ## Definition of done
-- section opening-hours exists on contatti
-- section opening-hours matches type hours-block
-- section opening-hours is rendered in page contatti
+- CTA contatti-whatsapp exists on contatti
+- CTA contatti-whatsapp is visible in placement body
+- CTA contatti-whatsapp points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1260,13 +1257,14 @@ section
 
 mcp startup: no servers
 codex
-I’m checking the current contact page and the task context first so I can add only the required opening-hours section without touching unrelated parts.
+I’m implementing the `contatti-whatsapp` body CTA on the contact page and checking the existing page/component structure first so the change stays within the allowed files.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "rg --files . | rg '"'^(src/pages/Contatti'"\\.jsx|src/components/.+|agent/AGENT_REPORT\\.md|agent/CURRENT_TASK_PROMPT\\.md|site-spec\\.json|docs/DEVELOPMENT_METHOD\\.md)"'$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,240p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,240p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "rg --files src agent | rg 'Contatti\\.jsx|src/components|AGENT_REPORT\\.md"'$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
 import ContactHeroSection from '../components/Contact-heroSection'
 import ContactDetailsSection from '../components/Contact-detailsSection'
+import OpeningHoursSection from '../components/Opening-hoursSection'
 
 export default function Contatti() {
   return (
@@ -1275,104 +1273,15 @@ export default function Contatti() {
 
       <ContactDetailsSection />
 
-      <section id="opening-hours">
-        <h2>Availability</h2>
-        <p>
-          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
-          corporate clients looking for a tailored proposal.
-        </p>
-        <dl>
-          <div>
-            <dt>Inquiry hours</dt>
-            <dd>Monday to Saturday, 09:00 to 19:00</dd>
+      <OpeningHoursSection />
+
+      <section aria-label="Contact closing note">
+        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
+      </section>
+    </article>
+  )
+}
  succeeded in 52ms:
-# CURRENT TASK EXECUTION PROMPT
-
-You are the coding executor for this project.
-
-## Project path
-site-create-a-premium-modern-website-for-an-e
-
-## Source of truth files
-- brief/original-prompt.md
-- brief/brief-summary.md
-- site-spec.json
-- docs/DEVELOPMENT_METHOD.md
-- agent/TASK_GRAPH.json
-- agent/TASK_STATE.json
-- agent/CURRENT_TASK_PROMPT.md
-
-## Development method
-# Development Method
-
-All sites must follow these rules.
- exited 1 in 51ms:
-
-codex
-The contact page already has an inline availability block. I’m pulling the existing component patterns from `src/components` so the new section matches the codebase and stays within the task scope.
-exec
-/bin/zsh -lc "sed -n '1,220p' src/components/Contact-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/components/Contact-detailsSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'rg --files src/components' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
-import { Link } from 'react-router-dom'
-
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(30rem, 74vh, 43rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(53, 40, 32, 0.12) 0%, rgba(30, 23, 19, 0.68) 58%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
-  },
-  panel: {
-    width: 'min(100%, 48rem)',
- succeeded in 51ms:
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    background:
-      'linear-gradient(180deg, rgba(246, 239, 228, 0.96) 0%, rgba(236, 223, 205, 0.92) 100%)',
-    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-  },
-  header: {
-    display: 'grid',
-    gap: '1rem',
-    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-    textAlign: 'left',
-  },
-  eyebrow: {
-    margin: 0,
-    color: '#9f7b4b',
-    fontSize: '0.82rem',
-    letterSpacing: '0.22em',
- succeeded in 51ms:
-src/components/FloatingWhatsAppButton.jsx
-src/components/Brand-story-previewSection.jsx
-src/components/StorySection.jsx
-src/components/Menu-categoriesSection.jsx
-src/components/Contact-detailsSection.jsx
-src/components/PhilosophySection.jsx
-src/components/Menu-heroSection.jsx
-src/components/About-heroSection.jsx
-src/components/Contact-heroSection.jsx
-src/components/Gallery-gridSection.jsx
-src/components/SignaturePreviewSection.jsx
-src/components/Gallery-heroSection.jsx
-src/components/HeroSection.jsx
-codex
-I have the pattern now. I’m replacing the inline availability markup with a dedicated `Opening-hoursSection` component and then I’ll run the build check and append the task note to the agent report.
-exec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
 # AGENT REPORT
 
 Project created.
@@ -1393,62 +1302,50 @@ Waiting for validation.
 TASK page-home-shell completed successfully.
 Build passed.
 Commit created for TASK page-home-shell.
-exec
-/bin/zsh -lc 'tail -n 40 agent/AGENT_REPORT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-TASK section-gallery-gallery-grid completed successfully.
-Build passed.
-Commit created for TASK section-gallery-gallery-grid.
-
-Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
-
-Launching Codex for TASK page-contatti-shell.
-
-TASK page-contatti-shell executed by Codex.
-Waiting for validation.
-
-TASK page-contatti-shell completed successfully.
-Build passed.
-Commit created for TASK page-contatti-shell.
-
-Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
-
-Launching Codex for TASK section-contatti-contact-hero.
-
-TASK section-contatti-contact-hero executed by Codex.
+ succeeded in 52ms:
+agent/AGENT_REPORT.md
+src/pages/Contatti.jsx
+src/components/FloatingWhatsAppButton.jsx
+src/components/Brand-story-previewSection.jsx
+src/components/StorySection.jsx
+src/components/Menu-categoriesSection.jsx
+src/components/Contact-detailsSection.jsx
+src/components/Opening-hoursSection.jsx
+src/components/PhilosophySection.jsx
+src/components/Menu-heroSection.jsx
+src/components/About-heroSection.jsx
+src/components/Contact-heroSection.jsx
+src/components/Gallery-gridSection.jsx
+src/components/SignaturePreviewSection.jsx
+src/components/Gallery-heroSection.jsx
+src/components/HeroSection.jsx
 codex
-I’m at the edit step now. The change is confined to replacing the inline opening-hours section in [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx) with a dedicated component and adding that component under `src/components`.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx
-@@ -2,2 +2,3 @@
- import ContactDetailsSection from '../components/Contact-detailsSection'
-+import OpeningHoursSection from '../components/Opening-hoursSection'
- 
-@@ -10,23 +11,3 @@
- 
--      <section id="opening-hours">
--        <h2>Availability</h2>
--        <p>
--          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
--          corporate clients looking for a tailored proposal.
--        </p>
--        <dl>
--          <div>
--            <dt>Inquiry hours</dt>
--            <dd>Monday to Saturday, 09:00 to 19:00</dd>
--          </div>
--          <div>
--            <dt>Planning calls</dt>
--            <dd>By appointment</dd>
--          </div>
--          <div>
--            <dt>Best next step</dt>
--            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
--          </div>
--        </dl>
--      </section>
-+      <OpeningHoursSection />
- 
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Opening-hoursSection.jsx
+I’ve confirmed the contact page shell is already in place. Next I’m checking the existing contact-related components so the WhatsApp CTA matches the site’s current pattern instead of adding a one-off implementation.
+exec
+/bin/zsh -lc "sed -n '1,260p' src/components/Contact-detailsSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/components/Opening-hoursSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/components/FloatingWhatsAppButton.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+const whatsappStyles = {
+  link: {
+    position: 'fixed',
+    right: 'clamp(1rem, 3vw, 2rem)',
+    bottom: 'clamp(1rem, 3vw, 2rem)',
+    zIndex: 1000,
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.75rem',
+    minHeight: '3.5rem',
+    padding: '0.85rem 1.1rem',
+    borderRadius: '999px',
+    backgroundColor: '#1c6c4c',
+    color: '#f6efe4',
+    textDecoration: 'none',
+    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
+    border: '1px solid rgba(246, 239, 228, 0.2)',
+  },
+  icon: {
+    width: '1.5rem',
+ succeeded in 52ms:
 const sectionStyles = {
   section: {
     marginTop: 'clamp(3rem, 7vw, 5.5rem)',
@@ -1463,6 +1360,60 @@ const sectionStyles = {
     gap: '1rem',
     marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
     textAlign: 'left',
+  },
+  eyebrow: {
+    margin: 0,
+    color: '#d9bf8d',
+    fontSize: '0.82rem',
+    letterSpacing: '0.22em',
+ succeeded in 52ms:
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    background:
+      'linear-gradient(180deg, rgba(246, 239, 228, 0.96) 0%, rgba(236, 223, 205, 0.92) 100%)',
+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
+  },
+  header: {
+    display: 'grid',
+    gap: '1rem',
+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
+    textAlign: 'left',
+  },
+  eyebrow: {
+    margin: 0,
+    color: '#9f7b4b',
+    fontSize: '0.82rem',
+    letterSpacing: '0.22em',
+codex
+I have enough context. I’m adding a dedicated in-page WhatsApp CTA component and wiring it into [`Contatti.jsx`](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx) between the contact details and availability sections so it satisfies the required `body` placement without changing unrelated layout.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx
+@@ -2,2 +2,3 @@
+ import ContactDetailsSection from '../components/Contact-detailsSection'
++import ContactWhatsAppCta from '../components/ContactWhatsAppCta'
+ import OpeningHoursSection from '../components/Opening-hoursSection'
+@@ -11,2 +12,4 @@
+ 
++      <ContactWhatsAppCta />
++
+       <OpeningHoursSection />
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/ContactWhatsAppCta.jsx
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(2rem, 5vw, 3.5rem)',
+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    background:
+      'linear-gradient(135deg, rgba(35, 27, 22, 0.98) 0%, rgba(62, 48, 36, 0.96) 100%)',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
+  },
+  inner: {
+    display: 'grid',
+    gap: '1rem',
   },
   eyebrow: {
     margin: 0,
@@ -1474,139 +1425,97 @@ const sectionStyles = {
   },
   title: {
     margin: 0,
-    maxWidth: '14ch',
+    maxWidth: '18ch',
     color: '#f7f1e8',
     fontFamily: 'Georgia, "Times New Roman", serif',
-    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
+    fontSize: 'clamp(1.9rem, 4.8vw, 3.1rem)',
     lineHeight: 1.05,
   },
-  intro: {
+  text: {
     margin: 0,
-    maxWidth: '44rem',
+    maxWidth: '42rem',
     color: 'rgba(247, 241, 232, 0.78)',
-    fontSize: '1rem',
     lineHeight: 1.8,
   },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-    gap: '1rem',
+  actions: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '0.9rem',
+    alignItems: 'center',
   },
-  card: {
-    display: 'grid',
-    gap: '0.75rem',
-    minHeight: '100%',
-    padding: '1.4rem',
-    borderRadius: '24px',
-    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-    border: '1px solid rgba(217, 191, 141, 0.16)',
-  },
-  label: {
-    margin: 0,
-    color: '#d9bf8d',
-    fontSize: '0.78rem',
-    letterSpacing: '0.16em',
-    textTransform: 'uppercase',
-    fontWeight: 700,
-  },
-  value: {
-    margin: 0,
+  primaryLink: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '3.5rem',
+    padding: '0.95rem 1.5rem',
+    borderRadius: '999px',
+    backgroundColor: '#1c6c4c',
     color: '#f7f1e8',
-    fontFamily: 'Georgia, "Times New Roman", serif',
-    fontSize: '1.45rem',
-    lineHeight: 1.15,
+    textDecoration: 'none',
+    fontWeight: 700,
+    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.22)',
   },
-  description: {
+  supportText: {
     margin: 0,
-    color: 'rgba(247, 241, 232, 0.72)',
-    lineHeight: 1.7,
-  },
-  note: {
-    margin: '1.5rem 0 0',
-    maxWidth: '44rem',
-    color: 'rgba(247, 241, 232, 0.72)',
+    color: 'rgba(247, 241, 232, 0.7)',
     lineHeight: 1.7,
   },
 }
 
-const availabilityItems = [
-  {
-    label: 'Inquiry hours',
-    value: 'Monday to Saturday',
-    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
-  },
-  {
-    label: 'Planning calls',
-    value: 'By appointment',
-    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
-  },
-  {
-    label: 'Response focus',
-    value: 'Tailored proposals',
-    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
-  },
-]
+const whatsappHref =
+  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20discuss%20my%20event.'
 
-export default function OpeningHoursSection() {
+export default function ContactWhatsAppCta() {
   return (
-    <section
-      id="opening-hours"
-      aria-labelledby="opening-hours-title"
-      style={sectionStyles.section}
-    >
-      <div style={sectionStyles.header}>
-        <p style={sectionStyles.eyebrow}>Availability</p>
-        <h2 id="opening-hours-title" style={sectionStyles.title}>
-          Clear response windows for thoughtful event planning
-        </h2>
-        <p style={sectionStyles.intro}>
-          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
-          guest-experience details that deserve careful attention.
+    <section aria-label="WhatsApp contact option" style={sectionStyles.section}>
+      <div style={sectionStyles.inner}>
+        <p style={sectionStyles.eyebrow}>WhatsApp</p>
+        <h2 style={sectionStyles.title}>Prefer a direct message for your first event conversation?</h2>
+        <p style={sectionStyles.text}>
+          Send a WhatsApp message with your event date, venue, and guest count if you would like a quick first exchange
+          before we prepare the right proposal path.
         </p>
+        <div style={sectionStyles.actions}>
+          <a
+            href={whatsappHref}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Write to Casa Aurea Events on WhatsApp"
+            style={sectionStyles.primaryLink}
+          >
+            Message us on WhatsApp
+          </a>
+          <p style={sectionStyles.supportText}>Available for weddings, private celebrations, and premium corporate evenings.</p>
+        </div>
       </div>
-
-      <div style={sectionStyles.grid}>
-        {availabilityItems.map((item) => (
-          <article key={item.label} style={sectionStyles.card}>
-            <p style={sectionStyles.label}>{item.label}</p>
-            <p style={sectionStyles.value}>{item.value}</p>
-            <p style={sectionStyles.description}>{item.description}</p>
-          </article>
-        ))}
-      </div>
-
-      <p style={sectionStyles.note}>
-        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
-        whether you are looking for catering, bar service, or full hospitality support.
-      </p>
     </section>
   )
 }
-apply_patch(auto_approved=true) exited 0 in 52ms:
+apply_patch(auto_approved=true) exited 0 in 60ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Opening-hoursSection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/ContactWhatsAppCta.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx
 file update:
-diff --git a/src/components/Opening-hoursSection.jsx b/src/components/Opening-hoursSection.jsx
+diff --git a/src/components/ContactWhatsAppCta.jsx b/src/components/ContactWhatsAppCta.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a338293485771
+index 0000000000000000000000000000000000000000..9e9536f6d705b2a6a4d780c75afdb6489528f707
 --- /dev/null
-+++ b/src/components/Opening-hoursSection.jsx
-@@ -0,0 +1,133 @@
++++ b/src/components/ContactWhatsAppCta.jsx
+@@ -0,0 +1,91 @@
 +const sectionStyles = {
 +  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    marginTop: 'clamp(2rem, 5vw, 3.5rem)',
 +    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    backgroundColor: '#231b16',
++    background:
++      'linear-gradient(135deg, rgba(35, 27, 22, 0.98) 0%, rgba(62, 48, 36, 0.96) 100%)',
 +    color: '#f7f1e8',
 +    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
 +  },
-+  header: {
++  inner: {
 +    display: 'grid',
 +    gap: '1rem',
-+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-+    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -1618,176 +1527,114 @@ index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a3382
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: '14ch',
++    maxWidth: '18ch',
 +    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
++    fontSize: 'clamp(1.9rem, 4.8vw, 3.1rem)',
 +    lineHeight: 1.05,
 +  },
-+  intro: {
++  text: {
 +    margin: 0,
-+    maxWidth: '44rem',
++    maxWidth: '42rem',
 +    color: 'rgba(247, 241, 232, 0.78)',
-+    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
++  actions: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.9rem',
++    alignItems: 'center',
 +  },
-+  card: {
-+    display: 'grid',
-+    gap: '0.75rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(217, 191, 141, 0.16)',
-+  },
-+  label: {
-+    margin: 0,
-+    color: '#d9bf8d',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  value: {
-+    margin: 0,
++  primaryLink: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.5rem',
++    padding: '0.95rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#1c6c4c',
 +    color: '#f7f1e8',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.45rem',
-+    lineHeight: 1.15,
++    textDecoration: 'none',
++    fontWeight: 700,
++    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.22)',
 +  },
-+  description: {
++  supportText: {
 +    margin: 0,
-+    color: 'rgba(247, 241, 232, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  note: {
-+    margin: '1.5rem 0 0',
-+    maxWidth: '44rem',
-+    color: 'rgba(247, 241, 232, 0.72)',
++    color: 'rgba(247, 241, 232, 0.7)',
 +    lineHeight: 1.7,
 +  },
 +}
 +
-+const availabilityItems = [
-+  {
-+    label: 'Inquiry hours',
-+    value: 'Monday to Saturday',
-+    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
-+  },
-+  {
-+    label: 'Planning calls',
-+    value: 'By appointment',
-+    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
-+  },
-+  {
-+    label: 'Response focus',
-+    value: 'Tailored proposals',
-+    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
-+  },
-+]
++const whatsappHref =
++  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20discuss%20my%20event.'
 +
-+export default function OpeningHoursSection() {
++export default function ContactWhatsAppCta() {
 +  return (
-+    <section
-+      id="opening-hours"
-+      aria-labelledby="opening-hours-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Availability</p>
-+        <h2 id="opening-hours-title" style={sectionStyles.title}>
-+          Clear response windows for thoughtful event planning
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
-+          guest-experience details that deserve careful attention.
++    <section aria-label="WhatsApp contact option" style={sectionStyles.section}>
++      <div style={sectionStyles.inner}>
++        <p style={sectionStyles.eyebrow}>WhatsApp</p>
++        <h2 style={sectionStyles.title}>Prefer a direct message for your first event conversation?</h2>
++        <p style={sectionStyles.text}>
++          Send a WhatsApp message with your event date, venue, and guest count if you would like a quick first exchange
++          before we prepare the right proposal path.
 +        </p>
++        <div style={sectionStyles.actions}>
++          <a
++            href={whatsappHref}
++            target="_blank"
++            rel="noreferrer"
++            aria-label="Write to Casa Aurea Events on WhatsApp"
++            style={sectionStyles.primaryLink}
++          >
++            Message us on WhatsApp
++          </a>
++          <p style={sectionStyles.supportText}>Available for weddings, private celebrations, and premium corporate evenings.</p>
++        </div>
 +      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {availabilityItems.map((item) => (
-+          <article key={item.label} style={sectionStyles.card}>
-+            <p style={sectionStyles.label}>{item.label}</p>
-+            <p style={sectionStyles.value}>{item.value}</p>
-+            <p style={sectionStyles.description}>{item.description}</p>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <p style={sectionStyles.note}>
-+        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
-+        whether you are looking for catering, bar service, or full hospitality support.
-+      </p>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 40e708de7d68931b65db49546e3bd27660b53d23..7f40fc2f2ce697a5ac905a1599bbf8c10b17d633
+index 7f40fc2f2ce697a5ac905a1599bbf8c10b17d633..725a60a7b7f1fd674de3735687821d2e64f44d65
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
 @@ -1,5 +1,6 @@
  import ContactHeroSection from '../components/Contact-heroSection'
  import ContactDetailsSection from '../components/Contact-detailsSection'
-+import OpeningHoursSection from '../components/Opening-hoursSection'
++import ContactWhatsAppCta from '../components/ContactWhatsAppCta'
+ import OpeningHoursSection from '../components/Opening-hoursSection'
  
  export default function Contatti() {
-   return (
-@@ -8,27 +9,7 @@
+@@ -9,6 +10,8 @@
  
        <ContactDetailsSection />
  
--      <section id="opening-hours">
--        <h2>Availability</h2>
--        <p>
--          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
--          corporate clients looking for a tailored proposal.
--        </p>
--        <dl>
--          <div>
--            <dt>Inquiry hours</dt>
--            <dd>Monday to Saturday, 09:00 to 19:00</dd>
--          </div>
--          <div>
--            <dt>Planning calls</dt>
--            <dd>By appointment</dd>
--          </div>
--          <div>
--            <dt>Best next step</dt>
--            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
--          </div>
--        </dl>
--      </section>
-+      <OpeningHoursSection />
++      <ContactWhatsAppCta />
++
+       <OpeningHoursSection />
  
        <section aria-label="Contact closing note">
-         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
 
 file update:
-diff --git a/src/components/Opening-hoursSection.jsx b/src/components/Opening-hoursSection.jsx
+diff --git a/src/components/ContactWhatsAppCta.jsx b/src/components/ContactWhatsAppCta.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a338293485771
+index 0000000000000000000000000000000000000000..9e9536f6d705b2a6a4d780c75afdb6489528f707
 --- /dev/null
-+++ b/src/components/Opening-hoursSection.jsx
-@@ -0,0 +1,133 @@
++++ b/src/components/ContactWhatsAppCta.jsx
+@@ -0,0 +1,91 @@
 +const sectionStyles = {
 +  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    marginTop: 'clamp(2rem, 5vw, 3.5rem)',
 +    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    backgroundColor: '#231b16',
++    background:
++      'linear-gradient(135deg, rgba(35, 27, 22, 0.98) 0%, rgba(62, 48, 36, 0.96) 100%)',
 +    color: '#f7f1e8',
 +    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
 +  },
-+  header: {
++  inner: {
 +    display: 'grid',
 +    gap: '1rem',
-+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-+    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -1799,211 +1646,149 @@ index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a3382
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: '14ch',
++    maxWidth: '18ch',
 +    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
++    fontSize: 'clamp(1.9rem, 4.8vw, 3.1rem)',
 +    lineHeight: 1.05,
 +  },
-+  intro: {
++  text: {
 +    margin: 0,
-+    maxWidth: '44rem',
++    maxWidth: '42rem',
 +    color: 'rgba(247, 241, 232, 0.78)',
-+    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
++  actions: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.9rem',
++    alignItems: 'center',
 +  },
-+  card: {
-+    display: 'grid',
-+    gap: '0.75rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(217, 191, 141, 0.16)',
-+  },
-+  label: {
-+    margin: 0,
-+    color: '#d9bf8d',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  value: {
-+    margin: 0,
++  primaryLink: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.5rem',
++    padding: '0.95rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#1c6c4c',
 +    color: '#f7f1e8',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.45rem',
-+    lineHeight: 1.15,
++    textDecoration: 'none',
++    fontWeight: 700,
++    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.22)',
 +  },
-+  description: {
++  supportText: {
 +    margin: 0,
-+    color: 'rgba(247, 241, 232, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  note: {
-+    margin: '1.5rem 0 0',
-+    maxWidth: '44rem',
-+    color: 'rgba(247, 241, 232, 0.72)',
++    color: 'rgba(247, 241, 232, 0.7)',
 +    lineHeight: 1.7,
 +  },
 +}
 +
-+const availabilityItems = [
-+  {
-+    label: 'Inquiry hours',
-+    value: 'Monday to Saturday',
-+    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
-+  },
-+  {
-+    label: 'Planning calls',
-+    value: 'By appointment',
-+    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
-+  },
-+  {
-+    label: 'Response focus',
-+    value: 'Tailored proposals',
-+    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
-+  },
-+]
++const whatsappHref =
++  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20discuss%20my%20event.'
 +
-+export default function OpeningHoursSection() {
++export default function ContactWhatsAppCta() {
 +  return (
-+    <section
-+      id="opening-hours"
-+      aria-labelledby="opening-hours-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Availability</p>
-+        <h2 id="opening-hours-title" style={sectionStyles.title}>
-+          Clear response windows for thoughtful event planning
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
-+          guest-experience details that deserve careful attention.
++    <section aria-label="WhatsApp contact option" style={sectionStyles.section}>
++      <div style={sectionStyles.inner}>
++        <p style={sectionStyles.eyebrow}>WhatsApp</p>
++        <h2 style={sectionStyles.title}>Prefer a direct message for your first event conversation?</h2>
++        <p style={sectionStyles.text}>
++          Send a WhatsApp message with your event date, venue, and guest count if you would like a quick first exchange
++          before we prepare the right proposal path.
 +        </p>
++        <div style={sectionStyles.actions}>
++          <a
++            href={whatsappHref}
++            target="_blank"
++            rel="noreferrer"
++            aria-label="Write to Casa Aurea Events on WhatsApp"
++            style={sectionStyles.primaryLink}
++          >
++            Message us on WhatsApp
++          </a>
++          <p style={sectionStyles.supportText}>Available for weddings, private celebrations, and premium corporate evenings.</p>
++        </div>
 +      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {availabilityItems.map((item) => (
-+          <article key={item.label} style={sectionStyles.card}>
-+            <p style={sectionStyles.label}>{item.label}</p>
-+            <p style={sectionStyles.value}>{item.value}</p>
-+            <p style={sectionStyles.description}>{item.description}</p>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <p style={sectionStyles.note}>
-+        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
-+        whether you are looking for catering, bar service, or full hospitality support.
-+      </p>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 40e708de7d68931b65db49546e3bd27660b53d23..7f40fc2f2ce697a5ac905a1599bbf8c10b17d633
+index 7f40fc2f2ce697a5ac905a1599bbf8c10b17d633..725a60a7b7f1fd674de3735687821d2e64f44d65
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
 @@ -1,5 +1,6 @@
  import ContactHeroSection from '../components/Contact-heroSection'
  import ContactDetailsSection from '../components/Contact-detailsSection'
-+import OpeningHoursSection from '../components/Opening-hoursSection'
++import ContactWhatsAppCta from '../components/ContactWhatsAppCta'
+ import OpeningHoursSection from '../components/Opening-hoursSection'
  
  export default function Contatti() {
-   return (
-@@ -8,27 +9,7 @@
+@@ -9,6 +10,8 @@
  
        <ContactDetailsSection />
  
--      <section id="opening-hours">
--        <h2>Availability</h2>
--        <p>
--          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
--          corporate clients looking for a tailored proposal.
--        </p>
--        <dl>
--          <div>
--            <dt>Inquiry hours</dt>
--            <dd>Monday to Saturday, 09:00 to 19:00</dd>
--          </div>
--          <div>
--            <dt>Planning calls</dt>
--            <dd>By appointment</dd>
--          </div>
--          <div>
--            <dt>Best next step</dt>
--            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
--          </div>
--        </dl>
--      </section>
-+      <OpeningHoursSection />
++      <ContactWhatsAppCta />
++
+       <OpeningHoursSection />
  
        <section aria-label="Contact closing note">
-         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
 
 codex
-The section component is in place. I’m running the build now, then I’ll record the task result in `agent/AGENT_REPORT.md` as required.
+The CTA is in place as an in-page contact block with a valid `wa.me` link. I’m running the build now, then I’ll append the task summary to the agent report as required.
 exec
-/bin/zsh -lc "sed -n '1,240p' src/components/Opening-hoursSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    backgroundColor: '#231b16',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
-  },
-  header: {
-    display: 'grid',
-    gap: '1rem',
-    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-    textAlign: 'left',
-  },
-  eyebrow: {
-    margin: 0,
-    color: '#d9bf8d',
-    fontSize: '0.82rem',
-    letterSpacing: '0.22em',
+/bin/zsh -lc 'tail -n 40 agent/AGENT_REPORT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+Build passed.
+Commit created for TASK section-contatti-contact-hero.
+
+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-contact-details.
+
+TASK section-contatti-contact-details executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-contact-details completed successfully.
+Build passed.
+Commit created for TASK section-contatti-contact-details.
+
+Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-opening-hours.
+
+TASK section-contatti-opening-hours executed by Codex.
+Waiting for validation.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 819ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 760ms:
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 62 modules transformed.
+✓ 63 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-CDZ76eN1.js   280.78 kB │ gzip: 84.51 kB
-✓ built in 600ms
+dist/assets/index-DMMAuh_O.js   282.80 kB │ gzip: 84.97 kB
+✓ built in 587ms
 file update:
-diff --git a/src/components/Opening-hoursSection.jsx b/src/components/Opening-hoursSection.jsx
+diff --git a/src/components/ContactWhatsAppCta.jsx b/src/components/ContactWhatsAppCta.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a338293485771
+index 0000000000000000000000000000000000000000..9e9536f6d705b2a6a4d780c75afdb6489528f707
 --- /dev/null
-+++ b/src/components/Opening-hoursSection.jsx
-@@ -0,0 +1,133 @@
++++ b/src/components/ContactWhatsAppCta.jsx
+@@ -0,0 +1,91 @@
 +const sectionStyles = {
 +  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    marginTop: 'clamp(2rem, 5vw, 3.5rem)',
 +    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    backgroundColor: '#231b16',
++    background:
++      'linear-gradient(135deg, rgba(35, 27, 22, 0.98) 0%, rgba(62, 48, 36, 0.96) 100%)',
 +    color: '#f7f1e8',
 +    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
 +  },
-+  header: {
++  inner: {
 +    display: 'grid',
 +    gap: '1rem',
-+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-+    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -2015,217 +1800,157 @@ index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a3382
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: '14ch',
++    maxWidth: '18ch',
 +    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
++    fontSize: 'clamp(1.9rem, 4.8vw, 3.1rem)',
 +    lineHeight: 1.05,
 +  },
-+  intro: {
++  text: {
 +    margin: 0,
-+    maxWidth: '44rem',
++    maxWidth: '42rem',
 +    color: 'rgba(247, 241, 232, 0.78)',
-+    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
++  actions: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.9rem',
++    alignItems: 'center',
 +  },
-+  card: {
-+    display: 'grid',
-+    gap: '0.75rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(217, 191, 141, 0.16)',
-+  },
-+  label: {
-+    margin: 0,
-+    color: '#d9bf8d',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  value: {
-+    margin: 0,
++  primaryLink: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.5rem',
++    padding: '0.95rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#1c6c4c',
 +    color: '#f7f1e8',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.45rem',
-+    lineHeight: 1.15,
++    textDecoration: 'none',
++    fontWeight: 700,
++    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.22)',
 +  },
-+  description: {
++  supportText: {
 +    margin: 0,
-+    color: 'rgba(247, 241, 232, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  note: {
-+    margin: '1.5rem 0 0',
-+    maxWidth: '44rem',
-+    color: 'rgba(247, 241, 232, 0.72)',
++    color: 'rgba(247, 241, 232, 0.7)',
 +    lineHeight: 1.7,
 +  },
 +}
 +
-+const availabilityItems = [
-+  {
-+    label: 'Inquiry hours',
-+    value: 'Monday to Saturday',
-+    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
-+  },
-+  {
-+    label: 'Planning calls',
-+    value: 'By appointment',
-+    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
-+  },
-+  {
-+    label: 'Response focus',
-+    value: 'Tailored proposals',
-+    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
-+  },
-+]
++const whatsappHref =
++  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20discuss%20my%20event.'
 +
-+export default function OpeningHoursSection() {
++export default function ContactWhatsAppCta() {
 +  return (
-+    <section
-+      id="opening-hours"
-+      aria-labelledby="opening-hours-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Availability</p>
-+        <h2 id="opening-hours-title" style={sectionStyles.title}>
-+          Clear response windows for thoughtful event planning
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
-+          guest-experience details that deserve careful attention.
++    <section aria-label="WhatsApp contact option" style={sectionStyles.section}>
++      <div style={sectionStyles.inner}>
++        <p style={sectionStyles.eyebrow}>WhatsApp</p>
++        <h2 style={sectionStyles.title}>Prefer a direct message for your first event conversation?</h2>
++        <p style={sectionStyles.text}>
++          Send a WhatsApp message with your event date, venue, and guest count if you would like a quick first exchange
++          before we prepare the right proposal path.
 +        </p>
++        <div style={sectionStyles.actions}>
++          <a
++            href={whatsappHref}
++            target="_blank"
++            rel="noreferrer"
++            aria-label="Write to Casa Aurea Events on WhatsApp"
++            style={sectionStyles.primaryLink}
++          >
++            Message us on WhatsApp
++          </a>
++          <p style={sectionStyles.supportText}>Available for weddings, private celebrations, and premium corporate evenings.</p>
++        </div>
 +      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {availabilityItems.map((item) => (
-+          <article key={item.label} style={sectionStyles.card}>
-+            <p style={sectionStyles.label}>{item.label}</p>
-+            <p style={sectionStyles.value}>{item.value}</p>
-+            <p style={sectionStyles.description}>{item.description}</p>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <p style={sectionStyles.note}>
-+        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
-+        whether you are looking for catering, bar service, or full hospitality support.
-+      </p>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 40e708de7d68931b65db49546e3bd27660b53d23..7f40fc2f2ce697a5ac905a1599bbf8c10b17d633
+index 7f40fc2f2ce697a5ac905a1599bbf8c10b17d633..725a60a7b7f1fd674de3735687821d2e64f44d65
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
 @@ -1,5 +1,6 @@
  import ContactHeroSection from '../components/Contact-heroSection'
  import ContactDetailsSection from '../components/Contact-detailsSection'
-+import OpeningHoursSection from '../components/Opening-hoursSection'
++import ContactWhatsAppCta from '../components/ContactWhatsAppCta'
+ import OpeningHoursSection from '../components/Opening-hoursSection'
  
  export default function Contatti() {
-   return (
-@@ -8,27 +9,7 @@
+@@ -9,6 +10,8 @@
  
        <ContactDetailsSection />
  
--      <section id="opening-hours">
--        <h2>Availability</h2>
--        <p>
--          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
--          corporate clients looking for a tailored proposal.
--        </p>
--        <dl>
--          <div>
--            <dt>Inquiry hours</dt>
--            <dd>Monday to Saturday, 09:00 to 19:00</dd>
--          </div>
--          <div>
--            <dt>Planning calls</dt>
--            <dd>By appointment</dd>
--          </div>
--          <div>
--            <dt>Best next step</dt>
--            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
--          </div>
--        </dl>
--      </section>
-+      <OpeningHoursSection />
++      <ContactWhatsAppCta />
++
+       <OpeningHoursSection />
  
        <section aria-label="Contact closing note">
-         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
 
 codex
-The build is clean. I’m appending the task entry to `agent/AGENT_REPORT.md` now so the execution log stays aligned with the required workflow.
+The build is clean. I’m only adding the required report entry now, keeping it scoped to this CTA task and leaving task state untouched.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -512 +512,13 @@
- Launching Codex for TASK section-contatti-opening-hours.
+@@ -535 +535,14 @@
+ Launching Codex for TASK cta-contatti-contatti-whatsapp.
 +
-+TASK section-contatti-opening-hours executed by Codex.
++Completed TASK cta-contatti-contatti-whatsapp.
++
++Implemented an in-page WhatsApp CTA for `src/pages/Contatti.jsx` using the new
++`src/components/ContactWhatsAppCta.jsx` component. The contact page now
++exposes the required body-placed WhatsApp action with a valid
++`https://wa.me/39011000000` destination and inquiry-oriented premium copy.
++
++TASK cta-contatti-contatti-whatsapp executed by Codex.
 +Waiting for validation.
 +
-+TASK section-contatti-opening-hours completed successfully.
++TASK cta-contatti-contatti-whatsapp completed successfully.
 +Build passed.
-+
-+Implemented a dedicated `OpeningHoursSection` component in
-+`src/components/Opening-hoursSection.jsx` and rendered it from
-+`src/pages/Contatti.jsx`. The contact page now includes the required
-+`opening-hours` hours-block section with premium availability copy and
-+structured planning details.
-apply_patch(auto_approved=true) exited 0 in 57ms:
+apply_patch(auto_approved=true) exited 0 in 58ms:
 Success. Updated the following files:
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index de30e564bc76ec11050c06c2c5394f7f583712c0..cc50cd90bfeac926b8444a99b716ed1cf26770dd
+index 4228c44babec1b74e9960e6e9f180920d8864a2f..8d929f18f3a61b5b15fb8f3b1f8106d18ca171e6
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -510,3 +510,15 @@
- Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
+@@ -533,3 +533,16 @@
+ Prepared TASK cta-contatti-contatti-whatsapp (Add CTA contatti-whatsapp on contatti) for execution.
  
- Launching Codex for TASK section-contatti-opening-hours.
+ Launching Codex for TASK cta-contatti-contatti-whatsapp.
 +
-+TASK section-contatti-opening-hours executed by Codex.
++Completed TASK cta-contatti-contatti-whatsapp.
++
++Implemented an in-page WhatsApp CTA for `src/pages/Contatti.jsx` using the new
++`src/components/ContactWhatsAppCta.jsx` component. The contact page now
++exposes the required body-placed WhatsApp action with a valid
++`https://wa.me/39011000000` destination and inquiry-oriented premium copy.
++
++TASK cta-contatti-contatti-whatsapp executed by Codex.
 +Waiting for validation.
 +
-+TASK section-contatti-opening-hours completed successfully.
++TASK cta-contatti-contatti-whatsapp completed successfully.
 +Build passed.
-+
-+Implemented a dedicated `OpeningHoursSection` component in
-+`src/components/Opening-hoursSection.jsx` and rendered it from
-+`src/pages/Contatti.jsx`. The contact page now includes the required
-+`opening-hours` hours-block section with premium availability copy and
-+structured planning details.
-diff --git a/src/components/Opening-hoursSection.jsx b/src/components/Opening-hoursSection.jsx
+diff --git a/src/components/ContactWhatsAppCta.jsx b/src/components/ContactWhatsAppCta.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a338293485771
+index 0000000000000000000000000000000000000000..9e9536f6d705b2a6a4d780c75afdb6489528f707
 --- /dev/null
-+++ b/src/components/Opening-hoursSection.jsx
-@@ -0,0 +1,133 @@
++++ b/src/components/ContactWhatsAppCta.jsx
+@@ -0,0 +1,91 @@
 +const sectionStyles = {
 +  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    marginTop: 'clamp(2rem, 5vw, 3.5rem)',
 +    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    backgroundColor: '#231b16',
++    background:
++      'linear-gradient(135deg, rgba(35, 27, 22, 0.98) 0%, rgba(62, 48, 36, 0.96) 100%)',
 +    color: '#f7f1e8',
 +    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
 +  },
-+  header: {
++  inner: {
 +    display: 'grid',
 +    gap: '1rem',
-+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-+    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -2237,196 +1962,135 @@ index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a3382
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: '14ch',
++    maxWidth: '18ch',
 +    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
++    fontSize: 'clamp(1.9rem, 4.8vw, 3.1rem)',
 +    lineHeight: 1.05,
 +  },
-+  intro: {
++  text: {
 +    margin: 0,
-+    maxWidth: '44rem',
++    maxWidth: '42rem',
 +    color: 'rgba(247, 241, 232, 0.78)',
-+    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
++  actions: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.9rem',
++    alignItems: 'center',
 +  },
-+  card: {
-+    display: 'grid',
-+    gap: '0.75rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(217, 191, 141, 0.16)',
-+  },
-+  label: {
-+    margin: 0,
-+    color: '#d9bf8d',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  value: {
-+    margin: 0,
++  primaryLink: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.5rem',
++    padding: '0.95rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#1c6c4c',
 +    color: '#f7f1e8',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.45rem',
-+    lineHeight: 1.15,
++    textDecoration: 'none',
++    fontWeight: 700,
++    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.22)',
 +  },
-+  description: {
++  supportText: {
 +    margin: 0,
-+    color: 'rgba(247, 241, 232, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  note: {
-+    margin: '1.5rem 0 0',
-+    maxWidth: '44rem',
-+    color: 'rgba(247, 241, 232, 0.72)',
++    color: 'rgba(247, 241, 232, 0.7)',
 +    lineHeight: 1.7,
 +  },
 +}
 +
-+const availabilityItems = [
-+  {
-+    label: 'Inquiry hours',
-+    value: 'Monday to Saturday',
-+    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
-+  },
-+  {
-+    label: 'Planning calls',
-+    value: 'By appointment',
-+    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
-+  },
-+  {
-+    label: 'Response focus',
-+    value: 'Tailored proposals',
-+    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
-+  },
-+]
++const whatsappHref =
++  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20discuss%20my%20event.'
 +
-+export default function OpeningHoursSection() {
++export default function ContactWhatsAppCta() {
 +  return (
-+    <section
-+      id="opening-hours"
-+      aria-labelledby="opening-hours-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Availability</p>
-+        <h2 id="opening-hours-title" style={sectionStyles.title}>
-+          Clear response windows for thoughtful event planning
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
-+          guest-experience details that deserve careful attention.
++    <section aria-label="WhatsApp contact option" style={sectionStyles.section}>
++      <div style={sectionStyles.inner}>
++        <p style={sectionStyles.eyebrow}>WhatsApp</p>
++        <h2 style={sectionStyles.title}>Prefer a direct message for your first event conversation?</h2>
++        <p style={sectionStyles.text}>
++          Send a WhatsApp message with your event date, venue, and guest count if you would like a quick first exchange
++          before we prepare the right proposal path.
 +        </p>
++        <div style={sectionStyles.actions}>
++          <a
++            href={whatsappHref}
++            target="_blank"
++            rel="noreferrer"
++            aria-label="Write to Casa Aurea Events on WhatsApp"
++            style={sectionStyles.primaryLink}
++          >
++            Message us on WhatsApp
++          </a>
++          <p style={sectionStyles.supportText}>Available for weddings, private celebrations, and premium corporate evenings.</p>
++        </div>
 +      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {availabilityItems.map((item) => (
-+          <article key={item.label} style={sectionStyles.card}>
-+            <p style={sectionStyles.label}>{item.label}</p>
-+            <p style={sectionStyles.value}>{item.value}</p>
-+            <p style={sectionStyles.description}>{item.description}</p>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <p style={sectionStyles.note}>
-+        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
-+        whether you are looking for catering, bar service, or full hospitality support.
-+      </p>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 40e708de7d68931b65db49546e3bd27660b53d23..7f40fc2f2ce697a5ac905a1599bbf8c10b17d633
+index 7f40fc2f2ce697a5ac905a1599bbf8c10b17d633..725a60a7b7f1fd674de3735687821d2e64f44d65
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
 @@ -1,5 +1,6 @@
  import ContactHeroSection from '../components/Contact-heroSection'
  import ContactDetailsSection from '../components/Contact-detailsSection'
-+import OpeningHoursSection from '../components/Opening-hoursSection'
++import ContactWhatsAppCta from '../components/ContactWhatsAppCta'
+ import OpeningHoursSection from '../components/Opening-hoursSection'
  
  export default function Contatti() {
-   return (
-@@ -8,27 +9,7 @@
+@@ -9,6 +10,8 @@
  
        <ContactDetailsSection />
  
--      <section id="opening-hours">
--        <h2>Availability</h2>
--        <p>
--          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
--          corporate clients looking for a tailored proposal.
--        </p>
--        <dl>
--          <div>
--            <dt>Inquiry hours</dt>
--            <dd>Monday to Saturday, 09:00 to 19:00</dd>
--          </div>
--          <div>
--            <dt>Planning calls</dt>
--            <dd>By appointment</dd>
--          </div>
--          <div>
--            <dt>Best next step</dt>
--            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
--          </div>
--        </dl>
--      </section>
-+      <OpeningHoursSection />
++      <ContactWhatsAppCta />
++
+       <OpeningHoursSection />
  
        <section aria-label="Contact closing note">
-         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index de30e564bc76ec11050c06c2c5394f7f583712c0..cc50cd90bfeac926b8444a99b716ed1cf26770dd
+index 4228c44babec1b74e9960e6e9f180920d8864a2f..8d929f18f3a61b5b15fb8f3b1f8106d18ca171e6
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -510,3 +510,15 @@
- Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
+@@ -533,3 +533,16 @@
+ Prepared TASK cta-contatti-contatti-whatsapp (Add CTA contatti-whatsapp on contatti) for execution.
  
- Launching Codex for TASK section-contatti-opening-hours.
+ Launching Codex for TASK cta-contatti-contatti-whatsapp.
 +
-+TASK section-contatti-opening-hours executed by Codex.
++Completed TASK cta-contatti-contatti-whatsapp.
++
++Implemented an in-page WhatsApp CTA for `src/pages/Contatti.jsx` using the new
++`src/components/ContactWhatsAppCta.jsx` component. The contact page now
++exposes the required body-placed WhatsApp action with a valid
++`https://wa.me/39011000000` destination and inquiry-oriented premium copy.
++
++TASK cta-contatti-contatti-whatsapp executed by Codex.
 +Waiting for validation.
 +
-+TASK section-contatti-opening-hours completed successfully.
++TASK cta-contatti-contatti-whatsapp completed successfully.
 +Build passed.
-+
-+Implemented a dedicated `OpeningHoursSection` component in
-+`src/components/Opening-hoursSection.jsx` and rendered it from
-+`src/pages/Contatti.jsx`. The contact page now includes the required
-+`opening-hours` hours-block section with premium availability copy and
-+structured planning details.
-diff --git a/src/components/Opening-hoursSection.jsx b/src/components/Opening-hoursSection.jsx
+diff --git a/src/components/ContactWhatsAppCta.jsx b/src/components/ContactWhatsAppCta.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a338293485771
+index 0000000000000000000000000000000000000000..9e9536f6d705b2a6a4d780c75afdb6489528f707
 --- /dev/null
-+++ b/src/components/Opening-hoursSection.jsx
-@@ -0,0 +1,133 @@
++++ b/src/components/ContactWhatsAppCta.jsx
+@@ -0,0 +1,91 @@
 +const sectionStyles = {
 +  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    marginTop: 'clamp(2rem, 5vw, 3.5rem)',
 +    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    backgroundColor: '#231b16',
++    background:
++      'linear-gradient(135deg, rgba(35, 27, 22, 0.98) 0%, rgba(62, 48, 36, 0.96) 100%)',
 +    color: '#f7f1e8',
 +    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
 +  },
-+  header: {
++  inner: {
 +    display: 'grid',
 +    gap: '1rem',
-+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-+    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -2438,209 +2102,141 @@ index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a3382
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: '14ch',
++    maxWidth: '18ch',
 +    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
++    fontSize: 'clamp(1.9rem, 4.8vw, 3.1rem)',
 +    lineHeight: 1.05,
 +  },
-+  intro: {
++  text: {
 +    margin: 0,
-+    maxWidth: '44rem',
++    maxWidth: '42rem',
 +    color: 'rgba(247, 241, 232, 0.78)',
-+    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
++  actions: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.9rem',
++    alignItems: 'center',
 +  },
-+  card: {
-+    display: 'grid',
-+    gap: '0.75rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(217, 191, 141, 0.16)',
-+  },
-+  label: {
-+    margin: 0,
-+    color: '#d9bf8d',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  value: {
-+    margin: 0,
++  primaryLink: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.5rem',
++    padding: '0.95rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#1c6c4c',
 +    color: '#f7f1e8',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.45rem',
-+    lineHeight: 1.15,
++    textDecoration: 'none',
++    fontWeight: 700,
++    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.22)',
 +  },
-+  description: {
++  supportText: {
 +    margin: 0,
-+    color: 'rgba(247, 241, 232, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  note: {
-+    margin: '1.5rem 0 0',
-+    maxWidth: '44rem',
-+    color: 'rgba(247, 241, 232, 0.72)',
++    color: 'rgba(247, 241, 232, 0.7)',
 +    lineHeight: 1.7,
 +  },
 +}
 +
-+const availabilityItems = [
-+  {
-+    label: 'Inquiry hours',
-+    value: 'Monday to Saturday',
-+    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
-+  },
-+  {
-+    label: 'Planning calls',
-+    value: 'By appointment',
-+    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
-+  },
-+  {
-+    label: 'Response focus',
-+    value: 'Tailored proposals',
-+    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
-+  },
-+]
++const whatsappHref =
++  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20discuss%20my%20event.'
 +
-+export default function OpeningHoursSection() {
++export default function ContactWhatsAppCta() {
 +  return (
-+    <section
-+      id="opening-hours"
-+      aria-labelledby="opening-hours-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Availability</p>
-+        <h2 id="opening-hours-title" style={sectionStyles.title}>
-+          Clear response windows for thoughtful event planning
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
-+          guest-experience details that deserve careful attention.
++    <section aria-label="WhatsApp contact option" style={sectionStyles.section}>
++      <div style={sectionStyles.inner}>
++        <p style={sectionStyles.eyebrow}>WhatsApp</p>
++        <h2 style={sectionStyles.title}>Prefer a direct message for your first event conversation?</h2>
++        <p style={sectionStyles.text}>
++          Send a WhatsApp message with your event date, venue, and guest count if you would like a quick first exchange
++          before we prepare the right proposal path.
 +        </p>
++        <div style={sectionStyles.actions}>
++          <a
++            href={whatsappHref}
++            target="_blank"
++            rel="noreferrer"
++            aria-label="Write to Casa Aurea Events on WhatsApp"
++            style={sectionStyles.primaryLink}
++          >
++            Message us on WhatsApp
++          </a>
++          <p style={sectionStyles.supportText}>Available for weddings, private celebrations, and premium corporate evenings.</p>
++        </div>
 +      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {availabilityItems.map((item) => (
-+          <article key={item.label} style={sectionStyles.card}>
-+            <p style={sectionStyles.label}>{item.label}</p>
-+            <p style={sectionStyles.value}>{item.value}</p>
-+            <p style={sectionStyles.description}>{item.description}</p>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <p style={sectionStyles.note}>
-+        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
-+        whether you are looking for catering, bar service, or full hospitality support.
-+      </p>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 40e708de7d68931b65db49546e3bd27660b53d23..7f40fc2f2ce697a5ac905a1599bbf8c10b17d633
+index 7f40fc2f2ce697a5ac905a1599bbf8c10b17d633..725a60a7b7f1fd674de3735687821d2e64f44d65
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
 @@ -1,5 +1,6 @@
  import ContactHeroSection from '../components/Contact-heroSection'
  import ContactDetailsSection from '../components/Contact-detailsSection'
-+import OpeningHoursSection from '../components/Opening-hoursSection'
++import ContactWhatsAppCta from '../components/ContactWhatsAppCta'
+ import OpeningHoursSection from '../components/Opening-hoursSection'
  
  export default function Contatti() {
-   return (
-@@ -8,27 +9,7 @@
+@@ -9,6 +10,8 @@
  
        <ContactDetailsSection />
  
--      <section id="opening-hours">
--        <h2>Availability</h2>
--        <p>
--          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
--          corporate clients looking for a tailored proposal.
--        </p>
--        <dl>
--          <div>
--            <dt>Inquiry hours</dt>
--            <dd>Monday to Saturday, 09:00 to 19:00</dd>
--          </div>
--          <div>
--            <dt>Planning calls</dt>
--            <dd>By appointment</dd>
--          </div>
--          <div>
--            <dt>Best next step</dt>
--            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
--          </div>
--        </dl>
--      </section>
-+      <OpeningHoursSection />
++      <ContactWhatsAppCta />
++
+       <OpeningHoursSection />
  
        <section aria-label="Contact closing note">
-         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
 
 codex
-Modified files:
-- [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx)
-- [src/components/Opening-hoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Opening-hoursSection.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx), [src/components/ContactWhatsAppCta.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/ContactWhatsAppCta.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-What was implemented:
-- Replaced the inline opening-hours markup on the contact page with a dedicated `OpeningHoursSection` component.
-- Added a production-ready `hours-block` section with `id="opening-hours"`, a section heading, availability details, and supporting copy consistent with the existing premium contact page style.
-- Rendered the new section from the contatti page to satisfy the task requirement.
+Implemented the `contatti-whatsapp` CTA on the contact page as a visible body section between the contact details and opening-hours blocks. It uses a valid external WhatsApp destination: `https://wa.me/39011000000?...`, opens in a new tab, and keeps the premium visual language already used on the page.
 
-Build result:
-- `npm run build` passed successfully.
+Build result: `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index de30e564bc76ec11050c06c2c5394f7f583712c0..cc50cd90bfeac926b8444a99b716ed1cf26770dd
+index 4228c44babec1b74e9960e6e9f180920d8864a2f..8d929f18f3a61b5b15fb8f3b1f8106d18ca171e6
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -510,3 +510,15 @@
- Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
+@@ -533,3 +533,16 @@
+ Prepared TASK cta-contatti-contatti-whatsapp (Add CTA contatti-whatsapp on contatti) for execution.
  
- Launching Codex for TASK section-contatti-opening-hours.
+ Launching Codex for TASK cta-contatti-contatti-whatsapp.
 +
-+TASK section-contatti-opening-hours executed by Codex.
++Completed TASK cta-contatti-contatti-whatsapp.
++
++Implemented an in-page WhatsApp CTA for `src/pages/Contatti.jsx` using the new
++`src/components/ContactWhatsAppCta.jsx` component. The contact page now
++exposes the required body-placed WhatsApp action with a valid
++`https://wa.me/39011000000` destination and inquiry-oriented premium copy.
++
++TASK cta-contatti-contatti-whatsapp executed by Codex.
 +Waiting for validation.
 +
-+TASK section-contatti-opening-hours completed successfully.
++TASK cta-contatti-contatti-whatsapp completed successfully.
 +Build passed.
-+
-+Implemented a dedicated `OpeningHoursSection` component in
-+`src/components/Opening-hoursSection.jsx` and rendered it from
-+`src/pages/Contatti.jsx`. The contact page now includes the required
-+`opening-hours` hours-block section with premium availability copy and
-+structured planning details.
-diff --git a/src/components/Opening-hoursSection.jsx b/src/components/Opening-hoursSection.jsx
+diff --git a/src/components/ContactWhatsAppCta.jsx b/src/components/ContactWhatsAppCta.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a338293485771
+index 0000000000000000000000000000000000000000..9e9536f6d705b2a6a4d780c75afdb6489528f707
 --- /dev/null
-+++ b/src/components/Opening-hoursSection.jsx
-@@ -0,0 +1,133 @@
++++ b/src/components/ContactWhatsAppCta.jsx
+@@ -0,0 +1,91 @@
 +const sectionStyles = {
 +  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    marginTop: 'clamp(2rem, 5vw, 3.5rem)',
 +    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    backgroundColor: '#231b16',
++    background:
++      'linear-gradient(135deg, rgba(35, 27, 22, 0.98) 0%, rgba(62, 48, 36, 0.96) 100%)',
 +    color: '#f7f1e8',
 +    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
 +  },
-+  header: {
++  inner: {
 +    display: 'grid',
 +    gap: '1rem',
-+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-+    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
@@ -2652,154 +2248,93 @@ index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a3382
 +  },
 +  title: {
 +    margin: 0,
-+    maxWidth: '14ch',
++    maxWidth: '18ch',
 +    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
++    fontSize: 'clamp(1.9rem, 4.8vw, 3.1rem)',
 +    lineHeight: 1.05,
 +  },
-+  intro: {
++  text: {
 +    margin: 0,
-+    maxWidth: '44rem',
++    maxWidth: '42rem',
 +    color: 'rgba(247, 241, 232, 0.78)',
-+    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
++  actions: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.9rem',
++    alignItems: 'center',
 +  },
-+  card: {
-+    display: 'grid',
-+    gap: '0.75rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(217, 191, 141, 0.16)',
-+  },
-+  label: {
-+    margin: 0,
-+    color: '#d9bf8d',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  value: {
-+    margin: 0,
++  primaryLink: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.5rem',
++    padding: '0.95rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#1c6c4c',
 +    color: '#f7f1e8',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.45rem',
-+    lineHeight: 1.15,
++    textDecoration: 'none',
++    fontWeight: 700,
++    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.22)',
 +  },
-+  description: {
++  supportText: {
 +    margin: 0,
-+    color: 'rgba(247, 241, 232, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  note: {
-+    margin: '1.5rem 0 0',
-+    maxWidth: '44rem',
-+    color: 'rgba(247, 241, 232, 0.72)',
++    color: 'rgba(247, 241, 232, 0.7)',
 +    lineHeight: 1.7,
 +  },
 +}
 +
-+const availabilityItems = [
-+  {
-+    label: 'Inquiry hours',
-+    value: 'Monday to Saturday',
-+    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
-+  },
-+  {
-+    label: 'Planning calls',
-+    value: 'By appointment',
-+    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
-+  },
-+  {
-+    label: 'Response focus',
-+    value: 'Tailored proposals',
-+    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
-+  },
-+]
++const whatsappHref =
++  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20discuss%20my%20event.'
 +
-+export default function OpeningHoursSection() {
++export default function ContactWhatsAppCta() {
 +  return (
-+    <section
-+      id="opening-hours"
-+      aria-labelledby="opening-hours-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Availability</p>
-+        <h2 id="opening-hours-title" style={sectionStyles.title}>
-+          Clear response windows for thoughtful event planning
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
-+          guest-experience details that deserve careful attention.
++    <section aria-label="WhatsApp contact option" style={sectionStyles.section}>
++      <div style={sectionStyles.inner}>
++        <p style={sectionStyles.eyebrow}>WhatsApp</p>
++        <h2 style={sectionStyles.title}>Prefer a direct message for your first event conversation?</h2>
++        <p style={sectionStyles.text}>
++          Send a WhatsApp message with your event date, venue, and guest count if you would like a quick first exchange
++          before we prepare the right proposal path.
 +        </p>
++        <div style={sectionStyles.actions}>
++          <a
++            href={whatsappHref}
++            target="_blank"
++            rel="noreferrer"
++            aria-label="Write to Casa Aurea Events on WhatsApp"
++            style={sectionStyles.primaryLink}
++          >
++            Message us on WhatsApp
++          </a>
++          <p style={sectionStyles.supportText}>Available for weddings, private celebrations, and premium corporate evenings.</p>
++        </div>
 +      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {availabilityItems.map((item) => (
-+          <article key={item.label} style={sectionStyles.card}>
-+            <p style={sectionStyles.label}>{item.label}</p>
-+            <p style={sectionStyles.value}>{item.value}</p>
-+            <p style={sectionStyles.description}>{item.description}</p>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <p style={sectionStyles.note}>
-+        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
-+        whether you are looking for catering, bar service, or full hospitality support.
-+      </p>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 40e708de7d68931b65db49546e3bd27660b53d23..7f40fc2f2ce697a5ac905a1599bbf8c10b17d633
+index 7f40fc2f2ce697a5ac905a1599bbf8c10b17d633..725a60a7b7f1fd674de3735687821d2e64f44d65
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
 @@ -1,5 +1,6 @@
  import ContactHeroSection from '../components/Contact-heroSection'
  import ContactDetailsSection from '../components/Contact-detailsSection'
-+import OpeningHoursSection from '../components/Opening-hoursSection'
++import ContactWhatsAppCta from '../components/ContactWhatsAppCta'
+ import OpeningHoursSection from '../components/Opening-hoursSection'
  
  export default function Contatti() {
-   return (
-@@ -8,27 +9,7 @@
+@@ -9,6 +10,8 @@
  
        <ContactDetailsSection />
  
--      <section id="opening-hours">
--        <h2>Availability</h2>
--        <p>
--          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
--          corporate clients looking for a tailored proposal.
--        </p>
--        <dl>
--          <div>
--            <dt>Inquiry hours</dt>
--            <dd>Monday to Saturday, 09:00 to 19:00</dd>
--          </div>
--          <div>
--            <dt>Planning calls</dt>
--            <dd>By appointment</dd>
--          </div>
--          <div>
--            <dt>Best next step</dt>
--            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
--          </div>
--        </dl>
--      </section>
-+      <OpeningHoursSection />
++      <ContactWhatsAppCta />
++
+       <OpeningHoursSection />
  
        <section aria-label="Contact closing note">
-         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
 
 tokens used
-23.032
+10.016
