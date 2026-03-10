@@ -218,6 +218,25 @@ TASK section-chi-siamo-philosophy completed successfully.
 Build passed.
 
 Implemented a dedicated `Menu-categoriesSection` component in
+
+Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+
+Launching Codex for TASK section-servizi-services-hero.
+
+Completed TASK section-servizi-services-hero.
+
+Implemented a dedicated `ServicesHeroSection` component in
+`src/components/Services-heroSection.jsx` and rendered it from
+`src/pages/Servizi.jsx` to replace the inline placeholder hero. The servizi
+page now exposes the required `services-hero` section with premium brand copy,
+highlight cards, and route-safe CTAs to the existing `/contatti` and `/menu`
+pages.
+
+TASK section-servizi-services-hero executed by Codex.
+Waiting for validation.
+
+TASK section-servizi-services-hero completed successfully.
+Build passed.
 Prepared TASK page-servizi-shell (Create servizi page shell) for execution.
 
 Launching Codex for TASK page-servizi-shell.
@@ -633,4 +652,15 @@ TASK page-servizi-shell executed by Codex.
 Waiting for validation.
 
 TASK page-servizi-shell completed successfully.
+Build passed.
+Commit created for TASK page-servizi-shell.
+
+Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+
+Launching Codex for TASK section-servizi-services-hero.
+
+TASK section-servizi-services-hero executed by Codex.
+Waiting for validation.
+
+TASK section-servizi-services-hero completed successfully.
 Build passed.

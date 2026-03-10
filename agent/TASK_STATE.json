@@ -1,7 +1,7 @@
 {
-  "currentTaskId": "section-servizi-services-hero",
+  "currentTaskId": "section-servizi-services-overview",
   "status": "ready_for_next_task",
-  "lastCompletedTaskId": "page-servizi-shell",
+  "lastCompletedTaskId": "section-servizi-services-hero",
   "completedTaskIds": [
     "page-home-shell",
     "section-home-hero",
@@ -26,6 +26,7 @@
     "section-contatti-opening-hours",
     "cta-contatti-contatti-whatsapp",
     "cta-contatti-contatti-phone",
-    "page-servizi-shell"
+    "page-servizi-shell",
+    "section-servizi-services-hero"
   ]
 }

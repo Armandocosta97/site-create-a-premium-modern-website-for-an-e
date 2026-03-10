@@ -1178,32 +1178,35 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-page-servizi-shell
+section-servizi-services-hero
 
 ## Current task title
-Create servizi page shell
+Create services-hero section on servizi
 
 ## Current task type
-page-shell
+section
 
 ## Current task target
 ```json
 {
-  "pageId": "servizi"
+  "pageId": "servizi",
+  "sectionId": "services-hero",
+  "sectionType": "hero"
 }
 ```
 
 ## Depends on
-- none
+- page-servizi-shell
 
 ## Files allowed
-- src/App.jsx
 - src/pages/Servizi.jsx
+- src/components/Services-heroSection.jsx
+- src/components
 
 ## Definition of done
-- page shell exists for servizi
-- servizi route is mounted if required
-- servizi page renders without crashing
+- section services-hero exists on servizi
+- section services-hero matches type hero
+- section services-hero is rendered in page servizi
 
 ## Strict execution rules
 - Execute only this current task.
