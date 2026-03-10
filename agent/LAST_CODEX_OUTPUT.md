@@ -1,8 +1,16 @@
-Modified files: [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files:
+- [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx)
+- [src/components/FloatingWhatsAppButton.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/FloatingWhatsAppButton.jsx)
+- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-Implemented the `home-contact-cta` in the home hero by explicitly passing a secondary CTA from [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx). It is visible in the hero and points to the valid internal route `/contatti` with the label `Contact us for your event`. I also logged the task completion in [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+What was implemented:
+- Added the `home-whatsapp` CTA to the home page as a floating fixed button.
+- Kept it modular by creating a reusable `FloatingWhatsAppButton` component.
+- Wired the CTA to a valid WhatsApp URL: `https://wa.me/39011000000?...` with a prefilled proposal inquiry message.
+- Rendered it only on the home page to match the current task scope.
 
-Build result: `npm run build` passed successfully.
+Build result:
+- `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +21,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd836-7044-7270-91f9-2c6446e3b1f2
+session id: 019cd837-1709-7d71-acd8-ac579f9cfd07
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1196,10 +1204,10 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-cta-home-home-contact-cta
+cta-home-home-whatsapp
 
 ## Current task title
-Add CTA home-contact-cta on home
+Add CTA home-whatsapp on home
 
 ## Current task type
 cta
@@ -1208,13 +1216,13 @@ cta
 ```json
 {
   "pageId": "home",
-  "ctaId": "home-contact-cta",
-  "ctaKind": "internal",
+  "ctaId": "home-whatsapp",
+  "ctaKind": "external",
   "destination": {
-    "type": "route",
-    "value": "/contatti"
+    "type": "whatsapp",
+    "value": "whatsapp"
   },
-  "placement": "hero"
+  "placement": "floating"
 }
 ```
 
@@ -1224,11 +1232,13 @@ cta
 ## Files allowed
 - src/pages/Home.jsx
 - src/components
+- src/App.jsx
+- src/layout/Layout.jsx
 
 ## Definition of done
-- CTA home-contact-cta exists on home
-- CTA home-contact-cta is visible in placement hero
-- CTA home-contact-cta points to a valid destination
+- CTA home-whatsapp exists on home
+- CTA home-whatsapp is visible in placement floating
+- CTA home-whatsapp points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1257,33 +1267,12 @@ cta
 
 mcp startup: no servers
 codex
-I’m implementing the current home CTA task only. First I’m checking the current home hero and shared button/link components so I can add the `/contatti` CTA without disturbing the rest of the page.
+I’m implementing the current task only: add the floating home WhatsApp CTA, verify it points to a valid WhatsApp destination, then run a build check and update the agent report.
 exec
+/bin/zsh -lc "sed -n '1,260p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'rg -n "Button|Link|CTA|contatti|/contatti|hero" src/components src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'rg --files src agent brief docs | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-# CURRENT TASK EXECUTION PROMPT
-
-You are the coding executor for this project.
-
-## Project path
-site-create-a-premium-modern-website-for-an-e
-
-## Source of truth files
-- brief/original-prompt.md
-- brief/brief-summary.md
-- site-spec.json
-- docs/DEVELOPMENT_METHOD.md
-- agent/TASK_GRAPH.json
-- agent/TASK_STATE.json
-- agent/CURRENT_TASK_PROMPT.md
-
-## Development method
-# Development Method
-
-All sites must follow these rules.
- succeeded in 52ms:
+/bin/zsh -lc "pwd && rg --files src agent brief docs | rg '"'^(src/pages/Home.jsx|src/App.jsx|src/layout/Layout.jsx|src/components/|agent/AGENT_REPORT.md|agent/CURRENT_TASK_PROMPT.md|agent/TASK_STATE.json|site-spec.json|docs/DEVELOPMENT_METHOD.md)$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "find src/components -maxdepth 2 -type f | sort | xargs -I{} sh -c \"printf '\\n--- %s ---\\n' '{}' && sed -n '1,220p' '{}'\"" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
 import HeroSection from '../components/HeroSection'
 import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
 import SignaturePreviewSection from '../components/SignaturePreviewSection'
@@ -1296,59 +1285,91 @@ export default function Home() {
           label: 'Request your event proposal',
           to: '/menu',
         }}
+        secondaryCta={{
+          label: 'Contact us for your event',
+          to: '/contatti',
+        }}
       />
       <SignaturePreviewSection />
       <BrandStoryPreviewSection />
     </article>
-  )
-}
  succeeded in 52ms:
-src/pages/Menu.jsx:4:      <section id="menu-hero">
-src/pages/Menu.jsx:6:        <p>Content for menu-hero will be generated by tasks</p>
-src/components/HeroSection.jsx:1:import { Link } from 'react-router-dom'
-src/components/HeroSection.jsx:3:const heroStyles = {
-src/components/HeroSection.jsx:129:  to: '/contatti',
-src/components/HeroSection.jsx:137:    <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
-src/components/HeroSection.jsx:138:      <div style={heroStyles.panel}>
-src/components/HeroSection.jsx:139:        <p style={heroStyles.eyebrow}>
-src/components/HeroSection.jsx:142:        <h1 id="home-title" style={heroStyles.title}>
-src/components/HeroSection.jsx:146:        <p style={heroStyles.body}>
-src/components/HeroSection.jsx:152:        <div style={heroStyles.actions}>
-src/components/HeroSection.jsx:153:          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
-src/components/HeroSection.jsx:155:          </Link>
-src/components/HeroSection.jsx:156:          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
-src/components/HeroSection.jsx:158:          </Link>
-src/components/HeroSection.jsx:161:        <div style={heroStyles.details}>
-src/components/HeroSection.jsx:163:            <div key={item.label} style={heroStyles.detailCard}>
-src/components/HeroSection.jsx:164:              <span style={heroStyles.detailLabel}>{item.label}</span>
-src/components/HeroSection.jsx:165:              <span style={heroStyles.detailText}>{item.text}</span>
-src/pages/Contatti.jsx:4:      <section id="contact-hero">
+export default function Layout({ children }) {
+  return (
+    <>
+      <header>
+        <nav aria-label="Main navigation">
+          <a href="#/">Home</a>
+          <a href="#/menu">Menu</a>
+          <a href="#/chi-siamo">Chi siamo</a>
+          <a href="#/gallery">Gallery</a>
+          <a href="#/contatti">Contatti</a>
+          <a href="#/servizi">Servizi</a>
+        </nav>
+      </header>
+
+      <main>{children}</main>
+
+      <footer>
+        <p>© Website</p>
+      </footer>
+    </>
  succeeded in 52ms:
-agent/AGENT_REPORT.md
-agent/CURRENT_TASK_PROMPT.md
-agent/LAST_CODEX_OUTPUT.md
-agent/PROMPT_ARCHITECTURE.json
-agent/TASK_GRAPH.json
-agent/TASK_QUEUE.md
-agent/TASK_STATE.json
-brief/brief-summary.md
-brief/original-prompt.md
+/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
 docs/DEVELOPMENT_METHOD.md
-src/App.css
+agent/CURRENT_TASK_PROMPT.md
+agent/TASK_STATE.json
+agent/AGENT_REPORT.md
+src/pages/Home.jsx
 src/App.jsx
-src/assets/react.svg
-src/components/Brand-story-previewSection.jsx
-src/components/HeroSection.jsx
-src/components/SignaturePreviewSection.jsx
-src/index.css
 src/layout/Layout.jsx
-src/main.jsx
-src/pages/ChiSiamo.jsx
+ succeeded in 51ms:
+
+--- src/components/Brand-story-previewSection.jsx ---
+import { Link } from 'react-router-dom'
+
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '1.5rem',
+    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    backgroundColor: '#241c17',
+    color: '#f6efe4',
+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
+  },
+  media: {
+    minHeight: '20rem',
+    borderRadius: '28px',
+    backgroundImage:
 codex
-The hero component already supports two CTAs, and the secondary slot is wired to `/contatti` by default. I’m confirming whether the home page is explicitly passing that CTA or relying on an implicit default, then I’ll make the smallest change that satisfies the task and update the task report.
+I’ve confirmed the home page currently has no floating CTA. Next I’m checking the route setup so the added button stays isolated to the home page and uses the project’s hash routing correctly.
 exec
-/bin/zsh -lc "sed -n '1,200p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 50ms:
+/bin/zsh -lc "sed -n '1,260p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+import { HashRouter, Routes, Route } from "react-router-dom"
+import Layout from "./layout/Layout"
+import Home from "./pages/Home"
+import Menu from "./pages/Menu"
+import ChiSiamo from "./pages/ChiSiamo"
+import Gallery from "./pages/Gallery"
+import Contatti from "./pages/Contatti"
+import Servizi from "./pages/Servizi"
+
+export default function App() {
+  return (
+    <HashRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/chi-siamo" element={<ChiSiamo />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contatti" element={<Contatti />} />
+          <Route path="/servizi" element={<Servizi />} />
+ succeeded in 52ms:
 # AGENT REPORT
 
 Project created.
@@ -1369,208 +1390,794 @@ Waiting for validation.
 TASK page-home-shell completed successfully.
 Build passed.
 Commit created for TASK page-home-shell.
- succeeded in 50ms:
-import { Link } from 'react-router-dom'
-
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(32rem, 78vh, 46rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(40, 31, 24, 0.18) 0%, rgba(28, 22, 18, 0.72) 62%, rgba(20, 15, 12, 0.9) 100%), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
-  },
-  panel: {
-    width: 'min(100%, 42rem)',
 codex
-I’ve confirmed the current behavior is only correct by component default, and the label is mismatched with the contact destination. I’m making the home page pass the contact CTA explicitly so the task is satisfied at the page level and the hero config is unambiguous.
+I have enough context. I’m adding a small reusable floating WhatsApp component under `src/components`, wiring it into [`Home.jsx`](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), and then I’ll run the build and append the task summary to the agent report.
 file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -107 +107,10 @@
- Launching Codex for TASK cta-home-home-contact-cta.
-+
-+Completed TASK cta-home-home-contact-cta.
-+
-+Bound the home hero contact CTA explicitly from `src/pages/Home.jsx` so the
-+secondary hero action now resolves to the valid `/contatti` route with
-+contact-oriented copy instead of relying on component defaults.
-+
-+TASK cta-home-home-contact-cta executed by Codex.
-+Waiting for validation.
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/FloatingWhatsAppButton.jsx
+const whatsappStyles = {
+  link: {
+    position: 'fixed',
+    right: 'clamp(1rem, 3vw, 2rem)',
+    bottom: 'clamp(1rem, 3vw, 2rem)',
+    zIndex: 1000,
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.75rem',
+    minHeight: '3.5rem',
+    padding: '0.85rem 1.1rem',
+    borderRadius: '999px',
+    backgroundColor: '#1c6c4c',
+    color: '#f6efe4',
+    textDecoration: 'none',
+    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
+    border: '1px solid rgba(246, 239, 228, 0.2)',
+  },
+  icon: {
+    width: '1.5rem',
+    height: '1.5rem',
+    flexShrink: 0,
+  },
+  labelGroup: {
+    display: 'grid',
+    lineHeight: 1.2,
+  },
+  eyebrow: {
+    fontSize: '0.7rem',
+    letterSpacing: '0.14em',
+    textTransform: 'uppercase',
+    color: 'rgba(246, 239, 228, 0.72)',
+  },
+  label: {
+    fontSize: '0.95rem',
+    fontWeight: 700,
+  },
+}
+
+const whatsappHref =
+  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
+
+export default function FloatingWhatsAppButton() {
+  return (
+    <a
+      href={whatsappHref}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Contact Casa Aurea Events on WhatsApp"
+      style={whatsappStyles.link}
+    >
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        focusable="false"
+        style={whatsappStyles.icon}
+      >
+        <path
+          fill="currentColor"
+          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
+        />
+      </svg>
+
+      <span style={whatsappStyles.labelGroup}>
+        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
+        <span style={whatsappStyles.label}>Book a quick conversation</span>
+      </span>
+    </a>
+  )
+}
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
-@@ -12,2 +12,6 @@
-         }}
-+        secondaryCta={{
-+          label: 'Contact us for your event',
-+          to: '/contatti',
-+        }}
-       />
-apply_patch(auto_approved=true) exited 0 in 39ms:
+@@ -2,2 +2,3 @@
+ import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
++import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
+@@ -19,2 +20,3 @@
+       <BrandStoryPreviewSection />
++      <FloatingWhatsAppButton />
+     </article>
+apply_patch(auto_approved=true) exited 0 in 56ms:
 Success. Updated the following files:
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/FloatingWhatsAppButton.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 770423687baae2e68e9ba51d86a1d1c863606c29..e2bcd45c9b505031ccf1ac3d16a7856ecb712f09
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -105,3 +105,12 @@
- Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
- 
- Launching Codex for TASK cta-home-home-contact-cta.
+diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..272ee1ed077805f443407eb0a2f91a7752930f89
+--- /dev/null
++++ b/src/components/FloatingWhatsAppButton.jsx
+@@ -0,0 +1,70 @@
++const whatsappStyles = {
++  link: {
++    position: 'fixed',
++    right: 'clamp(1rem, 3vw, 2rem)',
++    bottom: 'clamp(1rem, 3vw, 2rem)',
++    zIndex: 1000,
++    display: 'inline-flex',
++    alignItems: 'center',
++    gap: '0.75rem',
++    minHeight: '3.5rem',
++    padding: '0.85rem 1.1rem',
++    borderRadius: '999px',
++    backgroundColor: '#1c6c4c',
++    color: '#f6efe4',
++    textDecoration: 'none',
++    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
++    border: '1px solid rgba(246, 239, 228, 0.2)',
++  },
++  icon: {
++    width: '1.5rem',
++    height: '1.5rem',
++    flexShrink: 0,
++  },
++  labelGroup: {
++    display: 'grid',
++    lineHeight: 1.2,
++  },
++  eyebrow: {
++    fontSize: '0.7rem',
++    letterSpacing: '0.14em',
++    textTransform: 'uppercase',
++    color: 'rgba(246, 239, 228, 0.72)',
++  },
++  label: {
++    fontSize: '0.95rem',
++    fontWeight: 700,
++  },
++}
 +
-+Completed TASK cta-home-home-contact-cta.
++const whatsappHref =
++  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
 +
-+Bound the home hero contact CTA explicitly from `src/pages/Home.jsx` so the
-+secondary hero action now resolves to the valid `/contatti` route with
-+contact-oriented copy instead of relying on component defaults.
++export default function FloatingWhatsAppButton() {
++  return (
++    <a
++      href={whatsappHref}
++      target="_blank"
++      rel="noreferrer"
++      aria-label="Contact Casa Aurea Events on WhatsApp"
++      style={whatsappStyles.link}
++    >
++      <svg
++        viewBox="0 0 24 24"
++        aria-hidden="true"
++        focusable="false"
++        style={whatsappStyles.icon}
++      >
++        <path
++          fill="currentColor"
++          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
++        />
++      </svg>
 +
-+TASK cta-home-home-contact-cta executed by Codex.
-+Waiting for validation.
++      <span style={whatsappStyles.labelGroup}>
++        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
++        <span style={whatsappStyles.label}>Book a quick conversation</span>
++      </span>
++    </a>
++  )
++}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 69bfc2e5823192bfce6396bac5bc689ace396034..ef5813cca6a8811a162967d2365dc47b9837258b
+index ef5813cca6a8811a162967d2365dc47b9837258b..51e6e08d7636a8de8ef4b5a008684701bf737636
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -10,6 +10,10 @@
-           label: 'Request your event proposal',
-           to: '/menu',
-         }}
-+        secondaryCta={{
-+          label: 'Contact us for your event',
-+          to: '/contatti',
-+        }}
+@@ -1,5 +1,6 @@
+ import HeroSection from '../components/HeroSection'
+ import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
++import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
+ 
+ export default function Home() {
+@@ -17,6 +18,7 @@
        />
        <SignaturePreviewSection />
        <BrandStoryPreviewSection />
++      <FloatingWhatsAppButton />
+     </article>
+   )
+ }
 
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 770423687baae2e68e9ba51d86a1d1c863606c29..e2bcd45c9b505031ccf1ac3d16a7856ecb712f09
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -105,3 +105,12 @@
- Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
- 
- Launching Codex for TASK cta-home-home-contact-cta.
+diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..272ee1ed077805f443407eb0a2f91a7752930f89
+--- /dev/null
++++ b/src/components/FloatingWhatsAppButton.jsx
+@@ -0,0 +1,70 @@
++const whatsappStyles = {
++  link: {
++    position: 'fixed',
++    right: 'clamp(1rem, 3vw, 2rem)',
++    bottom: 'clamp(1rem, 3vw, 2rem)',
++    zIndex: 1000,
++    display: 'inline-flex',
++    alignItems: 'center',
++    gap: '0.75rem',
++    minHeight: '3.5rem',
++    padding: '0.85rem 1.1rem',
++    borderRadius: '999px',
++    backgroundColor: '#1c6c4c',
++    color: '#f6efe4',
++    textDecoration: 'none',
++    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
++    border: '1px solid rgba(246, 239, 228, 0.2)',
++  },
++  icon: {
++    width: '1.5rem',
++    height: '1.5rem',
++    flexShrink: 0,
++  },
++  labelGroup: {
++    display: 'grid',
++    lineHeight: 1.2,
++  },
++  eyebrow: {
++    fontSize: '0.7rem',
++    letterSpacing: '0.14em',
++    textTransform: 'uppercase',
++    color: 'rgba(246, 239, 228, 0.72)',
++  },
++  label: {
++    fontSize: '0.95rem',
++    fontWeight: 700,
++  },
++}
 +
-+Completed TASK cta-home-home-contact-cta.
++const whatsappHref =
++  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
 +
-+Bound the home hero contact CTA explicitly from `src/pages/Home.jsx` so the
-+secondary hero action now resolves to the valid `/contatti` route with
-+contact-oriented copy instead of relying on component defaults.
++export default function FloatingWhatsAppButton() {
++  return (
++    <a
++      href={whatsappHref}
++      target="_blank"
++      rel="noreferrer"
++      aria-label="Contact Casa Aurea Events on WhatsApp"
++      style={whatsappStyles.link}
++    >
++      <svg
++        viewBox="0 0 24 24"
++        aria-hidden="true"
++        focusable="false"
++        style={whatsappStyles.icon}
++      >
++        <path
++          fill="currentColor"
++          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
++        />
++      </svg>
 +
-+TASK cta-home-home-contact-cta executed by Codex.
-+Waiting for validation.
++      <span style={whatsappStyles.labelGroup}>
++        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
++        <span style={whatsappStyles.label}>Book a quick conversation</span>
++      </span>
++    </a>
++  )
++}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 69bfc2e5823192bfce6396bac5bc689ace396034..ef5813cca6a8811a162967d2365dc47b9837258b
+index ef5813cca6a8811a162967d2365dc47b9837258b..51e6e08d7636a8de8ef4b5a008684701bf737636
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -10,6 +10,10 @@
-           label: 'Request your event proposal',
-           to: '/menu',
-         }}
-+        secondaryCta={{
-+          label: 'Contact us for your event',
-+          to: '/contatti',
-+        }}
+@@ -1,5 +1,6 @@
+ import HeroSection from '../components/HeroSection'
+ import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
++import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
+ 
+ export default function Home() {
+@@ -17,6 +18,7 @@
        />
        <SignaturePreviewSection />
        <BrandStoryPreviewSection />
++      <FloatingWhatsAppButton />
+     </article>
+   )
+ }
 
 codex
-The code change is in place. I’m running a build now to make sure the explicit hero CTA wiring didn’t introduce any regressions.
+The CTA is in place on the home page now as a fixed external WhatsApp action. I’m running the build next to catch any integration issues before I append the task note to the report.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 735ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 918ms:
+
+> site-create-a-premium-modern-website-for-an-e@0.0.0 build
+> vite build
+
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 51 modules transformed.
+✓ 52 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-CHKiPs4C.js   243.75 kB │ gzip: 77.35 kB
-✓ built in 551ms
+dist/assets/index-yfP2BEFS.js   245.63 kB │ gzip: 78.14 kB
+✓ built in 566ms
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 770423687baae2e68e9ba51d86a1d1c863606c29..e2bcd45c9b505031ccf1ac3d16a7856ecb712f09
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -105,3 +105,12 @@
- Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
- 
- Launching Codex for TASK cta-home-home-contact-cta.
+diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..272ee1ed077805f443407eb0a2f91a7752930f89
+--- /dev/null
++++ b/src/components/FloatingWhatsAppButton.jsx
+@@ -0,0 +1,70 @@
++const whatsappStyles = {
++  link: {
++    position: 'fixed',
++    right: 'clamp(1rem, 3vw, 2rem)',
++    bottom: 'clamp(1rem, 3vw, 2rem)',
++    zIndex: 1000,
++    display: 'inline-flex',
++    alignItems: 'center',
++    gap: '0.75rem',
++    minHeight: '3.5rem',
++    padding: '0.85rem 1.1rem',
++    borderRadius: '999px',
++    backgroundColor: '#1c6c4c',
++    color: '#f6efe4',
++    textDecoration: 'none',
++    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
++    border: '1px solid rgba(246, 239, 228, 0.2)',
++  },
++  icon: {
++    width: '1.5rem',
++    height: '1.5rem',
++    flexShrink: 0,
++  },
++  labelGroup: {
++    display: 'grid',
++    lineHeight: 1.2,
++  },
++  eyebrow: {
++    fontSize: '0.7rem',
++    letterSpacing: '0.14em',
++    textTransform: 'uppercase',
++    color: 'rgba(246, 239, 228, 0.72)',
++  },
++  label: {
++    fontSize: '0.95rem',
++    fontWeight: 700,
++  },
++}
 +
-+Completed TASK cta-home-home-contact-cta.
++const whatsappHref =
++  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
 +
-+Bound the home hero contact CTA explicitly from `src/pages/Home.jsx` so the
-+secondary hero action now resolves to the valid `/contatti` route with
-+contact-oriented copy instead of relying on component defaults.
++export default function FloatingWhatsAppButton() {
++  return (
++    <a
++      href={whatsappHref}
++      target="_blank"
++      rel="noreferrer"
++      aria-label="Contact Casa Aurea Events on WhatsApp"
++      style={whatsappStyles.link}
++    >
++      <svg
++        viewBox="0 0 24 24"
++        aria-hidden="true"
++        focusable="false"
++        style={whatsappStyles.icon}
++      >
++        <path
++          fill="currentColor"
++          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
++        />
++      </svg>
 +
-+TASK cta-home-home-contact-cta executed by Codex.
-+Waiting for validation.
++      <span style={whatsappStyles.labelGroup}>
++        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
++        <span style={whatsappStyles.label}>Book a quick conversation</span>
++      </span>
++    </a>
++  )
++}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 69bfc2e5823192bfce6396bac5bc689ace396034..ef5813cca6a8811a162967d2365dc47b9837258b
+index ef5813cca6a8811a162967d2365dc47b9837258b..51e6e08d7636a8de8ef4b5a008684701bf737636
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -10,6 +10,10 @@
-           label: 'Request your event proposal',
-           to: '/menu',
-         }}
-+        secondaryCta={{
-+          label: 'Contact us for your event',
-+          to: '/contatti',
-+        }}
+@@ -1,5 +1,6 @@
+ import HeroSection from '../components/HeroSection'
+ import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
++import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
+ 
+ export default function Home() {
+@@ -17,6 +18,7 @@
        />
        <SignaturePreviewSection />
        <BrandStoryPreviewSection />
++      <FloatingWhatsAppButton />
+     </article>
+   )
+ }
 
 codex
-Modified files: [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
-
-Implemented the `home-contact-cta` in the home hero by explicitly passing a secondary CTA from [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx). It is visible in the hero and points to the valid internal route `/contatti` with the label `Contact us for your event`. I also logged the task completion in [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
-
-Build result: `npm run build` passed successfully.
+The build passed cleanly. I’m updating `agent/AGENT_REPORT.md` with a short task summary and then I’ll return the modified files and result.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+@@ -127 +127,15 @@
+ Launching Codex for TASK cta-home-home-whatsapp.
++
++Completed TASK cta-home-home-whatsapp.
++
++Implemented a reusable floating WhatsApp CTA in
++`src/components/FloatingWhatsAppButton.jsx` and rendered it from
++`src/pages/Home.jsx`. The home page now exposes the required fixed WhatsApp
++action with a valid `https://wa.me/39011000000` destination and prefilled
++proposal inquiry message.
++
++TASK cta-home-home-whatsapp executed by Codex.
++Waiting for validation.
++
++TASK cta-home-home-whatsapp completed successfully.
++Build passed.
+apply_patch(auto_approved=true) exited 0 in 59ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 770423687baae2e68e9ba51d86a1d1c863606c29..e2bcd45c9b505031ccf1ac3d16a7856ecb712f09
+index 5a07e0f44e8d4a5faa7e377fbe057d7d1a87e0d9..6f29b7507833b3a1c1b08a3b8b0cda933cee4b2e
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -105,3 +105,12 @@
- Prepared TASK cta-home-home-contact-cta (Add CTA home-contact-cta on home) for execution.
+@@ -125,3 +125,17 @@
+ Prepared TASK cta-home-home-whatsapp (Add CTA home-whatsapp on home) for execution.
  
- Launching Codex for TASK cta-home-home-contact-cta.
+ Launching Codex for TASK cta-home-home-whatsapp.
 +
-+Completed TASK cta-home-home-contact-cta.
++Completed TASK cta-home-home-whatsapp.
 +
-+Bound the home hero contact CTA explicitly from `src/pages/Home.jsx` so the
-+secondary hero action now resolves to the valid `/contatti` route with
-+contact-oriented copy instead of relying on component defaults.
++Implemented a reusable floating WhatsApp CTA in
++`src/components/FloatingWhatsAppButton.jsx` and rendered it from
++`src/pages/Home.jsx`. The home page now exposes the required fixed WhatsApp
++action with a valid `https://wa.me/39011000000` destination and prefilled
++proposal inquiry message.
 +
-+TASK cta-home-home-contact-cta executed by Codex.
++TASK cta-home-home-whatsapp executed by Codex.
 +Waiting for validation.
++
++TASK cta-home-home-whatsapp completed successfully.
++Build passed.
+diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..272ee1ed077805f443407eb0a2f91a7752930f89
+--- /dev/null
++++ b/src/components/FloatingWhatsAppButton.jsx
+@@ -0,0 +1,70 @@
++const whatsappStyles = {
++  link: {
++    position: 'fixed',
++    right: 'clamp(1rem, 3vw, 2rem)',
++    bottom: 'clamp(1rem, 3vw, 2rem)',
++    zIndex: 1000,
++    display: 'inline-flex',
++    alignItems: 'center',
++    gap: '0.75rem',
++    minHeight: '3.5rem',
++    padding: '0.85rem 1.1rem',
++    borderRadius: '999px',
++    backgroundColor: '#1c6c4c',
++    color: '#f6efe4',
++    textDecoration: 'none',
++    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
++    border: '1px solid rgba(246, 239, 228, 0.2)',
++  },
++  icon: {
++    width: '1.5rem',
++    height: '1.5rem',
++    flexShrink: 0,
++  },
++  labelGroup: {
++    display: 'grid',
++    lineHeight: 1.2,
++  },
++  eyebrow: {
++    fontSize: '0.7rem',
++    letterSpacing: '0.14em',
++    textTransform: 'uppercase',
++    color: 'rgba(246, 239, 228, 0.72)',
++  },
++  label: {
++    fontSize: '0.95rem',
++    fontWeight: 700,
++  },
++}
++
++const whatsappHref =
++  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
++
++export default function FloatingWhatsAppButton() {
++  return (
++    <a
++      href={whatsappHref}
++      target="_blank"
++      rel="noreferrer"
++      aria-label="Contact Casa Aurea Events on WhatsApp"
++      style={whatsappStyles.link}
++    >
++      <svg
++        viewBox="0 0 24 24"
++        aria-hidden="true"
++        focusable="false"
++        style={whatsappStyles.icon}
++      >
++        <path
++          fill="currentColor"
++          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
++        />
++      </svg>
++
++      <span style={whatsappStyles.labelGroup}>
++        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
++        <span style={whatsappStyles.label}>Book a quick conversation</span>
++      </span>
++    </a>
++  )
++}
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index 69bfc2e5823192bfce6396bac5bc689ace396034..ef5813cca6a8811a162967d2365dc47b9837258b
+index ef5813cca6a8811a162967d2365dc47b9837258b..51e6e08d7636a8de8ef4b5a008684701bf737636
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -10,6 +10,10 @@
-           label: 'Request your event proposal',
-           to: '/menu',
-         }}
-+        secondaryCta={{
-+          label: 'Contact us for your event',
-+          to: '/contatti',
-+        }}
+@@ -1,5 +1,6 @@
+ import HeroSection from '../components/HeroSection'
+ import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
++import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
+ 
+ export default function Home() {
+@@ -17,6 +18,7 @@
        />
        <SignaturePreviewSection />
        <BrandStoryPreviewSection />
++      <FloatingWhatsAppButton />
+     </article>
+   )
+ }
+
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 5a07e0f44e8d4a5faa7e377fbe057d7d1a87e0d9..6f29b7507833b3a1c1b08a3b8b0cda933cee4b2e
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -125,3 +125,17 @@
+ Prepared TASK cta-home-home-whatsapp (Add CTA home-whatsapp on home) for execution.
+ 
+ Launching Codex for TASK cta-home-home-whatsapp.
++
++Completed TASK cta-home-home-whatsapp.
++
++Implemented a reusable floating WhatsApp CTA in
++`src/components/FloatingWhatsAppButton.jsx` and rendered it from
++`src/pages/Home.jsx`. The home page now exposes the required fixed WhatsApp
++action with a valid `https://wa.me/39011000000` destination and prefilled
++proposal inquiry message.
++
++TASK cta-home-home-whatsapp executed by Codex.
++Waiting for validation.
++
++TASK cta-home-home-whatsapp completed successfully.
++Build passed.
+diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..272ee1ed077805f443407eb0a2f91a7752930f89
+--- /dev/null
++++ b/src/components/FloatingWhatsAppButton.jsx
+@@ -0,0 +1,70 @@
++const whatsappStyles = {
++  link: {
++    position: 'fixed',
++    right: 'clamp(1rem, 3vw, 2rem)',
++    bottom: 'clamp(1rem, 3vw, 2rem)',
++    zIndex: 1000,
++    display: 'inline-flex',
++    alignItems: 'center',
++    gap: '0.75rem',
++    minHeight: '3.5rem',
++    padding: '0.85rem 1.1rem',
++    borderRadius: '999px',
++    backgroundColor: '#1c6c4c',
++    color: '#f6efe4',
++    textDecoration: 'none',
++    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
++    border: '1px solid rgba(246, 239, 228, 0.2)',
++  },
++  icon: {
++    width: '1.5rem',
++    height: '1.5rem',
++    flexShrink: 0,
++  },
++  labelGroup: {
++    display: 'grid',
++    lineHeight: 1.2,
++  },
++  eyebrow: {
++    fontSize: '0.7rem',
++    letterSpacing: '0.14em',
++    textTransform: 'uppercase',
++    color: 'rgba(246, 239, 228, 0.72)',
++  },
++  label: {
++    fontSize: '0.95rem',
++    fontWeight: 700,
++  },
++}
++
++const whatsappHref =
++  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
++
++export default function FloatingWhatsAppButton() {
++  return (
++    <a
++      href={whatsappHref}
++      target="_blank"
++      rel="noreferrer"
++      aria-label="Contact Casa Aurea Events on WhatsApp"
++      style={whatsappStyles.link}
++    >
++      <svg
++        viewBox="0 0 24 24"
++        aria-hidden="true"
++        focusable="false"
++        style={whatsappStyles.icon}
++      >
++        <path
++          fill="currentColor"
++          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
++        />
++      </svg>
++
++      <span style={whatsappStyles.labelGroup}>
++        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
++        <span style={whatsappStyles.label}>Book a quick conversation</span>
++      </span>
++    </a>
++  )
++}
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index ef5813cca6a8811a162967d2365dc47b9837258b..51e6e08d7636a8de8ef4b5a008684701bf737636
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,5 +1,6 @@
+ import HeroSection from '../components/HeroSection'
+ import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
++import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
+ 
+ export default function Home() {
+@@ -17,6 +18,7 @@
+       />
+       <SignaturePreviewSection />
+       <BrandStoryPreviewSection />
++      <FloatingWhatsAppButton />
+     </article>
+   )
+ }
+
+codex
+Modified files:
+- [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx)
+- [src/components/FloatingWhatsAppButton.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/FloatingWhatsAppButton.jsx)
+- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+
+What was implemented:
+- Added the `home-whatsapp` CTA to the home page as a floating fixed button.
+- Kept it modular by creating a reusable `FloatingWhatsAppButton` component.
+- Wired the CTA to a valid WhatsApp URL: `https://wa.me/39011000000?...` with a prefilled proposal inquiry message.
+- Rendered it only on the home page to match the current task scope.
+
+Build result:
+- `npm run build` passed successfully.
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 5a07e0f44e8d4a5faa7e377fbe057d7d1a87e0d9..6f29b7507833b3a1c1b08a3b8b0cda933cee4b2e
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -125,3 +125,17 @@
+ Prepared TASK cta-home-home-whatsapp (Add CTA home-whatsapp on home) for execution.
+ 
+ Launching Codex for TASK cta-home-home-whatsapp.
++
++Completed TASK cta-home-home-whatsapp.
++
++Implemented a reusable floating WhatsApp CTA in
++`src/components/FloatingWhatsAppButton.jsx` and rendered it from
++`src/pages/Home.jsx`. The home page now exposes the required fixed WhatsApp
++action with a valid `https://wa.me/39011000000` destination and prefilled
++proposal inquiry message.
++
++TASK cta-home-home-whatsapp executed by Codex.
++Waiting for validation.
++
++TASK cta-home-home-whatsapp completed successfully.
++Build passed.
+diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..272ee1ed077805f443407eb0a2f91a7752930f89
+--- /dev/null
++++ b/src/components/FloatingWhatsAppButton.jsx
+@@ -0,0 +1,70 @@
++const whatsappStyles = {
++  link: {
++    position: 'fixed',
++    right: 'clamp(1rem, 3vw, 2rem)',
++    bottom: 'clamp(1rem, 3vw, 2rem)',
++    zIndex: 1000,
++    display: 'inline-flex',
++    alignItems: 'center',
++    gap: '0.75rem',
++    minHeight: '3.5rem',
++    padding: '0.85rem 1.1rem',
++    borderRadius: '999px',
++    backgroundColor: '#1c6c4c',
++    color: '#f6efe4',
++    textDecoration: 'none',
++    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
++    border: '1px solid rgba(246, 239, 228, 0.2)',
++  },
++  icon: {
++    width: '1.5rem',
++    height: '1.5rem',
++    flexShrink: 0,
++  },
++  labelGroup: {
++    display: 'grid',
++    lineHeight: 1.2,
++  },
++  eyebrow: {
++    fontSize: '0.7rem',
++    letterSpacing: '0.14em',
++    textTransform: 'uppercase',
++    color: 'rgba(246, 239, 228, 0.72)',
++  },
++  label: {
++    fontSize: '0.95rem',
++    fontWeight: 700,
++  },
++}
++
++const whatsappHref =
++  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
++
++export default function FloatingWhatsAppButton() {
++  return (
++    <a
++      href={whatsappHref}
++      target="_blank"
++      rel="noreferrer"
++      aria-label="Contact Casa Aurea Events on WhatsApp"
++      style={whatsappStyles.link}
++    >
++      <svg
++        viewBox="0 0 24 24"
++        aria-hidden="true"
++        focusable="false"
++        style={whatsappStyles.icon}
++      >
++        <path
++          fill="currentColor"
++          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
++        />
++      </svg>
++
++      <span style={whatsappStyles.labelGroup}>
++        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
++        <span style={whatsappStyles.label}>Book a quick conversation</span>
++      </span>
++    </a>
++  )
++}
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index ef5813cca6a8811a162967d2365dc47b9837258b..51e6e08d7636a8de8ef4b5a008684701bf737636
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -1,5 +1,6 @@
+ import HeroSection from '../components/HeroSection'
+ import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
++import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
+ import SignaturePreviewSection from '../components/SignaturePreviewSection'
+ 
+ export default function Home() {
+@@ -17,6 +18,7 @@
+       />
+       <SignaturePreviewSection />
+       <BrandStoryPreviewSection />
++      <FloatingWhatsAppButton />
+     </article>
+   )
+ }
 
 tokens used
-18.430
+20.092

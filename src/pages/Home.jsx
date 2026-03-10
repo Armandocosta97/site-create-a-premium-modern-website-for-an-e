@@ -1,5 +1,6 @@
 import HeroSection from '../components/HeroSection'
 import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
 import SignaturePreviewSection from '../components/SignaturePreviewSection'
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       />
       <SignaturePreviewSection />
       <BrandStoryPreviewSection />
+      <FloatingWhatsAppButton />
     </article>
   )
 }
