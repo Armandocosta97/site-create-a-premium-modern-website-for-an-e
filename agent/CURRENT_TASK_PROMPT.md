@@ -1178,10 +1178,10 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-contatti-contact-details
+section-contatti-opening-hours
 
 ## Current task title
-Create contact-details section on contatti
+Create opening-hours section on contatti
 
 ## Current task type
 section
@@ -1190,8 +1190,8 @@ section
 ```json
 {
   "pageId": "contatti",
-  "sectionId": "contact-details",
-  "sectionType": "contact-block"
+  "sectionId": "opening-hours",
+  "sectionType": "hours-block"
 }
 ```
 
@@ -1200,13 +1200,13 @@ section
 
 ## Files allowed
 - src/pages/Contatti.jsx
-- src/components/Contact-detailsSection.jsx
+- src/components/Opening-hoursSection.jsx
 - src/components
 
 ## Definition of done
-- section contact-details exists on contatti
-- section contact-details matches type contact-block
-- section contact-details is rendered in page contatti
+- section opening-hours exists on contatti
+- section opening-hours matches type hours-block
+- section opening-hours is rendered in page contatti
 
 ## Strict execution rules
 - Execute only this current task.

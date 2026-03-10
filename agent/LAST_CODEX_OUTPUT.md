@@ -1,8 +1,15 @@
-Modified files: [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx), [Contact-detailsSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Contact-detailsSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+Modified files:
+- [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx)
+- [src/components/Opening-hoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Opening-hoursSection.jsx)
+- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-Implemented the `contact-details` section for the `contatti` page as a dedicated `ContactDetailsSection` component and replaced the inline placeholder markup in [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx). The section now renders as a premium contact block with inquiry copy, linked phone and email details, service area information, and semantic section structure under `id="contact-details"`.
+What was implemented:
+- Replaced the inline opening-hours markup on the contact page with a dedicated `OpeningHoursSection` component.
+- Added a production-ready `hours-block` section with `id="opening-hours"`, a section heading, availability details, and supporting copy consistent with the existing premium contact page style.
+- Rendered the new section from the contatti page to satisfy the task requirement.
 
-Build result: `npm run build` passed successfully with a production Vite build. I did not run browser-level validation in this turn.
+Build result:
+- `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +20,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd845-7925-7513-ada2-23bc4b4fd4a5
+session id: 019cd846-a00c-70e3-b47e-c5ee002f012e
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1196,10 +1203,10 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-contatti-contact-details
+section-contatti-opening-hours
 
 ## Current task title
-Create contact-details section on contatti
+Create opening-hours section on contatti
 
 ## Current task type
 section
@@ -1208,8 +1215,8 @@ section
 ```json
 {
   "pageId": "contatti",
-  "sectionId": "contact-details",
-  "sectionType": "contact-block"
+  "sectionId": "opening-hours",
+  "sectionType": "hours-block"
 }
 ```
 
@@ -1218,13 +1225,13 @@ section
 
 ## Files allowed
 - src/pages/Contatti.jsx
-- src/components/Contact-detailsSection.jsx
+- src/components/Opening-hoursSection.jsx
 - src/components
 
 ## Definition of done
-- section contact-details exists on contatti
-- section contact-details matches type contact-block
-- section contact-details is rendered in page contatti
+- section opening-hours exists on contatti
+- section opening-hours matches type hours-block
+- section opening-hours is rendered in page contatti
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1253,32 +1260,31 @@ section
 
 mcp startup: no servers
 codex
-I’m implementing the `contact-details` section for the `contatti` page and will first inspect the current page shell, existing shared components, and task/source-of-truth files so the change stays within scope.
+I’m checking the current contact page and the task context first so I can add only the required opening-hours section without touching unrelated parts.
 exec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'rg --files src/components | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "pwd && rg --files agent brief docs src | rg '("'^agent/CURRENT_TASK_PROMPT.md$|''^agent/TASK_STATE.json$|''^agent/TASK_GRAPH.json$|''^agent/AGENT_REPORT.md$|''^brief/original-prompt.md$|''^brief/brief-summary.md$|''^docs/DEVELOPMENT_METHOD.md$|''^src/pages/Contatti.jsx$|''^src/components/)'"','workdir':\"/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e\"" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,260p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "rg --files . | rg '"'^(src/pages/Contatti'"\\.jsx|src/components/.+|agent/AGENT_REPORT\\.md|agent/CURRENT_TASK_PROMPT\\.md|site-spec\\.json|docs/DEVELOPMENT_METHOD\\.md)"'$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
 import ContactHeroSection from '../components/Contact-heroSection'
+import ContactDetailsSection from '../components/Contact-detailsSection'
 
 export default function Contatti() {
   return (
     <article aria-labelledby="contatti-title">
       <ContactHeroSection />
 
-      <section id="contact-details">
-        <h2>Contact details</h2>
+      <ContactDetailsSection />
+
+      <section id="opening-hours">
+        <h2>Availability</h2>
         <p>
-          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-          and polished presentation.
+          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
+          corporate clients looking for a tailored proposal.
         </p>
         <dl>
           <div>
-            <dt>Phone</dt>
-            <dd>
-              <a href="tel:+39011000000">+39 011 000000</a>
-            </dd>
-          </div>
+            <dt>Inquiry hours</dt>
+            <dd>Monday to Saturday, 09:00 to 19:00</dd>
  succeeded in 52ms:
 # CURRENT TASK EXECUTION PROMPT
 
@@ -1300,71 +1306,14 @@ site-create-a-premium-modern-website-for-an-e
 # Development Method
 
 All sites must follow these rules.
- succeeded in 52ms:
-src/components/About-heroSection.jsx
-src/components/Brand-story-previewSection.jsx
-src/components/Contact-heroSection.jsx
-src/components/FloatingWhatsAppButton.jsx
-src/components/Gallery-gridSection.jsx
-src/components/Gallery-heroSection.jsx
-src/components/HeroSection.jsx
-src/components/Menu-categoriesSection.jsx
-src/components/Menu-heroSection.jsx
-src/components/PhilosophySection.jsx
-src/components/SignaturePreviewSection.jsx
-src/components/StorySection.jsx
- exited 1 in 52ms:
-/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
+ exited 1 in 51ms:
+
 codex
-The `contatti` page currently has inline placeholder markup for `contact-details`; I’m extracting that into a dedicated component and matching the existing section patterns before wiring it back into the page.
+The contact page already has an inline availability block. I’m pulling the existing component patterns from `src/components` so the new section matches the codebase and stays within the task scope.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
 /bin/zsh -lc "sed -n '1,220p' src/components/Contact-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/components/Brand-story-previewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' package.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
-import { Link } from 'react-router-dom'
-
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    background:
-      'linear-gradient(180deg, rgba(246, 239, 228, 0.9) 0%, rgba(239, 228, 210, 0.72) 100%)',
-    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-  },
-  header: {
-    display: 'grid',
-    gap: '1rem',
-    alignItems: 'end',
-    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-  },
-  eyebrow: {
-    margin: 0,
-    color: '#9f7b4b',
- succeeded in 50ms:
-import { Link } from 'react-router-dom'
-
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: '1.5rem',
-    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    backgroundColor: '#241c17',
-    color: '#f6efe4',
-    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-  },
-  media: {
-    minHeight: '20rem',
-    borderRadius: '28px',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
-    backgroundSize: 'cover',
- succeeded in 50ms:
+/bin/zsh -lc "sed -n '1,220p' src/components/Contact-detailsSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'rg --files src/components' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
 import { Link } from 'react-router-dom'
 
 const heroStyles = {
@@ -1385,52 +1334,7 @@ const heroStyles = {
   },
   panel: {
     width: 'min(100%, 48rem)',
- succeeded in 52ms:
-{
-  "name": "site-create-a-premium-modern-website-for-an-e",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test:ui": "playwright test"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@playwright/test": "^1.58.2",
- succeeded in 50ms:
-# AGENT REPORT
-
-Project created.
-
-Prepared TASK page-home-shell (Create home page shell) for execution.
-
-Launching Codex for TASK page-home-shell.
-
-Completed TASK page-home-shell.
-
-Implemented a semantic home page shell in `src/pages/Home.jsx` with real hero,
-signature preview, and brand story preview sections. Verified the home route
-remains mounted in `src/App.jsx` and ready for follow-up content tasks.
-
-TASK page-home-shell executed by Codex.
-Waiting for validation.
-
-TASK page-home-shell completed successfully.
-Build passed.
-Commit created for TASK page-home-shell.
-codex
-I’ve got enough context. Next I’m replacing the inline contact-details placeholder with a dedicated `Contact-detailsSection` component, keeping the rest of the page intact, then I’ll run the build and record the task in `agent/AGENT_REPORT.md`.
-file update
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Contact-detailsSection.jsx
+ succeeded in 51ms:
 const sectionStyles = {
   section: {
     marginTop: 'clamp(3rem, 7vw, 5.5rem)',
@@ -1451,13 +1355,127 @@ const sectionStyles = {
     color: '#9f7b4b',
     fontSize: '0.82rem',
     letterSpacing: '0.22em',
+ succeeded in 51ms:
+src/components/FloatingWhatsAppButton.jsx
+src/components/Brand-story-previewSection.jsx
+src/components/StorySection.jsx
+src/components/Menu-categoriesSection.jsx
+src/components/Contact-detailsSection.jsx
+src/components/PhilosophySection.jsx
+src/components/Menu-heroSection.jsx
+src/components/About-heroSection.jsx
+src/components/Contact-heroSection.jsx
+src/components/Gallery-gridSection.jsx
+src/components/SignaturePreviewSection.jsx
+src/components/Gallery-heroSection.jsx
+src/components/HeroSection.jsx
+codex
+I have the pattern now. I’m replacing the inline availability markup with a dedicated `Opening-hoursSection` component and then I’ll run the build check and append the task note to the agent report.
+exec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+# AGENT REPORT
+
+Project created.
+
+Prepared TASK page-home-shell (Create home page shell) for execution.
+
+Launching Codex for TASK page-home-shell.
+
+Completed TASK page-home-shell.
+
+Implemented a semantic home page shell in `src/pages/Home.jsx` with real hero,
+signature preview, and brand story preview sections. Verified the home route
+remains mounted in `src/App.jsx` and ready for follow-up content tasks.
+
+TASK page-home-shell executed by Codex.
+Waiting for validation.
+
+TASK page-home-shell completed successfully.
+Build passed.
+Commit created for TASK page-home-shell.
+exec
+/bin/zsh -lc 'tail -n 40 agent/AGENT_REPORT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+TASK section-gallery-gallery-grid completed successfully.
+Build passed.
+Commit created for TASK section-gallery-gallery-grid.
+
+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+
+Launching Codex for TASK page-contatti-shell.
+
+TASK page-contatti-shell executed by Codex.
+Waiting for validation.
+
+TASK page-contatti-shell completed successfully.
+Build passed.
+Commit created for TASK page-contatti-shell.
+
+Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-contact-hero.
+
+TASK section-contatti-contact-hero executed by Codex.
+codex
+I’m at the edit step now. The change is confined to replacing the inline opening-hours section in [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx) with a dedicated component and adding that component under `src/components`.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx
+@@ -2,2 +2,3 @@
+ import ContactDetailsSection from '../components/Contact-detailsSection'
++import OpeningHoursSection from '../components/Opening-hoursSection'
+ 
+@@ -10,23 +11,3 @@
+ 
+-      <section id="opening-hours">
+-        <h2>Availability</h2>
+-        <p>
+-          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
+-          corporate clients looking for a tailored proposal.
+-        </p>
+-        <dl>
+-          <div>
+-            <dt>Inquiry hours</dt>
+-            <dd>Monday to Saturday, 09:00 to 19:00</dd>
+-          </div>
+-          <div>
+-            <dt>Planning calls</dt>
+-            <dd>By appointment</dd>
+-          </div>
+-          <div>
+-            <dt>Best next step</dt>
+-            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
+-          </div>
+-        </dl>
+-      </section>
++      <OpeningHoursSection />
+ 
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Opening-hoursSection.jsx
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    backgroundColor: '#231b16',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
+  },
+  header: {
+    display: 'grid',
+    gap: '1rem',
+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
+    textAlign: 'left',
+  },
+  eyebrow: {
+    margin: 0,
+    color: '#d9bf8d',
+    fontSize: '0.82rem',
+    letterSpacing: '0.22em',
     textTransform: 'uppercase',
     fontWeight: 700,
   },
   title: {
     margin: 0,
     maxWidth: '14ch',
-    color: '#201914',
+    color: '#f7f1e8',
     fontFamily: 'Georgia, "Times New Roman", serif',
     fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
     lineHeight: 1.05,
@@ -1465,7 +1483,7 @@ const sectionStyles = {
   intro: {
     margin: 0,
     maxWidth: '44rem',
-    color: 'rgba(32, 25, 20, 0.78)',
+    color: 'rgba(247, 241, 232, 0.78)',
     fontSize: '1rem',
     lineHeight: 1.8,
   },
@@ -1480,12 +1498,12 @@ const sectionStyles = {
     minHeight: '100%',
     padding: '1.4rem',
     borderRadius: '24px',
-    backgroundColor: 'rgba(255, 252, 247, 0.86)',
-    border: '1px solid rgba(159, 123, 75, 0.14)',
+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
+    border: '1px solid rgba(217, 191, 141, 0.16)',
   },
   label: {
     margin: 0,
-    color: '#9f7b4b',
+    color: '#d9bf8d',
     fontSize: '0.78rem',
     letterSpacing: '0.16em',
     textTransform: 'uppercase',
@@ -1493,184 +1511,96 @@ const sectionStyles = {
   },
   value: {
     margin: 0,
-    color: '#201914',
+    color: '#f7f1e8',
     fontFamily: 'Georgia, "Times New Roman", serif',
     fontSize: '1.45rem',
     lineHeight: 1.15,
   },
   description: {
     margin: 0,
-    color: 'rgba(32, 25, 20, 0.74)',
+    color: 'rgba(247, 241, 232, 0.72)',
     lineHeight: 1.7,
-  },
-  link: {
-    color: '#201914',
-    textDecoration: 'none',
   },
   note: {
     margin: '1.5rem 0 0',
     maxWidth: '44rem',
-    color: 'rgba(32, 25, 20, 0.72)',
+    color: 'rgba(247, 241, 232, 0.72)',
     lineHeight: 1.7,
   },
 }
 
-const contactItems = [
+const availabilityItems = [
   {
-    label: 'Phone',
-    value: '+39 011 000000',
-    href: 'tel:+39011000000',
-    description: 'For planning calls, event timing questions, and proposal follow-ups during inquiry hours.',
+    label: 'Inquiry hours',
+    value: 'Monday to Saturday',
+    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
   },
   {
-    label: 'Email',
-    value: 'hello@casaaureaevents.it',
-    href: 'mailto:hello@casaaureaevents.it',
-    description: 'Send your date, venue, guest count, and the atmosphere you would like us to create.',
+    label: 'Planning calls',
+    value: 'By appointment',
+    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
   },
   {
-    label: 'Service area',
-    value: 'Torino and surrounding areas',
-    description: 'Available for elegant weddings, private celebrations, and premium corporate evenings.',
+    label: 'Response focus',
+    value: 'Tailored proposals',
+    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
   },
 ]
 
-export default function ContactDetailsSection() {
+export default function OpeningHoursSection() {
   return (
     <section
-      id="contact-details"
-      aria-labelledby="contact-details-title"
+      id="opening-hours"
+      aria-labelledby="opening-hours-title"
       style={sectionStyles.section}
     >
       <div style={sectionStyles.header}>
-        <p style={sectionStyles.eyebrow}>Contact details</p>
-        <h2 id="contact-details-title" style={sectionStyles.title}>
-          Share the essentials and we will guide the next step
+        <p style={sectionStyles.eyebrow}>Availability</p>
+        <h2 id="opening-hours-title" style={sectionStyles.title}>
+          Clear response windows for thoughtful event planning
         </h2>
         <p style={sectionStyles.intro}>
-          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-          and polished presentation. We keep the first conversation clear, practical, and tailored to your occasion.
+          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
+          guest-experience details that deserve careful attention.
         </p>
       </div>
 
       <div style={sectionStyles.grid}>
-        {contactItems.map((item) => (
+        {availabilityItems.map((item) => (
           <article key={item.label} style={sectionStyles.card}>
             <p style={sectionStyles.label}>{item.label}</p>
-            <p style={sectionStyles.value}>
-              {item.href ? (
-                <a href={item.href} style={sectionStyles.link}>
-                  {item.value}
-                </a>
-              ) : (
-                item.value
-              )}
-            </p>
+            <p style={sectionStyles.value}>{item.value}</p>
             <p style={sectionStyles.description}>{item.description}</p>
           </article>
         ))}
       </div>
 
       <p style={sectionStyles.note}>
-        The most helpful first message includes your event date, approximate guest count, venue location, and whether
-        you are looking for catering, bar service, or a full hospitality proposal.
+        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
+        whether you are looking for catering, bar service, or full hospitality support.
       </p>
     </section>
   )
 }
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -221,2 +221,14 @@
- 
-+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
-+
-+Launching Codex for TASK section-contatti-contact-details.
-+
-+Completed TASK section-contatti-contact-details.
-+
-+Implemented a dedicated `Contact-detailsSection` component in
-+`src/components/Contact-detailsSection.jsx` and rendered it from
-+`src/pages/Contatti.jsx`. The contatti page now includes the required
-+`contact-details` contact-block section with premium inquiry copy, linked phone
-+and email details, and service area information.
-+
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx
-@@ -1,2 +1,3 @@
- import ContactHeroSection from '../components/Contact-heroSection'
-+import ContactDetailsSection from '../components/Contact-detailsSection'
- 
-@@ -7,27 +8,3 @@
- 
--      <section id="contact-details">
--        <h2>Contact details</h2>
--        <p>
--          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
--          and polished presentation.
--        </p>
--        <dl>
--          <div>
--            <dt>Phone</dt>
--            <dd>
--              <a href="tel:+39011000000">+39 011 000000</a>
--            </dd>
--          </div>
--          <div>
--            <dt>Email</dt>
--            <dd>
--              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
--            </dd>
--          </div>
--          <div>
--            <dt>Service area</dt>
--            <dd>Torino and surrounding areas</dd>
--          </div>
--        </dl>
--      </section>
-+      <ContactDetailsSection />
- 
-apply_patch(auto_approved=true) exited 0 in 56ms:
+apply_patch(auto_approved=true) exited 0 in 52ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Contact-detailsSection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Opening-hoursSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index e230cb4f4d74d875824e05ba0e5c8e8b1c0bfc81..5b5f07e1d85bc837a79f1f947ec549a815fa4921
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -219,6 +219,18 @@
- 
- Implemented a dedicated `Menu-categoriesSection` component in
- 
-+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
-+
-+Launching Codex for TASK section-contatti-contact-details.
-+
-+Completed TASK section-contatti-contact-details.
-+
-+Implemented a dedicated `Contact-detailsSection` component in
-+`src/components/Contact-detailsSection.jsx` and rendered it from
-+`src/pages/Contatti.jsx`. The contatti page now includes the required
-+`contact-details` contact-block section with premium inquiry copy, linked phone
-+and email details, and service area information.
-+
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
- 
- Launching Codex for TASK section-contatti-contact-hero.
-diff --git a/src/components/Contact-detailsSection.jsx b/src/components/Contact-detailsSection.jsx
+diff --git a/src/components/Opening-hoursSection.jsx b/src/components/Opening-hoursSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c361660aaf7
+index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a338293485771
 --- /dev/null
-+++ b/src/components/Contact-detailsSection.jsx
-@@ -0,0 +1,147 @@
++++ b/src/components/Opening-hoursSection.jsx
+@@ -0,0 +1,133 @@
 +const sectionStyles = {
 +  section: {
 +    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
 +    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(246, 239, 228, 0.96) 0%, rgba(236, 223, 205, 0.92) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++    backgroundColor: '#231b16',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
 +  },
 +  header: {
 +    display: 'grid',
@@ -1680,7 +1610,7 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    color: '#9f7b4b',
++    color: '#d9bf8d',
 +    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
@@ -1689,7 +1619,7 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  title: {
 +    margin: 0,
 +    maxWidth: '14ch',
-+    color: '#201914',
++    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
 +    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
 +    lineHeight: 1.05,
@@ -1697,7 +1627,7 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  intro: {
 +    margin: 0,
 +    maxWidth: '44rem',
-+    color: 'rgba(32, 25, 20, 0.78)',
++    color: 'rgba(247, 241, 232, 0.78)',
 +    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
@@ -1712,12 +1642,12 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +    minHeight: '100%',
 +    padding: '1.4rem',
 +    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.86)',
-+    border: '1px solid rgba(159, 123, 75, 0.14)',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.16)',
 +  },
 +  label: {
 +    margin: 0,
-+    color: '#9f7b4b',
++    color: '#d9bf8d',
 +    fontSize: '0.78rem',
 +    letterSpacing: '0.16em',
 +    textTransform: 'uppercase',
@@ -1725,172 +1655,133 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  },
 +  value: {
 +    margin: 0,
-+    color: '#201914',
++    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
 +    fontSize: '1.45rem',
 +    lineHeight: 1.15,
 +  },
 +  description: {
 +    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.74)',
++    color: 'rgba(247, 241, 232, 0.72)',
 +    lineHeight: 1.7,
-+  },
-+  link: {
-+    color: '#201914',
-+    textDecoration: 'none',
 +  },
 +  note: {
 +    margin: '1.5rem 0 0',
 +    maxWidth: '44rem',
-+    color: 'rgba(32, 25, 20, 0.72)',
++    color: 'rgba(247, 241, 232, 0.72)',
 +    lineHeight: 1.7,
 +  },
 +}
 +
-+const contactItems = [
++const availabilityItems = [
 +  {
-+    label: 'Phone',
-+    value: '+39 011 000000',
-+    href: 'tel:+39011000000',
-+    description: 'For planning calls, event timing questions, and proposal follow-ups during inquiry hours.',
++    label: 'Inquiry hours',
++    value: 'Monday to Saturday',
++    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
 +  },
 +  {
-+    label: 'Email',
-+    value: 'hello@casaaureaevents.it',
-+    href: 'mailto:hello@casaaureaevents.it',
-+    description: 'Send your date, venue, guest count, and the atmosphere you would like us to create.',
++    label: 'Planning calls',
++    value: 'By appointment',
++    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
 +  },
 +  {
-+    label: 'Service area',
-+    value: 'Torino and surrounding areas',
-+    description: 'Available for elegant weddings, private celebrations, and premium corporate evenings.',
++    label: 'Response focus',
++    value: 'Tailored proposals',
++    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
 +  },
 +]
 +
-+export default function ContactDetailsSection() {
++export default function OpeningHoursSection() {
 +  return (
 +    <section
-+      id="contact-details"
-+      aria-labelledby="contact-details-title"
++      id="opening-hours"
++      aria-labelledby="opening-hours-title"
 +      style={sectionStyles.section}
 +    >
 +      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Contact details</p>
-+        <h2 id="contact-details-title" style={sectionStyles.title}>
-+          Share the essentials and we will guide the next step
++        <p style={sectionStyles.eyebrow}>Availability</p>
++        <h2 id="opening-hours-title" style={sectionStyles.title}>
++          Clear response windows for thoughtful event planning
 +        </h2>
 +        <p style={sectionStyles.intro}>
-+          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-+          and polished presentation. We keep the first conversation clear, practical, and tailored to your occasion.
++          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
++          guest-experience details that deserve careful attention.
 +        </p>
 +      </div>
 +
 +      <div style={sectionStyles.grid}>
-+        {contactItems.map((item) => (
++        {availabilityItems.map((item) => (
 +          <article key={item.label} style={sectionStyles.card}>
 +            <p style={sectionStyles.label}>{item.label}</p>
-+            <p style={sectionStyles.value}>
-+              {item.href ? (
-+                <a href={item.href} style={sectionStyles.link}>
-+                  {item.value}
-+                </a>
-+              ) : (
-+                item.value
-+              )}
-+            </p>
++            <p style={sectionStyles.value}>{item.value}</p>
 +            <p style={sectionStyles.description}>{item.description}</p>
 +          </article>
 +        ))}
 +      </div>
 +
 +      <p style={sectionStyles.note}>
-+        The most helpful first message includes your event date, approximate guest count, venue location, and whether
-+        you are looking for catering, bar service, or a full hospitality proposal.
++        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
++        whether you are looking for catering, bar service, or full hospitality support.
 +      </p>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 1a0f2a18b5ad41a80aa0c42729ec5d0e1339018e..40e708de7d68931b65db49546e3bd27660b53d23
+index 40e708de7d68931b65db49546e3bd27660b53d23..7f40fc2f2ce697a5ac905a1599bbf8c10b17d633
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,35 +1,12 @@
+@@ -1,5 +1,6 @@
  import ContactHeroSection from '../components/Contact-heroSection'
-+import ContactDetailsSection from '../components/Contact-detailsSection'
+ import ContactDetailsSection from '../components/Contact-detailsSection'
++import OpeningHoursSection from '../components/Opening-hoursSection'
  
  export default function Contatti() {
    return (
-     <article aria-labelledby="contatti-title">
-       <ContactHeroSection />
+@@ -8,27 +9,7 @@
  
--      <section id="contact-details">
--        <h2>Contact details</h2>
+       <ContactDetailsSection />
+ 
+-      <section id="opening-hours">
+-        <h2>Availability</h2>
 -        <p>
--          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
--          and polished presentation.
+-          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
+-          corporate clients looking for a tailored proposal.
 -        </p>
 -        <dl>
 -          <div>
--            <dt>Phone</dt>
--            <dd>
--              <a href="tel:+39011000000">+39 011 000000</a>
--            </dd>
+-            <dt>Inquiry hours</dt>
+-            <dd>Monday to Saturday, 09:00 to 19:00</dd>
 -          </div>
 -          <div>
--            <dt>Email</dt>
--            <dd>
--              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
--            </dd>
+-            <dt>Planning calls</dt>
+-            <dd>By appointment</dd>
 -          </div>
 -          <div>
--            <dt>Service area</dt>
--            <dd>Torino and surrounding areas</dd>
+-            <dt>Best next step</dt>
+-            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
 -          </div>
 -        </dl>
 -      </section>
-+      <ContactDetailsSection />
++      <OpeningHoursSection />
  
-       <section id="opening-hours">
-         <h2>Availability</h2>
+       <section aria-label="Contact closing note">
+         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
 
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index e230cb4f4d74d875824e05ba0e5c8e8b1c0bfc81..5b5f07e1d85bc837a79f1f947ec549a815fa4921
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -219,6 +219,18 @@
- 
- Implemented a dedicated `Menu-categoriesSection` component in
- 
-+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
-+
-+Launching Codex for TASK section-contatti-contact-details.
-+
-+Completed TASK section-contatti-contact-details.
-+
-+Implemented a dedicated `Contact-detailsSection` component in
-+`src/components/Contact-detailsSection.jsx` and rendered it from
-+`src/pages/Contatti.jsx`. The contatti page now includes the required
-+`contact-details` contact-block section with premium inquiry copy, linked phone
-+and email details, and service area information.
-+
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
- 
- Launching Codex for TASK section-contatti-contact-hero.
-diff --git a/src/components/Contact-detailsSection.jsx b/src/components/Contact-detailsSection.jsx
+diff --git a/src/components/Opening-hoursSection.jsx b/src/components/Opening-hoursSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c361660aaf7
+index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a338293485771
 --- /dev/null
-+++ b/src/components/Contact-detailsSection.jsx
-@@ -0,0 +1,147 @@
++++ b/src/components/Opening-hoursSection.jsx
+@@ -0,0 +1,133 @@
 +const sectionStyles = {
 +  section: {
 +    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
 +    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(246, 239, 228, 0.96) 0%, rgba(236, 223, 205, 0.92) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++    backgroundColor: '#231b16',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
 +  },
 +  header: {
 +    display: 'grid',
@@ -1900,7 +1791,7 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    color: '#9f7b4b',
++    color: '#d9bf8d',
 +    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
@@ -1909,7 +1800,7 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  title: {
 +    margin: 0,
 +    maxWidth: '14ch',
-+    color: '#201914',
++    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
 +    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
 +    lineHeight: 1.05,
@@ -1917,7 +1808,7 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  intro: {
 +    margin: 0,
 +    maxWidth: '44rem',
-+    color: 'rgba(32, 25, 20, 0.78)',
++    color: 'rgba(247, 241, 232, 0.78)',
 +    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
@@ -1932,12 +1823,12 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +    minHeight: '100%',
 +    padding: '1.4rem',
 +    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.86)',
-+    border: '1px solid rgba(159, 123, 75, 0.14)',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.16)',
 +  },
 +  label: {
 +    margin: 0,
-+    color: '#9f7b4b',
++    color: '#d9bf8d',
 +    fontSize: '0.78rem',
 +    letterSpacing: '0.16em',
 +    textTransform: 'uppercase',
@@ -1945,185 +1836,168 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  },
 +  value: {
 +    margin: 0,
-+    color: '#201914',
++    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
 +    fontSize: '1.45rem',
 +    lineHeight: 1.15,
 +  },
 +  description: {
 +    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.74)',
++    color: 'rgba(247, 241, 232, 0.72)',
 +    lineHeight: 1.7,
-+  },
-+  link: {
-+    color: '#201914',
-+    textDecoration: 'none',
 +  },
 +  note: {
 +    margin: '1.5rem 0 0',
 +    maxWidth: '44rem',
-+    color: 'rgba(32, 25, 20, 0.72)',
++    color: 'rgba(247, 241, 232, 0.72)',
 +    lineHeight: 1.7,
 +  },
 +}
 +
-+const contactItems = [
++const availabilityItems = [
 +  {
-+    label: 'Phone',
-+    value: '+39 011 000000',
-+    href: 'tel:+39011000000',
-+    description: 'For planning calls, event timing questions, and proposal follow-ups during inquiry hours.',
++    label: 'Inquiry hours',
++    value: 'Monday to Saturday',
++    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
 +  },
 +  {
-+    label: 'Email',
-+    value: 'hello@casaaureaevents.it',
-+    href: 'mailto:hello@casaaureaevents.it',
-+    description: 'Send your date, venue, guest count, and the atmosphere you would like us to create.',
++    label: 'Planning calls',
++    value: 'By appointment',
++    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
 +  },
 +  {
-+    label: 'Service area',
-+    value: 'Torino and surrounding areas',
-+    description: 'Available for elegant weddings, private celebrations, and premium corporate evenings.',
++    label: 'Response focus',
++    value: 'Tailored proposals',
++    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
 +  },
 +]
 +
-+export default function ContactDetailsSection() {
++export default function OpeningHoursSection() {
 +  return (
 +    <section
-+      id="contact-details"
-+      aria-labelledby="contact-details-title"
++      id="opening-hours"
++      aria-labelledby="opening-hours-title"
 +      style={sectionStyles.section}
 +    >
 +      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Contact details</p>
-+        <h2 id="contact-details-title" style={sectionStyles.title}>
-+          Share the essentials and we will guide the next step
++        <p style={sectionStyles.eyebrow}>Availability</p>
++        <h2 id="opening-hours-title" style={sectionStyles.title}>
++          Clear response windows for thoughtful event planning
 +        </h2>
 +        <p style={sectionStyles.intro}>
-+          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-+          and polished presentation. We keep the first conversation clear, practical, and tailored to your occasion.
++          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
++          guest-experience details that deserve careful attention.
 +        </p>
 +      </div>
 +
 +      <div style={sectionStyles.grid}>
-+        {contactItems.map((item) => (
++        {availabilityItems.map((item) => (
 +          <article key={item.label} style={sectionStyles.card}>
 +            <p style={sectionStyles.label}>{item.label}</p>
-+            <p style={sectionStyles.value}>
-+              {item.href ? (
-+                <a href={item.href} style={sectionStyles.link}>
-+                  {item.value}
-+                </a>
-+              ) : (
-+                item.value
-+              )}
-+            </p>
++            <p style={sectionStyles.value}>{item.value}</p>
 +            <p style={sectionStyles.description}>{item.description}</p>
 +          </article>
 +        ))}
 +      </div>
 +
 +      <p style={sectionStyles.note}>
-+        The most helpful first message includes your event date, approximate guest count, venue location, and whether
-+        you are looking for catering, bar service, or a full hospitality proposal.
++        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
++        whether you are looking for catering, bar service, or full hospitality support.
 +      </p>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 1a0f2a18b5ad41a80aa0c42729ec5d0e1339018e..40e708de7d68931b65db49546e3bd27660b53d23
+index 40e708de7d68931b65db49546e3bd27660b53d23..7f40fc2f2ce697a5ac905a1599bbf8c10b17d633
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,35 +1,12 @@
+@@ -1,5 +1,6 @@
  import ContactHeroSection from '../components/Contact-heroSection'
-+import ContactDetailsSection from '../components/Contact-detailsSection'
+ import ContactDetailsSection from '../components/Contact-detailsSection'
++import OpeningHoursSection from '../components/Opening-hoursSection'
  
  export default function Contatti() {
    return (
-     <article aria-labelledby="contatti-title">
-       <ContactHeroSection />
+@@ -8,27 +9,7 @@
  
--      <section id="contact-details">
--        <h2>Contact details</h2>
+       <ContactDetailsSection />
+ 
+-      <section id="opening-hours">
+-        <h2>Availability</h2>
 -        <p>
--          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
--          and polished presentation.
+-          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
+-          corporate clients looking for a tailored proposal.
 -        </p>
 -        <dl>
 -          <div>
--            <dt>Phone</dt>
--            <dd>
--              <a href="tel:+39011000000">+39 011 000000</a>
--            </dd>
+-            <dt>Inquiry hours</dt>
+-            <dd>Monday to Saturday, 09:00 to 19:00</dd>
 -          </div>
 -          <div>
--            <dt>Email</dt>
--            <dd>
--              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
--            </dd>
+-            <dt>Planning calls</dt>
+-            <dd>By appointment</dd>
 -          </div>
 -          <div>
--            <dt>Service area</dt>
--            <dd>Torino and surrounding areas</dd>
+-            <dt>Best next step</dt>
+-            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
 -          </div>
 -        </dl>
 -      </section>
-+      <ContactDetailsSection />
++      <OpeningHoursSection />
  
-       <section id="opening-hours">
-         <h2>Availability</h2>
+       <section aria-label="Contact closing note">
+         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
 
 codex
-The section component is in place and wired into `Contatti.jsx`. I’m running the build now to catch any integration issues before I report back.
+The section component is in place. I’m running the build now, then I’ll record the task result in `agent/AGENT_REPORT.md` as required.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 803ms:
+/bin/zsh -lc "sed -n '1,240p' src/components/Opening-hoursSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    backgroundColor: '#231b16',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
+  },
+  header: {
+    display: 'grid',
+    gap: '1rem',
+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
+    textAlign: 'left',
+  },
+  eyebrow: {
+    margin: 0,
+    color: '#d9bf8d',
+    fontSize: '0.82rem',
+    letterSpacing: '0.22em',
+exec
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 819ms:
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 61 modules transformed.
+✓ 62 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-_zYj53KP.js   278.61 kB │ gzip: 84.25 kB
-✓ built in 577ms
+dist/assets/index-CDZ76eN1.js   280.78 kB │ gzip: 84.51 kB
+✓ built in 600ms
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index e230cb4f4d74d875824e05ba0e5c8e8b1c0bfc81..5b5f07e1d85bc837a79f1f947ec549a815fa4921
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -219,6 +219,18 @@
- 
- Implemented a dedicated `Menu-categoriesSection` component in
- 
-+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
-+
-+Launching Codex for TASK section-contatti-contact-details.
-+
-+Completed TASK section-contatti-contact-details.
-+
-+Implemented a dedicated `Contact-detailsSection` component in
-+`src/components/Contact-detailsSection.jsx` and rendered it from
-+`src/pages/Contatti.jsx`. The contatti page now includes the required
-+`contact-details` contact-block section with premium inquiry copy, linked phone
-+and email details, and service area information.
-+
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
- 
- Launching Codex for TASK section-contatti-contact-hero.
-diff --git a/src/components/Contact-detailsSection.jsx b/src/components/Contact-detailsSection.jsx
+diff --git a/src/components/Opening-hoursSection.jsx b/src/components/Opening-hoursSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c361660aaf7
+index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a338293485771
 --- /dev/null
-+++ b/src/components/Contact-detailsSection.jsx
-@@ -0,0 +1,147 @@
++++ b/src/components/Opening-hoursSection.jsx
+@@ -0,0 +1,133 @@
 +const sectionStyles = {
 +  section: {
 +    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
 +    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(246, 239, 228, 0.96) 0%, rgba(236, 223, 205, 0.92) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++    backgroundColor: '#231b16',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
 +  },
 +  header: {
 +    display: 'grid',
@@ -2133,7 +2007,7 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    color: '#9f7b4b',
++    color: '#d9bf8d',
 +    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
@@ -2142,7 +2016,7 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  title: {
 +    margin: 0,
 +    maxWidth: '14ch',
-+    color: '#201914',
++    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
 +    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
 +    lineHeight: 1.05,
@@ -2150,7 +2024,7 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  intro: {
 +    margin: 0,
 +    maxWidth: '44rem',
-+    color: 'rgba(32, 25, 20, 0.78)',
++    color: 'rgba(247, 241, 232, 0.78)',
 +    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
@@ -2165,12 +2039,12 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +    minHeight: '100%',
 +    padding: '1.4rem',
 +    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.86)',
-+    border: '1px solid rgba(159, 123, 75, 0.14)',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.16)',
 +  },
 +  label: {
 +    margin: 0,
-+    color: '#9f7b4b',
++    color: '#d9bf8d',
 +    fontSize: '0.78rem',
 +    letterSpacing: '0.16em',
 +    textTransform: 'uppercase',
@@ -2178,178 +2052,174 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  },
 +  value: {
 +    margin: 0,
-+    color: '#201914',
++    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
 +    fontSize: '1.45rem',
 +    lineHeight: 1.15,
 +  },
 +  description: {
 +    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.74)',
++    color: 'rgba(247, 241, 232, 0.72)',
 +    lineHeight: 1.7,
-+  },
-+  link: {
-+    color: '#201914',
-+    textDecoration: 'none',
 +  },
 +  note: {
 +    margin: '1.5rem 0 0',
 +    maxWidth: '44rem',
-+    color: 'rgba(32, 25, 20, 0.72)',
++    color: 'rgba(247, 241, 232, 0.72)',
 +    lineHeight: 1.7,
 +  },
 +}
 +
-+const contactItems = [
++const availabilityItems = [
 +  {
-+    label: 'Phone',
-+    value: '+39 011 000000',
-+    href: 'tel:+39011000000',
-+    description: 'For planning calls, event timing questions, and proposal follow-ups during inquiry hours.',
++    label: 'Inquiry hours',
++    value: 'Monday to Saturday',
++    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
 +  },
 +  {
-+    label: 'Email',
-+    value: 'hello@casaaureaevents.it',
-+    href: 'mailto:hello@casaaureaevents.it',
-+    description: 'Send your date, venue, guest count, and the atmosphere you would like us to create.',
++    label: 'Planning calls',
++    value: 'By appointment',
++    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
 +  },
 +  {
-+    label: 'Service area',
-+    value: 'Torino and surrounding areas',
-+    description: 'Available for elegant weddings, private celebrations, and premium corporate evenings.',
++    label: 'Response focus',
++    value: 'Tailored proposals',
++    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
 +  },
 +]
 +
-+export default function ContactDetailsSection() {
++export default function OpeningHoursSection() {
 +  return (
 +    <section
-+      id="contact-details"
-+      aria-labelledby="contact-details-title"
++      id="opening-hours"
++      aria-labelledby="opening-hours-title"
 +      style={sectionStyles.section}
 +    >
 +      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Contact details</p>
-+        <h2 id="contact-details-title" style={sectionStyles.title}>
-+          Share the essentials and we will guide the next step
++        <p style={sectionStyles.eyebrow}>Availability</p>
++        <h2 id="opening-hours-title" style={sectionStyles.title}>
++          Clear response windows for thoughtful event planning
 +        </h2>
 +        <p style={sectionStyles.intro}>
-+          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-+          and polished presentation. We keep the first conversation clear, practical, and tailored to your occasion.
++          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
++          guest-experience details that deserve careful attention.
 +        </p>
 +      </div>
 +
 +      <div style={sectionStyles.grid}>
-+        {contactItems.map((item) => (
++        {availabilityItems.map((item) => (
 +          <article key={item.label} style={sectionStyles.card}>
 +            <p style={sectionStyles.label}>{item.label}</p>
-+            <p style={sectionStyles.value}>
-+              {item.href ? (
-+                <a href={item.href} style={sectionStyles.link}>
-+                  {item.value}
-+                </a>
-+              ) : (
-+                item.value
-+              )}
-+            </p>
++            <p style={sectionStyles.value}>{item.value}</p>
 +            <p style={sectionStyles.description}>{item.description}</p>
 +          </article>
 +        ))}
 +      </div>
 +
 +      <p style={sectionStyles.note}>
-+        The most helpful first message includes your event date, approximate guest count, venue location, and whether
-+        you are looking for catering, bar service, or a full hospitality proposal.
++        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
++        whether you are looking for catering, bar service, or full hospitality support.
 +      </p>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 1a0f2a18b5ad41a80aa0c42729ec5d0e1339018e..40e708de7d68931b65db49546e3bd27660b53d23
+index 40e708de7d68931b65db49546e3bd27660b53d23..7f40fc2f2ce697a5ac905a1599bbf8c10b17d633
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,35 +1,12 @@
+@@ -1,5 +1,6 @@
  import ContactHeroSection from '../components/Contact-heroSection'
-+import ContactDetailsSection from '../components/Contact-detailsSection'
+ import ContactDetailsSection from '../components/Contact-detailsSection'
++import OpeningHoursSection from '../components/Opening-hoursSection'
  
  export default function Contatti() {
    return (
-     <article aria-labelledby="contatti-title">
-       <ContactHeroSection />
+@@ -8,27 +9,7 @@
  
--      <section id="contact-details">
--        <h2>Contact details</h2>
+       <ContactDetailsSection />
+ 
+-      <section id="opening-hours">
+-        <h2>Availability</h2>
 -        <p>
--          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
--          and polished presentation.
+-          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
+-          corporate clients looking for a tailored proposal.
 -        </p>
 -        <dl>
 -          <div>
--            <dt>Phone</dt>
--            <dd>
--              <a href="tel:+39011000000">+39 011 000000</a>
--            </dd>
+-            <dt>Inquiry hours</dt>
+-            <dd>Monday to Saturday, 09:00 to 19:00</dd>
 -          </div>
 -          <div>
--            <dt>Email</dt>
--            <dd>
--              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
--            </dd>
+-            <dt>Planning calls</dt>
+-            <dd>By appointment</dd>
 -          </div>
 -          <div>
--            <dt>Service area</dt>
--            <dd>Torino and surrounding areas</dd>
+-            <dt>Best next step</dt>
+-            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
 -          </div>
 -        </dl>
 -      </section>
-+      <ContactDetailsSection />
++      <OpeningHoursSection />
  
-       <section id="opening-hours">
-         <h2>Availability</h2>
+       <section aria-label="Contact closing note">
+         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
 
 codex
-Modified files: [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx), [Contact-detailsSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Contact-detailsSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
-
-Implemented the `contact-details` section for the `contatti` page as a dedicated `ContactDetailsSection` component and replaced the inline placeholder markup in [Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx). The section now renders as a premium contact block with inquiry copy, linked phone and email details, service area information, and semantic section structure under `id="contact-details"`.
-
-Build result: `npm run build` passed successfully with a production Vite build. I did not run browser-level validation in this turn.
+The build is clean. I’m appending the task entry to `agent/AGENT_REPORT.md` now so the execution log stays aligned with the required workflow.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+@@ -512 +512,13 @@
+ Launching Codex for TASK section-contatti-opening-hours.
++
++TASK section-contatti-opening-hours executed by Codex.
++Waiting for validation.
++
++TASK section-contatti-opening-hours completed successfully.
++Build passed.
++
++Implemented a dedicated `OpeningHoursSection` component in
++`src/components/Opening-hoursSection.jsx` and rendered it from
++`src/pages/Contatti.jsx`. The contact page now includes the required
++`opening-hours` hours-block section with premium availability copy and
++structured planning details.
+apply_patch(auto_approved=true) exited 0 in 57ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index e230cb4f4d74d875824e05ba0e5c8e8b1c0bfc81..5b5f07e1d85bc837a79f1f947ec549a815fa4921
+index de30e564bc76ec11050c06c2c5394f7f583712c0..cc50cd90bfeac926b8444a99b716ed1cf26770dd
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -219,6 +219,18 @@
+@@ -510,3 +510,15 @@
+ Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
  
- Implemented a dedicated `Menu-categoriesSection` component in
- 
-+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+ Launching Codex for TASK section-contatti-opening-hours.
 +
-+Launching Codex for TASK section-contatti-contact-details.
++TASK section-contatti-opening-hours executed by Codex.
++Waiting for validation.
 +
-+Completed TASK section-contatti-contact-details.
++TASK section-contatti-opening-hours completed successfully.
++Build passed.
 +
-+Implemented a dedicated `Contact-detailsSection` component in
-+`src/components/Contact-detailsSection.jsx` and rendered it from
-+`src/pages/Contatti.jsx`. The contatti page now includes the required
-+`contact-details` contact-block section with premium inquiry copy, linked phone
-+and email details, and service area information.
-+
- Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
- 
- Launching Codex for TASK section-contatti-contact-hero.
-diff --git a/src/components/Contact-detailsSection.jsx b/src/components/Contact-detailsSection.jsx
++Implemented a dedicated `OpeningHoursSection` component in
++`src/components/Opening-hoursSection.jsx` and rendered it from
++`src/pages/Contatti.jsx`. The contact page now includes the required
++`opening-hours` hours-block section with premium availability copy and
++structured planning details.
+diff --git a/src/components/Opening-hoursSection.jsx b/src/components/Opening-hoursSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c361660aaf7
+index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a338293485771
 --- /dev/null
-+++ b/src/components/Contact-detailsSection.jsx
-@@ -0,0 +1,147 @@
++++ b/src/components/Opening-hoursSection.jsx
+@@ -0,0 +1,133 @@
 +const sectionStyles = {
 +  section: {
 +    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
 +    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(246, 239, 228, 0.96) 0%, rgba(236, 223, 205, 0.92) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++    backgroundColor: '#231b16',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
 +  },
 +  header: {
 +    display: 'grid',
@@ -2359,7 +2229,7 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    color: '#9f7b4b',
++    color: '#d9bf8d',
 +    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
@@ -2368,7 +2238,7 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  title: {
 +    margin: 0,
 +    maxWidth: '14ch',
-+    color: '#201914',
++    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
 +    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
 +    lineHeight: 1.05,
@@ -2376,7 +2246,7 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  intro: {
 +    margin: 0,
 +    maxWidth: '44rem',
-+    color: 'rgba(32, 25, 20, 0.78)',
++    color: 'rgba(247, 241, 232, 0.78)',
 +    fontSize: '1rem',
 +    lineHeight: 1.8,
 +  },
@@ -2391,12 +2261,12 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +    minHeight: '100%',
 +    padding: '1.4rem',
 +    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.86)',
-+    border: '1px solid rgba(159, 123, 75, 0.14)',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.16)',
 +  },
 +  label: {
 +    margin: 0,
-+    color: '#9f7b4b',
++    color: '#d9bf8d',
 +    fontSize: '0.78rem',
 +    letterSpacing: '0.16em',
 +    textTransform: 'uppercase',
@@ -2404,133 +2274,532 @@ index 0000000000000000000000000000000000000000..44a1d8614e94851d83b0cd29357d8c36
 +  },
 +  value: {
 +    margin: 0,
-+    color: '#201914',
++    color: '#f7f1e8',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
 +    fontSize: '1.45rem',
 +    lineHeight: 1.15,
 +  },
 +  description: {
 +    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.74)',
++    color: 'rgba(247, 241, 232, 0.72)',
 +    lineHeight: 1.7,
-+  },
-+  link: {
-+    color: '#201914',
-+    textDecoration: 'none',
 +  },
 +  note: {
 +    margin: '1.5rem 0 0',
 +    maxWidth: '44rem',
-+    color: 'rgba(32, 25, 20, 0.72)',
++    color: 'rgba(247, 241, 232, 0.72)',
 +    lineHeight: 1.7,
 +  },
 +}
 +
-+const contactItems = [
++const availabilityItems = [
 +  {
-+    label: 'Phone',
-+    value: '+39 011 000000',
-+    href: 'tel:+39011000000',
-+    description: 'For planning calls, event timing questions, and proposal follow-ups during inquiry hours.',
++    label: 'Inquiry hours',
++    value: 'Monday to Saturday',
++    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
 +  },
 +  {
-+    label: 'Email',
-+    value: 'hello@casaaureaevents.it',
-+    href: 'mailto:hello@casaaureaevents.it',
-+    description: 'Send your date, venue, guest count, and the atmosphere you would like us to create.',
++    label: 'Planning calls',
++    value: 'By appointment',
++    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
 +  },
 +  {
-+    label: 'Service area',
-+    value: 'Torino and surrounding areas',
-+    description: 'Available for elegant weddings, private celebrations, and premium corporate evenings.',
++    label: 'Response focus',
++    value: 'Tailored proposals',
++    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
 +  },
 +]
 +
-+export default function ContactDetailsSection() {
++export default function OpeningHoursSection() {
 +  return (
 +    <section
-+      id="contact-details"
-+      aria-labelledby="contact-details-title"
++      id="opening-hours"
++      aria-labelledby="opening-hours-title"
 +      style={sectionStyles.section}
 +    >
 +      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Contact details</p>
-+        <h2 id="contact-details-title" style={sectionStyles.title}>
-+          Share the essentials and we will guide the next step
++        <p style={sectionStyles.eyebrow}>Availability</p>
++        <h2 id="opening-hours-title" style={sectionStyles.title}>
++          Clear response windows for thoughtful event planning
 +        </h2>
 +        <p style={sectionStyles.intro}>
-+          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-+          and polished presentation. We keep the first conversation clear, practical, and tailored to your occasion.
++          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
++          guest-experience details that deserve careful attention.
 +        </p>
 +      </div>
 +
 +      <div style={sectionStyles.grid}>
-+        {contactItems.map((item) => (
++        {availabilityItems.map((item) => (
 +          <article key={item.label} style={sectionStyles.card}>
 +            <p style={sectionStyles.label}>{item.label}</p>
-+            <p style={sectionStyles.value}>
-+              {item.href ? (
-+                <a href={item.href} style={sectionStyles.link}>
-+                  {item.value}
-+                </a>
-+              ) : (
-+                item.value
-+              )}
-+            </p>
++            <p style={sectionStyles.value}>{item.value}</p>
 +            <p style={sectionStyles.description}>{item.description}</p>
 +          </article>
 +        ))}
 +      </div>
 +
 +      <p style={sectionStyles.note}>
-+        The most helpful first message includes your event date, approximate guest count, venue location, and whether
-+        you are looking for catering, bar service, or a full hospitality proposal.
++        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
++        whether you are looking for catering, bar service, or full hospitality support.
 +      </p>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
-index 1a0f2a18b5ad41a80aa0c42729ec5d0e1339018e..40e708de7d68931b65db49546e3bd27660b53d23
+index 40e708de7d68931b65db49546e3bd27660b53d23..7f40fc2f2ce697a5ac905a1599bbf8c10b17d633
 --- a/src/pages/Contatti.jsx
 +++ b/src/pages/Contatti.jsx
-@@ -1,35 +1,12 @@
+@@ -1,5 +1,6 @@
  import ContactHeroSection from '../components/Contact-heroSection'
-+import ContactDetailsSection from '../components/Contact-detailsSection'
+ import ContactDetailsSection from '../components/Contact-detailsSection'
++import OpeningHoursSection from '../components/Opening-hoursSection'
  
  export default function Contatti() {
    return (
-     <article aria-labelledby="contatti-title">
-       <ContactHeroSection />
+@@ -8,27 +9,7 @@
  
--      <section id="contact-details">
--        <h2>Contact details</h2>
+       <ContactDetailsSection />
+ 
+-      <section id="opening-hours">
+-        <h2>Availability</h2>
 -        <p>
--          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
--          and polished presentation.
+-          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
+-          corporate clients looking for a tailored proposal.
 -        </p>
 -        <dl>
 -          <div>
--            <dt>Phone</dt>
--            <dd>
--              <a href="tel:+39011000000">+39 011 000000</a>
--            </dd>
+-            <dt>Inquiry hours</dt>
+-            <dd>Monday to Saturday, 09:00 to 19:00</dd>
 -          </div>
 -          <div>
--            <dt>Email</dt>
--            <dd>
--              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
--            </dd>
+-            <dt>Planning calls</dt>
+-            <dd>By appointment</dd>
 -          </div>
 -          <div>
--            <dt>Service area</dt>
--            <dd>Torino and surrounding areas</dd>
+-            <dt>Best next step</dt>
+-            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
 -          </div>
 -        </dl>
 -      </section>
-+      <ContactDetailsSection />
++      <OpeningHoursSection />
  
-       <section id="opening-hours">
-         <h2>Availability</h2>
+       <section aria-label="Contact closing note">
+         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
+
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index de30e564bc76ec11050c06c2c5394f7f583712c0..cc50cd90bfeac926b8444a99b716ed1cf26770dd
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -510,3 +510,15 @@
+ Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
+ 
+ Launching Codex for TASK section-contatti-opening-hours.
++
++TASK section-contatti-opening-hours executed by Codex.
++Waiting for validation.
++
++TASK section-contatti-opening-hours completed successfully.
++Build passed.
++
++Implemented a dedicated `OpeningHoursSection` component in
++`src/components/Opening-hoursSection.jsx` and rendered it from
++`src/pages/Contatti.jsx`. The contact page now includes the required
++`opening-hours` hours-block section with premium availability copy and
++structured planning details.
+diff --git a/src/components/Opening-hoursSection.jsx b/src/components/Opening-hoursSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a338293485771
+--- /dev/null
++++ b/src/components/Opening-hoursSection.jsx
+@@ -0,0 +1,133 @@
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    backgroundColor: '#231b16',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
++  },
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#d9bf8d',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    maxWidth: '14ch',
++    color: '#f7f1e8',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    maxWidth: '44rem',
++    color: 'rgba(247, 241, 232, 0.78)',
++    fontSize: '1rem',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.75rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.16)',
++  },
++  label: {
++    margin: 0,
++    color: '#d9bf8d',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  value: {
++    margin: 0,
++    color: '#f7f1e8',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  description: {
++    margin: 0,
++    color: 'rgba(247, 241, 232, 0.72)',
++    lineHeight: 1.7,
++  },
++  note: {
++    margin: '1.5rem 0 0',
++    maxWidth: '44rem',
++    color: 'rgba(247, 241, 232, 0.72)',
++    lineHeight: 1.7,
++  },
++}
++
++const availabilityItems = [
++  {
++    label: 'Inquiry hours',
++    value: 'Monday to Saturday',
++    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
++  },
++  {
++    label: 'Planning calls',
++    value: 'By appointment',
++    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
++  },
++  {
++    label: 'Response focus',
++    value: 'Tailored proposals',
++    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
++  },
++]
++
++export default function OpeningHoursSection() {
++  return (
++    <section
++      id="opening-hours"
++      aria-labelledby="opening-hours-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Availability</p>
++        <h2 id="opening-hours-title" style={sectionStyles.title}>
++          Clear response windows for thoughtful event planning
++        </h2>
++        <p style={sectionStyles.intro}>
++          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
++          guest-experience details that deserve careful attention.
++        </p>
++      </div>
++
++      <div style={sectionStyles.grid}>
++        {availabilityItems.map((item) => (
++          <article key={item.label} style={sectionStyles.card}>
++            <p style={sectionStyles.label}>{item.label}</p>
++            <p style={sectionStyles.value}>{item.value}</p>
++            <p style={sectionStyles.description}>{item.description}</p>
++          </article>
++        ))}
++      </div>
++
++      <p style={sectionStyles.note}>
++        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
++        whether you are looking for catering, bar service, or full hospitality support.
++      </p>
++    </section>
++  )
++}
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 40e708de7d68931b65db49546e3bd27660b53d23..7f40fc2f2ce697a5ac905a1599bbf8c10b17d633
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,5 +1,6 @@
+ import ContactHeroSection from '../components/Contact-heroSection'
+ import ContactDetailsSection from '../components/Contact-detailsSection'
++import OpeningHoursSection from '../components/Opening-hoursSection'
+ 
+ export default function Contatti() {
+   return (
+@@ -8,27 +9,7 @@
+ 
+       <ContactDetailsSection />
+ 
+-      <section id="opening-hours">
+-        <h2>Availability</h2>
+-        <p>
+-          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
+-          corporate clients looking for a tailored proposal.
+-        </p>
+-        <dl>
+-          <div>
+-            <dt>Inquiry hours</dt>
+-            <dd>Monday to Saturday, 09:00 to 19:00</dd>
+-          </div>
+-          <div>
+-            <dt>Planning calls</dt>
+-            <dd>By appointment</dd>
+-          </div>
+-          <div>
+-            <dt>Best next step</dt>
+-            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
+-          </div>
+-        </dl>
+-      </section>
++      <OpeningHoursSection />
+ 
+       <section aria-label="Contact closing note">
+         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
+
+codex
+Modified files:
+- [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx)
+- [src/components/Opening-hoursSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Opening-hoursSection.jsx)
+- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+
+What was implemented:
+- Replaced the inline opening-hours markup on the contact page with a dedicated `OpeningHoursSection` component.
+- Added a production-ready `hours-block` section with `id="opening-hours"`, a section heading, availability details, and supporting copy consistent with the existing premium contact page style.
+- Rendered the new section from the contatti page to satisfy the task requirement.
+
+Build result:
+- `npm run build` passed successfully.
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index de30e564bc76ec11050c06c2c5394f7f583712c0..cc50cd90bfeac926b8444a99b716ed1cf26770dd
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -510,3 +510,15 @@
+ Prepared TASK section-contatti-opening-hours (Create opening-hours section on contatti) for execution.
+ 
+ Launching Codex for TASK section-contatti-opening-hours.
++
++TASK section-contatti-opening-hours executed by Codex.
++Waiting for validation.
++
++TASK section-contatti-opening-hours completed successfully.
++Build passed.
++
++Implemented a dedicated `OpeningHoursSection` component in
++`src/components/Opening-hoursSection.jsx` and rendered it from
++`src/pages/Contatti.jsx`. The contact page now includes the required
++`opening-hours` hours-block section with premium availability copy and
++structured planning details.
+diff --git a/src/components/Opening-hoursSection.jsx b/src/components/Opening-hoursSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..21495b439448bf326b1e7729884a338293485771
+--- /dev/null
++++ b/src/components/Opening-hoursSection.jsx
+@@ -0,0 +1,133 @@
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    backgroundColor: '#231b16',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.16)',
++  },
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#d9bf8d',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    maxWidth: '14ch',
++    color: '#f7f1e8',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.4rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    maxWidth: '44rem',
++    color: 'rgba(247, 241, 232, 0.78)',
++    fontSize: '1rem',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.75rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.16)',
++  },
++  label: {
++    margin: 0,
++    color: '#d9bf8d',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  value: {
++    margin: 0,
++    color: '#f7f1e8',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  description: {
++    margin: 0,
++    color: 'rgba(247, 241, 232, 0.72)',
++    lineHeight: 1.7,
++  },
++  note: {
++    margin: '1.5rem 0 0',
++    maxWidth: '44rem',
++    color: 'rgba(247, 241, 232, 0.72)',
++    lineHeight: 1.7,
++  },
++}
++
++const availabilityItems = [
++  {
++    label: 'Inquiry hours',
++    value: 'Monday to Saturday',
++    description: 'We review new event requests from 09:00 to 19:00 and reply with care, context, and next steps.',
++  },
++  {
++    label: 'Planning calls',
++    value: 'By appointment',
++    description: 'Consultations are scheduled around venue visits, tastings, and proposal reviews for a calm planning flow.',
++  },
++  {
++    label: 'Response focus',
++    value: 'Tailored proposals',
++    description: 'Share your date, guest count, venue, and desired atmosphere so we can shape the right hospitality brief.',
++  },
++]
++
++export default function OpeningHoursSection() {
++  return (
++    <section
++      id="opening-hours"
++      aria-labelledby="opening-hours-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Availability</p>
++        <h2 id="opening-hours-title" style={sectionStyles.title}>
++          Clear response windows for thoughtful event planning
++        </h2>
++        <p style={sectionStyles.intro}>
++          We keep inquiries organised and personal, with time set aside for proposal conversations, planning calls, and
++          guest-experience details that deserve careful attention.
++        </p>
++      </div>
++
++      <div style={sectionStyles.grid}>
++        {availabilityItems.map((item) => (
++          <article key={item.label} style={sectionStyles.card}>
++            <p style={sectionStyles.label}>{item.label}</p>
++            <p style={sectionStyles.value}>{item.value}</p>
++            <p style={sectionStyles.description}>{item.description}</p>
++          </article>
++        ))}
++      </div>
++
++      <p style={sectionStyles.note}>
++        For the fastest and most useful reply, include your event type, estimated guest count, venue location, and
++        whether you are looking for catering, bar service, or full hospitality support.
++      </p>
++    </section>
++  )
++}
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 40e708de7d68931b65db49546e3bd27660b53d23..7f40fc2f2ce697a5ac905a1599bbf8c10b17d633
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,5 +1,6 @@
+ import ContactHeroSection from '../components/Contact-heroSection'
+ import ContactDetailsSection from '../components/Contact-detailsSection'
++import OpeningHoursSection from '../components/Opening-hoursSection'
+ 
+ export default function Contatti() {
+   return (
+@@ -8,27 +9,7 @@
+ 
+       <ContactDetailsSection />
+ 
+-      <section id="opening-hours">
+-        <h2>Availability</h2>
+-        <p>
+-          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
+-          corporate clients looking for a tailored proposal.
+-        </p>
+-        <dl>
+-          <div>
+-            <dt>Inquiry hours</dt>
+-            <dd>Monday to Saturday, 09:00 to 19:00</dd>
+-          </div>
+-          <div>
+-            <dt>Planning calls</dt>
+-            <dd>By appointment</dd>
+-          </div>
+-          <div>
+-            <dt>Best next step</dt>
+-            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
+-          </div>
+-        </dl>
+-      </section>
++      <OpeningHoursSection />
+ 
+       <section aria-label="Contact closing note">
+         <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
 
 tokens used
-23.546
+23.032
