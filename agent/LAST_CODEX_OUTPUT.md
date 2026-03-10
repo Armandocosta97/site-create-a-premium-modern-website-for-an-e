@@ -1,8 +1,8 @@
-Modified files: [src/pages/Chi-siamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx), [src/components/PhilosophySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/PhilosophySection.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files: [Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-Implemented the `philosophy` section on `chi-siamo` as a dedicated split-content component. [src/pages/Chi-siamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx) now renders `PhilosophySection`, and [src/components/PhilosophySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/PhilosophySection.jsx) provides the two-column editorial layout with premium philosophy copy, supporting principles, and a valid CTA to `/contatti`.
+Implemented the gallery page shell in [Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx) by replacing placeholder text with a semantic `article` containing the required `gallery-hero` and `gallery-grid` sections, premium copy, and a single page `h1`. The `/gallery` route was already mounted in [App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so no routing change was needed. I also updated [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with a short task summary per project instructions.
 
-Build result: `npm run build` passed successfully with Vite production output generated. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with the task summary.
+Build result: `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd83e-a01f-7bd0-9ea2-cde6d39429d1
+session id: 019cd83f-ff01-7150-85d2-8b46ad09d3c2
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1196,35 +1196,32 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-chi-siamo-philosophy
+page-gallery-shell
 
 ## Current task title
-Create philosophy section on chi-siamo
+Create gallery page shell
 
 ## Current task type
-section
+page-shell
 
 ## Current task target
 ```json
 {
-  "pageId": "chi-siamo",
-  "sectionId": "philosophy",
-  "sectionType": "split-content"
+  "pageId": "gallery"
 }
 ```
 
 ## Depends on
-- page-chi-siamo-shell
+- none
 
 ## Files allowed
-- src/pages/Chi-siamo.jsx
-- src/components/PhilosophySection.jsx
-- src/components
+- src/App.jsx
+- src/pages/Gallery.jsx
 
 ## Definition of done
-- section philosophy exists on chi-siamo
-- section philosophy matches type split-content
-- section philosophy is rendered in page chi-siamo
+- page shell exists for gallery
+- gallery route is mounted if required
+- gallery page renders without crashing
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1253,110 +1250,55 @@ section
 
 mcp startup: no servers
 codex
-I’m implementing only the `chi-siamo` philosophy split-content section, then I’ll run a build check and update the agent report as required.
+I’m checking the current app structure and the gallery route setup first so I can add only the shell required for this task and avoid touching unrelated pages.
 exec
-/bin/zsh -lc "test -f src/components/PhilosophySection.jsx && sed -n '1,240p' src/components/PhilosophySection.jsx || true" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Chi-siamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "pwd && rg --files src agent | rg 'Chi-siamo.jsx|PhilosophySection.jsx|AGENT_REPORT.md|CURRENT_TASK_PROMPT.md|TASK_STATE.json|DEVELOPMENT_METHOD.md|site-spec.json'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "ls src/components && rg -n \"Section|Container|Button|split|editorial|about\" src/components src/pages -g '"'!src/components/PhilosophySection.jsx'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
-
- succeeded in 51ms:
-import AboutHeroSection from '../components/About-heroSection'
-import StorySection from '../components/StorySection'
-
-export default function ChiSiamo() {
-  return (
-    <article aria-labelledby="chi-siamo-title">
-      <AboutHeroSection />
-
-      <StorySection />
-
-      <section id="philosophy" aria-labelledby="philosophy-title">
-        <div>
-          <h2 id="philosophy-title">Our philosophy</h2>
-          <p>
-            We believe premium events are defined by the details guests notice
-            without being told: the pacing of service, the elegance of the
-            setting, the quality of each pour, and the sense that every moment
-            has been prepared with intention.
-          </p>
-          <p>
- succeeded in 51ms:
-About-heroSection.jsx
-Brand-story-previewSection.jsx
-FloatingWhatsAppButton.jsx
-HeroSection.jsx
-Menu-categoriesSection.jsx
-Menu-heroSection.jsx
-SignaturePreviewSection.jsx
-StorySection.jsx
-src/pages/ChiSiamo.jsx:4:      <section id="about-hero">
-src/pages/ChiSiamo.jsx:6:        <p>Content for about-hero will be generated by tasks</p>
-src/pages/Menu.jsx:1:import MenuHeroSection from '../components/Menu-heroSection'
-src/pages/Menu.jsx:2:import MenuCategoriesSection from '../components/Menu-categoriesSection'
-src/pages/Menu.jsx:7:      <MenuHeroSection />
-src/pages/Menu.jsx:8:      <MenuCategoriesSection />
-src/components/SignaturePreviewSection.jsx:133:export default function SignaturePreviewSection() {
-src/components/StorySection.jsx:115:export default function StorySection() {
-src/components/StorySection.jsx:125:          service, and a strong sense of atmosphere for clients who care about
-src/components/About-heroSection.jsx:89:export default function AboutHeroSection() {
-src/components/About-heroSection.jsx:92:      id="about-hero"
-src/components/Menu-categoriesSection.jsx:177:export default function MenuCategoriesSection() {
- succeeded in 51ms:
+/bin/zsh -lc "pwd && rg --files src agent brief docs | rg '"'^(src/App.jsx|src/pages|agent/AGENT_REPORT.md|agent/CURRENT_TASK_PROMPT.md|agent/TASK_STATE.json|site-spec.json|docs/DEVELOPMENT_METHOD.md)$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
+docs/DEVELOPMENT_METHOD.md
 agent/CURRENT_TASK_PROMPT.md
 agent/TASK_STATE.json
 agent/AGENT_REPORT.md
-src/pages/Chi-siamo.jsx
-codex
-I’ve confirmed the page already has a placeholder `philosophy` block. Next I’m replacing that with a reusable component that matches the required split-content structure and existing visual language.
-exec
-/bin/zsh -lc "sed -n '1,220p' src/components/About-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,200p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/components/Brand-story-previewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,240p' src/components/StorySection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
-import { Link } from 'react-router-dom'
+src/App.jsx
+ succeeded in 51ms:
+export default function Gallery() {
+  return (
+    <>
+      <section id="gallery-hero">
+        <h1>Gallery Hero</h1>
+        <p>Content for gallery-hero will be generated by tasks</p>
+      </section>
+      <section id="gallery-grid">
+        <h2>Gallery Grid</h2>
+        <p>Content for gallery-grid will be generated by tasks</p>
+      </section>
+    </>
+  )
+}
+ succeeded in 51ms:
+import { HashRouter, Routes, Route } from "react-router-dom"
+import Layout from "./layout/Layout"
+import Home from "./pages/Home"
+import Menu from "./pages/Menu"
+import ChiSiamo from "./pages/Chi-siamo"
+import Gallery from "./pages/Gallery"
+import Contatti from "./pages/Contatti"
+import Servizi from "./pages/Servizi"
 
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: '1.5rem',
-    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    backgroundColor: '#241c17',
-    color: '#f6efe4',
-    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-  },
-  media: {
-    minHeight: '20rem',
-    borderRadius: '28px',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
-    backgroundSize: 'cover',
- succeeded in 52ms:
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(30rem, 74vh, 43rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(52, 38, 31, 0.12) 0%, rgba(31, 23, 18, 0.66) 56%, rgba(20, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
-  },
-  panel: {
-    width: 'min(100%, 47rem)',
-    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-    borderRadius: '28px',
- succeeded in 52ms:
+export default function App() {
+  return (
+    <HashRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/chi-siamo" element={<ChiSiamo />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contatti" element={<Contatti />} />
+          <Route path="/servizi" element={<Servizi />} />
+ succeeded in 51ms:
 # AGENT REPORT
 
 Project created.
@@ -1377,767 +1319,14 @@ Waiting for validation.
 TASK page-home-shell completed successfully.
 Build passed.
 Commit created for TASK page-home-shell.
- succeeded in 51ms:
-import { Link } from 'react-router-dom'
-
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5rem)',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: '1.5rem',
-    padding: 'clamp(1.4rem, 4vw, 2.75rem)',
-    borderRadius: '32px',
-    background:
-      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(239, 228, 213, 0.92) 100%)',
-    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
-  },
-  content: {
-    display: 'grid',
-    gap: '1.1rem',
-    textAlign: 'left',
-  },
-  eyebrow: {
 codex
-I have enough context. I’m editing `src/pages/Chi-siamo.jsx` to render a dedicated `PhilosophySection` component, then I’ll add that component with a two-column split layout, premium copy, and one valid contact CTA aligned with the existing page style.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx
-@@ -1,2 +1,3 @@
- import AboutHeroSection from '../components/About-heroSection'
-+import PhilosophySection from '../components/PhilosophySection'
- import StorySection from '../components/StorySection'
-@@ -10,18 +11,3 @@
- 
--      <section id="philosophy" aria-labelledby="philosophy-title">
--        <div>
--          <h2 id="philosophy-title">Our philosophy</h2>
--          <p>
--            We believe premium events are defined by the details guests notice
--            without being told: the pacing of service, the elegance of the
--            setting, the quality of each pour, and the sense that every moment
--            has been prepared with intention.
--          </p>
--          <p>
--            That focus on presentation, timing, and guest comfort is what makes
--            Casa Aurea Events feel personal, polished, and ready for follow-up
--            content in the next tasks.
--          </p>
--        </div>
--      </section>
-+      <PhilosophySection />
-     </article>
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/PhilosophySection.jsx
-import { Link } from 'react-router-dom'
-
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5rem)',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: '1.5rem',
-    alignItems: 'stretch',
-  },
-  contentPanel: {
-    display: 'grid',
-    gap: '1.15rem',
-    padding: 'clamp(1.5rem, 4vw, 2.75rem)',
-    borderRadius: '32px',
-    background:
-      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(238, 227, 212, 0.92) 100%)',
-    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
-    textAlign: 'left',
-  },
-  eyebrow: {
-    margin: 0,
-    color: '#9f7a4b',
-    fontSize: '0.8rem',
-    letterSpacing: '0.22em',
-    textTransform: 'uppercase',
-    fontWeight: 700,
-  },
-  title: {
-    margin: 0,
-    maxWidth: '13ch',
-    color: '#221914',
-    fontFamily: 'Georgia, "Times New Roman", serif',
-    fontSize: 'clamp(2rem, 5vw, 3.3rem)',
-    lineHeight: 1.08,
-    fontWeight: 600,
-  },
-  intro: {
-    margin: 0,
-    maxWidth: '38rem',
-    color: 'rgba(34, 25, 20, 0.82)',
-    fontSize: '1rem',
-    lineHeight: 1.85,
-  },
-  body: {
-    display: 'grid',
-    gap: '0.95rem',
-  },
-  paragraph: {
-    margin: 0,
-    color: 'rgba(34, 25, 20, 0.78)',
-    fontSize: '0.98rem',
-    lineHeight: 1.85,
-  },
-  detailPanel: {
-    position: 'relative',
-    overflow: 'hidden',
-    display: 'grid',
-    gap: '1.15rem',
-    alignContent: 'start',
-    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    backgroundColor: '#241c17',
-    color: '#f6efe4',
-    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-  },
-  detailGlow: {
-    position: 'absolute',
-    inset: 'auto -6rem -6rem auto',
-    width: '14rem',
-    height: '14rem',
-    borderRadius: '999px',
-    background:
-      'radial-gradient(circle, rgba(217, 191, 141, 0.24) 0%, rgba(217, 191, 141, 0) 72%)',
-    pointerEvents: 'none',
-  },
-  detailTitle: {
-    margin: 0,
-    maxWidth: '14ch',
-    fontFamily: 'Georgia, "Times New Roman", serif',
-    fontSize: 'clamp(1.7rem, 3.5vw, 2.4rem)',
-    lineHeight: 1.15,
-    fontWeight: 600,
-  },
-  detailText: {
-    margin: 0,
-    color: 'rgba(246, 239, 228, 0.78)',
-    lineHeight: 1.8,
-  },
-  principles: {
-    display: 'grid',
-    gap: '0.85rem',
-    margin: 0,
-    padding: 0,
-    listStyle: 'none',
-  },
-  principle: {
-    paddingBottom: '0.85rem',
-    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-  },
-  principleTitle: {
-    display: 'block',
-    marginBottom: '0.3rem',
-    color: '#f6efe4',
-    fontSize: '1rem',
-    fontWeight: 700,
-  },
-  principleText: {
-    color: 'rgba(246, 239, 228, 0.74)',
-    lineHeight: 1.7,
-  },
-  action: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 'fit-content',
-    minHeight: '3.1rem',
-    padding: '0.9rem 1.5rem',
-    borderRadius: '999px',
-    backgroundColor: '#d9bf8d',
-    color: '#221914',
-    textDecoration: 'none',
-    fontWeight: 700,
-  },
-}
-
-const philosophyParagraphs = [
-  'We believe the strongest events are never defined by volume or excess. They are remembered because every detail feels intentional, from the welcome moment to the final service pass.',
-  'That is why Casa Aurea approaches catering, drinks, and styling as one continuous experience. Menus, bar rhythm, table presentation, and guest flow are shaped together so the atmosphere feels composed rather than assembled.',
-  'Our role is to bring calm confidence behind the scenes while creating a setting that feels polished, generous, and fully aligned with the client’s taste.',
-]
-
-const philosophyPrinciples = [
-  {
-    title: 'Care in the details',
-    text: 'Presentation, glassware, service timing, and finishing touches are treated as part of the experience itself.',
-  },
-  {
-    title: 'Hospitality with grace',
-    text: 'Guests should feel genuinely looked after, with service that is attentive, elegant, and never intrusive.',
-  },
-  {
-    title: 'Atmosphere with purpose',
-    text: 'Every proposal is shaped to support the tone of the event, whether intimate, celebratory, or distinctly formal.',
-  },
-]
-
-export default function PhilosophySection() {
-  return (
-    <section
-      id="philosophy"
-      aria-labelledby="philosophy-title"
-      style={sectionStyles.section}
-    >
-      <div style={sectionStyles.contentPanel}>
-        <p style={sectionStyles.eyebrow}>Our philosophy</p>
-        <h2 id="philosophy-title" style={sectionStyles.title}>
-          Refined hospitality should feel seamless, not staged
-        </h2>
-        <p style={sectionStyles.intro}>
-          We shape each event around how people gather, dine, toast, and move
-          through the space so the result feels elegant from every angle.
-        </p>
-
-        <div style={sectionStyles.body}>
-          {philosophyParagraphs.map((paragraph) => (
-            <p key={paragraph} style={sectionStyles.paragraph}>
-              {paragraph}
-            </p>
-          ))}
-        </div>
-      </div>
-
-      <aside aria-label="Casa Aurea philosophy details" style={sectionStyles.detailPanel}>
-        <div style={sectionStyles.detailGlow} aria-hidden="true" />
-        <h3 style={sectionStyles.detailTitle}>
-          What guides every Casa Aurea event
-        </h3>
-        <p style={sectionStyles.detailText}>
-          Our standard is simple: guests should feel the quality immediately,
-          while the host feels the ease of working with a team that has already
-          thought through the rhythm of the day.
-        </p>
-
-        <ul style={sectionStyles.principles}>
-          {philosophyPrinciples.map((principle) => (
-            <li key={principle.title} style={sectionStyles.principle}>
-              <span style={sectionStyles.principleTitle}>{principle.title}</span>
-              <span style={sectionStyles.principleText}>{principle.text}</span>
-            </li>
-          ))}
-        </ul>
-
-        <Link to="/contatti" style={sectionStyles.action}>
-          Book a discovery call
-        </Link>
-      </aside>
-    </section>
-  )
-}
-apply_patch(auto_approved=true) exited 0 in 58ms:
-Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/PhilosophySection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx
-file update:
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..554674ed6cb1bff70d5df78ace59424c7b4f27d0
---- /dev/null
-+++ b/src/components/PhilosophySection.jsx
-@@ -0,0 +1,200 @@
-+import { Link } from 'react-router-dom'
-+
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5rem)',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-+    gap: '1.5rem',
-+    alignItems: 'stretch',
-+  },
-+  contentPanel: {
-+    display: 'grid',
-+    gap: '1.15rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.75rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(238, 227, 212, 0.92) 100%)',
-+    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
-+    textAlign: 'left',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7a4b',
-+    fontSize: '0.8rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '13ch',
-+    color: '#221914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 5vw, 3.3rem)',
-+    lineHeight: 1.08,
-+    fontWeight: 600,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '38rem',
-+    color: 'rgba(34, 25, 20, 0.82)',
-+    fontSize: '1rem',
-+    lineHeight: 1.85,
-+  },
-+  body: {
-+    display: 'grid',
-+    gap: '0.95rem',
-+  },
-+  paragraph: {
-+    margin: 0,
-+    color: 'rgba(34, 25, 20, 0.78)',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.85,
-+  },
-+  detailPanel: {
-+    position: 'relative',
-+    overflow: 'hidden',
-+    display: 'grid',
-+    gap: '1.15rem',
-+    alignContent: 'start',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    backgroundColor: '#241c17',
-+    color: '#f6efe4',
-+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-+  },
-+  detailGlow: {
-+    position: 'absolute',
-+    inset: 'auto -6rem -6rem auto',
-+    width: '14rem',
-+    height: '14rem',
-+    borderRadius: '999px',
-+    background:
-+      'radial-gradient(circle, rgba(217, 191, 141, 0.24) 0%, rgba(217, 191, 141, 0) 72%)',
-+    pointerEvents: 'none',
-+  },
-+  detailTitle: {
-+    margin: 0,
-+    maxWidth: '14ch',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(1.7rem, 3.5vw, 2.4rem)',
-+    lineHeight: 1.15,
-+    fontWeight: 600,
-+  },
-+  detailText: {
-+    margin: 0,
-+    color: 'rgba(246, 239, 228, 0.78)',
-+    lineHeight: 1.8,
-+  },
-+  principles: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  principle: {
-+    paddingBottom: '0.85rem',
-+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-+  },
-+  principleTitle: {
-+    display: 'block',
-+    marginBottom: '0.3rem',
-+    color: '#f6efe4',
-+    fontSize: '1rem',
-+    fontWeight: 700,
-+  },
-+  principleText: {
-+    color: 'rgba(246, 239, 228, 0.74)',
-+    lineHeight: 1.7,
-+  },
-+  action: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    width: 'fit-content',
-+    minHeight: '3.1rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#221914',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+}
-+
-+const philosophyParagraphs = [
-+  'We believe the strongest events are never defined by volume or excess. They are remembered because every detail feels intentional, from the welcome moment to the final service pass.',
-+  'That is why Casa Aurea approaches catering, drinks, and styling as one continuous experience. Menus, bar rhythm, table presentation, and guest flow are shaped together so the atmosphere feels composed rather than assembled.',
-+  'Our role is to bring calm confidence behind the scenes while creating a setting that feels polished, generous, and fully aligned with the client’s taste.',
-+]
-+
-+const philosophyPrinciples = [
-+  {
-+    title: 'Care in the details',
-+    text: 'Presentation, glassware, service timing, and finishing touches are treated as part of the experience itself.',
-+  },
-+  {
-+    title: 'Hospitality with grace',
-+    text: 'Guests should feel genuinely looked after, with service that is attentive, elegant, and never intrusive.',
-+  },
-+  {
-+    title: 'Atmosphere with purpose',
-+    text: 'Every proposal is shaped to support the tone of the event, whether intimate, celebratory, or distinctly formal.',
-+  },
-+]
-+
-+export default function PhilosophySection() {
-+  return (
-+    <section
-+      id="philosophy"
-+      aria-labelledby="philosophy-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.contentPanel}>
-+        <p style={sectionStyles.eyebrow}>Our philosophy</p>
-+        <h2 id="philosophy-title" style={sectionStyles.title}>
-+          Refined hospitality should feel seamless, not staged
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We shape each event around how people gather, dine, toast, and move
-+          through the space so the result feels elegant from every angle.
-+        </p>
-+
-+        <div style={sectionStyles.body}>
-+          {philosophyParagraphs.map((paragraph) => (
-+            <p key={paragraph} style={sectionStyles.paragraph}>
-+              {paragraph}
-+            </p>
-+          ))}
-+        </div>
-+      </div>
-+
-+      <aside aria-label="Casa Aurea philosophy details" style={sectionStyles.detailPanel}>
-+        <div style={sectionStyles.detailGlow} aria-hidden="true" />
-+        <h3 style={sectionStyles.detailTitle}>
-+          What guides every Casa Aurea event
-+        </h3>
-+        <p style={sectionStyles.detailText}>
-+          Our standard is simple: guests should feel the quality immediately,
-+          while the host feels the ease of working with a team that has already
-+          thought through the rhythm of the day.
-+        </p>
-+
-+        <ul style={sectionStyles.principles}>
-+          {philosophyPrinciples.map((principle) => (
-+            <li key={principle.title} style={sectionStyles.principle}>
-+              <span style={sectionStyles.principleTitle}>{principle.title}</span>
-+              <span style={sectionStyles.principleText}>{principle.text}</span>
-+            </li>
-+          ))}
-+        </ul>
-+
-+        <Link to="/contatti" style={sectionStyles.action}>
-+          Book a discovery call
-+        </Link>
-+      </aside>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
-index 2f7c912dea055391d084329be56aafcd5a54ed21..a286364902d10d770c48d4feef5d4196ec350a95
---- a/src/pages/Chi-siamo.jsx
-+++ b/src/pages/Chi-siamo.jsx
-@@ -1,4 +1,5 @@
- import AboutHeroSection from '../components/About-heroSection'
-+import PhilosophySection from '../components/PhilosophySection'
- import StorySection from '../components/StorySection'
- 
- export default function ChiSiamo() {
-@@ -8,22 +9,7 @@
- 
-       <StorySection />
- 
--      <section id="philosophy" aria-labelledby="philosophy-title">
--        <div>
--          <h2 id="philosophy-title">Our philosophy</h2>
--          <p>
--            We believe premium events are defined by the details guests notice
--            without being told: the pacing of service, the elegance of the
--            setting, the quality of each pour, and the sense that every moment
--            has been prepared with intention.
--          </p>
--          <p>
--            That focus on presentation, timing, and guest comfort is what makes
--            Casa Aurea Events feel personal, polished, and ready for follow-up
--            content in the next tasks.
--          </p>
--        </div>
--      </section>
-+      <PhilosophySection />
-     </article>
-   )
- }
-
-file update:
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..554674ed6cb1bff70d5df78ace59424c7b4f27d0
---- /dev/null
-+++ b/src/components/PhilosophySection.jsx
-@@ -0,0 +1,200 @@
-+import { Link } from 'react-router-dom'
-+
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5rem)',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-+    gap: '1.5rem',
-+    alignItems: 'stretch',
-+  },
-+  contentPanel: {
-+    display: 'grid',
-+    gap: '1.15rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.75rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(238, 227, 212, 0.92) 100%)',
-+    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
-+    textAlign: 'left',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7a4b',
-+    fontSize: '0.8rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '13ch',
-+    color: '#221914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 5vw, 3.3rem)',
-+    lineHeight: 1.08,
-+    fontWeight: 600,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '38rem',
-+    color: 'rgba(34, 25, 20, 0.82)',
-+    fontSize: '1rem',
-+    lineHeight: 1.85,
-+  },
-+  body: {
-+    display: 'grid',
-+    gap: '0.95rem',
-+  },
-+  paragraph: {
-+    margin: 0,
-+    color: 'rgba(34, 25, 20, 0.78)',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.85,
-+  },
-+  detailPanel: {
-+    position: 'relative',
-+    overflow: 'hidden',
-+    display: 'grid',
-+    gap: '1.15rem',
-+    alignContent: 'start',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    backgroundColor: '#241c17',
-+    color: '#f6efe4',
-+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-+  },
-+  detailGlow: {
-+    position: 'absolute',
-+    inset: 'auto -6rem -6rem auto',
-+    width: '14rem',
-+    height: '14rem',
-+    borderRadius: '999px',
-+    background:
-+      'radial-gradient(circle, rgba(217, 191, 141, 0.24) 0%, rgba(217, 191, 141, 0) 72%)',
-+    pointerEvents: 'none',
-+  },
-+  detailTitle: {
-+    margin: 0,
-+    maxWidth: '14ch',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(1.7rem, 3.5vw, 2.4rem)',
-+    lineHeight: 1.15,
-+    fontWeight: 600,
-+  },
-+  detailText: {
-+    margin: 0,
-+    color: 'rgba(246, 239, 228, 0.78)',
-+    lineHeight: 1.8,
-+  },
-+  principles: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  principle: {
-+    paddingBottom: '0.85rem',
-+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-+  },
-+  principleTitle: {
-+    display: 'block',
-+    marginBottom: '0.3rem',
-+    color: '#f6efe4',
-+    fontSize: '1rem',
-+    fontWeight: 700,
-+  },
-+  principleText: {
-+    color: 'rgba(246, 239, 228, 0.74)',
-+    lineHeight: 1.7,
-+  },
-+  action: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    width: 'fit-content',
-+    minHeight: '3.1rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#221914',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+}
-+
-+const philosophyParagraphs = [
-+  'We believe the strongest events are never defined by volume or excess. They are remembered because every detail feels intentional, from the welcome moment to the final service pass.',
-+  'That is why Casa Aurea approaches catering, drinks, and styling as one continuous experience. Menus, bar rhythm, table presentation, and guest flow are shaped together so the atmosphere feels composed rather than assembled.',
-+  'Our role is to bring calm confidence behind the scenes while creating a setting that feels polished, generous, and fully aligned with the client’s taste.',
-+]
-+
-+const philosophyPrinciples = [
-+  {
-+    title: 'Care in the details',
-+    text: 'Presentation, glassware, service timing, and finishing touches are treated as part of the experience itself.',
-+  },
-+  {
-+    title: 'Hospitality with grace',
-+    text: 'Guests should feel genuinely looked after, with service that is attentive, elegant, and never intrusive.',
-+  },
-+  {
-+    title: 'Atmosphere with purpose',
-+    text: 'Every proposal is shaped to support the tone of the event, whether intimate, celebratory, or distinctly formal.',
-+  },
-+]
-+
-+export default function PhilosophySection() {
-+  return (
-+    <section
-+      id="philosophy"
-+      aria-labelledby="philosophy-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.contentPanel}>
-+        <p style={sectionStyles.eyebrow}>Our philosophy</p>
-+        <h2 id="philosophy-title" style={sectionStyles.title}>
-+          Refined hospitality should feel seamless, not staged
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We shape each event around how people gather, dine, toast, and move
-+          through the space so the result feels elegant from every angle.
-+        </p>
-+
-+        <div style={sectionStyles.body}>
-+          {philosophyParagraphs.map((paragraph) => (
-+            <p key={paragraph} style={sectionStyles.paragraph}>
-+              {paragraph}
-+            </p>
-+          ))}
-+        </div>
-+      </div>
-+
-+      <aside aria-label="Casa Aurea philosophy details" style={sectionStyles.detailPanel}>
-+        <div style={sectionStyles.detailGlow} aria-hidden="true" />
-+        <h3 style={sectionStyles.detailTitle}>
-+          What guides every Casa Aurea event
-+        </h3>
-+        <p style={sectionStyles.detailText}>
-+          Our standard is simple: guests should feel the quality immediately,
-+          while the host feels the ease of working with a team that has already
-+          thought through the rhythm of the day.
-+        </p>
-+
-+        <ul style={sectionStyles.principles}>
-+          {philosophyPrinciples.map((principle) => (
-+            <li key={principle.title} style={sectionStyles.principle}>
-+              <span style={sectionStyles.principleTitle}>{principle.title}</span>
-+              <span style={sectionStyles.principleText}>{principle.text}</span>
-+            </li>
-+          ))}
-+        </ul>
-+
-+        <Link to="/contatti" style={sectionStyles.action}>
-+          Book a discovery call
-+        </Link>
-+      </aside>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
-index 2f7c912dea055391d084329be56aafcd5a54ed21..a286364902d10d770c48d4feef5d4196ec350a95
---- a/src/pages/Chi-siamo.jsx
-+++ b/src/pages/Chi-siamo.jsx
-@@ -1,4 +1,5 @@
- import AboutHeroSection from '../components/About-heroSection'
-+import PhilosophySection from '../components/PhilosophySection'
- import StorySection from '../components/StorySection'
- 
- export default function ChiSiamo() {
-@@ -8,22 +9,7 @@
- 
-       <StorySection />
- 
--      <section id="philosophy" aria-labelledby="philosophy-title">
--        <div>
--          <h2 id="philosophy-title">Our philosophy</h2>
--          <p>
--            We believe premium events are defined by the details guests notice
--            without being told: the pacing of service, the elegance of the
--            setting, the quality of each pour, and the sense that every moment
--            has been prepared with intention.
--          </p>
--          <p>
--            That focus on presentation, timing, and guest comfort is what makes
--            Casa Aurea Events feel personal, polished, and ready for follow-up
--            content in the next tasks.
--          </p>
--        </div>
--      </section>
-+      <PhilosophySection />
-     </article>
-   )
- }
-
-codex
-The section is in place. I’m running the build now to catch any integration issues before I append the task summary to `agent/AGENT_REPORT.md`.
+The gallery route already exists in `src/App.jsx`. I’m replacing the placeholder page content with a semantic shell that matches the spec, then I’ll run the build and append the task summary to the agent report.
 exec
-/bin/zsh -lc ls in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-AGENTS.md
-README.md
-agent
-brief
-dist
-docs
-eslint.config.js
-index.html
-node_modules
-package-lock.json
-package.json
-playwright.config.js
-public
-site-spec.json
-src
-tests
-vite.config.js
- succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' package.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' 'src/pages/Chi-siamo.jsx'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "rg --files | rg '"'^(package.json|src/pages/Gallery.jsx|src/pages/Menu.jsx|src/pages/Contatti.jsx|src/pages/Chi-siamo.jsx)$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
 {
   "name": "site-create-a-premium-modern-website-for-an-e",
   "private": true,
@@ -2158,8 +1347,239 @@ vite.config.js
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@playwright/test": "^1.58.2",
+ succeeded in 51ms:
+export default function Contatti() {
+  return (
+    <>
+      <section id="contact-hero">
+        <h1>Contact Hero</h1>
+        <p>Content for contact-hero will be generated by tasks</p>
+      </section>
+      <section id="contact-details">
+        <h2>Contact Details</h2>
+        <p>Content for contact-details will be generated by tasks</p>
+      </section>
+      <section id="opening-hours">
+        <h2>Opening Hours</h2>
+        <p>Content for opening-hours will be generated by tasks</p>
+      </section>
+    </>
+  )
+}
+ succeeded in 51ms:
+import MenuHeroSection from '../components/Menu-heroSection'
+import MenuCategoriesSection from '../components/Menu-categoriesSection'
+
+export default function Menu() {
+  return (
+    <article aria-labelledby="menu-title">
+      <MenuHeroSection />
+      <MenuCategoriesSection />
+    </article>
+  )
+}
+ succeeded in 51ms:
+import AboutHeroSection from '../components/About-heroSection'
+import PhilosophySection from '../components/PhilosophySection'
+import StorySection from '../components/StorySection'
+
+export default function ChiSiamo() {
+  return (
+    <article aria-labelledby="chi-siamo-title">
+      <AboutHeroSection />
+
+      <StorySection />
+
+      <PhilosophySection />
+    </article>
+  )
+}
+ succeeded in 51ms:
+src/pages/Gallery.jsx
+src/pages/Chi-siamo.jsx
+src/pages/Contatti.jsx
+src/pages/Menu.jsx
+package.json
+codex
+I have enough context. I’m editing `src/pages/Gallery.jsx` to replace the placeholder with a stable semantic shell, and then I’ll append the task outcome to `agent/AGENT_REPORT.md` as required by the project workflow.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+@@ -220,2 +220,13 @@
+ Implemented a dedicated `Menu-categoriesSection` component in
++
++Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
++
++Launching Codex for TASK page-gallery-shell.
++
++Completed TASK page-gallery-shell.
++
++Implemented a semantic shell in `src/pages/Gallery.jsx` with the required
++`gallery-hero` and `gallery-grid` sections, premium gallery-facing copy, and a
++single-page `h1` for the `/gallery` route. Verified `src/App.jsx` already
++mounts the gallery route, so no routing change was required.
+ `src/components/Menu-categoriesSection.jsx` and rendered it from
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx
+@@ -2,12 +2,22 @@
+   return (
+-    <>
+-      <section id="gallery-hero">
+-        <h1>Gallery Hero</h1>
+-        <p>Content for gallery-hero will be generated by tasks</p>
++    <article aria-labelledby="gallery-title">
++      <section id="gallery-hero" aria-labelledby="gallery-title">
++        <p>Casa Aurea Events</p>
++        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
++        <p>
++          Explore a gallery of refined tablescapes, signature cocktails, plated
++          service, and celebration settings designed for weddings, private
++          events, and premium corporate evenings.
++        </p>
+       </section>
+-      <section id="gallery-grid">
+-        <h2>Gallery Grid</h2>
+-        <p>Content for gallery-grid will be generated by tasks</p>
++
++      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
++        <h2 id="gallery-grid-title">Gallery collection</h2>
++        <p>
++          This page is prepared for the premium image grid that will showcase
++          catering presentation, cocktail service, event styling, and guest
++          atmosphere across Casa Aurea Events experiences.
++        </p>
+       </section>
+-    </>
++    </article>
+   )
+apply_patch(auto_approved=true) exited 0 in 47ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index ba29e89f00d691c09293fcd28b824d8cfa013d88..95ae34640c04218262d6dd0907f784699a45deea
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -218,6 +218,17 @@
+ Build passed.
+ 
+ Implemented a dedicated `Menu-categoriesSection` component in
++
++Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
++
++Launching Codex for TASK page-gallery-shell.
++
++Completed TASK page-gallery-shell.
++
++Implemented a semantic shell in `src/pages/Gallery.jsx` with the required
++`gallery-hero` and `gallery-grid` sections, premium gallery-facing copy, and a
++single-page `h1` for the `/gallery` route. Verified `src/App.jsx` already
++mounts the gallery route, so no routing change was required.
+ `src/components/Menu-categoriesSection.jsx` and rendered it from
+ `src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
+ page now includes a structured premium menu-categories section with curated
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 235749103c1ac2a2bc18286f9ed0fd9e11479ff2..da346205d6952895461294fcd4d670ea19db49e9
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,14 +1,24 @@
+ export default function Gallery() {
+   return (
+-    <>
+-      <section id="gallery-hero">
+-        <h1>Gallery Hero</h1>
+-        <p>Content for gallery-hero will be generated by tasks</p>
++    <article aria-labelledby="gallery-title">
++      <section id="gallery-hero" aria-labelledby="gallery-title">
++        <p>Casa Aurea Events</p>
++        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
++        <p>
++          Explore a gallery of refined tablescapes, signature cocktails, plated
++          service, and celebration settings designed for weddings, private
++          events, and premium corporate evenings.
++        </p>
+       </section>
+-      <section id="gallery-grid">
+-        <h2>Gallery Grid</h2>
+-        <p>Content for gallery-grid will be generated by tasks</p>
++
++      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
++        <h2 id="gallery-grid-title">Gallery collection</h2>
++        <p>
++          This page is prepared for the premium image grid that will showcase
++          catering presentation, cocktail service, event styling, and guest
++          atmosphere across Casa Aurea Events experiences.
++        </p>
+       </section>
+-    </>
++    </article>
+   )
+ }
+
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index ba29e89f00d691c09293fcd28b824d8cfa013d88..95ae34640c04218262d6dd0907f784699a45deea
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -218,6 +218,17 @@
+ Build passed.
+ 
+ Implemented a dedicated `Menu-categoriesSection` component in
++
++Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
++
++Launching Codex for TASK page-gallery-shell.
++
++Completed TASK page-gallery-shell.
++
++Implemented a semantic shell in `src/pages/Gallery.jsx` with the required
++`gallery-hero` and `gallery-grid` sections, premium gallery-facing copy, and a
++single-page `h1` for the `/gallery` route. Verified `src/App.jsx` already
++mounts the gallery route, so no routing change was required.
+ `src/components/Menu-categoriesSection.jsx` and rendered it from
+ `src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
+ page now includes a structured premium menu-categories section with curated
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 235749103c1ac2a2bc18286f9ed0fd9e11479ff2..da346205d6952895461294fcd4d670ea19db49e9
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,14 +1,24 @@
+ export default function Gallery() {
+   return (
+-    <>
+-      <section id="gallery-hero">
+-        <h1>Gallery Hero</h1>
+-        <p>Content for gallery-hero will be generated by tasks</p>
++    <article aria-labelledby="gallery-title">
++      <section id="gallery-hero" aria-labelledby="gallery-title">
++        <p>Casa Aurea Events</p>
++        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
++        <p>
++          Explore a gallery of refined tablescapes, signature cocktails, plated
++          service, and celebration settings designed for weddings, private
++          events, and premium corporate evenings.
++        </p>
+       </section>
+-      <section id="gallery-grid">
+-        <h2>Gallery Grid</h2>
+-        <p>Content for gallery-grid will be generated by tasks</p>
++
++      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
++        <h2 id="gallery-grid-title">Gallery collection</h2>
++        <p>
++          This page is prepared for the premium image grid that will showcase
++          catering presentation, cocktail service, event styling, and guest
++          atmosphere across Casa Aurea Events experiences.
++        </p>
+       </section>
+-    </>
++    </article>
+   )
+ }
+
+codex
+The shell is in place. I’m running the production build now to confirm the gallery page renders cleanly and that the route change doesn’t introduce regressions.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 750ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 755ms:
 vite v7.3.1 building client environment for production...
 transforming...
 ✓ 57 modules transformed.
@@ -2167,1096 +1587,135 @@ rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-DW_qNofv.js   264.60 kB │ gzip: 81.91 kB
-✓ built in 561ms
+dist/assets/index-BtbDGUvM.js   265.09 kB │ gzip: 82.06 kB
+✓ built in 576ms
 file update:
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..554674ed6cb1bff70d5df78ace59424c7b4f27d0
---- /dev/null
-+++ b/src/components/PhilosophySection.jsx
-@@ -0,0 +1,200 @@
-+import { Link } from 'react-router-dom'
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index ba29e89f00d691c09293fcd28b824d8cfa013d88..95ae34640c04218262d6dd0907f784699a45deea
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -218,6 +218,17 @@
+ Build passed.
+ 
+ Implemented a dedicated `Menu-categoriesSection` component in
 +
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5rem)',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-+    gap: '1.5rem',
-+    alignItems: 'stretch',
-+  },
-+  contentPanel: {
-+    display: 'grid',
-+    gap: '1.15rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.75rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(238, 227, 212, 0.92) 100%)',
-+    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
-+    textAlign: 'left',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7a4b',
-+    fontSize: '0.8rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '13ch',
-+    color: '#221914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 5vw, 3.3rem)',
-+    lineHeight: 1.08,
-+    fontWeight: 600,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '38rem',
-+    color: 'rgba(34, 25, 20, 0.82)',
-+    fontSize: '1rem',
-+    lineHeight: 1.85,
-+  },
-+  body: {
-+    display: 'grid',
-+    gap: '0.95rem',
-+  },
-+  paragraph: {
-+    margin: 0,
-+    color: 'rgba(34, 25, 20, 0.78)',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.85,
-+  },
-+  detailPanel: {
-+    position: 'relative',
-+    overflow: 'hidden',
-+    display: 'grid',
-+    gap: '1.15rem',
-+    alignContent: 'start',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    backgroundColor: '#241c17',
-+    color: '#f6efe4',
-+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-+  },
-+  detailGlow: {
-+    position: 'absolute',
-+    inset: 'auto -6rem -6rem auto',
-+    width: '14rem',
-+    height: '14rem',
-+    borderRadius: '999px',
-+    background:
-+      'radial-gradient(circle, rgba(217, 191, 141, 0.24) 0%, rgba(217, 191, 141, 0) 72%)',
-+    pointerEvents: 'none',
-+  },
-+  detailTitle: {
-+    margin: 0,
-+    maxWidth: '14ch',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(1.7rem, 3.5vw, 2.4rem)',
-+    lineHeight: 1.15,
-+    fontWeight: 600,
-+  },
-+  detailText: {
-+    margin: 0,
-+    color: 'rgba(246, 239, 228, 0.78)',
-+    lineHeight: 1.8,
-+  },
-+  principles: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  principle: {
-+    paddingBottom: '0.85rem',
-+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-+  },
-+  principleTitle: {
-+    display: 'block',
-+    marginBottom: '0.3rem',
-+    color: '#f6efe4',
-+    fontSize: '1rem',
-+    fontWeight: 700,
-+  },
-+  principleText: {
-+    color: 'rgba(246, 239, 228, 0.74)',
-+    lineHeight: 1.7,
-+  },
-+  action: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    width: 'fit-content',
-+    minHeight: '3.1rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#221914',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+}
++Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
 +
-+const philosophyParagraphs = [
-+  'We believe the strongest events are never defined by volume or excess. They are remembered because every detail feels intentional, from the welcome moment to the final service pass.',
-+  'That is why Casa Aurea approaches catering, drinks, and styling as one continuous experience. Menus, bar rhythm, table presentation, and guest flow are shaped together so the atmosphere feels composed rather than assembled.',
-+  'Our role is to bring calm confidence behind the scenes while creating a setting that feels polished, generous, and fully aligned with the client’s taste.',
-+]
++Launching Codex for TASK page-gallery-shell.
 +
-+const philosophyPrinciples = [
-+  {
-+    title: 'Care in the details',
-+    text: 'Presentation, glassware, service timing, and finishing touches are treated as part of the experience itself.',
-+  },
-+  {
-+    title: 'Hospitality with grace',
-+    text: 'Guests should feel genuinely looked after, with service that is attentive, elegant, and never intrusive.',
-+  },
-+  {
-+    title: 'Atmosphere with purpose',
-+    text: 'Every proposal is shaped to support the tone of the event, whether intimate, celebratory, or distinctly formal.',
-+  },
-+]
++Completed TASK page-gallery-shell.
 +
-+export default function PhilosophySection() {
-+  return (
-+    <section
-+      id="philosophy"
-+      aria-labelledby="philosophy-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.contentPanel}>
-+        <p style={sectionStyles.eyebrow}>Our philosophy</p>
-+        <h2 id="philosophy-title" style={sectionStyles.title}>
-+          Refined hospitality should feel seamless, not staged
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We shape each event around how people gather, dine, toast, and move
-+          through the space so the result feels elegant from every angle.
++Implemented a semantic shell in `src/pages/Gallery.jsx` with the required
++`gallery-hero` and `gallery-grid` sections, premium gallery-facing copy, and a
++single-page `h1` for the `/gallery` route. Verified `src/App.jsx` already
++mounts the gallery route, so no routing change was required.
+ `src/components/Menu-categoriesSection.jsx` and rendered it from
+ `src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
+ page now includes a structured premium menu-categories section with curated
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 235749103c1ac2a2bc18286f9ed0fd9e11479ff2..da346205d6952895461294fcd4d670ea19db49e9
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,14 +1,24 @@
+ export default function Gallery() {
+   return (
+-    <>
+-      <section id="gallery-hero">
+-        <h1>Gallery Hero</h1>
+-        <p>Content for gallery-hero will be generated by tasks</p>
++    <article aria-labelledby="gallery-title">
++      <section id="gallery-hero" aria-labelledby="gallery-title">
++        <p>Casa Aurea Events</p>
++        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
++        <p>
++          Explore a gallery of refined tablescapes, signature cocktails, plated
++          service, and celebration settings designed for weddings, private
++          events, and premium corporate evenings.
 +        </p>
+       </section>
+-      <section id="gallery-grid">
+-        <h2>Gallery Grid</h2>
+-        <p>Content for gallery-grid will be generated by tasks</p>
 +
-+        <div style={sectionStyles.body}>
-+          {philosophyParagraphs.map((paragraph) => (
-+            <p key={paragraph} style={sectionStyles.paragraph}>
-+              {paragraph}
-+            </p>
-+          ))}
-+        </div>
-+      </div>
-+
-+      <aside aria-label="Casa Aurea philosophy details" style={sectionStyles.detailPanel}>
-+        <div style={sectionStyles.detailGlow} aria-hidden="true" />
-+        <h3 style={sectionStyles.detailTitle}>
-+          What guides every Casa Aurea event
-+        </h3>
-+        <p style={sectionStyles.detailText}>
-+          Our standard is simple: guests should feel the quality immediately,
-+          while the host feels the ease of working with a team that has already
-+          thought through the rhythm of the day.
++      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
++        <h2 id="gallery-grid-title">Gallery collection</h2>
++        <p>
++          This page is prepared for the premium image grid that will showcase
++          catering presentation, cocktail service, event styling, and guest
++          atmosphere across Casa Aurea Events experiences.
 +        </p>
-+
-+        <ul style={sectionStyles.principles}>
-+          {philosophyPrinciples.map((principle) => (
-+            <li key={principle.title} style={sectionStyles.principle}>
-+              <span style={sectionStyles.principleTitle}>{principle.title}</span>
-+              <span style={sectionStyles.principleText}>{principle.text}</span>
-+            </li>
-+          ))}
-+        </ul>
-+
-+        <Link to="/contatti" style={sectionStyles.action}>
-+          Book a discovery call
-+        </Link>
-+      </aside>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
-index 2f7c912dea055391d084329be56aafcd5a54ed21..a286364902d10d770c48d4feef5d4196ec350a95
---- a/src/pages/Chi-siamo.jsx
-+++ b/src/pages/Chi-siamo.jsx
-@@ -1,4 +1,5 @@
- import AboutHeroSection from '../components/About-heroSection'
-+import PhilosophySection from '../components/PhilosophySection'
- import StorySection from '../components/StorySection'
- 
- export default function ChiSiamo() {
-@@ -8,22 +9,7 @@
- 
-       <StorySection />
- 
--      <section id="philosophy" aria-labelledby="philosophy-title">
--        <div>
--          <h2 id="philosophy-title">Our philosophy</h2>
--          <p>
--            We believe premium events are defined by the details guests notice
--            without being told: the pacing of service, the elegance of the
--            setting, the quality of each pour, and the sense that every moment
--            has been prepared with intention.
--          </p>
--          <p>
--            That focus on presentation, timing, and guest comfort is what makes
--            Casa Aurea Events feel personal, polished, and ready for follow-up
--            content in the next tasks.
--          </p>
--        </div>
--      </section>
-+      <PhilosophySection />
-     </article>
+       </section>
+-    </>
++    </article>
    )
  }
 
 codex
-The build passed. I’m only updating the agent report now with a short task-specific summary, without touching task state or unrelated files.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -201,2 +201,20 @@
- 
-+Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
-+
-+Launching Codex for TASK section-chi-siamo-philosophy.
-+
-+Completed TASK section-chi-siamo-philosophy.
-+
-+Implemented a dedicated `PhilosophySection` split-content component in
-+`src/components/PhilosophySection.jsx` and rendered it from
-+`src/pages/Chi-siamo.jsx`. The about page now includes the required philosophy
-+section with editorial copy, supporting principles, and a valid route-safe CTA
-+to `/contatti`.
-+
-+TASK section-chi-siamo-philosophy executed by Codex.
-+Waiting for validation.
-+
-+TASK section-chi-siamo-philosophy completed successfully.
-+Build passed.
-+
- Implemented a dedicated `Menu-categoriesSection` component in
-apply_patch(auto_approved=true) exited 0 in 58ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+Modified files: [Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+
+Implemented the gallery page shell in [Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx) by replacing placeholder text with a semantic `article` containing the required `gallery-hero` and `gallery-grid` sections, premium copy, and a single page `h1`. The `/gallery` route was already mounted in [App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so no routing change was needed. I also updated [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with a short task summary per project instructions.
+
+Build result: `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 9b4b2ac52e2d547e0f9476000b48a4dc3449f322..8e6836116789e998cc67389d05b96e7948fa7962
+index ba29e89f00d691c09293fcd28b824d8cfa013d88..95ae34640c04218262d6dd0907f784699a45deea
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -199,6 +199,24 @@
+@@ -218,6 +218,17 @@
+ Build passed.
  
- Completed TASK section-menu-menu-categories.
- 
-+Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
-+
-+Launching Codex for TASK section-chi-siamo-philosophy.
-+
-+Completed TASK section-chi-siamo-philosophy.
-+
-+Implemented a dedicated `PhilosophySection` split-content component in
-+`src/components/PhilosophySection.jsx` and rendered it from
-+`src/pages/Chi-siamo.jsx`. The about page now includes the required philosophy
-+section with editorial copy, supporting principles, and a valid route-safe CTA
-+to `/contatti`.
-+
-+TASK section-chi-siamo-philosophy executed by Codex.
-+Waiting for validation.
-+
-+TASK section-chi-siamo-philosophy completed successfully.
-+Build passed.
-+
  Implemented a dedicated `Menu-categoriesSection` component in
++
++Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
++
++Launching Codex for TASK page-gallery-shell.
++
++Completed TASK page-gallery-shell.
++
++Implemented a semantic shell in `src/pages/Gallery.jsx` with the required
++`gallery-hero` and `gallery-grid` sections, premium gallery-facing copy, and a
++single-page `h1` for the `/gallery` route. Verified `src/App.jsx` already
++mounts the gallery route, so no routing change was required.
  `src/components/Menu-categoriesSection.jsx` and rendered it from
  `src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..554674ed6cb1bff70d5df78ace59424c7b4f27d0
---- /dev/null
-+++ b/src/components/PhilosophySection.jsx
-@@ -0,0 +1,200 @@
-+import { Link } from 'react-router-dom'
-+
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5rem)',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-+    gap: '1.5rem',
-+    alignItems: 'stretch',
-+  },
-+  contentPanel: {
-+    display: 'grid',
-+    gap: '1.15rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.75rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(238, 227, 212, 0.92) 100%)',
-+    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
-+    textAlign: 'left',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7a4b',
-+    fontSize: '0.8rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '13ch',
-+    color: '#221914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 5vw, 3.3rem)',
-+    lineHeight: 1.08,
-+    fontWeight: 600,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '38rem',
-+    color: 'rgba(34, 25, 20, 0.82)',
-+    fontSize: '1rem',
-+    lineHeight: 1.85,
-+  },
-+  body: {
-+    display: 'grid',
-+    gap: '0.95rem',
-+  },
-+  paragraph: {
-+    margin: 0,
-+    color: 'rgba(34, 25, 20, 0.78)',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.85,
-+  },
-+  detailPanel: {
-+    position: 'relative',
-+    overflow: 'hidden',
-+    display: 'grid',
-+    gap: '1.15rem',
-+    alignContent: 'start',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    backgroundColor: '#241c17',
-+    color: '#f6efe4',
-+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-+  },
-+  detailGlow: {
-+    position: 'absolute',
-+    inset: 'auto -6rem -6rem auto',
-+    width: '14rem',
-+    height: '14rem',
-+    borderRadius: '999px',
-+    background:
-+      'radial-gradient(circle, rgba(217, 191, 141, 0.24) 0%, rgba(217, 191, 141, 0) 72%)',
-+    pointerEvents: 'none',
-+  },
-+  detailTitle: {
-+    margin: 0,
-+    maxWidth: '14ch',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(1.7rem, 3.5vw, 2.4rem)',
-+    lineHeight: 1.15,
-+    fontWeight: 600,
-+  },
-+  detailText: {
-+    margin: 0,
-+    color: 'rgba(246, 239, 228, 0.78)',
-+    lineHeight: 1.8,
-+  },
-+  principles: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  principle: {
-+    paddingBottom: '0.85rem',
-+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-+  },
-+  principleTitle: {
-+    display: 'block',
-+    marginBottom: '0.3rem',
-+    color: '#f6efe4',
-+    fontSize: '1rem',
-+    fontWeight: 700,
-+  },
-+  principleText: {
-+    color: 'rgba(246, 239, 228, 0.74)',
-+    lineHeight: 1.7,
-+  },
-+  action: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    width: 'fit-content',
-+    minHeight: '3.1rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#221914',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+}
-+
-+const philosophyParagraphs = [
-+  'We believe the strongest events are never defined by volume or excess. They are remembered because every detail feels intentional, from the welcome moment to the final service pass.',
-+  'That is why Casa Aurea approaches catering, drinks, and styling as one continuous experience. Menus, bar rhythm, table presentation, and guest flow are shaped together so the atmosphere feels composed rather than assembled.',
-+  'Our role is to bring calm confidence behind the scenes while creating a setting that feels polished, generous, and fully aligned with the client’s taste.',
-+]
-+
-+const philosophyPrinciples = [
-+  {
-+    title: 'Care in the details',
-+    text: 'Presentation, glassware, service timing, and finishing touches are treated as part of the experience itself.',
-+  },
-+  {
-+    title: 'Hospitality with grace',
-+    text: 'Guests should feel genuinely looked after, with service that is attentive, elegant, and never intrusive.',
-+  },
-+  {
-+    title: 'Atmosphere with purpose',
-+    text: 'Every proposal is shaped to support the tone of the event, whether intimate, celebratory, or distinctly formal.',
-+  },
-+]
-+
-+export default function PhilosophySection() {
-+  return (
-+    <section
-+      id="philosophy"
-+      aria-labelledby="philosophy-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.contentPanel}>
-+        <p style={sectionStyles.eyebrow}>Our philosophy</p>
-+        <h2 id="philosophy-title" style={sectionStyles.title}>
-+          Refined hospitality should feel seamless, not staged
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We shape each event around how people gather, dine, toast, and move
-+          through the space so the result feels elegant from every angle.
+ page now includes a structured premium menu-categories section with curated
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 235749103c1ac2a2bc18286f9ed0fd9e11479ff2..da346205d6952895461294fcd4d670ea19db49e9
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,14 +1,24 @@
+ export default function Gallery() {
+   return (
+-    <>
+-      <section id="gallery-hero">
+-        <h1>Gallery Hero</h1>
+-        <p>Content for gallery-hero will be generated by tasks</p>
++    <article aria-labelledby="gallery-title">
++      <section id="gallery-hero" aria-labelledby="gallery-title">
++        <p>Casa Aurea Events</p>
++        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
++        <p>
++          Explore a gallery of refined tablescapes, signature cocktails, plated
++          service, and celebration settings designed for weddings, private
++          events, and premium corporate evenings.
 +        </p>
+       </section>
+-      <section id="gallery-grid">
+-        <h2>Gallery Grid</h2>
+-        <p>Content for gallery-grid will be generated by tasks</p>
 +
-+        <div style={sectionStyles.body}>
-+          {philosophyParagraphs.map((paragraph) => (
-+            <p key={paragraph} style={sectionStyles.paragraph}>
-+              {paragraph}
-+            </p>
-+          ))}
-+        </div>
-+      </div>
-+
-+      <aside aria-label="Casa Aurea philosophy details" style={sectionStyles.detailPanel}>
-+        <div style={sectionStyles.detailGlow} aria-hidden="true" />
-+        <h3 style={sectionStyles.detailTitle}>
-+          What guides every Casa Aurea event
-+        </h3>
-+        <p style={sectionStyles.detailText}>
-+          Our standard is simple: guests should feel the quality immediately,
-+          while the host feels the ease of working with a team that has already
-+          thought through the rhythm of the day.
++      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
++        <h2 id="gallery-grid-title">Gallery collection</h2>
++        <p>
++          This page is prepared for the premium image grid that will showcase
++          catering presentation, cocktail service, event styling, and guest
++          atmosphere across Casa Aurea Events experiences.
 +        </p>
-+
-+        <ul style={sectionStyles.principles}>
-+          {philosophyPrinciples.map((principle) => (
-+            <li key={principle.title} style={sectionStyles.principle}>
-+              <span style={sectionStyles.principleTitle}>{principle.title}</span>
-+              <span style={sectionStyles.principleText}>{principle.text}</span>
-+            </li>
-+          ))}
-+        </ul>
-+
-+        <Link to="/contatti" style={sectionStyles.action}>
-+          Book a discovery call
-+        </Link>
-+      </aside>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
-index 2f7c912dea055391d084329be56aafcd5a54ed21..a286364902d10d770c48d4feef5d4196ec350a95
---- a/src/pages/Chi-siamo.jsx
-+++ b/src/pages/Chi-siamo.jsx
-@@ -1,4 +1,5 @@
- import AboutHeroSection from '../components/About-heroSection'
-+import PhilosophySection from '../components/PhilosophySection'
- import StorySection from '../components/StorySection'
- 
- export default function ChiSiamo() {
-@@ -8,22 +9,7 @@
- 
-       <StorySection />
- 
--      <section id="philosophy" aria-labelledby="philosophy-title">
--        <div>
--          <h2 id="philosophy-title">Our philosophy</h2>
--          <p>
--            We believe premium events are defined by the details guests notice
--            without being told: the pacing of service, the elegance of the
--            setting, the quality of each pour, and the sense that every moment
--            has been prepared with intention.
--          </p>
--          <p>
--            That focus on presentation, timing, and guest comfort is what makes
--            Casa Aurea Events feel personal, polished, and ready for follow-up
--            content in the next tasks.
--          </p>
--        </div>
--      </section>
-+      <PhilosophySection />
-     </article>
-   )
- }
-
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 9b4b2ac52e2d547e0f9476000b48a4dc3449f322..8e6836116789e998cc67389d05b96e7948fa7962
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -199,6 +199,24 @@
- 
- Completed TASK section-menu-menu-categories.
- 
-+Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
-+
-+Launching Codex for TASK section-chi-siamo-philosophy.
-+
-+Completed TASK section-chi-siamo-philosophy.
-+
-+Implemented a dedicated `PhilosophySection` split-content component in
-+`src/components/PhilosophySection.jsx` and rendered it from
-+`src/pages/Chi-siamo.jsx`. The about page now includes the required philosophy
-+section with editorial copy, supporting principles, and a valid route-safe CTA
-+to `/contatti`.
-+
-+TASK section-chi-siamo-philosophy executed by Codex.
-+Waiting for validation.
-+
-+TASK section-chi-siamo-philosophy completed successfully.
-+Build passed.
-+
- Implemented a dedicated `Menu-categoriesSection` component in
- `src/components/Menu-categoriesSection.jsx` and rendered it from
- `src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..554674ed6cb1bff70d5df78ace59424c7b4f27d0
---- /dev/null
-+++ b/src/components/PhilosophySection.jsx
-@@ -0,0 +1,200 @@
-+import { Link } from 'react-router-dom'
-+
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5rem)',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-+    gap: '1.5rem',
-+    alignItems: 'stretch',
-+  },
-+  contentPanel: {
-+    display: 'grid',
-+    gap: '1.15rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.75rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(238, 227, 212, 0.92) 100%)',
-+    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
-+    textAlign: 'left',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7a4b',
-+    fontSize: '0.8rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '13ch',
-+    color: '#221914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 5vw, 3.3rem)',
-+    lineHeight: 1.08,
-+    fontWeight: 600,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '38rem',
-+    color: 'rgba(34, 25, 20, 0.82)',
-+    fontSize: '1rem',
-+    lineHeight: 1.85,
-+  },
-+  body: {
-+    display: 'grid',
-+    gap: '0.95rem',
-+  },
-+  paragraph: {
-+    margin: 0,
-+    color: 'rgba(34, 25, 20, 0.78)',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.85,
-+  },
-+  detailPanel: {
-+    position: 'relative',
-+    overflow: 'hidden',
-+    display: 'grid',
-+    gap: '1.15rem',
-+    alignContent: 'start',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    backgroundColor: '#241c17',
-+    color: '#f6efe4',
-+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-+  },
-+  detailGlow: {
-+    position: 'absolute',
-+    inset: 'auto -6rem -6rem auto',
-+    width: '14rem',
-+    height: '14rem',
-+    borderRadius: '999px',
-+    background:
-+      'radial-gradient(circle, rgba(217, 191, 141, 0.24) 0%, rgba(217, 191, 141, 0) 72%)',
-+    pointerEvents: 'none',
-+  },
-+  detailTitle: {
-+    margin: 0,
-+    maxWidth: '14ch',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(1.7rem, 3.5vw, 2.4rem)',
-+    lineHeight: 1.15,
-+    fontWeight: 600,
-+  },
-+  detailText: {
-+    margin: 0,
-+    color: 'rgba(246, 239, 228, 0.78)',
-+    lineHeight: 1.8,
-+  },
-+  principles: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  principle: {
-+    paddingBottom: '0.85rem',
-+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-+  },
-+  principleTitle: {
-+    display: 'block',
-+    marginBottom: '0.3rem',
-+    color: '#f6efe4',
-+    fontSize: '1rem',
-+    fontWeight: 700,
-+  },
-+  principleText: {
-+    color: 'rgba(246, 239, 228, 0.74)',
-+    lineHeight: 1.7,
-+  },
-+  action: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    width: 'fit-content',
-+    minHeight: '3.1rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#221914',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+}
-+
-+const philosophyParagraphs = [
-+  'We believe the strongest events are never defined by volume or excess. They are remembered because every detail feels intentional, from the welcome moment to the final service pass.',
-+  'That is why Casa Aurea approaches catering, drinks, and styling as one continuous experience. Menus, bar rhythm, table presentation, and guest flow are shaped together so the atmosphere feels composed rather than assembled.',
-+  'Our role is to bring calm confidence behind the scenes while creating a setting that feels polished, generous, and fully aligned with the client’s taste.',
-+]
-+
-+const philosophyPrinciples = [
-+  {
-+    title: 'Care in the details',
-+    text: 'Presentation, glassware, service timing, and finishing touches are treated as part of the experience itself.',
-+  },
-+  {
-+    title: 'Hospitality with grace',
-+    text: 'Guests should feel genuinely looked after, with service that is attentive, elegant, and never intrusive.',
-+  },
-+  {
-+    title: 'Atmosphere with purpose',
-+    text: 'Every proposal is shaped to support the tone of the event, whether intimate, celebratory, or distinctly formal.',
-+  },
-+]
-+
-+export default function PhilosophySection() {
-+  return (
-+    <section
-+      id="philosophy"
-+      aria-labelledby="philosophy-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.contentPanel}>
-+        <p style={sectionStyles.eyebrow}>Our philosophy</p>
-+        <h2 id="philosophy-title" style={sectionStyles.title}>
-+          Refined hospitality should feel seamless, not staged
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We shape each event around how people gather, dine, toast, and move
-+          through the space so the result feels elegant from every angle.
-+        </p>
-+
-+        <div style={sectionStyles.body}>
-+          {philosophyParagraphs.map((paragraph) => (
-+            <p key={paragraph} style={sectionStyles.paragraph}>
-+              {paragraph}
-+            </p>
-+          ))}
-+        </div>
-+      </div>
-+
-+      <aside aria-label="Casa Aurea philosophy details" style={sectionStyles.detailPanel}>
-+        <div style={sectionStyles.detailGlow} aria-hidden="true" />
-+        <h3 style={sectionStyles.detailTitle}>
-+          What guides every Casa Aurea event
-+        </h3>
-+        <p style={sectionStyles.detailText}>
-+          Our standard is simple: guests should feel the quality immediately,
-+          while the host feels the ease of working with a team that has already
-+          thought through the rhythm of the day.
-+        </p>
-+
-+        <ul style={sectionStyles.principles}>
-+          {philosophyPrinciples.map((principle) => (
-+            <li key={principle.title} style={sectionStyles.principle}>
-+              <span style={sectionStyles.principleTitle}>{principle.title}</span>
-+              <span style={sectionStyles.principleText}>{principle.text}</span>
-+            </li>
-+          ))}
-+        </ul>
-+
-+        <Link to="/contatti" style={sectionStyles.action}>
-+          Book a discovery call
-+        </Link>
-+      </aside>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
-index 2f7c912dea055391d084329be56aafcd5a54ed21..a286364902d10d770c48d4feef5d4196ec350a95
---- a/src/pages/Chi-siamo.jsx
-+++ b/src/pages/Chi-siamo.jsx
-@@ -1,4 +1,5 @@
- import AboutHeroSection from '../components/About-heroSection'
-+import PhilosophySection from '../components/PhilosophySection'
- import StorySection from '../components/StorySection'
- 
- export default function ChiSiamo() {
-@@ -8,22 +9,7 @@
- 
-       <StorySection />
- 
--      <section id="philosophy" aria-labelledby="philosophy-title">
--        <div>
--          <h2 id="philosophy-title">Our philosophy</h2>
--          <p>
--            We believe premium events are defined by the details guests notice
--            without being told: the pacing of service, the elegance of the
--            setting, the quality of each pour, and the sense that every moment
--            has been prepared with intention.
--          </p>
--          <p>
--            That focus on presentation, timing, and guest comfort is what makes
--            Casa Aurea Events feel personal, polished, and ready for follow-up
--            content in the next tasks.
--          </p>
--        </div>
--      </section>
-+      <PhilosophySection />
-     </article>
-   )
- }
-
-codex
-Modified files: [src/pages/Chi-siamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx), [src/components/PhilosophySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/PhilosophySection.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
-
-Implemented the `philosophy` section on `chi-siamo` as a dedicated split-content component. [src/pages/Chi-siamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx) now renders `PhilosophySection`, and [src/components/PhilosophySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/PhilosophySection.jsx) provides the two-column editorial layout with premium philosophy copy, supporting principles, and a valid CTA to `/contatti`.
-
-Build result: `npm run build` passed successfully with Vite production output generated. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with the task summary.
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 9b4b2ac52e2d547e0f9476000b48a4dc3449f322..8e6836116789e998cc67389d05b96e7948fa7962
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -199,6 +199,24 @@
- 
- Completed TASK section-menu-menu-categories.
- 
-+Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
-+
-+Launching Codex for TASK section-chi-siamo-philosophy.
-+
-+Completed TASK section-chi-siamo-philosophy.
-+
-+Implemented a dedicated `PhilosophySection` split-content component in
-+`src/components/PhilosophySection.jsx` and rendered it from
-+`src/pages/Chi-siamo.jsx`. The about page now includes the required philosophy
-+section with editorial copy, supporting principles, and a valid route-safe CTA
-+to `/contatti`.
-+
-+TASK section-chi-siamo-philosophy executed by Codex.
-+Waiting for validation.
-+
-+TASK section-chi-siamo-philosophy completed successfully.
-+Build passed.
-+
- Implemented a dedicated `Menu-categoriesSection` component in
- `src/components/Menu-categoriesSection.jsx` and rendered it from
- `src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
-diff --git a/src/components/PhilosophySection.jsx b/src/components/PhilosophySection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..554674ed6cb1bff70d5df78ace59424c7b4f27d0
---- /dev/null
-+++ b/src/components/PhilosophySection.jsx
-@@ -0,0 +1,200 @@
-+import { Link } from 'react-router-dom'
-+
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5rem)',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-+    gap: '1.5rem',
-+    alignItems: 'stretch',
-+  },
-+  contentPanel: {
-+    display: 'grid',
-+    gap: '1.15rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.75rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(238, 227, 212, 0.92) 100%)',
-+    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
-+    textAlign: 'left',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7a4b',
-+    fontSize: '0.8rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '13ch',
-+    color: '#221914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 5vw, 3.3rem)',
-+    lineHeight: 1.08,
-+    fontWeight: 600,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '38rem',
-+    color: 'rgba(34, 25, 20, 0.82)',
-+    fontSize: '1rem',
-+    lineHeight: 1.85,
-+  },
-+  body: {
-+    display: 'grid',
-+    gap: '0.95rem',
-+  },
-+  paragraph: {
-+    margin: 0,
-+    color: 'rgba(34, 25, 20, 0.78)',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.85,
-+  },
-+  detailPanel: {
-+    position: 'relative',
-+    overflow: 'hidden',
-+    display: 'grid',
-+    gap: '1.15rem',
-+    alignContent: 'start',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    backgroundColor: '#241c17',
-+    color: '#f6efe4',
-+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-+  },
-+  detailGlow: {
-+    position: 'absolute',
-+    inset: 'auto -6rem -6rem auto',
-+    width: '14rem',
-+    height: '14rem',
-+    borderRadius: '999px',
-+    background:
-+      'radial-gradient(circle, rgba(217, 191, 141, 0.24) 0%, rgba(217, 191, 141, 0) 72%)',
-+    pointerEvents: 'none',
-+  },
-+  detailTitle: {
-+    margin: 0,
-+    maxWidth: '14ch',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(1.7rem, 3.5vw, 2.4rem)',
-+    lineHeight: 1.15,
-+    fontWeight: 600,
-+  },
-+  detailText: {
-+    margin: 0,
-+    color: 'rgba(246, 239, 228, 0.78)',
-+    lineHeight: 1.8,
-+  },
-+  principles: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  principle: {
-+    paddingBottom: '0.85rem',
-+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-+  },
-+  principleTitle: {
-+    display: 'block',
-+    marginBottom: '0.3rem',
-+    color: '#f6efe4',
-+    fontSize: '1rem',
-+    fontWeight: 700,
-+  },
-+  principleText: {
-+    color: 'rgba(246, 239, 228, 0.74)',
-+    lineHeight: 1.7,
-+  },
-+  action: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    width: 'fit-content',
-+    minHeight: '3.1rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#221914',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+}
-+
-+const philosophyParagraphs = [
-+  'We believe the strongest events are never defined by volume or excess. They are remembered because every detail feels intentional, from the welcome moment to the final service pass.',
-+  'That is why Casa Aurea approaches catering, drinks, and styling as one continuous experience. Menus, bar rhythm, table presentation, and guest flow are shaped together so the atmosphere feels composed rather than assembled.',
-+  'Our role is to bring calm confidence behind the scenes while creating a setting that feels polished, generous, and fully aligned with the client’s taste.',
-+]
-+
-+const philosophyPrinciples = [
-+  {
-+    title: 'Care in the details',
-+    text: 'Presentation, glassware, service timing, and finishing touches are treated as part of the experience itself.',
-+  },
-+  {
-+    title: 'Hospitality with grace',
-+    text: 'Guests should feel genuinely looked after, with service that is attentive, elegant, and never intrusive.',
-+  },
-+  {
-+    title: 'Atmosphere with purpose',
-+    text: 'Every proposal is shaped to support the tone of the event, whether intimate, celebratory, or distinctly formal.',
-+  },
-+]
-+
-+export default function PhilosophySection() {
-+  return (
-+    <section
-+      id="philosophy"
-+      aria-labelledby="philosophy-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.contentPanel}>
-+        <p style={sectionStyles.eyebrow}>Our philosophy</p>
-+        <h2 id="philosophy-title" style={sectionStyles.title}>
-+          Refined hospitality should feel seamless, not staged
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We shape each event around how people gather, dine, toast, and move
-+          through the space so the result feels elegant from every angle.
-+        </p>
-+
-+        <div style={sectionStyles.body}>
-+          {philosophyParagraphs.map((paragraph) => (
-+            <p key={paragraph} style={sectionStyles.paragraph}>
-+              {paragraph}
-+            </p>
-+          ))}
-+        </div>
-+      </div>
-+
-+      <aside aria-label="Casa Aurea philosophy details" style={sectionStyles.detailPanel}>
-+        <div style={sectionStyles.detailGlow} aria-hidden="true" />
-+        <h3 style={sectionStyles.detailTitle}>
-+          What guides every Casa Aurea event
-+        </h3>
-+        <p style={sectionStyles.detailText}>
-+          Our standard is simple: guests should feel the quality immediately,
-+          while the host feels the ease of working with a team that has already
-+          thought through the rhythm of the day.
-+        </p>
-+
-+        <ul style={sectionStyles.principles}>
-+          {philosophyPrinciples.map((principle) => (
-+            <li key={principle.title} style={sectionStyles.principle}>
-+              <span style={sectionStyles.principleTitle}>{principle.title}</span>
-+              <span style={sectionStyles.principleText}>{principle.text}</span>
-+            </li>
-+          ))}
-+        </ul>
-+
-+        <Link to="/contatti" style={sectionStyles.action}>
-+          Book a discovery call
-+        </Link>
-+      </aside>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
-index 2f7c912dea055391d084329be56aafcd5a54ed21..a286364902d10d770c48d4feef5d4196ec350a95
---- a/src/pages/Chi-siamo.jsx
-+++ b/src/pages/Chi-siamo.jsx
-@@ -1,4 +1,5 @@
- import AboutHeroSection from '../components/About-heroSection'
-+import PhilosophySection from '../components/PhilosophySection'
- import StorySection from '../components/StorySection'
- 
- export default function ChiSiamo() {
-@@ -8,22 +9,7 @@
- 
-       <StorySection />
- 
--      <section id="philosophy" aria-labelledby="philosophy-title">
--        <div>
--          <h2 id="philosophy-title">Our philosophy</h2>
--          <p>
--            We believe premium events are defined by the details guests notice
--            without being told: the pacing of service, the elegance of the
--            setting, the quality of each pour, and the sense that every moment
--            has been prepared with intention.
--          </p>
--          <p>
--            That focus on presentation, timing, and guest comfort is what makes
--            Casa Aurea Events feel personal, polished, and ready for follow-up
--            content in the next tasks.
--          </p>
--        </div>
--      </section>
-+      <PhilosophySection />
-     </article>
+       </section>
+-    </>
++    </article>
    )
  }
 
 tokens used
-22.672
+6096

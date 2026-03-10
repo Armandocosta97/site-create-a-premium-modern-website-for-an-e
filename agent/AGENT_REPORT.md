@@ -218,6 +218,17 @@ TASK section-chi-siamo-philosophy completed successfully.
 Build passed.
 
 Implemented a dedicated `Menu-categoriesSection` component in
+
+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
+
+Launching Codex for TASK page-gallery-shell.
+
+Completed TASK page-gallery-shell.
+
+Implemented a semantic shell in `src/pages/Gallery.jsx` with the required
+`gallery-hero` and `gallery-grid` sections, premium gallery-facing copy, and a
+single-page `h1` for the `/gallery` route. Verified `src/App.jsx` already
+mounts the gallery route, so no routing change was required.
 `src/components/Menu-categoriesSection.jsx` and rendered it from
 `src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
 page now includes a structured premium menu-categories section with curated
@@ -325,4 +336,15 @@ TASK section-chi-siamo-philosophy executed by Codex.
 Waiting for validation.
 
 TASK section-chi-siamo-philosophy completed successfully.
+Build passed.
+Commit created for TASK section-chi-siamo-philosophy.
+
+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
+
+Launching Codex for TASK page-gallery-shell.
+
+TASK page-gallery-shell executed by Codex.
+Waiting for validation.
+
+TASK page-gallery-shell completed successfully.
 Build passed.
