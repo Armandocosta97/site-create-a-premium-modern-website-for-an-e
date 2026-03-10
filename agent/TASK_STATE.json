@@ -1,7 +1,7 @@
 {
-  "currentTaskId": "seo-basics",
+  "currentTaskId": "responsive-polish",
   "status": "ready_for_next_task",
-  "lastCompletedTaskId": "navigation-structure",
+  "lastCompletedTaskId": "seo-basics",
   "completedTaskIds": [
     "page-home-shell",
     "section-home-hero",
@@ -29,6 +29,7 @@
     "page-servizi-shell",
     "section-servizi-services-hero",
     "section-servizi-services-overview",
-    "navigation-structure"
+    "navigation-structure",
+    "seo-basics"
   ]
 }

@@ -219,6 +219,24 @@ Build passed.
 
 Implemented a dedicated `Menu-categoriesSection` component in
 
+Prepared TASK seo-basics (Add baseline SEO structure) for execution.
+
+Launching Codex for TASK seo-basics.
+
+Completed TASK seo-basics.
+
+Added baseline SEO metadata by setting a descriptive default `title` and meta
+description in `index.html`, then updating route-level document titles and
+descriptions inside the allowed page shells for home, menu, chi-siamo,
+gallery, contatti, and servizi. Verified each page already exposes a single
+meaningful `h1` through its hero section.
+
+TASK seo-basics executed by Codex.
+Waiting for validation.
+
+TASK seo-basics completed successfully.
+Build passed.
+
 Prepared TASK navigation-structure (Build navigation from spec) for execution.
 
 Launching Codex for TASK navigation-structure.
@@ -728,4 +746,15 @@ TASK navigation-structure executed by Codex.
 Waiting for validation.
 
 TASK navigation-structure completed successfully.
+Build passed.
+Commit created for TASK navigation-structure.
+
+Prepared TASK seo-basics (Add baseline SEO structure) for execution.
+
+Launching Codex for TASK seo-basics.
+
+TASK seo-basics executed by Codex.
+Waiting for validation.
+
+TASK seo-basics completed successfully.
 Build passed.
