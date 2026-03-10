@@ -219,6 +219,24 @@ TASK section-menu-menu-categories completed successfully.
 Build passed.
 Commit created for TASK section-menu-menu-categories.
 
+Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
+
+Launching Codex for TASK section-chi-siamo-about-hero.
+
+Completed TASK section-chi-siamo-about-hero.
+
+Implemented a dedicated `About-heroSection` component and rendered it from
+`src/pages/Chi-siamo.jsx` to replace the inline placeholder hero. The
+`/chi-siamo` page now includes a premium hero section for `about-hero` with a
+single `h1`, refined brand copy, and supporting highlight cards aligned to the
+existing visual language.
+
+TASK section-chi-siamo-about-hero executed by Codex.
+Waiting for validation.
+
+TASK section-chi-siamo-about-hero completed successfully.
+Build passed.
+
 Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
 
 Launching Codex for TASK page-chi-siamo-shell.
@@ -238,4 +256,15 @@ TASK page-chi-siamo-shell executed by Codex.
 Waiting for validation.
 
 TASK page-chi-siamo-shell completed successfully.
+Build passed.
+Commit created for TASK page-chi-siamo-shell.
+
+Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
+
+Launching Codex for TASK section-chi-siamo-about-hero.
+
+TASK section-chi-siamo-about-hero executed by Codex.
+Waiting for validation.
+
+TASK section-chi-siamo-about-hero completed successfully.
 Build passed.

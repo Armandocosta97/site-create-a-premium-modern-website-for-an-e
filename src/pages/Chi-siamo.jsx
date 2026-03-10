@@ -1,19 +1,9 @@
+import AboutHeroSection from '../components/About-heroSection'
+
 export default function ChiSiamo() {
   return (
     <article aria-labelledby="chi-siamo-title">
-      <section id="about-hero">
-        <div>
-          <p>Casa Aurea Events</p>
-          <h1 id="chi-siamo-title">
-            Hospitality shaped with care, timing, and a refined Italian eye
-          </h1>
-          <p>
-            We design catering and bar experiences that feel effortless for the
-            host and memorable for every guest, from the first welcome glass to
-            the final toast.
-          </p>
-        </div>
-      </section>
+      <AboutHeroSection />
 
       <section id="story" aria-labelledby="story-title">
         <div>
