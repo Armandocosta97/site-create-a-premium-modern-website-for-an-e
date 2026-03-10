@@ -1178,35 +1178,84 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-servizi-services-overview
+navigation-structure
 
 ## Current task title
-Create services-overview section on servizi
+Build navigation from spec
 
 ## Current task type
-section
+navigation
 
 ## Current task target
 ```json
 {
-  "pageId": "servizi",
-  "sectionId": "services-overview",
-  "sectionType": "service-list"
+  "navigation": [
+    {
+      "label": "Home",
+      "type": "route",
+      "target": "/"
+    },
+    {
+      "label": "Menu",
+      "type": "route",
+      "target": "/menu"
+    },
+    {
+      "label": "Chi siamo",
+      "type": "route",
+      "target": "/chi-siamo"
+    },
+    {
+      "label": "Gallery",
+      "type": "route",
+      "target": "/gallery"
+    },
+    {
+      "label": "Contatti",
+      "type": "route",
+      "target": "/contatti"
+    },
+    {
+      "label": "Servizi",
+      "type": "route",
+      "target": "/servizi"
+    }
+  ],
+  "routingMode": "hash"
 }
 ```
 
 ## Depends on
+- page-home-shell
+- page-menu-shell
+- page-chi-siamo-shell
+- page-gallery-shell
+- page-contatti-shell
 - page-servizi-shell
+- section-home-hero
+- section-home-signature-preview
+- section-home-brand-story-preview
+- section-menu-menu-hero
+- section-menu-menu-categories
+- section-chi-siamo-about-hero
+- section-chi-siamo-story
+- section-chi-siamo-philosophy
+- section-gallery-gallery-hero
+- section-gallery-gallery-grid
+- section-contatti-contact-hero
+- section-contatti-contact-details
+- section-contatti-opening-hours
+- section-servizi-services-hero
+- section-servizi-services-overview
 
 ## Files allowed
-- src/pages/Servizi.jsx
-- src/components/Services-overviewSection.jsx
-- src/components
+- src/App.jsx
+- src/layout/Layout.jsx
 
 ## Definition of done
-- section services-overview exists on servizi
-- section services-overview matches type service-list
-- section services-overview is rendered in page servizi
+- all navigation items are rendered
+- all navigation links point to valid pages or sections
+- navigation is compatible with routing mode
 
 ## Strict execution rules
 - Execute only this current task.

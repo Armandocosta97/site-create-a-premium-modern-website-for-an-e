@@ -1,7 +1,7 @@
 {
-  "currentTaskId": "navigation-structure",
+  "currentTaskId": "seo-basics",
   "status": "ready_for_next_task",
-  "lastCompletedTaskId": "section-servizi-services-overview",
+  "lastCompletedTaskId": "navigation-structure",
   "completedTaskIds": [
     "page-home-shell",
     "section-home-hero",
@@ -28,6 +28,7 @@
     "cta-contatti-contatti-phone",
     "page-servizi-shell",
     "section-servizi-services-hero",
-    "section-servizi-services-overview"
+    "section-servizi-services-overview",
+    "navigation-structure"
   ]
 }

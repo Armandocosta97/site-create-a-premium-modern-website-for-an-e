@@ -7,10 +7,19 @@ import Gallery from "./pages/Gallery"
 import Contatti from "./pages/Contatti"
 import Servizi from "./pages/Servizi"
 
+const navigationItems = [
+  { label: "Home", type: "route", target: "/" },
+  { label: "Menu", type: "route", target: "/menu" },
+  { label: "Chi siamo", type: "route", target: "/chi-siamo" },
+  { label: "Gallery", type: "route", target: "/gallery" },
+  { label: "Contatti", type: "route", target: "/contatti" },
+  { label: "Servizi", type: "route", target: "/servizi" },
+]
+
 export default function App() {
   return (
     <HashRouter>
-      <Layout>
+      <Layout navigationItems={navigationItems}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/menu" element={<Menu />} />

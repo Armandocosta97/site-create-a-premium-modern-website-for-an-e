@@ -218,6 +218,23 @@ TASK section-chi-siamo-philosophy completed successfully.
 Build passed.
 
 Implemented a dedicated `Menu-categoriesSection` component in
+
+Prepared TASK navigation-structure (Build navigation from spec) for execution.
+
+Launching Codex for TASK navigation-structure.
+
+Completed TASK navigation-structure.
+
+Updated the app shell navigation in `src/App.jsx` and `src/layout/Layout.jsx`
+to render the exact spec-defined route list through `NavLink` components. The
+header is now aligned with hash routing and each navigation item resolves to an
+existing page route.
+
+TASK navigation-structure executed by Codex.
+Waiting for validation.
+
+TASK navigation-structure completed successfully.
+Build passed.
 `src/components/Services-overviewSection.jsx` and rendered it from
 `src/pages/Servizi.jsx` to replace the inline placeholder content. The
 `servizi` page now includes the required `services-overview` service-list
@@ -700,4 +717,15 @@ TASK section-servizi-services-overview executed by Codex.
 Waiting for validation.
 
 TASK section-servizi-services-overview completed successfully.
+Build passed.
+Commit created for TASK section-servizi-services-overview.
+
+Prepared TASK navigation-structure (Build navigation from spec) for execution.
+
+Launching Codex for TASK navigation-structure.
+
+TASK navigation-structure executed by Codex.
+Waiting for validation.
+
+TASK navigation-structure completed successfully.
 Build passed.
