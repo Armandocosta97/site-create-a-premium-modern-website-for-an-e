@@ -1,8 +1,8 @@
-Modified files: [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files: [src/components/Menu-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Menu-heroSection.jsx), [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-Implemented the `page-menu-shell` task by replacing the placeholder content in [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx) with a semantic menu page shell: an `article`, a real `menu-hero` section, a real `menu-categories` section, premium copy, and one valid page `h1`. The `/menu` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so no route change was needed. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+Implemented the `menu-hero` section as a dedicated reusable component and rendered it from [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx). The new hero in [src/components/Menu-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Menu-heroSection.jsx) provides the required hero structure for the `/menu` page with premium brand copy, one page-level `h1`, highlight cards, and valid CTAs to `/contatti` and `/servizi`. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with the task summary.
 
-Build result: `npm run build` passed successfully.
+Build result: `npm run build` passed successfully with Vite production build completed.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd838-1d99-7542-a441-8cb86d2cc9a1
+session id: 019cd838-c11d-7170-8a59-e1003b7a5fee
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1196,32 +1196,35 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-page-menu-shell
+section-menu-menu-hero
 
 ## Current task title
-Create menu page shell
+Create menu-hero section on menu
 
 ## Current task type
-page-shell
+section
 
 ## Current task target
 ```json
 {
-  "pageId": "menu"
+  "pageId": "menu",
+  "sectionId": "menu-hero",
+  "sectionType": "hero"
 }
 ```
 
 ## Depends on
-- none
+- page-menu-shell
 
 ## Files allowed
-- src/App.jsx
 - src/pages/Menu.jsx
+- src/components/Menu-heroSection.jsx
+- src/components
 
 ## Definition of done
-- page shell exists for menu
-- menu route is mounted if required
-- menu page renders without crashing
+- section menu-hero exists on menu
+- section menu-hero matches type hero
+- section menu-hero is rendered in page menu
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1250,33 +1253,12 @@ page-shell
 
 mcp startup: no servers
 codex
-I’m checking the current app structure and the existing routing so I can add only the menu page shell and mount its route without touching unrelated work.
+I’m checking the current menu page and the existing component structure first so I can add only the `menu-hero` section and keep the change inside the allowed scope.
 exec
-/bin/zsh -lc "if [ -f agent/AGENT_REPORT.md ]; then sed -n '1,220p' agent/AGENT_REPORT.md; else echo '__MISSING__'; fi" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "if [ -f src/pages/Menu.jsx ]; then sed -n '1,220p' src/pages/Menu.jsx; else echo '__MISSING__'; fi" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'pwd && rg --files .' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/ChiSiamo"
-import Gallery from "./pages/Gallery"
-import Contatti from "./pages/Contatti"
-import Servizi from "./pages/Servizi"
-
-export default function App() {
-  return (
-    <HashRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/chi-siamo" element={<ChiSiamo />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contatti" element={<Contatti />} />
-          <Route path="/servizi" element={<Servizi />} />
- succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "pwd && rg --files src agent brief docs | sort | rg 'Menu|menu|AGENT_REPORT|CURRENT_TASK_PROMPT|site-spec|DEVELOPMENT_METHOD'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
 # AGENT REPORT
 
 Project created.
@@ -1300,419 +1282,1603 @@ Commit created for TASK page-home-shell.
  succeeded in 52ms:
 export default function Menu() {
   return (
-    <>
-      <section id="menu-hero">
-        <h1>Menu Hero</h1>
-        <p>Content for menu-hero will be generated by tasks</p>
+    <article aria-labelledby="menu-title">
+      <section id="menu-hero" aria-labelledby="menu-title">
+        <p>Curated event bar program</p>
+        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
+        <p>
+          Explore the Casa Aurea Events menu page for signature cocktails,
+          aperitivo moments, and premium pours tailored to weddings, private
+          dinners, and refined corporate evenings.
+        </p>
       </section>
-      <section id="menu-categories">
-        <h2>Menu Categories</h2>
-        <p>Content for menu-categories will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
+
+      <section id="menu-categories" aria-labelledby="menu-categories-title">
+        <h2 id="menu-categories-title">Menu categories</h2>
+        <p>
+          The full drink list will be structured into distinct collections so
+          guests can quickly understand the house signatures, reimagined
+          classics, alcohol-free options, and premium bottle selections.
+        </p>
  succeeded in 52ms:
+# CURRENT TASK EXECUTION PROMPT
+
+You are the coding executor for this project.
+
+## Project path
+site-create-a-premium-modern-website-for-an-e
+
+## Source of truth files
+- brief/original-prompt.md
+- brief/brief-summary.md
+- site-spec.json
+- docs/DEVELOPMENT_METHOD.md
+- agent/TASK_GRAPH.json
+- agent/TASK_STATE.json
+- agent/CURRENT_TASK_PROMPT.md
+
+## Development method
+# Development Method
+
+All sites must follow these rules.
+ succeeded in 51ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
-./src/pages/Home.jsx
-./src/pages/Gallery.jsx
-./src/pages/ChiSiamo.jsx
-./src/pages/Contatti.jsx
-./src/pages/Servizi.jsx
-./src/pages/Menu.jsx
-./src/assets/react.svg
-./src/App.jsx
-./src/main.jsx
-./src/components/FloatingWhatsAppButton.jsx
-./src/components/Brand-story-previewSection.jsx
-./src/components/SignaturePreviewSection.jsx
-./src/components/HeroSection.jsx
-./src/index.css
-./src/App.css
-./src/layout/Layout.jsx
-./AGENTS.md
-./eslint.config.js
-./brief/brief-summary.md
+agent/AGENT_REPORT.md
+agent/CURRENT_TASK_PROMPT.md
+docs/DEVELOPMENT_METHOD.md
+src/pages/Menu.jsx
 codex
-The route is already mounted. I’ve confirmed `src/pages/Menu.jsx` is still a placeholder, so I’m replacing that with a real semantic shell and then I’ll run a build and append the task report entry.
+I found the menu page still has inline placeholder hero markup. I’m reading the existing shared section components so the new hero follows the established style without touching unrelated pages.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Servizi.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
-{
-  "name": "site-create-a-premium-modern-website-for-an-e",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test:ui": "playwright test"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@playwright/test": "^1.58.2",
+/bin/zsh -lc "sed -n '1,240p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,240p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/components/BrandStoryPreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'rg --files src/components | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e exited 1 in 51ms:
+sed: src/components/BrandStoryPreviewSection.jsx: No such file or directory
  succeeded in 51ms:
-export default function ChiSiamo() {
-  return (
-    <>
-      <section id="about-hero">
-        <h1>About Hero</h1>
-        <p>Content for about-hero will be generated by tasks</p>
-      </section>
-      <section id="story">
-        <h2>Story</h2>
-        <p>Content for story will be generated by tasks</p>
-      </section>
-      <section id="philosophy">
-        <h2>Philosophy</h2>
-        <p>Content for philosophy will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
- succeeded in 51ms:
-import HeroSection from '../components/HeroSection'
-import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
-import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
-import SignaturePreviewSection from '../components/SignaturePreviewSection'
+import { Link } from 'react-router-dom'
 
-export default function Home() {
-  return (
-    <article aria-labelledby="home-title">
-      <HeroSection
-        primaryCta={{
-          label: 'Request your event proposal',
-          to: '/menu',
-        }}
-        secondaryCta={{
-          label: 'Contact us for your event',
-          to: '/contatti',
-        }}
-      />
-      <SignaturePreviewSection />
-      <BrandStoryPreviewSection />
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    background:
+      'linear-gradient(180deg, rgba(246, 239, 228, 0.9) 0%, rgba(239, 228, 210, 0.72) 100%)',
+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
+  },
+  header: {
+    display: 'grid',
+    gap: '1rem',
+    alignItems: 'end',
+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
+  },
+  eyebrow: {
+    margin: 0,
+    color: '#9f7b4b',
  succeeded in 51ms:
-export default function Servizi() {
-  return (
-    <>
-      <section id="services-hero">
-        <h1>Services Hero</h1>
-        <p>Content for services-hero will be generated by tasks</p>
-      </section>
-      <section id="services-overview">
-        <h2>Services Overview</h2>
-        <p>Content for services-overview will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
+import { Link } from 'react-router-dom'
+
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(32rem, 78vh, 46rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(40, 31, 24, 0.18) 0%, rgba(28, 22, 18, 0.72) 62%, rgba(20, 15, 12, 0.9) 100%), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 42rem)',
+ succeeded in 50ms:
+src/components/Brand-story-previewSection.jsx
+src/components/FloatingWhatsAppButton.jsx
+src/components/HeroSection.jsx
+src/components/SignaturePreviewSection.jsx
 codex
-I have enough context. I’m making one focused edit to replace the menu placeholders with a production-safe page shell that matches the spec’s `menu-hero` and `menu-categories` structure, then I’ll verify with `vite build` and record the task in the agent report.
+The components folder has one naming inconsistency, but it doesn’t affect this task. I’m mirroring the existing inline-style approach and extracting the menu hero into its own component before wiring it into the page.
+exec
+/bin/zsh -lc "sed -n '1,260p' src/components/Brand-story-previewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'rg -n "Brand-story-previewSection|HeroSection|SignaturePreviewSection|Menu" src' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+import { Link } from 'react-router-dom'
+
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '1.5rem',
+    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    backgroundColor: '#241c17',
+    color: '#f6efe4',
+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
+  },
+  media: {
+    minHeight: '20rem',
+    borderRadius: '28px',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
+    backgroundSize: 'cover',
+ succeeded in 51ms:
+src/pages/Home.jsx:1:import HeroSection from '../components/HeroSection'
+src/pages/Home.jsx:2:import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+src/pages/Home.jsx:4:import SignaturePreviewSection from '../components/SignaturePreviewSection'
+src/pages/Home.jsx:9:      <HeroSection
+src/pages/Home.jsx:19:      <SignaturePreviewSection />
+src/pages/Menu.jsx:1:export default function Menu() {
+src/pages/Menu.jsx:15:        <h2 id="menu-categories-title">Menu categories</h2>
+src/App.jsx:4:import Menu from "./pages/Menu"
+src/App.jsx:16:          <Route path="/menu" element={<Menu />} />
+src/layout/Layout.jsx:7:          <a href="#/menu">Menu</a>
+src/components/HeroSection.jsx:132:export default function HeroSection({
+src/components/SignaturePreviewSection.jsx:133:export default function SignaturePreviewSection() {
+src/components/Brand-story-previewSection.jsx:126:    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
+codex
+I have enough context. Next I’m replacing the inline menu hero with a dedicated component that keeps the existing premium visual language, adds route-safe CTAs, and leaves `menu-categories` untouched.
 file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -152 +152,11 @@
- Launching Codex for TASK page-menu-shell.
-+
-+Completed TASK page-menu-shell.
-+
-+Implemented a semantic shell for `src/pages/Menu.jsx` with the required
-+`menu-hero` and `menu-categories` sections, real premium-facing copy, and a
-+single-page `h1` for the `/menu` route. Verified `src/App.jsx` already mounts
-+the `/menu` route, so no routing change was required.
-+
-+TASK page-menu-shell executed by Codex.
-+Waiting for validation.
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Menu-heroSection.jsx
+import { Link } from 'react-router-dom'
+
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(30rem, 72vh, 42rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 46rem)',
+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
+    borderRadius: '28px',
+    backgroundColor: 'rgba(19, 15, 13, 0.52)',
+    backdropFilter: 'blur(10px)',
+    textAlign: 'left',
+  },
+  eyebrow: {
+    margin: 0,
+    fontSize: '0.8rem',
+    letterSpacing: '0.22em',
+    textTransform: 'uppercase',
+    color: '#d9bf8d',
+  },
+  title: {
+    margin: '1rem 0 0',
+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
+    lineHeight: 1.02,
+    fontFamily: 'Georgia, \"Times New Roman\", serif',
+    fontWeight: 600,
+  },
+  body: {
+    margin: '1.25rem 0 0',
+    maxWidth: '35rem',
+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
+    lineHeight: 1.75,
+    color: 'rgba(247, 241, 232, 0.88)',
+  },
+  actions: {
+    marginTop: '1.75rem',
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '0.875rem',
+  },
+  primaryAction: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '3.25rem',
+    padding: '0.9rem 1.5rem',
+    borderRadius: '999px',
+    backgroundColor: '#d9bf8d',
+    color: '#1f1813',
+    textDecoration: 'none',
+    fontWeight: 700,
+  },
+  secondaryAction: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '3.25rem',
+    padding: '0.9rem 1.5rem',
+    borderRadius: '999px',
+    border: '1px solid rgba(247, 241, 232, 0.42)',
+    color: '#f7f1e8',
+    textDecoration: 'none',
+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
+    fontWeight: 600,
+  },
+  highlights: {
+    marginTop: '1.5rem',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
+    gap: '0.875rem',
+  },
+  highlightCard: {
+    padding: '0.95rem 1rem',
+    borderRadius: '20px',
+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
+    border: '1px solid rgba(247, 241, 232, 0.12)',
+  },
+  highlightLabel: {
+    display: 'block',
+    fontSize: '0.78rem',
+    letterSpacing: '0.08em',
+    textTransform: 'uppercase',
+    color: 'rgba(217, 191, 141, 0.92)',
+  },
+  highlightText: {
+    display: 'block',
+    marginTop: '0.4rem',
+    fontSize: '0.98rem',
+    lineHeight: 1.5,
+    color: '#f7f1e8',
+  },
+}
+
+const highlights = [
+  {
+    label: 'Drink direction',
+    text: 'Signature cocktails, aperitivo classics, and elevated alcohol-free serves.',
+  },
+  {
+    label: 'Designed for',
+    text: 'Wedding welcome drinks, long-table dinners, and late-evening celebrations.',
+  },
+  {
+    label: 'Service feel',
+    text: 'Balanced flavor, refined presentation, and bar pacing that suits the room.',
+  },
+]
+
+export default function MenuHeroSection() {
+  return (
+    <section
+      id="menu-hero"
+      aria-labelledby="menu-title"
+      style={heroStyles.section}
+    >
+      <div style={heroStyles.panel}>
+        <p style={heroStyles.eyebrow}>Curated event bar program</p>
+        <h1 id="menu-title" style={heroStyles.title}>
+          Drink selections designed for elegant celebrations
+        </h1>
+        <p style={heroStyles.body}>
+          Explore a bar menu shaped for weddings, private dinners, and refined
+          corporate evenings, with signature cocktails, aperitivo rituals, and
+          premium pours that complement the atmosphere of the event.
+        </p>
+
+        <div style={heroStyles.actions}>
+          <Link to="/contatti" style={heroStyles.primaryAction}>
+            Request your event proposal
+          </Link>
+          <Link to="/servizi" style={heroStyles.secondaryAction}>
+            Explore our services
+          </Link>
+        </div>
+
+        <div style={heroStyles.highlights}>
+          {highlights.map((item) => (
+            <div key={item.label} style={heroStyles.highlightCard}>
+              <span style={heroStyles.highlightLabel}>{item.label}</span>
+              <span style={heroStyles.highlightText}>{item.text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx
-@@ -2,12 +2,22 @@
-   return (
--    <>
--      <section id="menu-hero">
--        <h1>Menu Hero</h1>
--        <p>Content for menu-hero will be generated by tasks</p>
-+    <article aria-labelledby="menu-title">
-+      <section id="menu-hero" aria-labelledby="menu-title">
-+        <p>Curated event bar program</p>
-+        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
-+        <p>
-+          Explore the Casa Aurea Events menu page for signature cocktails,
-+          aperitivo moments, and premium pours tailored to weddings, private
-+          dinners, and refined corporate evenings.
-+        </p>
-       </section>
--      <section id="menu-categories">
--        <h2>Menu Categories</h2>
--        <p>Content for menu-categories will be generated by tasks</p>
+@@ -1 +1,3 @@
++import MenuHeroSection from '../components/Menu-heroSection'
 +
-+      <section id="menu-categories" aria-labelledby="menu-categories-title">
-+        <h2 id="menu-categories-title">Menu categories</h2>
-+        <p>
-+          The full drink list will be structured into distinct collections so
-+          guests can quickly understand the house signatures, reimagined
-+          classics, alcohol-free options, and premium bottle selections.
-+        </p>
-       </section>
--    </>
-+    </article>
-   )
-apply_patch(auto_approved=true) exited 0 in 38ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 7cb4d7ea2b41dec997a815c2e1f4e241c8a6d800..afe2f09ea32a893ceb376e6376e318a9487b2da1
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -150,3 +150,13 @@
- Prepared TASK page-menu-shell (Create menu page shell) for execution.
+ export default function Menu() {
+@@ -3,11 +5,3 @@
+     <article aria-labelledby="menu-title">
+-      <section id="menu-hero" aria-labelledby="menu-title">
+-        <p>Curated event bar program</p>
+-        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
+-        <p>
+-          Explore the Casa Aurea Events menu page for signature cocktails,
+-          aperitivo moments, and premium pours tailored to weddings, private
+-          dinners, and refined corporate evenings.
+-        </p>
+-      </section>
++      <MenuHeroSection />
  
- Launching Codex for TASK page-menu-shell.
+apply_patch(auto_approved=true) exited 0 in 50ms:
+Success. Updated the following files:
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Menu-heroSection.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx
+file update:
+diff --git a/src/components/Menu-heroSection.jsx b/src/components/Menu-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..d887071c918500cfdbfc706a8e92a8419846e5b9
+--- /dev/null
++++ b/src/components/Menu-heroSection.jsx
+@@ -0,0 +1,160 @@
++import { Link } from 'react-router-dom'
 +
-+Completed TASK page-menu-shell.
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 72vh, 42rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 46rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.52)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, \"Times New Roman\", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '35rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
 +
-+Implemented a semantic shell for `src/pages/Menu.jsx` with the required
-+`menu-hero` and `menu-categories` sections, real premium-facing copy, and a
-+single-page `h1` for the `/menu` route. Verified `src/App.jsx` already mounts
-+the `/menu` route, so no routing change was required.
++const highlights = [
++  {
++    label: 'Drink direction',
++    text: 'Signature cocktails, aperitivo classics, and elevated alcohol-free serves.',
++  },
++  {
++    label: 'Designed for',
++    text: 'Wedding welcome drinks, long-table dinners, and late-evening celebrations.',
++  },
++  {
++    label: 'Service feel',
++    text: 'Balanced flavor, refined presentation, and bar pacing that suits the room.',
++  },
++]
 +
-+TASK page-menu-shell executed by Codex.
-+Waiting for validation.
++export default function MenuHeroSection() {
++  return (
++    <section
++      id="menu-hero"
++      aria-labelledby="menu-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Curated event bar program</p>
++        <h1 id="menu-title" style={heroStyles.title}>
++          Drink selections designed for elegant celebrations
++        </h1>
++        <p style={heroStyles.body}>
++          Explore a bar menu shaped for weddings, private dinners, and refined
++          corporate evenings, with signature cocktails, aperitivo rituals, and
++          premium pours that complement the atmosphere of the event.
++        </p>
++
++        <div style={heroStyles.actions}>
++          <Link to="/contatti" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </Link>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 1a83cadc1d413d772d83d544e70bab727c45c52e..404b260d5e08a21a7f52dbec02fc77aec90ee379
+index 404b260d5e08a21a7f52dbec02fc77aec90ee379..ae33526f293e8d8974dfc12bff56424470fce774
 --- a/src/pages/Menu.jsx
 +++ b/src/pages/Menu.jsx
-@@ -1,14 +1,24 @@
+@@ -1,15 +1,9 @@
++import MenuHeroSection from '../components/Menu-heroSection'
++
  export default function Menu() {
    return (
--    <>
--      <section id="menu-hero">
--        <h1>Menu Hero</h1>
--        <p>Content for menu-hero will be generated by tasks</p>
-+    <article aria-labelledby="menu-title">
-+      <section id="menu-hero" aria-labelledby="menu-title">
-+        <p>Curated event bar program</p>
-+        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
-+        <p>
-+          Explore the Casa Aurea Events menu page for signature cocktails,
-+          aperitivo moments, and premium pours tailored to weddings, private
-+          dinners, and refined corporate evenings.
-+        </p>
-       </section>
--      <section id="menu-categories">
--        <h2>Menu Categories</h2>
--        <p>Content for menu-categories will be generated by tasks</p>
-+
-+      <section id="menu-categories" aria-labelledby="menu-categories-title">
-+        <h2 id="menu-categories-title">Menu categories</h2>
-+        <p>
-+          The full drink list will be structured into distinct collections so
-+          guests can quickly understand the house signatures, reimagined
-+          classics, alcohol-free options, and premium bottle selections.
-+        </p>
-       </section>
--    </>
-+    </article>
-   )
- }
+     <article aria-labelledby="menu-title">
+-      <section id="menu-hero" aria-labelledby="menu-title">
+-        <p>Curated event bar program</p>
+-        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
+-        <p>
+-          Explore the Casa Aurea Events menu page for signature cocktails,
+-          aperitivo moments, and premium pours tailored to weddings, private
+-          dinners, and refined corporate evenings.
+-        </p>
+-      </section>
++      <MenuHeroSection />
+ 
+       <section id="menu-categories" aria-labelledby="menu-categories-title">
+         <h2 id="menu-categories-title">Menu categories</h2>
 
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 7cb4d7ea2b41dec997a815c2e1f4e241c8a6d800..afe2f09ea32a893ceb376e6376e318a9487b2da1
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -150,3 +150,13 @@
- Prepared TASK page-menu-shell (Create menu page shell) for execution.
- 
- Launching Codex for TASK page-menu-shell.
+diff --git a/src/components/Menu-heroSection.jsx b/src/components/Menu-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..d887071c918500cfdbfc706a8e92a8419846e5b9
+--- /dev/null
++++ b/src/components/Menu-heroSection.jsx
+@@ -0,0 +1,160 @@
++import { Link } from 'react-router-dom'
 +
-+Completed TASK page-menu-shell.
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 72vh, 42rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 46rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.52)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, \"Times New Roman\", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '35rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
 +
-+Implemented a semantic shell for `src/pages/Menu.jsx` with the required
-+`menu-hero` and `menu-categories` sections, real premium-facing copy, and a
-+single-page `h1` for the `/menu` route. Verified `src/App.jsx` already mounts
-+the `/menu` route, so no routing change was required.
++const highlights = [
++  {
++    label: 'Drink direction',
++    text: 'Signature cocktails, aperitivo classics, and elevated alcohol-free serves.',
++  },
++  {
++    label: 'Designed for',
++    text: 'Wedding welcome drinks, long-table dinners, and late-evening celebrations.',
++  },
++  {
++    label: 'Service feel',
++    text: 'Balanced flavor, refined presentation, and bar pacing that suits the room.',
++  },
++]
 +
-+TASK page-menu-shell executed by Codex.
-+Waiting for validation.
++export default function MenuHeroSection() {
++  return (
++    <section
++      id="menu-hero"
++      aria-labelledby="menu-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Curated event bar program</p>
++        <h1 id="menu-title" style={heroStyles.title}>
++          Drink selections designed for elegant celebrations
++        </h1>
++        <p style={heroStyles.body}>
++          Explore a bar menu shaped for weddings, private dinners, and refined
++          corporate evenings, with signature cocktails, aperitivo rituals, and
++          premium pours that complement the atmosphere of the event.
++        </p>
++
++        <div style={heroStyles.actions}>
++          <Link to="/contatti" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </Link>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 1a83cadc1d413d772d83d544e70bab727c45c52e..404b260d5e08a21a7f52dbec02fc77aec90ee379
+index 404b260d5e08a21a7f52dbec02fc77aec90ee379..ae33526f293e8d8974dfc12bff56424470fce774
 --- a/src/pages/Menu.jsx
 +++ b/src/pages/Menu.jsx
-@@ -1,14 +1,24 @@
+@@ -1,15 +1,9 @@
++import MenuHeroSection from '../components/Menu-heroSection'
++
  export default function Menu() {
    return (
--    <>
--      <section id="menu-hero">
--        <h1>Menu Hero</h1>
--        <p>Content for menu-hero will be generated by tasks</p>
-+    <article aria-labelledby="menu-title">
-+      <section id="menu-hero" aria-labelledby="menu-title">
-+        <p>Curated event bar program</p>
-+        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
-+        <p>
-+          Explore the Casa Aurea Events menu page for signature cocktails,
-+          aperitivo moments, and premium pours tailored to weddings, private
-+          dinners, and refined corporate evenings.
-+        </p>
-       </section>
--      <section id="menu-categories">
--        <h2>Menu Categories</h2>
--        <p>Content for menu-categories will be generated by tasks</p>
-+
-+      <section id="menu-categories" aria-labelledby="menu-categories-title">
-+        <h2 id="menu-categories-title">Menu categories</h2>
-+        <p>
-+          The full drink list will be structured into distinct collections so
-+          guests can quickly understand the house signatures, reimagined
-+          classics, alcohol-free options, and premium bottle selections.
-+        </p>
-       </section>
--    </>
-+    </article>
-   )
- }
+     <article aria-labelledby="menu-title">
+-      <section id="menu-hero" aria-labelledby="menu-title">
+-        <p>Curated event bar program</p>
+-        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
+-        <p>
+-          Explore the Casa Aurea Events menu page for signature cocktails,
+-          aperitivo moments, and premium pours tailored to weddings, private
+-          dinners, and refined corporate evenings.
+-        </p>
+-      </section>
++      <MenuHeroSection />
+ 
+       <section id="menu-categories" aria-labelledby="menu-categories-title">
+         <h2 id="menu-categories-title">Menu categories</h2>
 
 codex
-The page shell is in place. I’m running the build now to confirm the menu route renders cleanly and that this task didn’t introduce any regressions.
+The hero component is in place and wired into the menu page. I’m running the project build now, then I’ll append the task summary to `agent/AGENT_REPORT.md` as required.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 781ms:
+/bin/zsh -lc ls in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+AGENTS.md
+README.md
+agent
+brief
+dist
+docs
+eslint.config.js
+index.html
+node_modules
+package-lock.json
+package.json
+playwright.config.js
+public
+site-spec.json
+src
+tests
+vite.config.js
+exec
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 709ms:
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 52 modules transformed.
+✓ 53 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-D8ox5Rxy.js   246.13 kB │ gzip: 78.33 kB
-✓ built in 558ms
+dist/assets/index-CYPAzcS6.js   249.23 kB │ gzip: 78.67 kB
+✓ built in 539ms
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 7cb4d7ea2b41dec997a815c2e1f4e241c8a6d800..afe2f09ea32a893ceb376e6376e318a9487b2da1
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -150,3 +150,13 @@
- Prepared TASK page-menu-shell (Create menu page shell) for execution.
- 
- Launching Codex for TASK page-menu-shell.
+diff --git a/src/components/Menu-heroSection.jsx b/src/components/Menu-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..d887071c918500cfdbfc706a8e92a8419846e5b9
+--- /dev/null
++++ b/src/components/Menu-heroSection.jsx
+@@ -0,0 +1,160 @@
++import { Link } from 'react-router-dom'
 +
-+Completed TASK page-menu-shell.
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 72vh, 42rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 46rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.52)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, \"Times New Roman\", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '35rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
 +
-+Implemented a semantic shell for `src/pages/Menu.jsx` with the required
-+`menu-hero` and `menu-categories` sections, real premium-facing copy, and a
-+single-page `h1` for the `/menu` route. Verified `src/App.jsx` already mounts
-+the `/menu` route, so no routing change was required.
++const highlights = [
++  {
++    label: 'Drink direction',
++    text: 'Signature cocktails, aperitivo classics, and elevated alcohol-free serves.',
++  },
++  {
++    label: 'Designed for',
++    text: 'Wedding welcome drinks, long-table dinners, and late-evening celebrations.',
++  },
++  {
++    label: 'Service feel',
++    text: 'Balanced flavor, refined presentation, and bar pacing that suits the room.',
++  },
++]
 +
-+TASK page-menu-shell executed by Codex.
-+Waiting for validation.
++export default function MenuHeroSection() {
++  return (
++    <section
++      id="menu-hero"
++      aria-labelledby="menu-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Curated event bar program</p>
++        <h1 id="menu-title" style={heroStyles.title}>
++          Drink selections designed for elegant celebrations
++        </h1>
++        <p style={heroStyles.body}>
++          Explore a bar menu shaped for weddings, private dinners, and refined
++          corporate evenings, with signature cocktails, aperitivo rituals, and
++          premium pours that complement the atmosphere of the event.
++        </p>
++
++        <div style={heroStyles.actions}>
++          <Link to="/contatti" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </Link>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 1a83cadc1d413d772d83d544e70bab727c45c52e..404b260d5e08a21a7f52dbec02fc77aec90ee379
+index 404b260d5e08a21a7f52dbec02fc77aec90ee379..ae33526f293e8d8974dfc12bff56424470fce774
 --- a/src/pages/Menu.jsx
 +++ b/src/pages/Menu.jsx
-@@ -1,14 +1,24 @@
+@@ -1,15 +1,9 @@
++import MenuHeroSection from '../components/Menu-heroSection'
++
  export default function Menu() {
    return (
--    <>
--      <section id="menu-hero">
--        <h1>Menu Hero</h1>
--        <p>Content for menu-hero will be generated by tasks</p>
-+    <article aria-labelledby="menu-title">
-+      <section id="menu-hero" aria-labelledby="menu-title">
-+        <p>Curated event bar program</p>
-+        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
-+        <p>
-+          Explore the Casa Aurea Events menu page for signature cocktails,
-+          aperitivo moments, and premium pours tailored to weddings, private
-+          dinners, and refined corporate evenings.
-+        </p>
-       </section>
--      <section id="menu-categories">
--        <h2>Menu Categories</h2>
--        <p>Content for menu-categories will be generated by tasks</p>
-+
-+      <section id="menu-categories" aria-labelledby="menu-categories-title">
-+        <h2 id="menu-categories-title">Menu categories</h2>
-+        <p>
-+          The full drink list will be structured into distinct collections so
-+          guests can quickly understand the house signatures, reimagined
-+          classics, alcohol-free options, and premium bottle selections.
-+        </p>
-       </section>
--    </>
-+    </article>
-   )
- }
+     <article aria-labelledby="menu-title">
+-      <section id="menu-hero" aria-labelledby="menu-title">
+-        <p>Curated event bar program</p>
+-        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
+-        <p>
+-          Explore the Casa Aurea Events menu page for signature cocktails,
+-          aperitivo moments, and premium pours tailored to weddings, private
+-          dinners, and refined corporate evenings.
+-        </p>
+-      </section>
++      <MenuHeroSection />
+ 
+       <section id="menu-categories" aria-labelledby="menu-categories-title">
+         <h2 id="menu-categories-title">Menu categories</h2>
 
 codex
-Modified files: [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
-
-Implemented the `page-menu-shell` task by replacing the placeholder content in [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx) with a semantic menu page shell: an `article`, a real `menu-hero` section, a real `menu-categories` section, premium copy, and one valid page `h1`. The `/menu` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so no route change was needed. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
-
-Build result: `npm run build` passed successfully.
+The build passed cleanly. I’m adding the required task entry to `agent/AGENT_REPORT.md` now, with only this task’s implementation details.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+@@ -173 +173,15 @@
+ Launching Codex for TASK section-menu-menu-hero.
++
++Completed TASK section-menu-menu-hero.
++
++Implemented a dedicated `MenuHeroSection` component in
++`src/components/Menu-heroSection.jsx` and rendered it from `src/pages/Menu.jsx`
++to replace the inline placeholder hero markup. The `/menu` page now has a
++premium hero section with a single `h1`, supporting highlight cards, and
++route-safe CTAs to the existing `/contatti` and `/servizi` pages.
++
++TASK section-menu-menu-hero executed by Codex.
++Waiting for validation.
++
++TASK section-menu-menu-hero completed successfully.
++Build passed.
+apply_patch(auto_approved=true) exited 0 in 70ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 7cb4d7ea2b41dec997a815c2e1f4e241c8a6d800..afe2f09ea32a893ceb376e6376e318a9487b2da1
+index a1a97d83dc989bc12612c4102915b31296e70dd1..df3e6347e81f9aa1afb2c7a6ec4f48f917c226ab
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -150,3 +150,13 @@
- Prepared TASK page-menu-shell (Create menu page shell) for execution.
+@@ -171,3 +171,17 @@
+ Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
  
- Launching Codex for TASK page-menu-shell.
+ Launching Codex for TASK section-menu-menu-hero.
 +
-+Completed TASK page-menu-shell.
++Completed TASK section-menu-menu-hero.
 +
-+Implemented a semantic shell for `src/pages/Menu.jsx` with the required
-+`menu-hero` and `menu-categories` sections, real premium-facing copy, and a
-+single-page `h1` for the `/menu` route. Verified `src/App.jsx` already mounts
-+the `/menu` route, so no routing change was required.
++Implemented a dedicated `MenuHeroSection` component in
++`src/components/Menu-heroSection.jsx` and rendered it from `src/pages/Menu.jsx`
++to replace the inline placeholder hero markup. The `/menu` page now has a
++premium hero section with a single `h1`, supporting highlight cards, and
++route-safe CTAs to the existing `/contatti` and `/servizi` pages.
 +
-+TASK page-menu-shell executed by Codex.
++TASK section-menu-menu-hero executed by Codex.
 +Waiting for validation.
++
++TASK section-menu-menu-hero completed successfully.
++Build passed.
+diff --git a/src/components/Menu-heroSection.jsx b/src/components/Menu-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..d887071c918500cfdbfc706a8e92a8419846e5b9
+--- /dev/null
++++ b/src/components/Menu-heroSection.jsx
+@@ -0,0 +1,160 @@
++import { Link } from 'react-router-dom'
++
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 72vh, 42rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 46rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.52)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, \"Times New Roman\", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '35rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Drink direction',
++    text: 'Signature cocktails, aperitivo classics, and elevated alcohol-free serves.',
++  },
++  {
++    label: 'Designed for',
++    text: 'Wedding welcome drinks, long-table dinners, and late-evening celebrations.',
++  },
++  {
++    label: 'Service feel',
++    text: 'Balanced flavor, refined presentation, and bar pacing that suits the room.',
++  },
++]
++
++export default function MenuHeroSection() {
++  return (
++    <section
++      id="menu-hero"
++      aria-labelledby="menu-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Curated event bar program</p>
++        <h1 id="menu-title" style={heroStyles.title}>
++          Drink selections designed for elegant celebrations
++        </h1>
++        <p style={heroStyles.body}>
++          Explore a bar menu shaped for weddings, private dinners, and refined
++          corporate evenings, with signature cocktails, aperitivo rituals, and
++          premium pours that complement the atmosphere of the event.
++        </p>
++
++        <div style={heroStyles.actions}>
++          <Link to="/contatti" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </Link>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index 1a83cadc1d413d772d83d544e70bab727c45c52e..404b260d5e08a21a7f52dbec02fc77aec90ee379
+index 404b260d5e08a21a7f52dbec02fc77aec90ee379..ae33526f293e8d8974dfc12bff56424470fce774
 --- a/src/pages/Menu.jsx
 +++ b/src/pages/Menu.jsx
-@@ -1,14 +1,24 @@
+@@ -1,15 +1,9 @@
++import MenuHeroSection from '../components/Menu-heroSection'
++
  export default function Menu() {
    return (
--    <>
--      <section id="menu-hero">
--        <h1>Menu Hero</h1>
--        <p>Content for menu-hero will be generated by tasks</p>
-+    <article aria-labelledby="menu-title">
-+      <section id="menu-hero" aria-labelledby="menu-title">
-+        <p>Curated event bar program</p>
-+        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
-+        <p>
-+          Explore the Casa Aurea Events menu page for signature cocktails,
-+          aperitivo moments, and premium pours tailored to weddings, private
-+          dinners, and refined corporate evenings.
-+        </p>
-       </section>
--      <section id="menu-categories">
--        <h2>Menu Categories</h2>
--        <p>Content for menu-categories will be generated by tasks</p>
+     <article aria-labelledby="menu-title">
+-      <section id="menu-hero" aria-labelledby="menu-title">
+-        <p>Curated event bar program</p>
+-        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
+-        <p>
+-          Explore the Casa Aurea Events menu page for signature cocktails,
+-          aperitivo moments, and premium pours tailored to weddings, private
+-          dinners, and refined corporate evenings.
+-        </p>
+-      </section>
++      <MenuHeroSection />
+ 
+       <section id="menu-categories" aria-labelledby="menu-categories-title">
+         <h2 id="menu-categories-title">Menu categories</h2>
+
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index a1a97d83dc989bc12612c4102915b31296e70dd1..df3e6347e81f9aa1afb2c7a6ec4f48f917c226ab
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -171,3 +171,17 @@
+ Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
+ 
+ Launching Codex for TASK section-menu-menu-hero.
 +
-+      <section id="menu-categories" aria-labelledby="menu-categories-title">
-+        <h2 id="menu-categories-title">Menu categories</h2>
-+        <p>
-+          The full drink list will be structured into distinct collections so
-+          guests can quickly understand the house signatures, reimagined
-+          classics, alcohol-free options, and premium bottle selections.
++Completed TASK section-menu-menu-hero.
++
++Implemented a dedicated `MenuHeroSection` component in
++`src/components/Menu-heroSection.jsx` and rendered it from `src/pages/Menu.jsx`
++to replace the inline placeholder hero markup. The `/menu` page now has a
++premium hero section with a single `h1`, supporting highlight cards, and
++route-safe CTAs to the existing `/contatti` and `/servizi` pages.
++
++TASK section-menu-menu-hero executed by Codex.
++Waiting for validation.
++
++TASK section-menu-menu-hero completed successfully.
++Build passed.
+diff --git a/src/components/Menu-heroSection.jsx b/src/components/Menu-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..d887071c918500cfdbfc706a8e92a8419846e5b9
+--- /dev/null
++++ b/src/components/Menu-heroSection.jsx
+@@ -0,0 +1,160 @@
++import { Link } from 'react-router-dom'
++
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 72vh, 42rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 46rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.52)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, \"Times New Roman\", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '35rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Drink direction',
++    text: 'Signature cocktails, aperitivo classics, and elevated alcohol-free serves.',
++  },
++  {
++    label: 'Designed for',
++    text: 'Wedding welcome drinks, long-table dinners, and late-evening celebrations.',
++  },
++  {
++    label: 'Service feel',
++    text: 'Balanced flavor, refined presentation, and bar pacing that suits the room.',
++  },
++]
++
++export default function MenuHeroSection() {
++  return (
++    <section
++      id="menu-hero"
++      aria-labelledby="menu-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Curated event bar program</p>
++        <h1 id="menu-title" style={heroStyles.title}>
++          Drink selections designed for elegant celebrations
++        </h1>
++        <p style={heroStyles.body}>
++          Explore a bar menu shaped for weddings, private dinners, and refined
++          corporate evenings, with signature cocktails, aperitivo rituals, and
++          premium pours that complement the atmosphere of the event.
 +        </p>
-       </section>
--    </>
-+    </article>
-   )
- }
++
++        <div style={heroStyles.actions}>
++          <Link to="/contatti" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </Link>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index 404b260d5e08a21a7f52dbec02fc77aec90ee379..ae33526f293e8d8974dfc12bff56424470fce774
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,15 +1,9 @@
++import MenuHeroSection from '../components/Menu-heroSection'
++
+ export default function Menu() {
+   return (
+     <article aria-labelledby="menu-title">
+-      <section id="menu-hero" aria-labelledby="menu-title">
+-        <p>Curated event bar program</p>
+-        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
+-        <p>
+-          Explore the Casa Aurea Events menu page for signature cocktails,
+-          aperitivo moments, and premium pours tailored to weddings, private
+-          dinners, and refined corporate evenings.
+-        </p>
+-      </section>
++      <MenuHeroSection />
+ 
+       <section id="menu-categories" aria-labelledby="menu-categories-title">
+         <h2 id="menu-categories-title">Menu categories</h2>
+
+codex
+Modified files: [src/components/Menu-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Menu-heroSection.jsx), [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+
+Implemented the `menu-hero` section as a dedicated reusable component and rendered it from [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx). The new hero in [src/components/Menu-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Menu-heroSection.jsx) provides the required hero structure for the `/menu` page with premium brand copy, one page-level `h1`, highlight cards, and valid CTAs to `/contatti` and `/servizi`. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with the task summary.
+
+Build result: `npm run build` passed successfully with Vite production build completed.
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index a1a97d83dc989bc12612c4102915b31296e70dd1..df3e6347e81f9aa1afb2c7a6ec4f48f917c226ab
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -171,3 +171,17 @@
+ Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
+ 
+ Launching Codex for TASK section-menu-menu-hero.
++
++Completed TASK section-menu-menu-hero.
++
++Implemented a dedicated `MenuHeroSection` component in
++`src/components/Menu-heroSection.jsx` and rendered it from `src/pages/Menu.jsx`
++to replace the inline placeholder hero markup. The `/menu` page now has a
++premium hero section with a single `h1`, supporting highlight cards, and
++route-safe CTAs to the existing `/contatti` and `/servizi` pages.
++
++TASK section-menu-menu-hero executed by Codex.
++Waiting for validation.
++
++TASK section-menu-menu-hero completed successfully.
++Build passed.
+diff --git a/src/components/Menu-heroSection.jsx b/src/components/Menu-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..d887071c918500cfdbfc706a8e92a8419846e5b9
+--- /dev/null
++++ b/src/components/Menu-heroSection.jsx
+@@ -0,0 +1,160 @@
++import { Link } from 'react-router-dom'
++
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 72vh, 42rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 46rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.52)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, \"Times New Roman\", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '35rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  actions: {
++    marginTop: '1.75rem',
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '0.875rem',
++  },
++  primaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#1f1813',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++  secondaryAction: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.25rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    border: '1px solid rgba(247, 241, 232, 0.42)',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    fontWeight: 600,
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Drink direction',
++    text: 'Signature cocktails, aperitivo classics, and elevated alcohol-free serves.',
++  },
++  {
++    label: 'Designed for',
++    text: 'Wedding welcome drinks, long-table dinners, and late-evening celebrations.',
++  },
++  {
++    label: 'Service feel',
++    text: 'Balanced flavor, refined presentation, and bar pacing that suits the room.',
++  },
++]
++
++export default function MenuHeroSection() {
++  return (
++    <section
++      id="menu-hero"
++      aria-labelledby="menu-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Curated event bar program</p>
++        <h1 id="menu-title" style={heroStyles.title}>
++          Drink selections designed for elegant celebrations
++        </h1>
++        <p style={heroStyles.body}>
++          Explore a bar menu shaped for weddings, private dinners, and refined
++          corporate evenings, with signature cocktails, aperitivo rituals, and
++          premium pours that complement the atmosphere of the event.
++        </p>
++
++        <div style={heroStyles.actions}>
++          <Link to="/contatti" style={heroStyles.primaryAction}>
++            Request your event proposal
++          </Link>
++          <Link to="/servizi" style={heroStyles.secondaryAction}>
++            Explore our services
++          </Link>
++        </div>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index 404b260d5e08a21a7f52dbec02fc77aec90ee379..ae33526f293e8d8974dfc12bff56424470fce774
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,15 +1,9 @@
++import MenuHeroSection from '../components/Menu-heroSection'
++
+ export default function Menu() {
+   return (
+     <article aria-labelledby="menu-title">
+-      <section id="menu-hero" aria-labelledby="menu-title">
+-        <p>Curated event bar program</p>
+-        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
+-        <p>
+-          Explore the Casa Aurea Events menu page for signature cocktails,
+-          aperitivo moments, and premium pours tailored to weddings, private
+-          dinners, and refined corporate evenings.
+-        </p>
+-      </section>
++      <MenuHeroSection />
+ 
+       <section id="menu-categories" aria-labelledby="menu-categories-title">
+         <h2 id="menu-categories-title">Menu categories</h2>
 
 tokens used
-15.414
+46.243

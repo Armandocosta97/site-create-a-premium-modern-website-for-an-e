@@ -166,3 +166,28 @@ Waiting for validation.
 
 TASK page-menu-shell completed successfully.
 Build passed.
+Commit created for TASK page-menu-shell.
+
+Prepared TASK section-menu-menu-hero (Create menu-hero section on menu) for execution.
+
+Launching Codex for TASK section-menu-menu-hero.
+
+Completed TASK section-menu-menu-hero.
+
+Implemented a dedicated `MenuHeroSection` component in
+`src/components/Menu-heroSection.jsx` and rendered it from `src/pages/Menu.jsx`
+to replace the inline placeholder hero markup. The `/menu` page now has a
+premium hero section with a single `h1`, supporting highlight cards, and
+route-safe CTAs to the existing `/contatti` and `/servizi` pages.
+
+TASK section-menu-menu-hero executed by Codex.
+Waiting for validation.
+
+TASK section-menu-menu-hero completed successfully.
+Build passed.
+
+TASK section-menu-menu-hero executed by Codex.
+Waiting for validation.
+
+TASK section-menu-menu-hero completed successfully.
+Build passed.
