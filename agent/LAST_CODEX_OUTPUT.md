@@ -1,12 +1,13 @@
 Modified files:
-- [src/components/Gallery-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-heroSection.jsx)
+- [src/components/Gallery-gridSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-gridSection.jsx)
 - [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx)
 - [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
 What was implemented:
-- Added a dedicated `GalleryHeroSection` component for the `gallery-hero` section with premium editorial styling, a single page `h1`, and supporting highlight cards.
-- Updated the gallery page to render the new hero component and kept the existing `gallery-grid` shell unchanged.
-- Appended the task summary to `agent/AGENT_REPORT.md`.
+- Added a dedicated `GalleryGridSection` component for the `gallery-grid` section.
+- Replaced the placeholder markup in the gallery page with the new component.
+- Built the section as a responsive image grid with six premium Unsplash images, descriptive captions, meaningful alt text, and lazy loading.
+- Updated the agent report with a short completion summary.
 
 Build result:
 - `npm run build` passed successfully.
@@ -20,7 +21,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd840-b514-7a33-962b-8f31d98f0d2f
+session id: 019cd841-d0ed-7ce1-bb25-af54fd8e38fd
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1203,10 +1204,10 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-gallery-gallery-hero
+section-gallery-gallery-grid
 
 ## Current task title
-Create gallery-hero section on gallery
+Create gallery-grid section on gallery
 
 ## Current task type
 section
@@ -1215,8 +1216,8 @@ section
 ```json
 {
   "pageId": "gallery",
-  "sectionId": "gallery-hero",
-  "sectionType": "hero"
+  "sectionId": "gallery-grid",
+  "sectionType": "image-grid"
 }
 ```
 
@@ -1225,13 +1226,13 @@ section
 
 ## Files allowed
 - src/pages/Gallery.jsx
-- src/components/Gallery-heroSection.jsx
+- src/components/Gallery-gridSection.jsx
 - src/components
 
 ## Definition of done
-- section gallery-hero exists on gallery
-- section gallery-hero matches type hero
-- section gallery-hero is rendered in page gallery
+- section gallery-grid exists on gallery
+- section gallery-grid matches type image-grid
+- section gallery-grid is rendered in page gallery
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1260,24 +1261,18 @@ section
 
 mcp startup: no servers
 codex
-I’m checking the current gallery page, the task prompt, and the existing component structure so I can add only the `gallery-hero` section and keep the change inside the allowed scope.
+I’m executing the current `gallery-grid` task only. First I’m checking the gallery page, current component structure, and task source files so I can add the section without touching unrelated routes or content.
 exec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "pwd && rg --files src agent brief docs | rg 'Gallery|gallery|AGENT_REPORT|CURRENT_TASK_PROMPT|TASK_STATE|TASK_GRAPH|site-spec|DEVELOPMENT_METHOD'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "pwd && rg --files src agent brief docs | rg '("'^src/pages/Gallery.jsx$|''^src/components/|''^agent/CURRENT_TASK_PROMPT.md$|''^agent/TASK_STATE.json$|''^agent/TASK_QUEUE.md$|''^docs/DEVELOPMENT_METHOD.md$|''^site-spec.json$|''^brief/brief-summary.md$)'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "ls -1 src/components && printf '\\n---\\n' && rg -n \"Gallery|gallery|image-grid|Section\" src/components src/pages" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+import GalleryHeroSection from '../components/Gallery-heroSection'
+
 export default function Gallery() {
   return (
     <article aria-labelledby="gallery-title">
-      <section id="gallery-hero" aria-labelledby="gallery-title">
-        <p>Casa Aurea Events</p>
-        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
-        <p>
-          Explore a gallery of refined tablescapes, signature cocktails, plated
-          service, and celebration settings designed for weddings, private
-          events, and premium corporate evenings.
-        </p>
-      </section>
+      <GalleryHeroSection />
 
       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
         <h2 id="gallery-grid-title">Gallery collection</h2>
@@ -1286,6 +1281,10 @@ export default function Gallery() {
           catering presentation, cocktail service, event styling, and guest
           atmosphere across Casa Aurea Events experiences.
         </p>
+      </section>
+    </article>
+  )
+}
  succeeded in 51ms:
 # CURRENT TASK EXECUTION PROMPT
 
@@ -1308,242 +1307,71 @@ site-create-a-premium-modern-website-for-an-e
 
 All sites must follow these rules.
  succeeded in 51ms:
-# AGENT REPORT
-
-Project created.
-
-Prepared TASK page-home-shell (Create home page shell) for execution.
-
-Launching Codex for TASK page-home-shell.
-
-Completed TASK page-home-shell.
-
-Implemented a semantic home page shell in `src/pages/Home.jsx` with real hero,
-signature preview, and brand story preview sections. Verified the home route
-remains mounted in `src/App.jsx` and ready for follow-up content tasks.
-
-TASK page-home-shell executed by Codex.
-Waiting for validation.
-
-TASK page-home-shell completed successfully.
-Build passed.
-Commit created for TASK page-home-shell.
- succeeded in 52ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
 docs/DEVELOPMENT_METHOD.md
-agent/TASK_GRAPH.json
+src/pages/Gallery.jsx
+src/components/FloatingWhatsAppButton.jsx
+src/components/Brand-story-previewSection.jsx
+src/components/StorySection.jsx
+src/components/Menu-categoriesSection.jsx
+src/components/PhilosophySection.jsx
+src/components/Menu-heroSection.jsx
+src/components/About-heroSection.jsx
+src/components/SignaturePreviewSection.jsx
+src/components/Gallery-heroSection.jsx
+src/components/HeroSection.jsx
+agent/TASK_QUEUE.md
 agent/CURRENT_TASK_PROMPT.md
 agent/TASK_STATE.json
-agent/AGENT_REPORT.md
-src/pages/Gallery.jsx
+brief/brief-summary.md
+ succeeded in 51ms:
+About-heroSection.jsx
+Brand-story-previewSection.jsx
+FloatingWhatsAppButton.jsx
+Gallery-heroSection.jsx
+HeroSection.jsx
+Menu-categoriesSection.jsx
+Menu-heroSection.jsx
+PhilosophySection.jsx
+SignaturePreviewSection.jsx
+StorySection.jsx
+
+---
+src/components/Menu-categoriesSection.jsx:177:export default function MenuCategoriesSection() {
+src/components/Gallery-heroSection.jsx:89:export default function GalleryHeroSection() {
+src/components/Gallery-heroSection.jsx:92:      id="gallery-hero"
+src/components/Gallery-heroSection.jsx:93:      aria-labelledby="gallery-title"
+src/components/Gallery-heroSection.jsx:98:        <h1 id="gallery-title" style={heroStyles.title}>
+src/components/PhilosophySection.jsx:148:export default function PhilosophySection() {
+src/components/HeroSection.jsx:132:export default function HeroSection({
+src/components/StorySection.jsx:115:export default function StorySection() {
 codex
-I found the gallery page still using inline placeholder hero markup. Next I’m matching the existing component style used on other pages, then I’ll replace only the gallery hero with a dedicated reusable section component.
+The gallery page still has placeholder markup. I’m reading the existing component style patterns now so the new image-grid section matches the project’s current implementation approach and stays within the allowed files.
 exec
-/bin/zsh -lc "sed -n '1,260p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' src/components/Menu-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'rg --files src/components | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 50ms:
-import { Link } from 'react-router-dom'
-
-const heroStyles = {
+/bin/zsh -lc "sed -n '1,260p' src/components/Menu-categoriesSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,240p' src/components/Gallery-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,240p' src/pages/Menu.jsx && printf '\\n---\\n' && sed -n '1,240p' src/pages/Chi-siamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+const sectionStyles = {
   section: {
-    position: 'relative',
-    overflow: 'hidden',
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    display: 'grid',
+    gap: '1.5rem',
+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
     borderRadius: '32px',
-    minHeight: 'clamp(30rem, 72vh, 42rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+    background:
+      'linear-gradient(180deg, rgba(248, 242, 234, 0.96) 0%, rgba(241, 231, 216, 0.92) 100%)',
+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
   },
-  panel: {
-    width: 'min(100%, 46rem)',
- succeeded in 51ms:
-import MenuHeroSection from '../components/Menu-heroSection'
-import MenuCategoriesSection from '../components/Menu-categoriesSection'
-
-export default function Menu() {
-  return (
-    <article aria-labelledby="menu-title">
-      <MenuHeroSection />
-      <MenuCategoriesSection />
-    </article>
-  )
-}
+  header: {
+    display: 'grid',
+    gap: '1rem',
+    maxWidth: '44rem',
+  },
+  eyebrow: {
+    margin: 0,
+    color: '#9f7b4b',
+    fontSize: '0.82rem',
  succeeded in 52ms:
-import { Link } from 'react-router-dom'
-
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(32rem, 78vh, 46rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(40, 31, 24, 0.18) 0%, rgba(28, 22, 18, 0.72) 62%, rgba(20, 15, 12, 0.9) 100%), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
-  },
-  panel: {
-    width: 'min(100%, 42rem)',
- succeeded in 51ms:
-import HeroSection from '../components/HeroSection'
-import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
-import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
-import SignaturePreviewSection from '../components/SignaturePreviewSection'
-
-export default function Home() {
-  return (
-    <article aria-labelledby="home-title">
-      <HeroSection
-        primaryCta={{
-          label: 'Request your event proposal',
-          to: '/menu',
-        }}
-        secondaryCta={{
-          label: 'Contact us for your event',
-          to: '/contatti',
-        }}
-      />
-      <SignaturePreviewSection />
-      <BrandStoryPreviewSection />
- succeeded in 52ms:
-src/components/About-heroSection.jsx
-src/components/Brand-story-previewSection.jsx
-src/components/FloatingWhatsAppButton.jsx
-src/components/HeroSection.jsx
-src/components/Menu-categoriesSection.jsx
-src/components/Menu-heroSection.jsx
-src/components/PhilosophySection.jsx
-src/components/SignaturePreviewSection.jsx
-src/components/StorySection.jsx
-codex
-The component pattern is consistent: page shells import dedicated section components, and heroes use self-contained inline style objects. I’m keeping the same pattern for `gallery-hero` so the change stays minimal and matches the existing architecture.
-exec
-/bin/zsh -lc "sed -n '1,220p' package.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' src/components/About-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(30rem, 74vh, 43rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(52, 38, 31, 0.12) 0%, rgba(31, 23, 18, 0.66) 56%, rgba(20, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
-  },
-  panel: {
-    width: 'min(100%, 47rem)',
-    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-    borderRadius: '28px',
- succeeded in 51ms:
-{
-  "name": "site-create-a-premium-modern-website-for-an-e",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test:ui": "playwright test"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-router-dom": "^7.13.1"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.39.1",
-    "@playwright/test": "^1.58.2",
-codex
-I have enough context. I’m replacing the inline gallery hero with a dedicated `Gallery-heroSection` component, leaving the `gallery-grid` shell intact, then I’ll run the build and append the task result to `agent/AGENT_REPORT.md`.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -220,2 +220,46 @@
- Implemented a dedicated `Menu-categoriesSection` component in
-+`src/components/Menu-categoriesSection.jsx` and rendered it from
-+`src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
-+page now includes structured drink families with refined descriptions and
-+flavor notes aligned to the premium event-bar positioning.
-+
-+TASK section-menu-menu-categories executed by Codex.
-+Waiting for validation.
-+
-+TASK section-menu-menu-categories completed successfully.
-+Build passed.
-+Commit created for TASK section-menu-menu-categories.
-+
-+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
-+
-+Launching Codex for TASK page-gallery-shell.
-+
-+Completed TASK page-gallery-shell.
-+
-+Implemented a semantic shell for `src/pages/Gallery.jsx` with the required
-+`gallery-hero` and `gallery-grid` sections, preserving a single page `h1` and
-+keeping the gallery route ready for dedicated section work.
-+
-+TASK page-gallery-shell executed by Codex.
-+Waiting for validation.
-+
-+TASK page-gallery-shell completed successfully.
-+Build passed.
-+Commit created for TASK page-gallery-shell.
-+
-+Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
-+
-+Launching Codex for TASK section-gallery-gallery-hero.
-+
-+Completed TASK section-gallery-gallery-hero.
-+
-+Implemented a dedicated `Gallery-heroSection` component in
-+`src/components/Gallery-heroSection.jsx` and rendered it from
-+`src/pages/Gallery.jsx` to replace the inline placeholder hero markup. The
-+gallery page now has the required premium hero structure with editorial copy,
-+coherent highlights, and the existing `gallery-grid` shell left intact for the
-+next task.
-+
-+TASK section-gallery-gallery-hero executed by Codex.
-+Waiting for validation.
- 
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx
-@@ -1 +1,3 @@
-+import GalleryHeroSection from '../components/Gallery-heroSection'
-+
- export default function Gallery() {
-@@ -3,11 +5,3 @@
-     <article aria-labelledby="gallery-title">
--      <section id="gallery-hero" aria-labelledby="gallery-title">
--        <p>Casa Aurea Events</p>
--        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
--        <p>
--          Explore a gallery of refined tablescapes, signature cocktails, plated
--          service, and celebration settings designed for weddings, private
--          events, and premium corporate evenings.
--        </p>
--      </section>
-+      <GalleryHeroSection />
- 
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-heroSection.jsx
 const heroStyles = {
   section: {
     position: 'relative',
@@ -1564,954 +1392,1803 @@ const heroStyles = {
     width: 'min(100%, 48rem)',
     padding: 'clamp(1.5rem, 3vw, 2.5rem)',
     borderRadius: '28px',
-    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-    backdropFilter: 'blur(10px)',
-    textAlign: 'left',
+ succeeded in 50ms:
+import MenuHeroSection from '../components/Menu-heroSection'
+import MenuCategoriesSection from '../components/Menu-categoriesSection'
+
+export default function Menu() {
+  return (
+    <article aria-labelledby="menu-title">
+      <MenuHeroSection />
+      <MenuCategoriesSection />
+    </article>
+  )
+}
+
+---
+import AboutHeroSection from '../components/About-heroSection'
+import PhilosophySection from '../components/PhilosophySection'
+import StorySection from '../components/StorySection'
+
+export default function ChiSiamo() {
+  return (
+    <article aria-labelledby="chi-siamo-title">
+codex
+I have enough context. Next I’m replacing the placeholder section in [Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx) with a dedicated gallery grid component, then I’ll run the build and append the required agent report entry.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx
+@@ -1,2 +1,3 @@
+ import GalleryHeroSection from '../components/Gallery-heroSection'
++import GalleryGridSection from '../components/Gallery-gridSection'
+ 
+@@ -6,11 +7,3 @@
+       <GalleryHeroSection />
+-
+-      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+-        <h2 id="gallery-grid-title">Gallery collection</h2>
+-        <p>
+-          This page is prepared for the premium image grid that will showcase
+-          catering presentation, cocktail service, event styling, and guest
+-          atmosphere across Casa Aurea Events experiences.
+-        </p>
+-      </section>
++      <GalleryGridSection />
+     </article>
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-gridSection.jsx
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    display: 'grid',
+    gap: '1.5rem',
+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    background:
+      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
+  },
+  header: {
+    display: 'grid',
+    gap: '1rem',
+    maxWidth: '46rem',
   },
   eyebrow: {
     margin: 0,
-    fontSize: '0.8rem',
+    color: '#9f7b4b',
+    fontSize: '0.82rem',
     letterSpacing: '0.22em',
     textTransform: 'uppercase',
-    color: '#d9bf8d',
+    fontWeight: 700,
   },
   title: {
-    margin: '1rem 0 0',
-    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-    lineHeight: 1.02,
+    margin: 0,
+    color: '#201914',
     fontFamily: 'Georgia, "Times New Roman", serif',
-    fontWeight: 600,
+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
+    lineHeight: 1.05,
   },
-  body: {
-    margin: '1.25rem 0 0',
-    maxWidth: '36rem',
-    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-    lineHeight: 1.75,
-    color: 'rgba(247, 241, 232, 0.88)',
+  intro: {
+    margin: 0,
+    color: 'rgba(32, 25, 20, 0.76)',
+    lineHeight: 1.8,
   },
-  highlights: {
-    marginTop: '1.5rem',
+  grid: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-    gap: '0.875rem',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+    gap: '1rem',
   },
-  highlightCard: {
-    padding: '0.95rem 1rem',
-    borderRadius: '20px',
-    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-    border: '1px solid rgba(247, 241, 232, 0.12)',
+  card: {
+    position: 'relative',
+    minHeight: 'clamp(18rem, 36vw, 26rem)',
+    overflow: 'hidden',
+    borderRadius: '24px',
+    backgroundColor: '#d8c7b0',
+    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
   },
-  highlightLabel: {
+  image: {
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
     display: 'block',
-    fontSize: '0.78rem',
-    letterSpacing: '0.08em',
-    textTransform: 'uppercase',
-    color: 'rgba(217, 191, 141, 0.92)',
   },
-  highlightText: {
-    display: 'block',
-    marginTop: '0.4rem',
-    fontSize: '0.98rem',
-    lineHeight: 1.5,
+  overlay: {
+    position: 'absolute',
+    inset: 0,
+    display: 'flex',
+    alignItems: 'flex-end',
+    padding: '1.25rem',
+    background:
+      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
+  },
+  captionBox: {
+    width: '100%',
+    padding: '1rem 1.05rem',
+    borderRadius: '18px',
+    backgroundColor: 'rgba(20, 16, 13, 0.42)',
+    backdropFilter: 'blur(8px)',
     color: '#f7f1e8',
+  },
+  captionTitle: {
+    margin: 0,
+    fontFamily: 'Georgia, "Times New Roman", serif',
+    fontSize: '1.2rem',
+    lineHeight: 1.2,
+  },
+  captionText: {
+    margin: '0.45rem 0 0',
+    color: 'rgba(247, 241, 232, 0.86)',
+    lineHeight: 1.6,
+    fontSize: '0.95rem',
   },
 }
 
-const highlights = [
+const galleryImages = [
   {
-    label: 'Events captured',
-    text: 'Wedding dinners, cocktail bars, styled tablescapes, and luminous celebration moments.',
+    title: 'Wedding dinner styling',
+    description:
+      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
+    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
+    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
   },
   {
-    label: 'Visual direction',
-    text: 'Warm editorial imagery with polished presentation, soft light, and a hospitality-first feel.',
+    title: 'Signature cocktail service',
+    description:
+      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
+    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
+    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
   },
   {
-    label: 'What it shows',
-    text: 'How Casa Aurea balances food, service, and atmosphere for refined gatherings.',
+    title: 'Plated catering presentation',
+    description:
+      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
+    alt: 'Plated fine catering dish presented with modern styling',
+    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    title: 'Reception atmosphere',
+    description:
+      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
+    alt: 'Guests gathered at a stylish reception during an evening event',
+    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    title: 'Aperitivo tablescape',
+    description:
+      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
+    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
+    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    title: 'Celebration toast',
+    description:
+      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
+    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
+    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
   },
 ]
 
-export default function GalleryHeroSection() {
+export default function GalleryGridSection() {
   return (
     <section
-      id="gallery-hero"
-      aria-labelledby="gallery-title"
-      style={heroStyles.section}
+      id="gallery-grid"
+      aria-labelledby="gallery-grid-title"
+      style={sectionStyles.section}
     >
-      <div style={heroStyles.panel}>
-        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
-        <h1 id="gallery-title" style={heroStyles.title}>
-          A curated view of elegant catering and bar moments
-        </h1>
-        <p style={heroStyles.body}>
-          Explore a visual selection of refined tablescapes, signature
-          cocktails, plated service, and celebration settings designed for
-          weddings, private events, and premium corporate evenings.
+      <div style={sectionStyles.header}>
+        <p style={sectionStyles.eyebrow}>Gallery collection</p>
+        <h2 id="gallery-grid-title" style={sectionStyles.title}>
+          A premium image grid shaped around service, atmosphere, and detail
+        </h2>
+        <p style={sectionStyles.intro}>
+          This collection brings together the visual language of Casa Aurea
+          Events: elegant food presentation, polished bar service, layered
+          styling, and the warm rhythm of celebrations designed with care.
         </p>
+      </div>
 
-        <div style={heroStyles.highlights}>
-          {highlights.map((item) => (
-            <div key={item.label} style={heroStyles.highlightCard}>
-              <span style={heroStyles.highlightLabel}>{item.label}</span>
-              <span style={heroStyles.highlightText}>{item.text}</span>
-            </div>
-          ))}
-        </div>
+      <div style={sectionStyles.grid}>
+        {galleryImages.map((image) => (
+          <figure key={image.title} style={sectionStyles.card}>
+            <img
+              src={image.src}
+              alt={image.alt}
+              loading="lazy"
+              style={sectionStyles.image}
+            />
+            <figcaption style={sectionStyles.overlay}>
+              <div style={sectionStyles.captionBox}>
+                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
+                <p style={sectionStyles.captionText}>{image.description}</p>
+              </div>
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </section>
   )
 }
-apply_patch(auto_approved=true) exited 0 in 57ms:
+apply_patch(auto_approved=true) exited 0 in 60ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-heroSection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-gridSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 29a29f49b799f127138655d5826d5983334c88e9..c74a6e81d69ef80dfd7a293ef9f544d36729b4c9
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,50 @@
- Build passed.
- 
- Implemented a dedicated `Menu-categoriesSection` component in
-+`src/components/Menu-categoriesSection.jsx` and rendered it from
-+`src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
-+page now includes structured drink families with refined descriptions and
-+flavor notes aligned to the premium event-bar positioning.
-+
-+TASK section-menu-menu-categories executed by Codex.
-+Waiting for validation.
-+
-+TASK section-menu-menu-categories completed successfully.
-+Build passed.
-+Commit created for TASK section-menu-menu-categories.
-+
-+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
-+
-+Launching Codex for TASK page-gallery-shell.
-+
-+Completed TASK page-gallery-shell.
-+
-+Implemented a semantic shell for `src/pages/Gallery.jsx` with the required
-+`gallery-hero` and `gallery-grid` sections, preserving a single page `h1` and
-+keeping the gallery route ready for dedicated section work.
-+
-+TASK page-gallery-shell executed by Codex.
-+Waiting for validation.
-+
-+TASK page-gallery-shell completed successfully.
-+Build passed.
-+Commit created for TASK page-gallery-shell.
-+
-+Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
-+
-+Launching Codex for TASK section-gallery-gallery-hero.
-+
-+Completed TASK section-gallery-gallery-hero.
-+
-+Implemented a dedicated `Gallery-heroSection` component in
-+`src/components/Gallery-heroSection.jsx` and rendered it from
-+`src/pages/Gallery.jsx` to replace the inline placeholder hero markup. The
-+gallery page now has the required premium hero structure with editorial copy,
-+coherent highlights, and the existing `gallery-grid` shell left intact for the
-+next task.
-+
-+TASK section-gallery-gallery-hero executed by Codex.
-+Waiting for validation.
- 
- Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
- 
-diff --git a/src/components/Gallery-heroSection.jsx b/src/components/Gallery-heroSection.jsx
+diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..9a6e300582c108903c6d2d6b28301484d7665240
+index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
 --- /dev/null
-+++ b/src/components/Gallery-heroSection.jsx
-@@ -0,0 +1,118 @@
-+const heroStyles = {
++++ b/src/components/Gallery-gridSection.jsx
+@@ -0,0 +1,171 @@
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(48, 36, 29, 0.12) 0%, rgba(30, 23, 19, 0.68) 56%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
 +  },
-+  panel: {
-+    width: 'min(100%, 48rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
-+    textAlign: 'left',
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: '0.8rem',
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    color: '#201914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontWeight: 600,
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
 +  },
-+  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '36rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.8,
 +  },
-+  highlights: {
-+    marginTop: '1.5rem',
++  grid: {
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
++    gap: '1rem',
 +  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
++  card: {
++    position: 'relative',
++    minHeight: 'clamp(18rem, 36vw, 26rem)',
++    overflow: 'hidden',
++    borderRadius: '24px',
++    backgroundColor: '#d8c7b0',
++    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
 +  },
-+  highlightLabel: {
++  image: {
++    width: '100%',
++    height: '100%',
++    objectFit: 'cover',
 +    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
 +  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.5,
++  overlay: {
++    position: 'absolute',
++    inset: 0,
++    display: 'flex',
++    alignItems: 'flex-end',
++    padding: '1.25rem',
++    background:
++      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
++  },
++  captionBox: {
++    width: '100%',
++    padding: '1rem 1.05rem',
++    borderRadius: '18px',
++    backgroundColor: 'rgba(20, 16, 13, 0.42)',
++    backdropFilter: 'blur(8px)',
 +    color: '#f7f1e8',
++  },
++  captionTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.2rem',
++    lineHeight: 1.2,
++  },
++  captionText: {
++    margin: '0.45rem 0 0',
++    color: 'rgba(247, 241, 232, 0.86)',
++    lineHeight: 1.6,
++    fontSize: '0.95rem',
 +  },
 +}
 +
-+const highlights = [
++const galleryImages = [
 +  {
-+    label: 'Events captured',
-+    text: 'Wedding dinners, cocktail bars, styled tablescapes, and luminous celebration moments.',
++    title: 'Wedding dinner styling',
++    description:
++      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
++    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
++    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
 +  },
 +  {
-+    label: 'Visual direction',
-+    text: 'Warm editorial imagery with polished presentation, soft light, and a hospitality-first feel.',
++    title: 'Signature cocktail service',
++    description:
++      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
++    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
++    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
 +  },
 +  {
-+    label: 'What it shows',
-+    text: 'How Casa Aurea balances food, service, and atmosphere for refined gatherings.',
++    title: 'Plated catering presentation',
++    description:
++      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
++    alt: 'Plated fine catering dish presented with modern styling',
++    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Reception atmosphere',
++    description:
++      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
++    alt: 'Guests gathered at a stylish reception during an evening event',
++    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Aperitivo tablescape',
++    description:
++      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
++    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
++    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Celebration toast',
++    description:
++      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
++    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
++    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
 +  },
 +]
 +
-+export default function GalleryHeroSection() {
++export default function GalleryGridSection() {
 +  return (
 +    <section
-+      id="gallery-hero"
-+      aria-labelledby="gallery-title"
-+      style={heroStyles.section}
++      id="gallery-grid"
++      aria-labelledby="gallery-grid-title"
++      style={sectionStyles.section}
 +    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
-+        <h1 id="gallery-title" style={heroStyles.title}>
-+          A curated view of elegant catering and bar moments
-+        </h1>
-+        <p style={heroStyles.body}>
-+          Explore a visual selection of refined tablescapes, signature
-+          cocktails, plated service, and celebration settings designed for
-+          weddings, private events, and premium corporate evenings.
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Gallery collection</p>
++        <h2 id="gallery-grid-title" style={sectionStyles.title}>
++          A premium image grid shaped around service, atmosphere, and detail
++        </h2>
++        <p style={sectionStyles.intro}>
++          This collection brings together the visual language of Casa Aurea
++          Events: elegant food presentation, polished bar service, layered
++          styling, and the warm rhythm of celebrations designed with care.
 +        </p>
++      </div>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
-+          ))}
-+        </div>
++      <div style={sectionStyles.grid}>
++        {galleryImages.map((image) => (
++          <figure key={image.title} style={sectionStyles.card}>
++            <img
++              src={image.src}
++              alt={image.alt}
++              loading="lazy"
++              style={sectionStyles.image}
++            />
++            <figcaption style={sectionStyles.overlay}>
++              <div style={sectionStyles.captionBox}>
++                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
++                <p style={sectionStyles.captionText}>{image.description}</p>
++              </div>
++            </figcaption>
++          </figure>
++        ))}
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index da346205d6952895461294fcd4d670ea19db49e9..635220c2e4291cf145334fe5d28d1b8eedc8f02b
+index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
 --- a/src/pages/Gallery.jsx
 +++ b/src/pages/Gallery.jsx
-@@ -1,15 +1,9 @@
-+import GalleryHeroSection from '../components/Gallery-heroSection'
-+
+@@ -1,18 +1,11 @@
+ import GalleryHeroSection from '../components/Gallery-heroSection'
++import GalleryGridSection from '../components/Gallery-gridSection'
+ 
  export default function Gallery() {
    return (
      <article aria-labelledby="gallery-title">
--      <section id="gallery-hero" aria-labelledby="gallery-title">
--        <p>Casa Aurea Events</p>
--        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
+       <GalleryHeroSection />
+-
+-      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+-        <h2 id="gallery-grid-title">Gallery collection</h2>
 -        <p>
--          Explore a gallery of refined tablescapes, signature cocktails, plated
--          service, and celebration settings designed for weddings, private
--          events, and premium corporate evenings.
+-          This page is prepared for the premium image grid that will showcase
+-          catering presentation, cocktail service, event styling, and guest
+-          atmosphere across Casa Aurea Events experiences.
 -        </p>
 -      </section>
-+      <GalleryHeroSection />
- 
-       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-         <h2 id="gallery-grid-title">Gallery collection</h2>
++      <GalleryGridSection />
+     </article>
+   )
+ }
 
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 29a29f49b799f127138655d5826d5983334c88e9..c74a6e81d69ef80dfd7a293ef9f544d36729b4c9
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,50 @@
- Build passed.
- 
- Implemented a dedicated `Menu-categoriesSection` component in
-+`src/components/Menu-categoriesSection.jsx` and rendered it from
-+`src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
-+page now includes structured drink families with refined descriptions and
-+flavor notes aligned to the premium event-bar positioning.
-+
-+TASK section-menu-menu-categories executed by Codex.
-+Waiting for validation.
-+
-+TASK section-menu-menu-categories completed successfully.
-+Build passed.
-+Commit created for TASK section-menu-menu-categories.
-+
-+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
-+
-+Launching Codex for TASK page-gallery-shell.
-+
-+Completed TASK page-gallery-shell.
-+
-+Implemented a semantic shell for `src/pages/Gallery.jsx` with the required
-+`gallery-hero` and `gallery-grid` sections, preserving a single page `h1` and
-+keeping the gallery route ready for dedicated section work.
-+
-+TASK page-gallery-shell executed by Codex.
-+Waiting for validation.
-+
-+TASK page-gallery-shell completed successfully.
-+Build passed.
-+Commit created for TASK page-gallery-shell.
-+
-+Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
-+
-+Launching Codex for TASK section-gallery-gallery-hero.
-+
-+Completed TASK section-gallery-gallery-hero.
-+
-+Implemented a dedicated `Gallery-heroSection` component in
-+`src/components/Gallery-heroSection.jsx` and rendered it from
-+`src/pages/Gallery.jsx` to replace the inline placeholder hero markup. The
-+gallery page now has the required premium hero structure with editorial copy,
-+coherent highlights, and the existing `gallery-grid` shell left intact for the
-+next task.
-+
-+TASK section-gallery-gallery-hero executed by Codex.
-+Waiting for validation.
- 
- Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
- 
-diff --git a/src/components/Gallery-heroSection.jsx b/src/components/Gallery-heroSection.jsx
+diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..9a6e300582c108903c6d2d6b28301484d7665240
+index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
 --- /dev/null
-+++ b/src/components/Gallery-heroSection.jsx
-@@ -0,0 +1,118 @@
-+const heroStyles = {
++++ b/src/components/Gallery-gridSection.jsx
+@@ -0,0 +1,171 @@
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(48, 36, 29, 0.12) 0%, rgba(30, 23, 19, 0.68) 56%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
 +  },
-+  panel: {
-+    width: 'min(100%, 48rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
-+    textAlign: 'left',
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: '0.8rem',
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    color: '#201914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontWeight: 600,
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
 +  },
-+  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '36rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.8,
 +  },
-+  highlights: {
-+    marginTop: '1.5rem',
++  grid: {
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
++    gap: '1rem',
 +  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
++  card: {
++    position: 'relative',
++    minHeight: 'clamp(18rem, 36vw, 26rem)',
++    overflow: 'hidden',
++    borderRadius: '24px',
++    backgroundColor: '#d8c7b0',
++    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
 +  },
-+  highlightLabel: {
++  image: {
++    width: '100%',
++    height: '100%',
++    objectFit: 'cover',
 +    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
 +  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.5,
++  overlay: {
++    position: 'absolute',
++    inset: 0,
++    display: 'flex',
++    alignItems: 'flex-end',
++    padding: '1.25rem',
++    background:
++      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
++  },
++  captionBox: {
++    width: '100%',
++    padding: '1rem 1.05rem',
++    borderRadius: '18px',
++    backgroundColor: 'rgba(20, 16, 13, 0.42)',
++    backdropFilter: 'blur(8px)',
 +    color: '#f7f1e8',
++  },
++  captionTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.2rem',
++    lineHeight: 1.2,
++  },
++  captionText: {
++    margin: '0.45rem 0 0',
++    color: 'rgba(247, 241, 232, 0.86)',
++    lineHeight: 1.6,
++    fontSize: '0.95rem',
 +  },
 +}
 +
-+const highlights = [
++const galleryImages = [
 +  {
-+    label: 'Events captured',
-+    text: 'Wedding dinners, cocktail bars, styled tablescapes, and luminous celebration moments.',
++    title: 'Wedding dinner styling',
++    description:
++      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
++    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
++    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
 +  },
 +  {
-+    label: 'Visual direction',
-+    text: 'Warm editorial imagery with polished presentation, soft light, and a hospitality-first feel.',
++    title: 'Signature cocktail service',
++    description:
++      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
++    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
++    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
 +  },
 +  {
-+    label: 'What it shows',
-+    text: 'How Casa Aurea balances food, service, and atmosphere for refined gatherings.',
++    title: 'Plated catering presentation',
++    description:
++      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
++    alt: 'Plated fine catering dish presented with modern styling',
++    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Reception atmosphere',
++    description:
++      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
++    alt: 'Guests gathered at a stylish reception during an evening event',
++    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Aperitivo tablescape',
++    description:
++      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
++    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
++    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Celebration toast',
++    description:
++      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
++    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
++    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
 +  },
 +]
 +
-+export default function GalleryHeroSection() {
++export default function GalleryGridSection() {
 +  return (
 +    <section
-+      id="gallery-hero"
-+      aria-labelledby="gallery-title"
-+      style={heroStyles.section}
++      id="gallery-grid"
++      aria-labelledby="gallery-grid-title"
++      style={sectionStyles.section}
 +    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
-+        <h1 id="gallery-title" style={heroStyles.title}>
-+          A curated view of elegant catering and bar moments
-+        </h1>
-+        <p style={heroStyles.body}>
-+          Explore a visual selection of refined tablescapes, signature
-+          cocktails, plated service, and celebration settings designed for
-+          weddings, private events, and premium corporate evenings.
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Gallery collection</p>
++        <h2 id="gallery-grid-title" style={sectionStyles.title}>
++          A premium image grid shaped around service, atmosphere, and detail
++        </h2>
++        <p style={sectionStyles.intro}>
++          This collection brings together the visual language of Casa Aurea
++          Events: elegant food presentation, polished bar service, layered
++          styling, and the warm rhythm of celebrations designed with care.
 +        </p>
++      </div>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
-+          ))}
-+        </div>
++      <div style={sectionStyles.grid}>
++        {galleryImages.map((image) => (
++          <figure key={image.title} style={sectionStyles.card}>
++            <img
++              src={image.src}
++              alt={image.alt}
++              loading="lazy"
++              style={sectionStyles.image}
++            />
++            <figcaption style={sectionStyles.overlay}>
++              <div style={sectionStyles.captionBox}>
++                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
++                <p style={sectionStyles.captionText}>{image.description}</p>
++              </div>
++            </figcaption>
++          </figure>
++        ))}
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index da346205d6952895461294fcd4d670ea19db49e9..635220c2e4291cf145334fe5d28d1b8eedc8f02b
+index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
 --- a/src/pages/Gallery.jsx
 +++ b/src/pages/Gallery.jsx
-@@ -1,15 +1,9 @@
-+import GalleryHeroSection from '../components/Gallery-heroSection'
-+
+@@ -1,18 +1,11 @@
+ import GalleryHeroSection from '../components/Gallery-heroSection'
++import GalleryGridSection from '../components/Gallery-gridSection'
+ 
  export default function Gallery() {
    return (
      <article aria-labelledby="gallery-title">
--      <section id="gallery-hero" aria-labelledby="gallery-title">
--        <p>Casa Aurea Events</p>
--        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
+       <GalleryHeroSection />
+-
+-      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+-        <h2 id="gallery-grid-title">Gallery collection</h2>
 -        <p>
--          Explore a gallery of refined tablescapes, signature cocktails, plated
--          service, and celebration settings designed for weddings, private
--          events, and premium corporate evenings.
+-          This page is prepared for the premium image grid that will showcase
+-          catering presentation, cocktail service, event styling, and guest
+-          atmosphere across Casa Aurea Events experiences.
 -        </p>
 -      </section>
-+      <GalleryHeroSection />
- 
-       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-         <h2 id="gallery-grid-title">Gallery collection</h2>
++      <GalleryGridSection />
+     </article>
+   )
+ }
 
 codex
-The hero component is in place and the gallery page now renders it instead of inline placeholder markup. I’m running the build check now to confirm the task is clean and didn’t break routing.
+The new section is in place. I’m running the build now to catch any integration issues before I touch the report file.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 828ms:
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+# AGENT REPORT
+
+Project created.
+
+Prepared TASK page-home-shell (Create home page shell) for execution.
+
+Launching Codex for TASK page-home-shell.
+
+Completed TASK page-home-shell.
+
+Implemented a semantic home page shell in `src/pages/Home.jsx` with real hero,
+signature preview, and brand story preview sections. Verified the home route
+remains mounted in `src/App.jsx` and ready for follow-up content tasks.
+
+TASK page-home-shell executed by Codex.
+Waiting for validation.
+
+TASK page-home-shell completed successfully.
+Build passed.
+Commit created for TASK page-home-shell.
+exec
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 825ms:
 
 > site-create-a-premium-modern-website-for-an-e@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 58 modules transformed.
+✓ 59 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-i_cNafRk.js   267.41 kB │ gzip: 82.29 kB
-✓ built in 564ms
+dist/assets/index-Bm9y79cw.js   271.49 kB │ gzip: 83.14 kB
+✓ built in 572ms
 file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 29a29f49b799f127138655d5826d5983334c88e9..c74a6e81d69ef80dfd7a293ef9f544d36729b4c9
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,50 @@
- Build passed.
- 
- Implemented a dedicated `Menu-categoriesSection` component in
-+`src/components/Menu-categoriesSection.jsx` and rendered it from
-+`src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
-+page now includes structured drink families with refined descriptions and
-+flavor notes aligned to the premium event-bar positioning.
-+
-+TASK section-menu-menu-categories executed by Codex.
-+Waiting for validation.
-+
-+TASK section-menu-menu-categories completed successfully.
-+Build passed.
-+Commit created for TASK section-menu-menu-categories.
-+
-+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
-+
-+Launching Codex for TASK page-gallery-shell.
-+
-+Completed TASK page-gallery-shell.
-+
-+Implemented a semantic shell for `src/pages/Gallery.jsx` with the required
-+`gallery-hero` and `gallery-grid` sections, preserving a single page `h1` and
-+keeping the gallery route ready for dedicated section work.
-+
-+TASK page-gallery-shell executed by Codex.
-+Waiting for validation.
-+
-+TASK page-gallery-shell completed successfully.
-+Build passed.
-+Commit created for TASK page-gallery-shell.
-+
-+Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
-+
-+Launching Codex for TASK section-gallery-gallery-hero.
-+
-+Completed TASK section-gallery-gallery-hero.
-+
-+Implemented a dedicated `Gallery-heroSection` component in
-+`src/components/Gallery-heroSection.jsx` and rendered it from
-+`src/pages/Gallery.jsx` to replace the inline placeholder hero markup. The
-+gallery page now has the required premium hero structure with editorial copy,
-+coherent highlights, and the existing `gallery-grid` shell left intact for the
-+next task.
-+
-+TASK section-gallery-gallery-hero executed by Codex.
-+Waiting for validation.
- 
- Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
- 
-diff --git a/src/components/Gallery-heroSection.jsx b/src/components/Gallery-heroSection.jsx
+diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..9a6e300582c108903c6d2d6b28301484d7665240
+index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
 --- /dev/null
-+++ b/src/components/Gallery-heroSection.jsx
-@@ -0,0 +1,118 @@
-+const heroStyles = {
++++ b/src/components/Gallery-gridSection.jsx
+@@ -0,0 +1,171 @@
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(48, 36, 29, 0.12) 0%, rgba(30, 23, 19, 0.68) 56%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
 +  },
-+  panel: {
-+    width: 'min(100%, 48rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
-+    textAlign: 'left',
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: '0.8rem',
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    color: '#201914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontWeight: 600,
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
 +  },
-+  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '36rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.8,
 +  },
-+  highlights: {
-+    marginTop: '1.5rem',
++  grid: {
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
++    gap: '1rem',
 +  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
++  card: {
++    position: 'relative',
++    minHeight: 'clamp(18rem, 36vw, 26rem)',
++    overflow: 'hidden',
++    borderRadius: '24px',
++    backgroundColor: '#d8c7b0',
++    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
 +  },
-+  highlightLabel: {
++  image: {
++    width: '100%',
++    height: '100%',
++    objectFit: 'cover',
 +    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
 +  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.5,
++  overlay: {
++    position: 'absolute',
++    inset: 0,
++    display: 'flex',
++    alignItems: 'flex-end',
++    padding: '1.25rem',
++    background:
++      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
++  },
++  captionBox: {
++    width: '100%',
++    padding: '1rem 1.05rem',
++    borderRadius: '18px',
++    backgroundColor: 'rgba(20, 16, 13, 0.42)',
++    backdropFilter: 'blur(8px)',
 +    color: '#f7f1e8',
++  },
++  captionTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.2rem',
++    lineHeight: 1.2,
++  },
++  captionText: {
++    margin: '0.45rem 0 0',
++    color: 'rgba(247, 241, 232, 0.86)',
++    lineHeight: 1.6,
++    fontSize: '0.95rem',
 +  },
 +}
 +
-+const highlights = [
++const galleryImages = [
 +  {
-+    label: 'Events captured',
-+    text: 'Wedding dinners, cocktail bars, styled tablescapes, and luminous celebration moments.',
++    title: 'Wedding dinner styling',
++    description:
++      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
++    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
++    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
 +  },
 +  {
-+    label: 'Visual direction',
-+    text: 'Warm editorial imagery with polished presentation, soft light, and a hospitality-first feel.',
++    title: 'Signature cocktail service',
++    description:
++      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
++    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
++    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
 +  },
 +  {
-+    label: 'What it shows',
-+    text: 'How Casa Aurea balances food, service, and atmosphere for refined gatherings.',
++    title: 'Plated catering presentation',
++    description:
++      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
++    alt: 'Plated fine catering dish presented with modern styling',
++    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Reception atmosphere',
++    description:
++      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
++    alt: 'Guests gathered at a stylish reception during an evening event',
++    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Aperitivo tablescape',
++    description:
++      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
++    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
++    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Celebration toast',
++    description:
++      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
++    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
++    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
 +  },
 +]
 +
-+export default function GalleryHeroSection() {
++export default function GalleryGridSection() {
 +  return (
 +    <section
-+      id="gallery-hero"
-+      aria-labelledby="gallery-title"
-+      style={heroStyles.section}
++      id="gallery-grid"
++      aria-labelledby="gallery-grid-title"
++      style={sectionStyles.section}
 +    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
-+        <h1 id="gallery-title" style={heroStyles.title}>
-+          A curated view of elegant catering and bar moments
-+        </h1>
-+        <p style={heroStyles.body}>
-+          Explore a visual selection of refined tablescapes, signature
-+          cocktails, plated service, and celebration settings designed for
-+          weddings, private events, and premium corporate evenings.
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Gallery collection</p>
++        <h2 id="gallery-grid-title" style={sectionStyles.title}>
++          A premium image grid shaped around service, atmosphere, and detail
++        </h2>
++        <p style={sectionStyles.intro}>
++          This collection brings together the visual language of Casa Aurea
++          Events: elegant food presentation, polished bar service, layered
++          styling, and the warm rhythm of celebrations designed with care.
 +        </p>
++      </div>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
-+          ))}
-+        </div>
++      <div style={sectionStyles.grid}>
++        {galleryImages.map((image) => (
++          <figure key={image.title} style={sectionStyles.card}>
++            <img
++              src={image.src}
++              alt={image.alt}
++              loading="lazy"
++              style={sectionStyles.image}
++            />
++            <figcaption style={sectionStyles.overlay}>
++              <div style={sectionStyles.captionBox}>
++                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
++                <p style={sectionStyles.captionText}>{image.description}</p>
++              </div>
++            </figcaption>
++          </figure>
++        ))}
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index da346205d6952895461294fcd4d670ea19db49e9..635220c2e4291cf145334fe5d28d1b8eedc8f02b
+index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
 --- a/src/pages/Gallery.jsx
 +++ b/src/pages/Gallery.jsx
-@@ -1,15 +1,9 @@
-+import GalleryHeroSection from '../components/Gallery-heroSection'
-+
+@@ -1,18 +1,11 @@
+ import GalleryHeroSection from '../components/Gallery-heroSection'
++import GalleryGridSection from '../components/Gallery-gridSection'
+ 
  export default function Gallery() {
    return (
      <article aria-labelledby="gallery-title">
--      <section id="gallery-hero" aria-labelledby="gallery-title">
--        <p>Casa Aurea Events</p>
--        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
+       <GalleryHeroSection />
+-
+-      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+-        <h2 id="gallery-grid-title">Gallery collection</h2>
 -        <p>
--          Explore a gallery of refined tablescapes, signature cocktails, plated
--          service, and celebration settings designed for weddings, private
--          events, and premium corporate evenings.
+-          This page is prepared for the premium image grid that will showcase
+-          catering presentation, cocktail service, event styling, and guest
+-          atmosphere across Casa Aurea Events experiences.
 -        </p>
 -      </section>
-+      <GalleryHeroSection />
++      <GalleryGridSection />
+     </article>
+   )
+ }
+
+codex
+The build passed. I’m appending a short task entry to `agent/AGENT_REPORT.md` now, keeping it minimal and scoped to this gallery-grid task.
+exec
+/bin/zsh -lc 'tail -n 40 agent/AGENT_REPORT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+TASK section-chi-siamo-story completed successfully.
+Build passed.
+Commit created for TASK section-chi-siamo-story.
+
+Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
+
+Launching Codex for TASK section-chi-siamo-philosophy.
+
+TASK section-chi-siamo-philosophy executed by Codex.
+Waiting for validation.
+
+TASK section-chi-siamo-philosophy completed successfully.
+Build passed.
+Commit created for TASK section-chi-siamo-philosophy.
+
+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
+
+Launching Codex for TASK page-gallery-shell.
+
+TASK page-gallery-shell executed by Codex.
+file update:
+diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
+--- /dev/null
++++ b/src/components/Gallery-gridSection.jsx
+@@ -0,0 +1,171 @@
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++  },
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    position: 'relative',
++    minHeight: 'clamp(18rem, 36vw, 26rem)',
++    overflow: 'hidden',
++    borderRadius: '24px',
++    backgroundColor: '#d8c7b0',
++    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
++  },
++  image: {
++    width: '100%',
++    height: '100%',
++    objectFit: 'cover',
++    display: 'block',
++  },
++  overlay: {
++    position: 'absolute',
++    inset: 0,
++    display: 'flex',
++    alignItems: 'flex-end',
++    padding: '1.25rem',
++    background:
++      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
++  },
++  captionBox: {
++    width: '100%',
++    padding: '1rem 1.05rem',
++    borderRadius: '18px',
++    backgroundColor: 'rgba(20, 16, 13, 0.42)',
++    backdropFilter: 'blur(8px)',
++    color: '#f7f1e8',
++  },
++  captionTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.2rem',
++    lineHeight: 1.2,
++  },
++  captionText: {
++    margin: '0.45rem 0 0',
++    color: 'rgba(247, 241, 232, 0.86)',
++    lineHeight: 1.6,
++    fontSize: '0.95rem',
++  },
++}
++
++const galleryImages = [
++  {
++    title: 'Wedding dinner styling',
++    description:
++      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
++    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
++    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Signature cocktail service',
++    description:
++      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
++    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
++    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Plated catering presentation',
++    description:
++      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
++    alt: 'Plated fine catering dish presented with modern styling',
++    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Reception atmosphere',
++    description:
++      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
++    alt: 'Guests gathered at a stylish reception during an evening event',
++    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Aperitivo tablescape',
++    description:
++      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
++    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
++    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Celebration toast',
++    description:
++      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
++    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
++    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
++  },
++]
++
++export default function GalleryGridSection() {
++  return (
++    <section
++      id="gallery-grid"
++      aria-labelledby="gallery-grid-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Gallery collection</p>
++        <h2 id="gallery-grid-title" style={sectionStyles.title}>
++          A premium image grid shaped around service, atmosphere, and detail
++        </h2>
++        <p style={sectionStyles.intro}>
++          This collection brings together the visual language of Casa Aurea
++          Events: elegant food presentation, polished bar service, layered
++          styling, and the warm rhythm of celebrations designed with care.
++        </p>
++      </div>
++
++      <div style={sectionStyles.grid}>
++        {galleryImages.map((image) => (
++          <figure key={image.title} style={sectionStyles.card}>
++            <img
++              src={image.src}
++              alt={image.alt}
++              loading="lazy"
++              style={sectionStyles.image}
++            />
++            <figcaption style={sectionStyles.overlay}>
++              <div style={sectionStyles.captionBox}>
++                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
++                <p style={sectionStyles.captionText}>{image.description}</p>
++              </div>
++            </figcaption>
++          </figure>
++        ))}
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,18 +1,11 @@
+ import GalleryHeroSection from '../components/Gallery-heroSection'
++import GalleryGridSection from '../components/Gallery-gridSection'
  
-       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-         <h2 id="gallery-grid-title">Gallery collection</h2>
+ export default function Gallery() {
+   return (
+     <article aria-labelledby="gallery-title">
+       <GalleryHeroSection />
+-
+-      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+-        <h2 id="gallery-grid-title">Gallery collection</h2>
+-        <p>
+-          This page is prepared for the premium image grid that will showcase
+-          catering presentation, cocktail service, event styling, and guest
+-          atmosphere across Casa Aurea Events experiences.
+-        </p>
+-      </section>
++      <GalleryGridSection />
+     </article>
+   )
+ }
+
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+@@ -410 +410,12 @@
+ Launching Codex for TASK section-gallery-gallery-grid.
++
++TASK section-gallery-gallery-grid executed by Codex.
++Waiting for validation.
++
++TASK section-gallery-gallery-grid completed successfully.
++Implemented a dedicated `GalleryGridSection` in
++`src/components/Gallery-gridSection.jsx` and rendered it from
++`src/pages/Gallery.jsx`. The gallery page now includes a responsive premium
++image grid with six real event visuals, descriptive captions, and lazy-loaded
++images aligned to the `image-grid` section requirement.
++Build passed.
+apply_patch(auto_approved=true) exited 0 in 58ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 754a2c30d7a71c1dfd8ab220219849cea1045d8d..bfa01a64455f06eb68fe3c9e12f649cc7dd01a51
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -408,3 +408,14 @@
+ Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+ 
+ Launching Codex for TASK section-gallery-gallery-grid.
++
++TASK section-gallery-gallery-grid executed by Codex.
++Waiting for validation.
++
++TASK section-gallery-gallery-grid completed successfully.
++Implemented a dedicated `GalleryGridSection` in
++`src/components/Gallery-gridSection.jsx` and rendered it from
++`src/pages/Gallery.jsx`. The gallery page now includes a responsive premium
++image grid with six real event visuals, descriptive captions, and lazy-loaded
++images aligned to the `image-grid` section requirement.
++Build passed.
+diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
+--- /dev/null
++++ b/src/components/Gallery-gridSection.jsx
+@@ -0,0 +1,171 @@
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++  },
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    position: 'relative',
++    minHeight: 'clamp(18rem, 36vw, 26rem)',
++    overflow: 'hidden',
++    borderRadius: '24px',
++    backgroundColor: '#d8c7b0',
++    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
++  },
++  image: {
++    width: '100%',
++    height: '100%',
++    objectFit: 'cover',
++    display: 'block',
++  },
++  overlay: {
++    position: 'absolute',
++    inset: 0,
++    display: 'flex',
++    alignItems: 'flex-end',
++    padding: '1.25rem',
++    background:
++      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
++  },
++  captionBox: {
++    width: '100%',
++    padding: '1rem 1.05rem',
++    borderRadius: '18px',
++    backgroundColor: 'rgba(20, 16, 13, 0.42)',
++    backdropFilter: 'blur(8px)',
++    color: '#f7f1e8',
++  },
++  captionTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.2rem',
++    lineHeight: 1.2,
++  },
++  captionText: {
++    margin: '0.45rem 0 0',
++    color: 'rgba(247, 241, 232, 0.86)',
++    lineHeight: 1.6,
++    fontSize: '0.95rem',
++  },
++}
++
++const galleryImages = [
++  {
++    title: 'Wedding dinner styling',
++    description:
++      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
++    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
++    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Signature cocktail service',
++    description:
++      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
++    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
++    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Plated catering presentation',
++    description:
++      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
++    alt: 'Plated fine catering dish presented with modern styling',
++    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Reception atmosphere',
++    description:
++      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
++    alt: 'Guests gathered at a stylish reception during an evening event',
++    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Aperitivo tablescape',
++    description:
++      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
++    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
++    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Celebration toast',
++    description:
++      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
++    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
++    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
++  },
++]
++
++export default function GalleryGridSection() {
++  return (
++    <section
++      id="gallery-grid"
++      aria-labelledby="gallery-grid-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Gallery collection</p>
++        <h2 id="gallery-grid-title" style={sectionStyles.title}>
++          A premium image grid shaped around service, atmosphere, and detail
++        </h2>
++        <p style={sectionStyles.intro}>
++          This collection brings together the visual language of Casa Aurea
++          Events: elegant food presentation, polished bar service, layered
++          styling, and the warm rhythm of celebrations designed with care.
++        </p>
++      </div>
++
++      <div style={sectionStyles.grid}>
++        {galleryImages.map((image) => (
++          <figure key={image.title} style={sectionStyles.card}>
++            <img
++              src={image.src}
++              alt={image.alt}
++              loading="lazy"
++              style={sectionStyles.image}
++            />
++            <figcaption style={sectionStyles.overlay}>
++              <div style={sectionStyles.captionBox}>
++                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
++                <p style={sectionStyles.captionText}>{image.description}</p>
++              </div>
++            </figcaption>
++          </figure>
++        ))}
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,18 +1,11 @@
+ import GalleryHeroSection from '../components/Gallery-heroSection'
++import GalleryGridSection from '../components/Gallery-gridSection'
+ 
+ export default function Gallery() {
+   return (
+     <article aria-labelledby="gallery-title">
+       <GalleryHeroSection />
+-
+-      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+-        <h2 id="gallery-grid-title">Gallery collection</h2>
+-        <p>
+-          This page is prepared for the premium image grid that will showcase
+-          catering presentation, cocktail service, event styling, and guest
+-          atmosphere across Casa Aurea Events experiences.
+-        </p>
+-      </section>
++      <GalleryGridSection />
+     </article>
+   )
+ }
+
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 754a2c30d7a71c1dfd8ab220219849cea1045d8d..bfa01a64455f06eb68fe3c9e12f649cc7dd01a51
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -408,3 +408,14 @@
+ Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+ 
+ Launching Codex for TASK section-gallery-gallery-grid.
++
++TASK section-gallery-gallery-grid executed by Codex.
++Waiting for validation.
++
++TASK section-gallery-gallery-grid completed successfully.
++Implemented a dedicated `GalleryGridSection` in
++`src/components/Gallery-gridSection.jsx` and rendered it from
++`src/pages/Gallery.jsx`. The gallery page now includes a responsive premium
++image grid with six real event visuals, descriptive captions, and lazy-loaded
++images aligned to the `image-grid` section requirement.
++Build passed.
+diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
+--- /dev/null
++++ b/src/components/Gallery-gridSection.jsx
+@@ -0,0 +1,171 @@
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++  },
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    position: 'relative',
++    minHeight: 'clamp(18rem, 36vw, 26rem)',
++    overflow: 'hidden',
++    borderRadius: '24px',
++    backgroundColor: '#d8c7b0',
++    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
++  },
++  image: {
++    width: '100%',
++    height: '100%',
++    objectFit: 'cover',
++    display: 'block',
++  },
++  overlay: {
++    position: 'absolute',
++    inset: 0,
++    display: 'flex',
++    alignItems: 'flex-end',
++    padding: '1.25rem',
++    background:
++      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
++  },
++  captionBox: {
++    width: '100%',
++    padding: '1rem 1.05rem',
++    borderRadius: '18px',
++    backgroundColor: 'rgba(20, 16, 13, 0.42)',
++    backdropFilter: 'blur(8px)',
++    color: '#f7f1e8',
++  },
++  captionTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.2rem',
++    lineHeight: 1.2,
++  },
++  captionText: {
++    margin: '0.45rem 0 0',
++    color: 'rgba(247, 241, 232, 0.86)',
++    lineHeight: 1.6,
++    fontSize: '0.95rem',
++  },
++}
++
++const galleryImages = [
++  {
++    title: 'Wedding dinner styling',
++    description:
++      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
++    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
++    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Signature cocktail service',
++    description:
++      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
++    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
++    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Plated catering presentation',
++    description:
++      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
++    alt: 'Plated fine catering dish presented with modern styling',
++    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Reception atmosphere',
++    description:
++      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
++    alt: 'Guests gathered at a stylish reception during an evening event',
++    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Aperitivo tablescape',
++    description:
++      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
++    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
++    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Celebration toast',
++    description:
++      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
++    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
++    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
++  },
++]
++
++export default function GalleryGridSection() {
++  return (
++    <section
++      id="gallery-grid"
++      aria-labelledby="gallery-grid-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Gallery collection</p>
++        <h2 id="gallery-grid-title" style={sectionStyles.title}>
++          A premium image grid shaped around service, atmosphere, and detail
++        </h2>
++        <p style={sectionStyles.intro}>
++          This collection brings together the visual language of Casa Aurea
++          Events: elegant food presentation, polished bar service, layered
++          styling, and the warm rhythm of celebrations designed with care.
++        </p>
++      </div>
++
++      <div style={sectionStyles.grid}>
++        {galleryImages.map((image) => (
++          <figure key={image.title} style={sectionStyles.card}>
++            <img
++              src={image.src}
++              alt={image.alt}
++              loading="lazy"
++              style={sectionStyles.image}
++            />
++            <figcaption style={sectionStyles.overlay}>
++              <div style={sectionStyles.captionBox}>
++                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
++                <p style={sectionStyles.captionText}>{image.description}</p>
++              </div>
++            </figcaption>
++          </figure>
++        ))}
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
+index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
+--- a/src/pages/Gallery.jsx
++++ b/src/pages/Gallery.jsx
+@@ -1,18 +1,11 @@
+ import GalleryHeroSection from '../components/Gallery-heroSection'
++import GalleryGridSection from '../components/Gallery-gridSection'
+ 
+ export default function Gallery() {
+   return (
+     <article aria-labelledby="gallery-title">
+       <GalleryHeroSection />
+-
+-      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+-        <h2 id="gallery-grid-title">Gallery collection</h2>
+-        <p>
+-          This page is prepared for the premium image grid that will showcase
+-          catering presentation, cocktail service, event styling, and guest
+-          atmosphere across Casa Aurea Events experiences.
+-        </p>
+-      </section>
++      <GalleryGridSection />
+     </article>
+   )
+ }
 
 codex
 Modified files:
-- [src/components/Gallery-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-heroSection.jsx)
+- [src/components/Gallery-gridSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-gridSection.jsx)
 - [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx)
 - [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
 What was implemented:
-- Added a dedicated `GalleryHeroSection` component for the `gallery-hero` section with premium editorial styling, a single page `h1`, and supporting highlight cards.
-- Updated the gallery page to render the new hero component and kept the existing `gallery-grid` shell unchanged.
-- Appended the task summary to `agent/AGENT_REPORT.md`.
+- Added a dedicated `GalleryGridSection` component for the `gallery-grid` section.
+- Replaced the placeholder markup in the gallery page with the new component.
+- Built the section as a responsive image grid with six premium Unsplash images, descriptive captions, meaningful alt text, and lazy loading.
+- Updated the agent report with a short completion summary.
 
 Build result:
 - `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 29a29f49b799f127138655d5826d5983334c88e9..c74a6e81d69ef80dfd7a293ef9f544d36729b4c9
+index 754a2c30d7a71c1dfd8ab220219849cea1045d8d..bfa01a64455f06eb68fe3c9e12f649cc7dd01a51
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,50 @@
- Build passed.
+@@ -408,3 +408,14 @@
+ Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
  
- Implemented a dedicated `Menu-categoriesSection` component in
-+`src/components/Menu-categoriesSection.jsx` and rendered it from
-+`src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
-+page now includes structured drink families with refined descriptions and
-+flavor notes aligned to the premium event-bar positioning.
+ Launching Codex for TASK section-gallery-gallery-grid.
 +
-+TASK section-menu-menu-categories executed by Codex.
++TASK section-gallery-gallery-grid executed by Codex.
 +Waiting for validation.
 +
-+TASK section-menu-menu-categories completed successfully.
++TASK section-gallery-gallery-grid completed successfully.
++Implemented a dedicated `GalleryGridSection` in
++`src/components/Gallery-gridSection.jsx` and rendered it from
++`src/pages/Gallery.jsx`. The gallery page now includes a responsive premium
++image grid with six real event visuals, descriptive captions, and lazy-loaded
++images aligned to the `image-grid` section requirement.
 +Build passed.
-+Commit created for TASK section-menu-menu-categories.
-+
-+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
-+
-+Launching Codex for TASK page-gallery-shell.
-+
-+Completed TASK page-gallery-shell.
-+
-+Implemented a semantic shell for `src/pages/Gallery.jsx` with the required
-+`gallery-hero` and `gallery-grid` sections, preserving a single page `h1` and
-+keeping the gallery route ready for dedicated section work.
-+
-+TASK page-gallery-shell executed by Codex.
-+Waiting for validation.
-+
-+TASK page-gallery-shell completed successfully.
-+Build passed.
-+Commit created for TASK page-gallery-shell.
-+
-+Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
-+
-+Launching Codex for TASK section-gallery-gallery-hero.
-+
-+Completed TASK section-gallery-gallery-hero.
-+
-+Implemented a dedicated `Gallery-heroSection` component in
-+`src/components/Gallery-heroSection.jsx` and rendered it from
-+`src/pages/Gallery.jsx` to replace the inline placeholder hero markup. The
-+gallery page now has the required premium hero structure with editorial copy,
-+coherent highlights, and the existing `gallery-grid` shell left intact for the
-+next task.
-+
-+TASK section-gallery-gallery-hero executed by Codex.
-+Waiting for validation.
- 
- Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
- 
-diff --git a/src/components/Gallery-heroSection.jsx b/src/components/Gallery-heroSection.jsx
+diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..9a6e300582c108903c6d2d6b28301484d7665240
+index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
 --- /dev/null
-+++ b/src/components/Gallery-heroSection.jsx
-@@ -0,0 +1,118 @@
-+const heroStyles = {
++++ b/src/components/Gallery-gridSection.jsx
+@@ -0,0 +1,171 @@
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(48, 36, 29, 0.12) 0%, rgba(30, 23, 19, 0.68) 56%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
 +  },
-+  panel: {
-+    width: 'min(100%, 48rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
-+    textAlign: 'left',
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: '0.8rem',
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    color: '#201914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontWeight: 600,
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
 +  },
-+  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '36rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.8,
 +  },
-+  highlights: {
-+    marginTop: '1.5rem',
++  grid: {
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
++    gap: '1rem',
 +  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
++  card: {
++    position: 'relative',
++    minHeight: 'clamp(18rem, 36vw, 26rem)',
++    overflow: 'hidden',
++    borderRadius: '24px',
++    backgroundColor: '#d8c7b0',
++    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
 +  },
-+  highlightLabel: {
++  image: {
++    width: '100%',
++    height: '100%',
++    objectFit: 'cover',
 +    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
 +  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.5,
++  overlay: {
++    position: 'absolute',
++    inset: 0,
++    display: 'flex',
++    alignItems: 'flex-end',
++    padding: '1.25rem',
++    background:
++      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
++  },
++  captionBox: {
++    width: '100%',
++    padding: '1rem 1.05rem',
++    borderRadius: '18px',
++    backgroundColor: 'rgba(20, 16, 13, 0.42)',
++    backdropFilter: 'blur(8px)',
 +    color: '#f7f1e8',
++  },
++  captionTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.2rem',
++    lineHeight: 1.2,
++  },
++  captionText: {
++    margin: '0.45rem 0 0',
++    color: 'rgba(247, 241, 232, 0.86)',
++    lineHeight: 1.6,
++    fontSize: '0.95rem',
 +  },
 +}
 +
-+const highlights = [
++const galleryImages = [
 +  {
-+    label: 'Events captured',
-+    text: 'Wedding dinners, cocktail bars, styled tablescapes, and luminous celebration moments.',
++    title: 'Wedding dinner styling',
++    description:
++      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
++    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
++    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
 +  },
 +  {
-+    label: 'Visual direction',
-+    text: 'Warm editorial imagery with polished presentation, soft light, and a hospitality-first feel.',
++    title: 'Signature cocktail service',
++    description:
++      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
++    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
++    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
 +  },
 +  {
-+    label: 'What it shows',
-+    text: 'How Casa Aurea balances food, service, and atmosphere for refined gatherings.',
++    title: 'Plated catering presentation',
++    description:
++      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
++    alt: 'Plated fine catering dish presented with modern styling',
++    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Reception atmosphere',
++    description:
++      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
++    alt: 'Guests gathered at a stylish reception during an evening event',
++    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Aperitivo tablescape',
++    description:
++      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
++    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
++    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
++  },
++  {
++    title: 'Celebration toast',
++    description:
++      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
++    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
++    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
 +  },
 +]
 +
-+export default function GalleryHeroSection() {
++export default function GalleryGridSection() {
 +  return (
 +    <section
-+      id="gallery-hero"
-+      aria-labelledby="gallery-title"
-+      style={heroStyles.section}
++      id="gallery-grid"
++      aria-labelledby="gallery-grid-title"
++      style={sectionStyles.section}
 +    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
-+        <h1 id="gallery-title" style={heroStyles.title}>
-+          A curated view of elegant catering and bar moments
-+        </h1>
-+        <p style={heroStyles.body}>
-+          Explore a visual selection of refined tablescapes, signature
-+          cocktails, plated service, and celebration settings designed for
-+          weddings, private events, and premium corporate evenings.
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Gallery collection</p>
++        <h2 id="gallery-grid-title" style={sectionStyles.title}>
++          A premium image grid shaped around service, atmosphere, and detail
++        </h2>
++        <p style={sectionStyles.intro}>
++          This collection brings together the visual language of Casa Aurea
++          Events: elegant food presentation, polished bar service, layered
++          styling, and the warm rhythm of celebrations designed with care.
 +        </p>
++      </div>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
-+          ))}
-+        </div>
++      <div style={sectionStyles.grid}>
++        {galleryImages.map((image) => (
++          <figure key={image.title} style={sectionStyles.card}>
++            <img
++              src={image.src}
++              alt={image.alt}
++              loading="lazy"
++              style={sectionStyles.image}
++            />
++            <figcaption style={sectionStyles.overlay}>
++              <div style={sectionStyles.captionBox}>
++                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
++                <p style={sectionStyles.captionText}>{image.description}</p>
++              </div>
++            </figcaption>
++          </figure>
++        ))}
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index da346205d6952895461294fcd4d670ea19db49e9..635220c2e4291cf145334fe5d28d1b8eedc8f02b
+index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
 --- a/src/pages/Gallery.jsx
 +++ b/src/pages/Gallery.jsx
-@@ -1,15 +1,9 @@
-+import GalleryHeroSection from '../components/Gallery-heroSection'
-+
+@@ -1,18 +1,11 @@
+ import GalleryHeroSection from '../components/Gallery-heroSection'
++import GalleryGridSection from '../components/Gallery-gridSection'
+ 
  export default function Gallery() {
    return (
      <article aria-labelledby="gallery-title">
--      <section id="gallery-hero" aria-labelledby="gallery-title">
--        <p>Casa Aurea Events</p>
--        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
+       <GalleryHeroSection />
+-
+-      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+-        <h2 id="gallery-grid-title">Gallery collection</h2>
 -        <p>
--          Explore a gallery of refined tablescapes, signature cocktails, plated
--          service, and celebration settings designed for weddings, private
--          events, and premium corporate evenings.
+-          This page is prepared for the premium image grid that will showcase
+-          catering presentation, cocktail service, event styling, and guest
+-          atmosphere across Casa Aurea Events experiences.
 -        </p>
 -      </section>
-+      <GalleryHeroSection />
- 
-       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-         <h2 id="gallery-grid-title">Gallery collection</h2>
++      <GalleryGridSection />
+     </article>
+   )
+ }
 
 tokens used
-23.325
+23.288

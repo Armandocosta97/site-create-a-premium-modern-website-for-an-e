@@ -1178,10 +1178,10 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-gallery-gallery-hero
+section-gallery-gallery-grid
 
 ## Current task title
-Create gallery-hero section on gallery
+Create gallery-grid section on gallery
 
 ## Current task type
 section
@@ -1190,8 +1190,8 @@ section
 ```json
 {
   "pageId": "gallery",
-  "sectionId": "gallery-hero",
-  "sectionType": "hero"
+  "sectionId": "gallery-grid",
+  "sectionType": "image-grid"
 }
 ```
 
@@ -1200,13 +1200,13 @@ section
 
 ## Files allowed
 - src/pages/Gallery.jsx
-- src/components/Gallery-heroSection.jsx
+- src/components/Gallery-gridSection.jsx
 - src/components
 
 ## Definition of done
-- section gallery-hero exists on gallery
-- section gallery-hero matches type hero
-- section gallery-hero is rendered in page gallery
+- section gallery-grid exists on gallery
+- section gallery-grid matches type image-grid
+- section gallery-grid is rendered in page gallery
 
 ## Strict execution rules
 - Execute only this current task.
