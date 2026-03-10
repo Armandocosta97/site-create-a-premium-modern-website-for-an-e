@@ -239,6 +239,23 @@ Build passed.
 
 Prepared TASK navigation-structure (Build navigation from spec) for execution.
 
+Launching Codex for TASK validation-prep.
+
+Completed TASK validation-prep.
+
+Hardened the shared shell for final validation by upgrading
+`src/layout/Layout.jsx` with a route-safe mobile navigation, brand header, and
+a real dark footer containing navigation and contact details. Updated
+`src/App.css` to support the responsive header/footer behavior and preserve
+navigation usability on small screens while keeping the existing page structure
+intact.
+
+TASK validation-prep executed by Codex.
+Waiting for validation.
+
+TASK validation-prep completed successfully.
+Build passed.
+
 Launching Codex for TASK navigation-structure.
 
 Completed TASK navigation-structure.
@@ -783,4 +800,15 @@ TASK responsive-polish executed by Codex.
 Waiting for validation.
 
 TASK responsive-polish completed successfully.
+Build passed.
+Commit created for TASK responsive-polish.
+
+Prepared TASK validation-prep (Prepare site for final validation) for execution.
+
+Launching Codex for TASK validation-prep.
+
+TASK validation-prep executed by Codex.
+Waiting for validation.
+
+TASK validation-prep completed successfully.
 Build passed.
