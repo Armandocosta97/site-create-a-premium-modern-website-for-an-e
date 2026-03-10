@@ -5,7 +5,12 @@ import SignaturePreviewSection from '../components/SignaturePreviewSection'
 export default function Home() {
   return (
     <article aria-labelledby="home-title">
-      <HeroSection />
+      <HeroSection
+        primaryCta={{
+          label: 'Request your event proposal',
+          to: '/menu',
+        }}
+      />
       <SignaturePreviewSection />
       <BrandStoryPreviewSection />
     </article>

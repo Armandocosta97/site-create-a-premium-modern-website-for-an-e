@@ -1178,20 +1178,25 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-home-brand-story-preview
+cta-home-home-primary-cta
 
 ## Current task title
-Create brand-story-preview section on home
+Add CTA home-primary-cta on home
 
 ## Current task type
-section
+cta
 
 ## Current task target
 ```json
 {
   "pageId": "home",
-  "sectionId": "brand-story-preview",
-  "sectionType": "split-content-preview"
+  "ctaId": "home-primary-cta",
+  "ctaKind": "internal",
+  "destination": {
+    "type": "route",
+    "value": "/menu"
+  },
+  "placement": "hero"
 }
 ```
 
@@ -1200,13 +1205,12 @@ section
 
 ## Files allowed
 - src/pages/Home.jsx
-- src/components/Brand-story-previewSection.jsx
 - src/components
 
 ## Definition of done
-- section brand-story-preview exists on home
-- section brand-story-preview matches type split-content-preview
-- section brand-story-preview is rendered in page home
+- CTA home-primary-cta exists on home
+- CTA home-primary-cta is visible in placement hero
+- CTA home-primary-cta points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.

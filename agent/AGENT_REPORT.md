@@ -77,3 +77,26 @@ Waiting for validation.
 
 TASK section-home-brand-story-preview completed successfully.
 Build passed.
+Commit created for TASK section-home-brand-story-preview.
+
+Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
+
+Launching Codex for TASK cta-home-home-primary-cta.
+
+Completed TASK cta-home-home-primary-cta.
+
+Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
+`src/components/HeroSection.jsx` so the page now explicitly provides the
+required `home-primary-cta` label and valid `/menu` destination in the hero.
+
+TASK cta-home-home-primary-cta executed by Codex.
+Waiting for validation.
+
+TASK cta-home-home-primary-cta completed successfully.
+Build passed.
+
+TASK cta-home-home-primary-cta executed by Codex.
+Waiting for validation.
+
+TASK cta-home-home-primary-cta completed successfully.
+Build passed.

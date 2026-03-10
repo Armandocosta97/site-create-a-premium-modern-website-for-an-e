@@ -119,7 +119,20 @@ const highlights = [
   },
 ]
 
-export default function HeroSection() {
+const defaultPrimaryCta = {
+  label: 'Request your event proposal',
+  to: '/menu',
+}
+
+const defaultSecondaryCta = {
+  label: 'Explore our services',
+  to: '/contatti',
+}
+
+export default function HeroSection({
+  primaryCta = defaultPrimaryCta,
+  secondaryCta = defaultSecondaryCta,
+}) {
   return (
     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
       <div style={heroStyles.panel}>
@@ -137,11 +150,11 @@ export default function HeroSection() {
         </p>
 
         <div style={heroStyles.actions}>
-          <Link to="/menu" style={heroStyles.primaryAction}>
-            Request your event proposal
+          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
+            {primaryCta.label}
           </Link>
-          <Link to="/contatti" style={heroStyles.secondaryAction}>
-            Explore our services
+          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
+            {secondaryCta.label}
           </Link>
         </div>
 

@@ -1,8 +1,8 @@
-Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), [Brand-story-previewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Brand-story-previewSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), [HeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/HeroSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
 
-Implemented the home `brand-story-preview` as a dedicated split-content preview component and rendered it from [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx). The section now includes a premium editorial image panel, brand positioning copy, three supporting story points, and route-safe CTAs to `/chi-siamo` and `/contatti`.
+Implemented the `home-primary-cta` on the home hero by making [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx) explicitly pass the primary CTA config into the shared [HeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/HeroSection.jsx). The CTA remains visible in the hero and routes to the valid hash-router destination `/menu` with the required label “Request your event proposal”.
 
-Build result: `npm run build` passed with a production Vite build.
+Build result: `npm run build` passed.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd834-4694-7d71-9e2d-b75c6c8c53c4
+session id: 019cd835-9705-76f1-a319-dae4d54fe17e
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1196,20 +1196,25 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-home-brand-story-preview
+cta-home-home-primary-cta
 
 ## Current task title
-Create brand-story-preview section on home
+Add CTA home-primary-cta on home
 
 ## Current task type
-section
+cta
 
 ## Current task target
 ```json
 {
   "pageId": "home",
-  "sectionId": "brand-story-preview",
-  "sectionType": "split-content-preview"
+  "ctaId": "home-primary-cta",
+  "ctaKind": "internal",
+  "destination": {
+    "type": "route",
+    "value": "/menu"
+  },
+  "placement": "hero"
 }
 ```
 
@@ -1218,13 +1223,12 @@ section
 
 ## Files allowed
 - src/pages/Home.jsx
-- src/components/Brand-story-previewSection.jsx
 - src/components
 
 ## Definition of done
-- section brand-story-preview exists on home
-- section brand-story-preview matches type split-content-preview
-- section brand-story-preview is rendered in page home
+- CTA home-primary-cta exists on home
+- CTA home-primary-cta is visible in placement hero
+- CTA home-primary-cta points to a valid destination
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1253,12 +1257,13 @@ section
 
 mcp startup: no servers
 codex
-I’m executing only the current home section task. First I’m checking the current home page structure, existing shared components, and the task files so the new section fits the established implementation without touching unrelated routes or sections.
+I’m checking the current home page implementation and the existing component structure first so I can add only the required hero CTA to the allowed files without drifting into other tasks.
 exec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'pwd && rg --files src agent | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'rg -n "Section|split-content|Home" src/components src/pages' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'rg --files src agent brief docs | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
 import HeroSection from '../components/HeroSection'
+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
 import SignaturePreviewSection from '../components/SignaturePreviewSection'
 
 export default function Home() {
@@ -1266,20 +1271,32 @@ export default function Home() {
     <article aria-labelledby="home-title">
       <HeroSection />
       <SignaturePreviewSection />
-
-      <section
-        id="brand-story-preview"
-        aria-labelledby="brand-story-preview-title"
-      >
-        <h2 id="brand-story-preview-title">Brand story preview</h2>
-        <p>
-          This section provides an editorial introduction to the brand&apos;s
-          atmosphere, service philosophy, and event experience.
-        </p>
-      </section>
+      <BrandStoryPreviewSection />
     </article>
- succeeded in 51ms:
-/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
+  )
+}
+ succeeded in 52ms:
+# CURRENT TASK EXECUTION PROMPT
+
+You are the coding executor for this project.
+
+## Project path
+site-create-a-premium-modern-website-for-an-e
+
+## Source of truth files
+- brief/original-prompt.md
+- brief/brief-summary.md
+- site-spec.json
+- docs/DEVELOPMENT_METHOD.md
+- agent/TASK_GRAPH.json
+- agent/TASK_STATE.json
+- agent/CURRENT_TASK_PROMPT.md
+
+## Development method
+# Development Method
+
+All sites must follow these rules.
+ succeeded in 52ms:
 agent/AGENT_REPORT.md
 agent/CURRENT_TASK_PROMPT.md
 agent/LAST_CODEX_OUTPUT.md
@@ -1287,96 +1304,25 @@ agent/PROMPT_ARCHITECTURE.json
 agent/TASK_GRAPH.json
 agent/TASK_QUEUE.md
 agent/TASK_STATE.json
+brief/brief-summary.md
+brief/original-prompt.md
+docs/DEVELOPMENT_METHOD.md
 src/App.css
 src/App.jsx
 src/assets/react.svg
+src/components/Brand-story-previewSection.jsx
 src/components/HeroSection.jsx
 src/components/SignaturePreviewSection.jsx
 src/index.css
 src/layout/Layout.jsx
 src/main.jsx
 src/pages/ChiSiamo.jsx
-src/pages/Contatti.jsx
-src/pages/Gallery.jsx
-src/pages/Home.jsx
- succeeded in 50ms:
-src/components/HeroSection.jsx:122:export default function HeroSection() {
-src/pages/Home.jsx:1:import HeroSection from '../components/HeroSection'
-src/pages/Home.jsx:2:import SignaturePreviewSection from '../components/SignaturePreviewSection'
-src/pages/Home.jsx:4:export default function Home() {
-src/pages/Home.jsx:7:      <HeroSection />
-src/pages/Home.jsx:8:      <SignaturePreviewSection />
-src/components/SignaturePreviewSection.jsx:133:export default function SignaturePreviewSection() {
 codex
-I found a placeholder section already sitting in `Home.jsx`. Next I’m reading the existing section components and global styles so I can replace that placeholder with a proper split-content preview component that matches the current visual system.
+The home page currently mounts a shared `HeroSection` with no CTA props visible from `Home.jsx`. I’m reading the hero and router setup next so the CTA points to the spec-valid route and stays compatible with the hash router.
 exec
-/bin/zsh -lc "sed -n '1,260p' src/App.css" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
 /bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' src/index.css" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
- succeeded in 51ms:
-import { Link } from 'react-router-dom'
-
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    background:
-      'linear-gradient(180deg, rgba(246, 239, 228, 0.9) 0%, rgba(239, 228, 210, 0.72) 100%)',
-    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-  },
-  header: {
-    display: 'grid',
-    gap: '1rem',
-    alignItems: 'end',
-    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-  },
-  eyebrow: {
-    margin: 0,
-    color: '#9f7b4b',
- succeeded in 51ms:
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
- succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
 import { Link } from 'react-router-dom'
 
 const heroStyles = {
@@ -1397,53 +1343,21 @@ const heroStyles = {
   },
   panel: {
     width: 'min(100%, 42rem)',
-codex
-The current codebase is still using the Vite starter global styles, so I’m keeping this task self-contained with inline section styling instead of broad theme cleanup. I’m reading the agent report format, then I’ll replace the placeholder with a reusable split-content preview component and run the build.
-exec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-export default function Layout({ children }) {
+ succeeded in 50ms:
+export default function Menu() {
   return (
     <>
-      <header>
-        <nav aria-label="Main navigation">
-          <a href="#/">Home</a>
-          <a href="#/menu">Menu</a>
-          <a href="#/chi-siamo">Chi siamo</a>
-          <a href="#/gallery">Gallery</a>
-          <a href="#/contatti">Contatti</a>
-          <a href="#/servizi">Servizi</a>
-        </nav>
-      </header>
-
-      <main>{children}</main>
-
-      <footer>
-        <p>© Website</p>
-      </footer>
+      <section id="menu-hero">
+        <h1>Menu Hero</h1>
+        <p>Content for menu-hero will be generated by tasks</p>
+      </section>
+      <section id="menu-categories">
+        <h2>Menu Categories</h2>
+        <p>Content for menu-categories will be generated by tasks</p>
+      </section>
     </>
- succeeded in 52ms:
-# AGENT REPORT
-
-Project created.
-
-Prepared TASK page-home-shell (Create home page shell) for execution.
-
-Launching Codex for TASK page-home-shell.
-
-Completed TASK page-home-shell.
-
-Implemented a semantic home page shell in `src/pages/Home.jsx` with real hero,
-signature preview, and brand story preview sections. Verified the home route
-remains mounted in `src/App.jsx` and ready for follow-up content tasks.
-
-TASK page-home-shell executed by Codex.
-Waiting for validation.
-
-TASK page-home-shell completed successfully.
-Build passed.
-Commit created for TASK page-home-shell.
+  )
+}
  succeeded in 51ms:
 import { HashRouter, Routes, Route } from "react-router-dom"
 import Layout from "./layout/Layout"
@@ -1466,1161 +1380,273 @@ export default function App() {
           <Route path="/contatti" element={<Contatti />} />
           <Route path="/servizi" element={<Servizi />} />
 codex
-I have enough context. I’m replacing the placeholder section in `Home.jsx` with a dedicated split-content preview component, then I’ll append a short task note to `agent/AGENT_REPORT.md` and run a build to verify the change end to end.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
-@@ -1,2 +1,3 @@
- import HeroSection from '../components/HeroSection'
-+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
-@@ -8,13 +9,3 @@
-       <SignaturePreviewSection />
--
--      <section
--        id="brand-story-preview"
--        aria-labelledby="brand-story-preview-title"
--      >
--        <h2 id="brand-story-preview-title">Brand story preview</h2>
--        <p>
--          This section provides an editorial introduction to the brand&apos;s
--          atmosphere, service philosophy, and event experience.
--        </p>
--      </section>
-+      <BrandStoryPreviewSection />
-     </article>
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Brand-story-previewSection.jsx
-import { Link } from 'react-router-dom'
+The primary CTA is already visually present in the shared hero, but it’s hardcoded inside the component. I’m making the home page explicitly provide that CTA so this task is satisfied in a page-scoped, reusable way without changing router behavior.
+exec
+/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+{
+  "name": "site-create-a-premium-modern-website-for-an-e",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test:ui": "playwright test"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.13.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.58.2",
+ succeeded in 52ms:
+# AGENT REPORT
 
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    display: 'grid',
-    gap: '1.5rem',
-    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    backgroundColor: '#241c17',
-    color: '#f6efe4',
-    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-  },
-  media: {
-    minHeight: '20rem',
-    borderRadius: '28px',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-  content: {
-    display: 'grid',
-    gap: '1.25rem',
-    padding: 'clamp(0.5rem, 1vw, 1rem)',
-    textAlign: 'left',
-  },
-  eyebrow: {
-    margin: 0,
-    color: '#d9bf8d',
-    fontSize: '0.82rem',
-    letterSpacing: '0.22em',
-    textTransform: 'uppercase',
-    fontWeight: 700,
-  },
-  title: {
-    margin: 0,
-    maxWidth: '12ch',
-    color: '#f6efe4',
-    fontFamily: 'Georgia, "Times New Roman", serif',
-    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
-    lineHeight: 1.05,
-  },
-  intro: {
-    margin: 0,
-    maxWidth: '36rem',
-    color: 'rgba(246, 239, 228, 0.82)',
-    fontSize: '1rem',
-    lineHeight: 1.8,
-  },
-  list: {
-    display: 'grid',
-    gap: '0.9rem',
-    margin: 0,
-    padding: 0,
-    listStyle: 'none',
-  },
-  listItem: {
-    display: 'grid',
-    gap: '0.3rem',
-    paddingBottom: '0.9rem',
-    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-  },
-  itemTitle: {
-    color: '#f6efe4',
-    fontSize: '1rem',
-    fontWeight: 700,
-  },
-  itemText: {
-    color: 'rgba(246, 239, 228, 0.74)',
-    lineHeight: 1.7,
-  },
-  footer: {
-    display: 'grid',
-    gap: '1rem',
-  },
-  note: {
-    margin: 0,
-    color: 'rgba(246, 239, 228, 0.72)',
-    lineHeight: 1.7,
-  },
-  actionRow: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '0.875rem',
-  },
-  primaryAction: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '3.15rem',
-    padding: '0.9rem 1.5rem',
-    borderRadius: '999px',
-    backgroundColor: '#d9bf8d',
-    color: '#1f1813',
-    textDecoration: 'none',
-    fontWeight: 700,
-  },
-  secondaryAction: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '3.15rem',
-    padding: '0.9rem 1.5rem',
-    borderRadius: '999px',
-    border: '1px solid rgba(246, 239, 228, 0.18)',
-    backgroundColor: 'rgba(246, 239, 228, 0.06)',
-    color: '#f6efe4',
-    textDecoration: 'none',
-    fontWeight: 600,
-  },
-}
+Project created.
 
-const storyPoints = [
-  {
-    title: 'Tailored to the occasion',
-    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
-  },
-  {
-    title: 'Hospitality with presence',
-    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
-  },
-  {
-    title: 'Italian refinement, modern tone',
-    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
-  },
-]
+Prepared TASK page-home-shell (Create home page shell) for execution.
 
-export default function BrandStoryPreviewSection() {
-  return (
-    <section
-      id="brand-story-preview"
-      aria-labelledby="brand-story-preview-title"
-      style={sectionStyles.section}
-    >
-      <div style={sectionStyles.media} aria-hidden="true" />
+Launching Codex for TASK page-home-shell.
 
-      <div style={sectionStyles.content}>
-        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
-        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
-          Events shaped with warmth, timing, and visual restraint
-        </h2>
-        <p style={sectionStyles.intro}>
-          We design food and bar experiences that feel beautifully hosted from
-          the first welcome pour to the final late-evening toast. The result is
-          polished, personal, and composed enough for milestone moments.
-        </p>
+Completed TASK page-home-shell.
 
-        <ul style={sectionStyles.list}>
-          {storyPoints.map((point) => (
-            <li key={point.title} style={sectionStyles.listItem}>
-              <span style={sectionStyles.itemTitle}>{point.title}</span>
-              <span style={sectionStyles.itemText}>{point.text}</span>
-            </li>
-          ))}
-        </ul>
+Implemented a semantic home page shell in `src/pages/Home.jsx` with real hero,
+signature preview, and brand story preview sections. Verified the home route
+remains mounted in `src/App.jsx` and ready for follow-up content tasks.
 
-        <div style={sectionStyles.footer}>
-          <p style={sectionStyles.note}>
-            From intimate celebrations in Torino to larger destination-style
-            receptions, our approach stays consistent: elegant presentation,
-            attentive pacing, and hospitality guests remember.
-          </p>
+TASK page-home-shell executed by Codex.
+Waiting for validation.
 
-          <div style={sectionStyles.actionRow}>
-            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
-              Read our story
-            </Link>
-            <Link to="/contatti" style={sectionStyles.secondaryAction}>
-              Book a discovery call
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -65 +65,9 @@
- Launching Codex for TASK section-home-brand-story-preview.
-+
-+Completed TASK section-home-brand-story-preview.
-+
-+Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
-+from `src/pages/Home.jsx` to replace the placeholder home content. The section
-+now matches the required split-content-preview shape with editorial brand copy,
-+supporting story points, and route-safe CTAs to the existing about and contact
-+pages.
-apply_patch(auto_approved=true) exited 0 in 50ms:
-Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Brand-story-previewSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 5e6cb037fbda8bded46b60ad077591e485187f84..9ad9883c81b931c1579d5b5d07d0facab1ab8c26
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -63,3 +63,11 @@
- Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
- 
- Launching Codex for TASK section-home-brand-story-preview.
-+
-+Completed TASK section-home-brand-story-preview.
-+
-+Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
-+from `src/pages/Home.jsx` to replace the placeholder home content. The section
-+now matches the required split-content-preview shape with editorial brand copy,
-+supporting story points, and route-safe CTAs to the existing about and contact
-+pages.
-diff --git a/src/components/Brand-story-previewSection.jsx b/src/components/Brand-story-previewSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..d6807518dcce7490c526d7fab2c8849de43e0be3
---- /dev/null
-+++ b/src/components/Brand-story-previewSection.jsx
-@@ -0,0 +1,177 @@
-+import { Link } from 'react-router-dom'
-+
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    backgroundColor: '#241c17',
-+    color: '#f6efe4',
-+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-+  },
-+  media: {
-+    minHeight: '20rem',
-+    borderRadius: '28px',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+  },
-+  content: {
-+    display: 'grid',
-+    gap: '1.25rem',
-+    padding: 'clamp(0.5rem, 1vw, 1rem)',
-+    textAlign: 'left',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#d9bf8d',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '12ch',
-+    color: '#f6efe4',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '36rem',
-+    color: 'rgba(246, 239, 228, 0.82)',
-+    fontSize: '1rem',
-+    lineHeight: 1.8,
-+  },
-+  list: {
-+    display: 'grid',
-+    gap: '0.9rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  listItem: {
-+    display: 'grid',
-+    gap: '0.3rem',
-+    paddingBottom: '0.9rem',
-+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-+  },
-+  itemTitle: {
-+    color: '#f6efe4',
-+    fontSize: '1rem',
-+    fontWeight: 700,
-+  },
-+  itemText: {
-+    color: 'rgba(246, 239, 228, 0.74)',
-+    lineHeight: 1.7,
-+  },
-+  footer: {
-+    display: 'grid',
-+    gap: '1rem',
-+  },
-+  note: {
-+    margin: 0,
-+    color: 'rgba(246, 239, 228, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  actionRow: {
-+    display: 'flex',
-+    flexWrap: 'wrap',
-+    gap: '0.875rem',
-+  },
-+  primaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#1f1813',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+  secondaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    border: '1px solid rgba(246, 239, 228, 0.18)',
-+    backgroundColor: 'rgba(246, 239, 228, 0.06)',
-+    color: '#f6efe4',
-+    textDecoration: 'none',
-+    fontWeight: 600,
-+  },
-+}
-+
-+const storyPoints = [
-+  {
-+    title: 'Tailored to the occasion',
-+    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
-+  },
-+  {
-+    title: 'Hospitality with presence',
-+    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
-+  },
-+  {
-+    title: 'Italian refinement, modern tone',
-+    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
-+  },
-+]
-+
-+export default function BrandStoryPreviewSection() {
-+  return (
-+    <section
-+      id="brand-story-preview"
-+      aria-labelledby="brand-story-preview-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.media} aria-hidden="true" />
-+
-+      <div style={sectionStyles.content}>
-+        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
-+        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
-+          Events shaped with warmth, timing, and visual restraint
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We design food and bar experiences that feel beautifully hosted from
-+          the first welcome pour to the final late-evening toast. The result is
-+          polished, personal, and composed enough for milestone moments.
-+        </p>
-+
-+        <ul style={sectionStyles.list}>
-+          {storyPoints.map((point) => (
-+            <li key={point.title} style={sectionStyles.listItem}>
-+              <span style={sectionStyles.itemTitle}>{point.title}</span>
-+              <span style={sectionStyles.itemText}>{point.text}</span>
-+            </li>
-+          ))}
-+        </ul>
-+
-+        <div style={sectionStyles.footer}>
-+          <p style={sectionStyles.note}>
-+            From intimate celebrations in Torino to larger destination-style
-+            receptions, our approach stays consistent: elegant presentation,
-+            attentive pacing, and hospitality guests remember.
-+          </p>
-+
-+          <div style={sectionStyles.actionRow}>
-+            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
-+              Read our story
-+            </Link>
-+            <Link to="/contatti" style={sectionStyles.secondaryAction}>
-+              Book a discovery call
-+            </Link>
-+          </div>
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index dc55a7ff2506f9f416669faafb1e011ff60bb9fb..18aa4265619a7cf661d162e652dce80a9bb09b46
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -1,4 +1,5 @@
- import HeroSection from '../components/HeroSection'
-+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
- 
- export default function Home() {
-@@ -6,17 +7,7 @@
-     <article aria-labelledby="home-title">
-       <HeroSection />
-       <SignaturePreviewSection />
--
--      <section
--        id="brand-story-preview"
--        aria-labelledby="brand-story-preview-title"
--      >
--        <h2 id="brand-story-preview-title">Brand story preview</h2>
--        <p>
--          This section provides an editorial introduction to the brand&apos;s
--          atmosphere, service philosophy, and event experience.
--        </p>
--      </section>
-+      <BrandStoryPreviewSection />
-     </article>
-   )
- }
-
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 5e6cb037fbda8bded46b60ad077591e485187f84..9ad9883c81b931c1579d5b5d07d0facab1ab8c26
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -63,3 +63,11 @@
- Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
- 
- Launching Codex for TASK section-home-brand-story-preview.
-+
-+Completed TASK section-home-brand-story-preview.
-+
-+Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
-+from `src/pages/Home.jsx` to replace the placeholder home content. The section
-+now matches the required split-content-preview shape with editorial brand copy,
-+supporting story points, and route-safe CTAs to the existing about and contact
-+pages.
-diff --git a/src/components/Brand-story-previewSection.jsx b/src/components/Brand-story-previewSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..d6807518dcce7490c526d7fab2c8849de43e0be3
---- /dev/null
-+++ b/src/components/Brand-story-previewSection.jsx
-@@ -0,0 +1,177 @@
-+import { Link } from 'react-router-dom'
-+
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    backgroundColor: '#241c17',
-+    color: '#f6efe4',
-+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-+  },
-+  media: {
-+    minHeight: '20rem',
-+    borderRadius: '28px',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+  },
-+  content: {
-+    display: 'grid',
-+    gap: '1.25rem',
-+    padding: 'clamp(0.5rem, 1vw, 1rem)',
-+    textAlign: 'left',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#d9bf8d',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '12ch',
-+    color: '#f6efe4',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '36rem',
-+    color: 'rgba(246, 239, 228, 0.82)',
-+    fontSize: '1rem',
-+    lineHeight: 1.8,
-+  },
-+  list: {
-+    display: 'grid',
-+    gap: '0.9rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  listItem: {
-+    display: 'grid',
-+    gap: '0.3rem',
-+    paddingBottom: '0.9rem',
-+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-+  },
-+  itemTitle: {
-+    color: '#f6efe4',
-+    fontSize: '1rem',
-+    fontWeight: 700,
-+  },
-+  itemText: {
-+    color: 'rgba(246, 239, 228, 0.74)',
-+    lineHeight: 1.7,
-+  },
-+  footer: {
-+    display: 'grid',
-+    gap: '1rem',
-+  },
-+  note: {
-+    margin: 0,
-+    color: 'rgba(246, 239, 228, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  actionRow: {
-+    display: 'flex',
-+    flexWrap: 'wrap',
-+    gap: '0.875rem',
-+  },
-+  primaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#1f1813',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+  secondaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    border: '1px solid rgba(246, 239, 228, 0.18)',
-+    backgroundColor: 'rgba(246, 239, 228, 0.06)',
-+    color: '#f6efe4',
-+    textDecoration: 'none',
-+    fontWeight: 600,
-+  },
-+}
-+
-+const storyPoints = [
-+  {
-+    title: 'Tailored to the occasion',
-+    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
-+  },
-+  {
-+    title: 'Hospitality with presence',
-+    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
-+  },
-+  {
-+    title: 'Italian refinement, modern tone',
-+    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
-+  },
-+]
-+
-+export default function BrandStoryPreviewSection() {
-+  return (
-+    <section
-+      id="brand-story-preview"
-+      aria-labelledby="brand-story-preview-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.media} aria-hidden="true" />
-+
-+      <div style={sectionStyles.content}>
-+        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
-+        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
-+          Events shaped with warmth, timing, and visual restraint
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We design food and bar experiences that feel beautifully hosted from
-+          the first welcome pour to the final late-evening toast. The result is
-+          polished, personal, and composed enough for milestone moments.
-+        </p>
-+
-+        <ul style={sectionStyles.list}>
-+          {storyPoints.map((point) => (
-+            <li key={point.title} style={sectionStyles.listItem}>
-+              <span style={sectionStyles.itemTitle}>{point.title}</span>
-+              <span style={sectionStyles.itemText}>{point.text}</span>
-+            </li>
-+          ))}
-+        </ul>
-+
-+        <div style={sectionStyles.footer}>
-+          <p style={sectionStyles.note}>
-+            From intimate celebrations in Torino to larger destination-style
-+            receptions, our approach stays consistent: elegant presentation,
-+            attentive pacing, and hospitality guests remember.
-+          </p>
-+
-+          <div style={sectionStyles.actionRow}>
-+            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
-+              Read our story
-+            </Link>
-+            <Link to="/contatti" style={sectionStyles.secondaryAction}>
-+              Book a discovery call
-+            </Link>
-+          </div>
-+        </div>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index dc55a7ff2506f9f416669faafb1e011ff60bb9fb..18aa4265619a7cf661d162e652dce80a9bb09b46
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -1,4 +1,5 @@
- import HeroSection from '../components/HeroSection'
-+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
- 
- export default function Home() {
-@@ -6,17 +7,7 @@
-     <article aria-labelledby="home-title">
-       <HeroSection />
-       <SignaturePreviewSection />
--
--      <section
--        id="brand-story-preview"
--        aria-labelledby="brand-story-preview-title"
--      >
--        <h2 id="brand-story-preview-title">Brand story preview</h2>
--        <p>
--          This section provides an editorial introduction to the brand&apos;s
--          atmosphere, service philosophy, and event experience.
--        </p>
--      </section>
-+      <BrandStoryPreviewSection />
-     </article>
-   )
- }
-
+TASK page-home-shell completed successfully.
+Build passed.
+Commit created for TASK page-home-shell.
 codex
-The section is in place, but I’m making one small adjustment before validation so it behaves as a true split layout instead of stacking at every breakpoint. Then I’ll run the production build.
+I’m editing the shared hero to accept CTA configuration from `Home.jsx`, then I’ll append the task result to `agent/AGENT_REPORT.md` and run the build check.
 file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Brand-story-previewSection.jsx
-@@ -6,2 +6,3 @@
-     display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-     gap: '1.5rem',
-apply_patch(auto_approved=true) exited 0 in 72ms:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
+@@ -7,3 +7,8 @@
+     <article aria-labelledby="home-title">
+-      <HeroSection />
++      <HeroSection
++        primaryCta={{
++          label: 'Request your event proposal',
++          to: '/menu',
++        }}
++      />
+       <SignaturePreviewSection />
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/HeroSection.jsx
+@@ -121,3 +121,16 @@
+ 
+-export default function HeroSection() {
++const defaultPrimaryCta = {
++  label: 'Request your event proposal',
++  to: '/menu',
++}
++
++const defaultSecondaryCta = {
++  label: 'Explore our services',
++  to: '/contatti',
++}
++
++export default function HeroSection({
++  primaryCta = defaultPrimaryCta,
++  secondaryCta = defaultSecondaryCta,
++}) {
+   return (
+@@ -139,7 +152,7 @@
+         <div style={heroStyles.actions}>
+-          <Link to="/menu" style={heroStyles.primaryAction}>
+-            Request your event proposal
++          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
++            {primaryCta.label}
+           </Link>
+-          <Link to="/contatti" style={heroStyles.secondaryAction}>
+-            Explore our services
++          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
++            {secondaryCta.label}
+           </Link>
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+@@ -84 +84,10 @@
+ Launching Codex for TASK cta-home-home-primary-cta.
++
++Completed TASK cta-home-home-primary-cta.
++
++Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
++`src/components/HeroSection.jsx` so the page now explicitly provides the
++required `home-primary-cta` label and valid `/menu` destination in the hero.
++
++TASK cta-home-home-primary-cta executed by Codex.
++Waiting for validation.
+apply_patch(auto_approved=true) exited 0 in 44ms:
 Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Brand-story-previewSection.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/HeroSection.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 5e6cb037fbda8bded46b60ad077591e485187f84..9ad9883c81b931c1579d5b5d07d0facab1ab8c26
+index 297edbe7823fddfbb15b49ce13e6662d2fa064db..aee5124c296e0322dbf8482a12c2ca499adcb884
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -63,3 +63,11 @@
- Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
+@@ -82,3 +82,12 @@
+ Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
  
- Launching Codex for TASK section-home-brand-story-preview.
+ Launching Codex for TASK cta-home-home-primary-cta.
 +
-+Completed TASK section-home-brand-story-preview.
++Completed TASK cta-home-home-primary-cta.
 +
-+Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
-+from `src/pages/Home.jsx` to replace the placeholder home content. The section
-+now matches the required split-content-preview shape with editorial brand copy,
-+supporting story points, and route-safe CTAs to the existing about and contact
-+pages.
-diff --git a/src/components/Brand-story-previewSection.jsx b/src/components/Brand-story-previewSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..f73420c4bbf88ad0b3d5a2bd0b03d0629b3206b2
---- /dev/null
-+++ b/src/components/Brand-story-previewSection.jsx
-@@ -0,0 +1,178 @@
-+import { Link } from 'react-router-dom'
++Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
++`src/components/HeroSection.jsx` so the page now explicitly provides the
++required `home-primary-cta` label and valid `/menu` destination in the hero.
 +
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    backgroundColor: '#241c17',
-+    color: '#f6efe4',
-+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-+  },
-+  media: {
-+    minHeight: '20rem',
-+    borderRadius: '28px',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+  },
-+  content: {
-+    display: 'grid',
-+    gap: '1.25rem',
-+    padding: 'clamp(0.5rem, 1vw, 1rem)',
-+    textAlign: 'left',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#d9bf8d',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '12ch',
-+    color: '#f6efe4',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '36rem',
-+    color: 'rgba(246, 239, 228, 0.82)',
-+    fontSize: '1rem',
-+    lineHeight: 1.8,
-+  },
-+  list: {
-+    display: 'grid',
-+    gap: '0.9rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  listItem: {
-+    display: 'grid',
-+    gap: '0.3rem',
-+    paddingBottom: '0.9rem',
-+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-+  },
-+  itemTitle: {
-+    color: '#f6efe4',
-+    fontSize: '1rem',
-+    fontWeight: 700,
-+  },
-+  itemText: {
-+    color: 'rgba(246, 239, 228, 0.74)',
-+    lineHeight: 1.7,
-+  },
-+  footer: {
-+    display: 'grid',
-+    gap: '1rem',
-+  },
-+  note: {
-+    margin: 0,
-+    color: 'rgba(246, 239, 228, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  actionRow: {
-+    display: 'flex',
-+    flexWrap: 'wrap',
-+    gap: '0.875rem',
-+  },
-+  primaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#1f1813',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+  secondaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    border: '1px solid rgba(246, 239, 228, 0.18)',
-+    backgroundColor: 'rgba(246, 239, 228, 0.06)',
-+    color: '#f6efe4',
-+    textDecoration: 'none',
-+    fontWeight: 600,
-+  },
++TASK cta-home-home-primary-cta executed by Codex.
++Waiting for validation.
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index e09c897fe99a19d7ac947c0ad74385e2a62d0cb6..9abea574c8bbfe0e71b00a367df5b2df4cf7dde6
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -119,7 +119,20 @@
+   },
+ ]
+ 
+-export default function HeroSection() {
++const defaultPrimaryCta = {
++  label: 'Request your event proposal',
++  to: '/menu',
 +}
 +
-+const storyPoints = [
-+  {
-+    title: 'Tailored to the occasion',
-+    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
-+  },
-+  {
-+    title: 'Hospitality with presence',
-+    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
-+  },
-+  {
-+    title: 'Italian refinement, modern tone',
-+    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
-+  },
-+]
-+
-+export default function BrandStoryPreviewSection() {
-+  return (
-+    <section
-+      id="brand-story-preview"
-+      aria-labelledby="brand-story-preview-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.media} aria-hidden="true" />
-+
-+      <div style={sectionStyles.content}>
-+        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
-+        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
-+          Events shaped with warmth, timing, and visual restraint
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We design food and bar experiences that feel beautifully hosted from
-+          the first welcome pour to the final late-evening toast. The result is
-+          polished, personal, and composed enough for milestone moments.
-+        </p>
-+
-+        <ul style={sectionStyles.list}>
-+          {storyPoints.map((point) => (
-+            <li key={point.title} style={sectionStyles.listItem}>
-+              <span style={sectionStyles.itemTitle}>{point.title}</span>
-+              <span style={sectionStyles.itemText}>{point.text}</span>
-+            </li>
-+          ))}
-+        </ul>
-+
-+        <div style={sectionStyles.footer}>
-+          <p style={sectionStyles.note}>
-+            From intimate celebrations in Torino to larger destination-style
-+            receptions, our approach stays consistent: elegant presentation,
-+            attentive pacing, and hospitality guests remember.
-+          </p>
-+
-+          <div style={sectionStyles.actionRow}>
-+            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
-+              Read our story
-+            </Link>
-+            <Link to="/contatti" style={sectionStyles.secondaryAction}>
-+              Book a discovery call
-+            </Link>
-+          </div>
-+        </div>
-+      </div>
-+    </section>
-+  )
++const defaultSecondaryCta = {
++  label: 'Explore our services',
++  to: '/contatti',
 +}
++
++export default function HeroSection({
++  primaryCta = defaultPrimaryCta,
++  secondaryCta = defaultSecondaryCta,
++}) {
+   return (
+     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
+       <div style={heroStyles.panel}>
+@@ -137,11 +150,11 @@
+         </p>
+ 
+         <div style={heroStyles.actions}>
+-          <Link to="/menu" style={heroStyles.primaryAction}>
+-            Request your event proposal
++          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
++            {primaryCta.label}
+           </Link>
+-          <Link to="/contatti" style={heroStyles.secondaryAction}>
+-            Explore our services
++          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
++            {secondaryCta.label}
+           </Link>
+         </div>
+ 
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index dc55a7ff2506f9f416669faafb1e011ff60bb9fb..18aa4265619a7cf661d162e652dce80a9bb09b46
+index 18aa4265619a7cf661d162e652dce80a9bb09b46..69bfc2e5823192bfce6396bac5bc689ace396034
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,4 +1,5 @@
- import HeroSection from '../components/HeroSection'
-+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
- 
+@@ -5,7 +5,12 @@
  export default function Home() {
-@@ -6,17 +7,7 @@
+   return (
      <article aria-labelledby="home-title">
-       <HeroSection />
+-      <HeroSection />
++      <HeroSection
++        primaryCta={{
++          label: 'Request your event proposal',
++          to: '/menu',
++        }}
++      />
        <SignaturePreviewSection />
--
--      <section
--        id="brand-story-preview"
--        aria-labelledby="brand-story-preview-title"
--      >
--        <h2 id="brand-story-preview-title">Brand story preview</h2>
--        <p>
--          This section provides an editorial introduction to the brand&apos;s
--          atmosphere, service philosophy, and event experience.
--        </p>
--      </section>
-+      <BrandStoryPreviewSection />
+       <BrandStoryPreviewSection />
      </article>
-   )
- }
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 5e6cb037fbda8bded46b60ad077591e485187f84..9ad9883c81b931c1579d5b5d07d0facab1ab8c26
+index 297edbe7823fddfbb15b49ce13e6662d2fa064db..aee5124c296e0322dbf8482a12c2ca499adcb884
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -63,3 +63,11 @@
- Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
+@@ -82,3 +82,12 @@
+ Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
  
- Launching Codex for TASK section-home-brand-story-preview.
+ Launching Codex for TASK cta-home-home-primary-cta.
 +
-+Completed TASK section-home-brand-story-preview.
++Completed TASK cta-home-home-primary-cta.
 +
-+Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
-+from `src/pages/Home.jsx` to replace the placeholder home content. The section
-+now matches the required split-content-preview shape with editorial brand copy,
-+supporting story points, and route-safe CTAs to the existing about and contact
-+pages.
-diff --git a/src/components/Brand-story-previewSection.jsx b/src/components/Brand-story-previewSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..f73420c4bbf88ad0b3d5a2bd0b03d0629b3206b2
---- /dev/null
-+++ b/src/components/Brand-story-previewSection.jsx
-@@ -0,0 +1,178 @@
-+import { Link } from 'react-router-dom'
++Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
++`src/components/HeroSection.jsx` so the page now explicitly provides the
++required `home-primary-cta` label and valid `/menu` destination in the hero.
 +
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    backgroundColor: '#241c17',
-+    color: '#f6efe4',
-+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-+  },
-+  media: {
-+    minHeight: '20rem',
-+    borderRadius: '28px',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+  },
-+  content: {
-+    display: 'grid',
-+    gap: '1.25rem',
-+    padding: 'clamp(0.5rem, 1vw, 1rem)',
-+    textAlign: 'left',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#d9bf8d',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '12ch',
-+    color: '#f6efe4',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '36rem',
-+    color: 'rgba(246, 239, 228, 0.82)',
-+    fontSize: '1rem',
-+    lineHeight: 1.8,
-+  },
-+  list: {
-+    display: 'grid',
-+    gap: '0.9rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  listItem: {
-+    display: 'grid',
-+    gap: '0.3rem',
-+    paddingBottom: '0.9rem',
-+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-+  },
-+  itemTitle: {
-+    color: '#f6efe4',
-+    fontSize: '1rem',
-+    fontWeight: 700,
-+  },
-+  itemText: {
-+    color: 'rgba(246, 239, 228, 0.74)',
-+    lineHeight: 1.7,
-+  },
-+  footer: {
-+    display: 'grid',
-+    gap: '1rem',
-+  },
-+  note: {
-+    margin: 0,
-+    color: 'rgba(246, 239, 228, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  actionRow: {
-+    display: 'flex',
-+    flexWrap: 'wrap',
-+    gap: '0.875rem',
-+  },
-+  primaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#1f1813',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+  secondaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    border: '1px solid rgba(246, 239, 228, 0.18)',
-+    backgroundColor: 'rgba(246, 239, 228, 0.06)',
-+    color: '#f6efe4',
-+    textDecoration: 'none',
-+    fontWeight: 600,
-+  },
++TASK cta-home-home-primary-cta executed by Codex.
++Waiting for validation.
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index e09c897fe99a19d7ac947c0ad74385e2a62d0cb6..9abea574c8bbfe0e71b00a367df5b2df4cf7dde6
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -119,7 +119,20 @@
+   },
+ ]
+ 
+-export default function HeroSection() {
++const defaultPrimaryCta = {
++  label: 'Request your event proposal',
++  to: '/menu',
 +}
 +
-+const storyPoints = [
-+  {
-+    title: 'Tailored to the occasion',
-+    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
-+  },
-+  {
-+    title: 'Hospitality with presence',
-+    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
-+  },
-+  {
-+    title: 'Italian refinement, modern tone',
-+    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
-+  },
-+]
-+
-+export default function BrandStoryPreviewSection() {
-+  return (
-+    <section
-+      id="brand-story-preview"
-+      aria-labelledby="brand-story-preview-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.media} aria-hidden="true" />
-+
-+      <div style={sectionStyles.content}>
-+        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
-+        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
-+          Events shaped with warmth, timing, and visual restraint
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We design food and bar experiences that feel beautifully hosted from
-+          the first welcome pour to the final late-evening toast. The result is
-+          polished, personal, and composed enough for milestone moments.
-+        </p>
-+
-+        <ul style={sectionStyles.list}>
-+          {storyPoints.map((point) => (
-+            <li key={point.title} style={sectionStyles.listItem}>
-+              <span style={sectionStyles.itemTitle}>{point.title}</span>
-+              <span style={sectionStyles.itemText}>{point.text}</span>
-+            </li>
-+          ))}
-+        </ul>
-+
-+        <div style={sectionStyles.footer}>
-+          <p style={sectionStyles.note}>
-+            From intimate celebrations in Torino to larger destination-style
-+            receptions, our approach stays consistent: elegant presentation,
-+            attentive pacing, and hospitality guests remember.
-+          </p>
-+
-+          <div style={sectionStyles.actionRow}>
-+            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
-+              Read our story
-+            </Link>
-+            <Link to="/contatti" style={sectionStyles.secondaryAction}>
-+              Book a discovery call
-+            </Link>
-+          </div>
-+        </div>
-+      </div>
-+    </section>
-+  )
++const defaultSecondaryCta = {
++  label: 'Explore our services',
++  to: '/contatti',
 +}
++
++export default function HeroSection({
++  primaryCta = defaultPrimaryCta,
++  secondaryCta = defaultSecondaryCta,
++}) {
+   return (
+     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
+       <div style={heroStyles.panel}>
+@@ -137,11 +150,11 @@
+         </p>
+ 
+         <div style={heroStyles.actions}>
+-          <Link to="/menu" style={heroStyles.primaryAction}>
+-            Request your event proposal
++          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
++            {primaryCta.label}
+           </Link>
+-          <Link to="/contatti" style={heroStyles.secondaryAction}>
+-            Explore our services
++          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
++            {secondaryCta.label}
+           </Link>
+         </div>
+ 
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index dc55a7ff2506f9f416669faafb1e011ff60bb9fb..18aa4265619a7cf661d162e652dce80a9bb09b46
+index 18aa4265619a7cf661d162e652dce80a9bb09b46..69bfc2e5823192bfce6396bac5bc689ace396034
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,4 +1,5 @@
- import HeroSection from '../components/HeroSection'
-+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
- 
+@@ -5,7 +5,12 @@
  export default function Home() {
-@@ -6,17 +7,7 @@
+   return (
      <article aria-labelledby="home-title">
-       <HeroSection />
+-      <HeroSection />
++      <HeroSection
++        primaryCta={{
++          label: 'Request your event proposal',
++          to: '/menu',
++        }}
++      />
        <SignaturePreviewSection />
--
--      <section
--        id="brand-story-preview"
--        aria-labelledby="brand-story-preview-title"
--      >
--        <h2 id="brand-story-preview-title">Brand story preview</h2>
--        <p>
--          This section provides an editorial introduction to the brand&apos;s
--          atmosphere, service philosophy, and event experience.
--        </p>
--      </section>
-+      <BrandStoryPreviewSection />
+       <BrandStoryPreviewSection />
      </article>
-   )
- }
 
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 808ms:
-
-> site-create-a-premium-modern-website-for-an-e@0.0.0 build
-> vite build
-
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 742ms:
 vite v7.3.1 building client environment for production...
 transforming...
 ✓ 51 modules transformed.
@@ -2628,475 +1654,350 @@ rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-z8zx0NRT.js   243.54 kB │ gzip: 77.28 kB
-✓ built in 554ms
+dist/assets/index-C4AVsXE6.js   243.69 kB │ gzip: 77.33 kB
+✓ built in 566ms
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 5e6cb037fbda8bded46b60ad077591e485187f84..9ad9883c81b931c1579d5b5d07d0facab1ab8c26
+index 297edbe7823fddfbb15b49ce13e6662d2fa064db..aee5124c296e0322dbf8482a12c2ca499adcb884
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -63,3 +63,11 @@
- Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
+@@ -82,3 +82,12 @@
+ Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
  
- Launching Codex for TASK section-home-brand-story-preview.
+ Launching Codex for TASK cta-home-home-primary-cta.
 +
-+Completed TASK section-home-brand-story-preview.
++Completed TASK cta-home-home-primary-cta.
 +
-+Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
-+from `src/pages/Home.jsx` to replace the placeholder home content. The section
-+now matches the required split-content-preview shape with editorial brand copy,
-+supporting story points, and route-safe CTAs to the existing about and contact
-+pages.
-diff --git a/src/components/Brand-story-previewSection.jsx b/src/components/Brand-story-previewSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..f73420c4bbf88ad0b3d5a2bd0b03d0629b3206b2
---- /dev/null
-+++ b/src/components/Brand-story-previewSection.jsx
-@@ -0,0 +1,178 @@
-+import { Link } from 'react-router-dom'
++Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
++`src/components/HeroSection.jsx` so the page now explicitly provides the
++required `home-primary-cta` label and valid `/menu` destination in the hero.
 +
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    backgroundColor: '#241c17',
-+    color: '#f6efe4',
-+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-+  },
-+  media: {
-+    minHeight: '20rem',
-+    borderRadius: '28px',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+  },
-+  content: {
-+    display: 'grid',
-+    gap: '1.25rem',
-+    padding: 'clamp(0.5rem, 1vw, 1rem)',
-+    textAlign: 'left',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#d9bf8d',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '12ch',
-+    color: '#f6efe4',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '36rem',
-+    color: 'rgba(246, 239, 228, 0.82)',
-+    fontSize: '1rem',
-+    lineHeight: 1.8,
-+  },
-+  list: {
-+    display: 'grid',
-+    gap: '0.9rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  listItem: {
-+    display: 'grid',
-+    gap: '0.3rem',
-+    paddingBottom: '0.9rem',
-+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-+  },
-+  itemTitle: {
-+    color: '#f6efe4',
-+    fontSize: '1rem',
-+    fontWeight: 700,
-+  },
-+  itemText: {
-+    color: 'rgba(246, 239, 228, 0.74)',
-+    lineHeight: 1.7,
-+  },
-+  footer: {
-+    display: 'grid',
-+    gap: '1rem',
-+  },
-+  note: {
-+    margin: 0,
-+    color: 'rgba(246, 239, 228, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  actionRow: {
-+    display: 'flex',
-+    flexWrap: 'wrap',
-+    gap: '0.875rem',
-+  },
-+  primaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#1f1813',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+  secondaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    border: '1px solid rgba(246, 239, 228, 0.18)',
-+    backgroundColor: 'rgba(246, 239, 228, 0.06)',
-+    color: '#f6efe4',
-+    textDecoration: 'none',
-+    fontWeight: 600,
-+  },
++TASK cta-home-home-primary-cta executed by Codex.
++Waiting for validation.
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index e09c897fe99a19d7ac947c0ad74385e2a62d0cb6..9abea574c8bbfe0e71b00a367df5b2df4cf7dde6
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -119,7 +119,20 @@
+   },
+ ]
+ 
+-export default function HeroSection() {
++const defaultPrimaryCta = {
++  label: 'Request your event proposal',
++  to: '/menu',
 +}
 +
-+const storyPoints = [
-+  {
-+    title: 'Tailored to the occasion',
-+    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
-+  },
-+  {
-+    title: 'Hospitality with presence',
-+    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
-+  },
-+  {
-+    title: 'Italian refinement, modern tone',
-+    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
-+  },
-+]
-+
-+export default function BrandStoryPreviewSection() {
-+  return (
-+    <section
-+      id="brand-story-preview"
-+      aria-labelledby="brand-story-preview-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.media} aria-hidden="true" />
-+
-+      <div style={sectionStyles.content}>
-+        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
-+        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
-+          Events shaped with warmth, timing, and visual restraint
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We design food and bar experiences that feel beautifully hosted from
-+          the first welcome pour to the final late-evening toast. The result is
-+          polished, personal, and composed enough for milestone moments.
-+        </p>
-+
-+        <ul style={sectionStyles.list}>
-+          {storyPoints.map((point) => (
-+            <li key={point.title} style={sectionStyles.listItem}>
-+              <span style={sectionStyles.itemTitle}>{point.title}</span>
-+              <span style={sectionStyles.itemText}>{point.text}</span>
-+            </li>
-+          ))}
-+        </ul>
-+
-+        <div style={sectionStyles.footer}>
-+          <p style={sectionStyles.note}>
-+            From intimate celebrations in Torino to larger destination-style
-+            receptions, our approach stays consistent: elegant presentation,
-+            attentive pacing, and hospitality guests remember.
-+          </p>
-+
-+          <div style={sectionStyles.actionRow}>
-+            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
-+              Read our story
-+            </Link>
-+            <Link to="/contatti" style={sectionStyles.secondaryAction}>
-+              Book a discovery call
-+            </Link>
-+          </div>
-+        </div>
-+      </div>
-+    </section>
-+  )
++const defaultSecondaryCta = {
++  label: 'Explore our services',
++  to: '/contatti',
 +}
++
++export default function HeroSection({
++  primaryCta = defaultPrimaryCta,
++  secondaryCta = defaultSecondaryCta,
++}) {
+   return (
+     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
+       <div style={heroStyles.panel}>
+@@ -137,11 +150,11 @@
+         </p>
+ 
+         <div style={heroStyles.actions}>
+-          <Link to="/menu" style={heroStyles.primaryAction}>
+-            Request your event proposal
++          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
++            {primaryCta.label}
+           </Link>
+-          <Link to="/contatti" style={heroStyles.secondaryAction}>
+-            Explore our services
++          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
++            {secondaryCta.label}
+           </Link>
+         </div>
+ 
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index dc55a7ff2506f9f416669faafb1e011ff60bb9fb..18aa4265619a7cf661d162e652dce80a9bb09b46
+index 18aa4265619a7cf661d162e652dce80a9bb09b46..69bfc2e5823192bfce6396bac5bc689ace396034
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,4 +1,5 @@
- import HeroSection from '../components/HeroSection'
-+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
- 
+@@ -5,7 +5,12 @@
  export default function Home() {
-@@ -6,17 +7,7 @@
+   return (
      <article aria-labelledby="home-title">
-       <HeroSection />
+-      <HeroSection />
++      <HeroSection
++        primaryCta={{
++          label: 'Request your event proposal',
++          to: '/menu',
++        }}
++      />
        <SignaturePreviewSection />
--
--      <section
--        id="brand-story-preview"
--        aria-labelledby="brand-story-preview-title"
--      >
--        <h2 id="brand-story-preview-title">Brand story preview</h2>
--        <p>
--          This section provides an editorial introduction to the brand&apos;s
--          atmosphere, service philosophy, and event experience.
--        </p>
--      </section>
-+      <BrandStoryPreviewSection />
+       <BrandStoryPreviewSection />
      </article>
-   )
- }
 
 codex
-Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), [Brand-story-previewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Brand-story-previewSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
-
-Implemented the home `brand-story-preview` as a dedicated split-content preview component and rendered it from [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx). The section now includes a premium editorial image panel, brand positioning copy, three supporting story points, and route-safe CTAs to `/chi-siamo` and `/contatti`.
-
-Build result: `npm run build` passed with a production Vite build.
+The implementation is in place and the build passed. I’m making the report consistent with the project’s existing task log format, then I’ll summarize the modified files and result.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+@@ -93 +93,4 @@
+ Waiting for validation.
++
++TASK cta-home-home-primary-cta completed successfully.
++Build passed.
+apply_patch(auto_approved=true) exited 0 in 85ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 5e6cb037fbda8bded46b60ad077591e485187f84..9ad9883c81b931c1579d5b5d07d0facab1ab8c26
+index 297edbe7823fddfbb15b49ce13e6662d2fa064db..0bd8dd0acdc7710e58e7c46214ce09b59453964c
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -63,3 +63,11 @@
- Prepared TASK section-home-brand-story-preview (Create brand-story-preview section on home) for execution.
+@@ -82,3 +82,15 @@
+ Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
  
- Launching Codex for TASK section-home-brand-story-preview.
+ Launching Codex for TASK cta-home-home-primary-cta.
 +
-+Completed TASK section-home-brand-story-preview.
++Completed TASK cta-home-home-primary-cta.
 +
-+Implemented a dedicated `BrandStoryPreviewSection` component and rendered it
-+from `src/pages/Home.jsx` to replace the placeholder home content. The section
-+now matches the required split-content-preview shape with editorial brand copy,
-+supporting story points, and route-safe CTAs to the existing about and contact
-+pages.
-diff --git a/src/components/Brand-story-previewSection.jsx b/src/components/Brand-story-previewSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..f73420c4bbf88ad0b3d5a2bd0b03d0629b3206b2
---- /dev/null
-+++ b/src/components/Brand-story-previewSection.jsx
-@@ -0,0 +1,178 @@
-+import { Link } from 'react-router-dom'
++Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
++`src/components/HeroSection.jsx` so the page now explicitly provides the
++required `home-primary-cta` label and valid `/menu` destination in the hero.
 +
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    backgroundColor: '#241c17',
-+    color: '#f6efe4',
-+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-+  },
-+  media: {
-+    minHeight: '20rem',
-+    borderRadius: '28px',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+  },
-+  content: {
-+    display: 'grid',
-+    gap: '1.25rem',
-+    padding: 'clamp(0.5rem, 1vw, 1rem)',
-+    textAlign: 'left',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#d9bf8d',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    maxWidth: '12ch',
-+    color: '#f6efe4',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 5vw, 3.6rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    maxWidth: '36rem',
-+    color: 'rgba(246, 239, 228, 0.82)',
-+    fontSize: '1rem',
-+    lineHeight: 1.8,
-+  },
-+  list: {
-+    display: 'grid',
-+    gap: '0.9rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  listItem: {
-+    display: 'grid',
-+    gap: '0.3rem',
-+    paddingBottom: '0.9rem',
-+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
-+  },
-+  itemTitle: {
-+    color: '#f6efe4',
-+    fontSize: '1rem',
-+    fontWeight: 700,
-+  },
-+  itemText: {
-+    color: 'rgba(246, 239, 228, 0.74)',
-+    lineHeight: 1.7,
-+  },
-+  footer: {
-+    display: 'grid',
-+    gap: '1rem',
-+  },
-+  note: {
-+    margin: 0,
-+    color: 'rgba(246, 239, 228, 0.72)',
-+    lineHeight: 1.7,
-+  },
-+  actionRow: {
-+    display: 'flex',
-+    flexWrap: 'wrap',
-+    gap: '0.875rem',
-+  },
-+  primaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#1f1813',
-+    textDecoration: 'none',
-+    fontWeight: 700,
-+  },
-+  secondaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.15rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    border: '1px solid rgba(246, 239, 228, 0.18)',
-+    backgroundColor: 'rgba(246, 239, 228, 0.06)',
-+    color: '#f6efe4',
-+    textDecoration: 'none',
-+    fontWeight: 600,
-+  },
++TASK cta-home-home-primary-cta executed by Codex.
++Waiting for validation.
++
++TASK cta-home-home-primary-cta completed successfully.
++Build passed.
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index e09c897fe99a19d7ac947c0ad74385e2a62d0cb6..9abea574c8bbfe0e71b00a367df5b2df4cf7dde6
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -119,7 +119,20 @@
+   },
+ ]
+ 
+-export default function HeroSection() {
++const defaultPrimaryCta = {
++  label: 'Request your event proposal',
++  to: '/menu',
 +}
 +
-+const storyPoints = [
-+  {
-+    title: 'Tailored to the occasion',
-+    text: 'Each proposal is shaped around your guest list, service rhythm, and the visual atmosphere you want the event to hold.',
-+  },
-+  {
-+    title: 'Hospitality with presence',
-+    text: 'Casa Aurea brings composed service, calm coordination, and details that make premium events feel effortless for hosts and guests alike.',
-+  },
-+  {
-+    title: 'Italian refinement, modern tone',
-+    text: 'Menus, cocktails, and styling are designed to feel luminous, contemporary, and grounded in a sense of occasion rather than excess.',
-+  },
-+]
-+
-+export default function BrandStoryPreviewSection() {
-+  return (
-+    <section
-+      id="brand-story-preview"
-+      aria-labelledby="brand-story-preview-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.media} aria-hidden="true" />
-+
-+      <div style={sectionStyles.content}>
-+        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
-+        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
-+          Events shaped with warmth, timing, and visual restraint
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          We design food and bar experiences that feel beautifully hosted from
-+          the first welcome pour to the final late-evening toast. The result is
-+          polished, personal, and composed enough for milestone moments.
-+        </p>
-+
-+        <ul style={sectionStyles.list}>
-+          {storyPoints.map((point) => (
-+            <li key={point.title} style={sectionStyles.listItem}>
-+              <span style={sectionStyles.itemTitle}>{point.title}</span>
-+              <span style={sectionStyles.itemText}>{point.text}</span>
-+            </li>
-+          ))}
-+        </ul>
-+
-+        <div style={sectionStyles.footer}>
-+          <p style={sectionStyles.note}>
-+            From intimate celebrations in Torino to larger destination-style
-+            receptions, our approach stays consistent: elegant presentation,
-+            attentive pacing, and hospitality guests remember.
-+          </p>
-+
-+          <div style={sectionStyles.actionRow}>
-+            <Link to="/chi-siamo" style={sectionStyles.primaryAction}>
-+              Read our story
-+            </Link>
-+            <Link to="/contatti" style={sectionStyles.secondaryAction}>
-+              Book a discovery call
-+            </Link>
-+          </div>
-+        </div>
-+      </div>
-+    </section>
-+  )
++const defaultSecondaryCta = {
++  label: 'Explore our services',
++  to: '/contatti',
 +}
++
++export default function HeroSection({
++  primaryCta = defaultPrimaryCta,
++  secondaryCta = defaultSecondaryCta,
++}) {
+   return (
+     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
+       <div style={heroStyles.panel}>
+@@ -137,11 +150,11 @@
+         </p>
+ 
+         <div style={heroStyles.actions}>
+-          <Link to="/menu" style={heroStyles.primaryAction}>
+-            Request your event proposal
++          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
++            {primaryCta.label}
+           </Link>
+-          <Link to="/contatti" style={heroStyles.secondaryAction}>
+-            Explore our services
++          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
++            {secondaryCta.label}
+           </Link>
+         </div>
+ 
 diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index dc55a7ff2506f9f416669faafb1e011ff60bb9fb..18aa4265619a7cf661d162e652dce80a9bb09b46
+index 18aa4265619a7cf661d162e652dce80a9bb09b46..69bfc2e5823192bfce6396bac5bc689ace396034
 --- a/src/pages/Home.jsx
 +++ b/src/pages/Home.jsx
-@@ -1,4 +1,5 @@
- import HeroSection from '../components/HeroSection'
-+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
- 
+@@ -5,7 +5,12 @@
  export default function Home() {
-@@ -6,17 +7,7 @@
+   return (
      <article aria-labelledby="home-title">
-       <HeroSection />
+-      <HeroSection />
++      <HeroSection
++        primaryCta={{
++          label: 'Request your event proposal',
++          to: '/menu',
++        }}
++      />
        <SignaturePreviewSection />
--
--      <section
--        id="brand-story-preview"
--        aria-labelledby="brand-story-preview-title"
--      >
--        <h2 id="brand-story-preview-title">Brand story preview</h2>
--        <p>
--          This section provides an editorial introduction to the brand&apos;s
--          atmosphere, service philosophy, and event experience.
--        </p>
--      </section>
-+      <BrandStoryPreviewSection />
+       <BrandStoryPreviewSection />
      </article>
-   )
- }
+
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 297edbe7823fddfbb15b49ce13e6662d2fa064db..0bd8dd0acdc7710e58e7c46214ce09b59453964c
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -82,3 +82,15 @@
+ Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
+ 
+ Launching Codex for TASK cta-home-home-primary-cta.
++
++Completed TASK cta-home-home-primary-cta.
++
++Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
++`src/components/HeroSection.jsx` so the page now explicitly provides the
++required `home-primary-cta` label and valid `/menu` destination in the hero.
++
++TASK cta-home-home-primary-cta executed by Codex.
++Waiting for validation.
++
++TASK cta-home-home-primary-cta completed successfully.
++Build passed.
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index e09c897fe99a19d7ac947c0ad74385e2a62d0cb6..9abea574c8bbfe0e71b00a367df5b2df4cf7dde6
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -119,7 +119,20 @@
+   },
+ ]
+ 
+-export default function HeroSection() {
++const defaultPrimaryCta = {
++  label: 'Request your event proposal',
++  to: '/menu',
++}
++
++const defaultSecondaryCta = {
++  label: 'Explore our services',
++  to: '/contatti',
++}
++
++export default function HeroSection({
++  primaryCta = defaultPrimaryCta,
++  secondaryCta = defaultSecondaryCta,
++}) {
+   return (
+     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
+       <div style={heroStyles.panel}>
+@@ -137,11 +150,11 @@
+         </p>
+ 
+         <div style={heroStyles.actions}>
+-          <Link to="/menu" style={heroStyles.primaryAction}>
+-            Request your event proposal
++          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
++            {primaryCta.label}
+           </Link>
+-          <Link to="/contatti" style={heroStyles.secondaryAction}>
+-            Explore our services
++          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
++            {secondaryCta.label}
+           </Link>
+         </div>
+ 
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index 18aa4265619a7cf661d162e652dce80a9bb09b46..69bfc2e5823192bfce6396bac5bc689ace396034
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -5,7 +5,12 @@
+ export default function Home() {
+   return (
+     <article aria-labelledby="home-title">
+-      <HeroSection />
++      <HeroSection
++        primaryCta={{
++          label: 'Request your event proposal',
++          to: '/menu',
++        }}
++      />
+       <SignaturePreviewSection />
+       <BrandStoryPreviewSection />
+     </article>
+
+codex
+Modified files: [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), [HeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/HeroSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+
+Implemented the `home-primary-cta` on the home hero by making [Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx) explicitly pass the primary CTA config into the shared [HeroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/HeroSection.jsx). The CTA remains visible in the hero and routes to the valid hash-router destination `/menu` with the required label “Request your event proposal”.
+
+Build result: `npm run build` passed.
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 297edbe7823fddfbb15b49ce13e6662d2fa064db..0bd8dd0acdc7710e58e7c46214ce09b59453964c
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -82,3 +82,15 @@
+ Prepared TASK cta-home-home-primary-cta (Add CTA home-primary-cta on home) for execution.
+ 
+ Launching Codex for TASK cta-home-home-primary-cta.
++
++Completed TASK cta-home-home-primary-cta.
++
++Bound the home hero primary CTA from `src/pages/Home.jsx` into the shared
++`src/components/HeroSection.jsx` so the page now explicitly provides the
++required `home-primary-cta` label and valid `/menu` destination in the hero.
++
++TASK cta-home-home-primary-cta executed by Codex.
++Waiting for validation.
++
++TASK cta-home-home-primary-cta completed successfully.
++Build passed.
+diff --git a/src/components/HeroSection.jsx b/src/components/HeroSection.jsx
+index e09c897fe99a19d7ac947c0ad74385e2a62d0cb6..9abea574c8bbfe0e71b00a367df5b2df4cf7dde6
+--- a/src/components/HeroSection.jsx
++++ b/src/components/HeroSection.jsx
+@@ -119,7 +119,20 @@
+   },
+ ]
+ 
+-export default function HeroSection() {
++const defaultPrimaryCta = {
++  label: 'Request your event proposal',
++  to: '/menu',
++}
++
++const defaultSecondaryCta = {
++  label: 'Explore our services',
++  to: '/contatti',
++}
++
++export default function HeroSection({
++  primaryCta = defaultPrimaryCta,
++  secondaryCta = defaultSecondaryCta,
++}) {
+   return (
+     <section id="hero" aria-labelledby="home-title" style={heroStyles.section}>
+       <div style={heroStyles.panel}>
+@@ -137,11 +150,11 @@
+         </p>
+ 
+         <div style={heroStyles.actions}>
+-          <Link to="/menu" style={heroStyles.primaryAction}>
+-            Request your event proposal
++          <Link to={primaryCta.to} style={heroStyles.primaryAction}>
++            {primaryCta.label}
+           </Link>
+-          <Link to="/contatti" style={heroStyles.secondaryAction}>
+-            Explore our services
++          <Link to={secondaryCta.to} style={heroStyles.secondaryAction}>
++            {secondaryCta.label}
+           </Link>
+         </div>
+ 
+diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
+index 18aa4265619a7cf661d162e652dce80a9bb09b46..69bfc2e5823192bfce6396bac5bc689ace396034
+--- a/src/pages/Home.jsx
++++ b/src/pages/Home.jsx
+@@ -5,7 +5,12 @@
+ export default function Home() {
+   return (
+     <article aria-labelledby="home-title">
+-      <HeroSection />
++      <HeroSection
++        primaryCta={{
++          label: 'Request your event proposal',
++          to: '/menu',
++        }}
++      />
+       <SignaturePreviewSection />
+       <BrandStoryPreviewSection />
+     </article>
 
 tokens used
-32.470
+18.269
