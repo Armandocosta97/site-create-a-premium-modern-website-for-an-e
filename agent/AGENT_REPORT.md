@@ -219,6 +219,24 @@ TASK section-menu-menu-categories completed successfully.
 Build passed.
 Commit created for TASK section-menu-menu-categories.
 
+Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
+
+Launching Codex for TASK section-chi-siamo-story.
+
+Completed TASK section-chi-siamo-story.
+
+Implemented a dedicated `StorySection` component in
+`src/components/StorySection.jsx` and rendered it from
+`src/pages/Chi-siamo.jsx`. The `chi-siamo` page now includes the required
+editorial story section with premium brand copy, supporting narrative details,
+and a route-safe CTA to the existing `/contatti` page.
+
+TASK section-chi-siamo-story executed by Codex.
+Waiting for validation.
+
+TASK section-chi-siamo-story completed successfully.
+Build passed.
+
 Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
 
 Launching Codex for TASK section-chi-siamo-about-hero.
@@ -267,4 +285,15 @@ TASK section-chi-siamo-about-hero executed by Codex.
 Waiting for validation.
 
 TASK section-chi-siamo-about-hero completed successfully.
+Build passed.
+Commit created for TASK section-chi-siamo-about-hero.
+
+Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
+
+Launching Codex for TASK section-chi-siamo-story.
+
+TASK section-chi-siamo-story executed by Codex.
+Waiting for validation.
+
+TASK section-chi-siamo-story completed successfully.
 Build passed.

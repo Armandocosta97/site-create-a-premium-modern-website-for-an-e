@@ -1,8 +1,8 @@
-Modified files: [src/components/About-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/About-heroSection.jsx), [src/pages/Chi-siamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+Modified files: [src/components/StorySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/StorySection.jsx), [src/pages/Chi-siamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
 
-Implemented the `about-hero` task by extracting the hero into a dedicated `AboutHeroSection` component and rendering it at the top of the `chi-siamo` page. The section now matches the required hero type with a single `h1`, premium editorial copy, a full-bleed luxury background treatment, and supporting highlight cards, while leaving the other about-page sections unchanged.
+Implemented the `story` section on `chi-siamo` as a dedicated editorial-content component. [StorySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/StorySection.jsx) adds refined brand-story copy, a supporting detail panel, and a valid CTA to `/contatti`; [Chi-siamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx) now renders that component in place of the inline placeholder markup. I also appended the required task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
 
-Build result: `npm run build` passed successfully with Vite production build completed.
+Build result: `npm run build` passed with Vite production build success.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd83c-7007-7a22-a98d-92ca5a350f94
+session id: 019cd83d-7511-7011-8059-948402338073
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1196,10 +1196,10 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-chi-siamo-about-hero
+section-chi-siamo-story
 
 ## Current task title
-Create about-hero section on chi-siamo
+Create story section on chi-siamo
 
 ## Current task type
 section
@@ -1208,8 +1208,8 @@ section
 ```json
 {
   "pageId": "chi-siamo",
-  "sectionId": "about-hero",
-  "sectionType": "hero"
+  "sectionId": "story",
+  "sectionType": "editorial-content"
 }
 ```
 
@@ -1218,13 +1218,13 @@ section
 
 ## Files allowed
 - src/pages/Chi-siamo.jsx
-- src/components/About-heroSection.jsx
+- src/components/StorySection.jsx
 - src/components
 
 ## Definition of done
-- section about-hero exists on chi-siamo
-- section about-hero matches type hero
-- section about-hero is rendered in page chi-siamo
+- section story exists on chi-siamo
+- section story matches type editorial-content
+- section story is rendered in page chi-siamo
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1253,32 +1253,31 @@ section
 
 mcp startup: no servers
 codex
-I’m implementing only the `about-hero` section for `chi-siamo`, then I’ll run a build check and update the agent report as required.
+I’m implementing the `story` editorial section for `chi-siamo` and will first inspect the current page/component structure so the change stays within the allowed files and fits the existing styling.
 exec
 /bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Chi-siamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "rg --files src agent brief docs | rg 'Chi-siamo|About-heroSection|AGENT_REPORT|CURRENT_TASK_PROMPT|site-spec|DEVELOPMENT_METHOD'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+/bin/zsh -lc "rg --files src agent | rg 'Chi-siamo\\.jsx|components|AGENT_REPORT\\.md"'$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+import AboutHeroSection from '../components/About-heroSection'
+
 export default function ChiSiamo() {
   return (
     <article aria-labelledby="chi-siamo-title">
-      <section id="about-hero">
-        <div>
-          <p>Casa Aurea Events</p>
-          <h1 id="chi-siamo-title">
-            Hospitality shaped with care, timing, and a refined Italian eye
-          </h1>
-          <p>
-            We design catering and bar experiences that feel effortless for the
-            host and memorable for every guest, from the first welcome glass to
-            the final toast.
-          </p>
-        </div>
-      </section>
+      <AboutHeroSection />
 
       <section id="story" aria-labelledby="story-title">
         <div>
           <h2 id="story-title">Our story</h2>
+          <p>
+            Casa Aurea Events was created for clients who want more than a
+            service list. We bring together elegant food presentation, polished
+            bar service, and calm event coordination so each celebration feels
+            cohesive, gracious, and beautifully hosted.
+          </p>
+          <p>
+            From intimate private dinners to larger wedding receptions, our work
+            is guided by balance: warm hospitality, precise execution, and an
+            atmosphere that always feels considered rather than overstated.
  succeeded in 52ms:
 # AGENT REPORT
 
@@ -1300,112 +1299,43 @@ Waiting for validation.
 TASK page-home-shell completed successfully.
 Build passed.
 Commit created for TASK page-home-shell.
- succeeded in 52ms:
-# CURRENT TASK EXECUTION PROMPT
-
-You are the coding executor for this project.
-
-## Project path
-site-create-a-premium-modern-website-for-an-e
-
-## Source of truth files
-- brief/original-prompt.md
-- brief/brief-summary.md
-- site-spec.json
-- docs/DEVELOPMENT_METHOD.md
-- agent/TASK_GRAPH.json
-- agent/TASK_STATE.json
-- agent/CURRENT_TASK_PROMPT.md
-
-## Development method
-# Development Method
-
-All sites must follow these rules.
  succeeded in 51ms:
-agent/CURRENT_TASK_PROMPT.md
 agent/AGENT_REPORT.md
-docs/DEVELOPMENT_METHOD.md
 src/pages/Chi-siamo.jsx
-codex
-The page shell already contains placeholder hero markup inline. I’m checking existing component patterns in `src/components` so the new section matches the current site structure instead of introducing a one-off.
-exec
-/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,280p' src/components/Menu-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc 'rg --files src/components' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-import { Link } from 'react-router-dom'
-
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(30rem, 72vh, 42rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
-  },
-  panel: {
-    width: 'min(100%, 46rem)',
- succeeded in 52ms:
-import { Link } from 'react-router-dom'
-
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(32rem, 78vh, 46rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(40, 31, 24, 0.18) 0%, rgba(28, 22, 18, 0.72) 62%, rgba(20, 15, 12, 0.9) 100%), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
-  },
-  panel: {
-    width: 'min(100%, 42rem)',
- succeeded in 51ms:
 src/components/FloatingWhatsAppButton.jsx
 src/components/Brand-story-previewSection.jsx
 src/components/Menu-categoriesSection.jsx
 src/components/Menu-heroSection.jsx
+src/components/About-heroSection.jsx
 src/components/SignaturePreviewSection.jsx
 src/components/HeroSection.jsx
 codex
-I have the site’s hero pattern. Next I’m replacing the inline `about-hero` block with a dedicated component that keeps the same premium style language and leaves the other `chi-siamo` sections untouched.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx
-@@ -1 +1,3 @@
-+import AboutHeroSection from '../components/About-heroSection'
-+
- export default function ChiSiamo() {
-@@ -3,15 +5,3 @@
-     <article aria-labelledby="chi-siamo-title">
--      <section id="about-hero">
--        <div>
--          <p>Casa Aurea Events</p>
--          <h1 id="chi-siamo-title">
--            Hospitality shaped with care, timing, and a refined Italian eye
--          </h1>
--          <p>
--            We design catering and bar experiences that feel effortless for the
--            host and memorable for every guest, from the first welcome glass to
--            the final toast.
--          </p>
--        </div>
--      </section>
-+      <AboutHeroSection />
- 
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/About-heroSection.jsx
+The page shell already has an inline `story` placeholder. I’m checking the existing section component patterns now so the new editorial block lands consistently without touching unrelated work.
+exec
+/bin/zsh -lc "sed -n '1,260p' src/components/About-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/components/Brand-story-previewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "rg -n \"font-family|background:|className=|style=\" src/components src/pages | sed -n '1,260p'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+import { Link } from 'react-router-dom'
+
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '1.5rem',
+    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    backgroundColor: '#241c17',
+    color: '#f6efe4',
+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
+  },
+  media: {
+    minHeight: '20rem',
+    borderRadius: '28px',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
+    backgroundSize: 'cover',
+ succeeded in 51ms:
 const heroStyles = {
   section: {
     position: 'relative',
@@ -1426,1163 +1356,1607 @@ const heroStyles = {
     width: 'min(100%, 47rem)',
     padding: 'clamp(1.5rem, 3vw, 2.5rem)',
     borderRadius: '28px',
-    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-    backdropFilter: 'blur(10px)',
+ succeeded in 51ms:
+src/components/FloatingWhatsAppButton.jsx:50:      style={whatsappStyles.link}
+src/components/FloatingWhatsAppButton.jsx:56:        style={whatsappStyles.icon}
+src/components/FloatingWhatsAppButton.jsx:64:      <span style={whatsappStyles.labelGroup}>
+src/components/FloatingWhatsAppButton.jsx:65:        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
+src/components/FloatingWhatsAppButton.jsx:66:        <span style={whatsappStyles.label}>Book a quick conversation</span>
+src/components/About-heroSection.jsx:94:      style={heroStyles.section}
+src/components/About-heroSection.jsx:96:      <div style={heroStyles.panel}>
+src/components/About-heroSection.jsx:97:        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
+src/components/About-heroSection.jsx:98:        <h1 id="chi-siamo-title" style={heroStyles.title}>
+src/components/About-heroSection.jsx:101:        <p style={heroStyles.body}>
+src/components/About-heroSection.jsx:107:        <div style={heroStyles.highlights}>
+src/components/About-heroSection.jsx:109:            <div key={item.label} style={heroStyles.highlightCard}>
+src/components/About-heroSection.jsx:110:              <span style={heroStyles.highlightLabel}>{item.label}</span>
+src/components/About-heroSection.jsx:111:              <span style={heroStyles.highlightText}>{item.text}</span>
+src/components/Brand-story-previewSection.jsx:135:      style={sectionStyles.section}
+src/components/Brand-story-previewSection.jsx:137:      <div style={sectionStyles.media} aria-hidden="true" />
+src/components/Brand-story-previewSection.jsx:139:      <div style={sectionStyles.content}>
+src/components/Brand-story-previewSection.jsx:140:        <p style={sectionStyles.eyebrow}>The Casa Aurea point of view</p>
+src/components/Brand-story-previewSection.jsx:141:        <h2 id="brand-story-preview-title" style={sectionStyles.title}>
+src/components/Brand-story-previewSection.jsx:144:        <p style={sectionStyles.intro}>
+codex
+I have enough context. Next I’m replacing the inline `story` markup with a dedicated `StorySection` component, keeping the section editorial and aligned with the existing premium visual system, then I’ll run the build and append the task note to the agent report.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx
+@@ -1,2 +1,3 @@
+ import AboutHeroSection from '../components/About-heroSection'
++import StorySection from '../components/StorySection'
+ 
+@@ -7,18 +8,3 @@
+ 
+-      <section id="story" aria-labelledby="story-title">
+-        <div>
+-          <h2 id="story-title">Our story</h2>
+-          <p>
+-            Casa Aurea Events was created for clients who want more than a
+-            service list. We bring together elegant food presentation, polished
+-            bar service, and calm event coordination so each celebration feels
+-            cohesive, gracious, and beautifully hosted.
+-          </p>
+-          <p>
+-            From intimate private dinners to larger wedding receptions, our work
+-            is guided by balance: warm hospitality, precise execution, and an
+-            atmosphere that always feels considered rather than overstated.
+-          </p>
+-        </div>
+-      </section>
++      <StorySection />
+ 
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/StorySection.jsx
+import { Link } from 'react-router-dom'
+
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5rem)',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '1.5rem',
+    padding: 'clamp(1.4rem, 4vw, 2.75rem)',
+    borderRadius: '32px',
+    background:
+      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(239, 228, 213, 0.92) 100%)',
+    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
+  },
+  content: {
+    display: 'grid',
+    gap: '1.1rem',
     textAlign: 'left',
   },
   eyebrow: {
     margin: 0,
+    color: '#9f7a4b',
     fontSize: '0.8rem',
     letterSpacing: '0.22em',
     textTransform: 'uppercase',
-    color: '#d9bf8d',
+    fontWeight: 700,
   },
   title: {
-    margin: '1rem 0 0',
-    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-    lineHeight: 1.02,
+    margin: 0,
+    maxWidth: '12ch',
+    color: '#221914',
     fontFamily: 'Georgia, "Times New Roman", serif',
+    fontSize: 'clamp(2rem, 5vw, 3.4rem)',
+    lineHeight: 1.08,
     fontWeight: 600,
   },
+  intro: {
+    margin: 0,
+    maxWidth: '38rem',
+    color: 'rgba(34, 25, 20, 0.82)',
+    fontSize: '1rem',
+    lineHeight: 1.85,
+  },
   body: {
-    margin: '1.25rem 0 0',
-    maxWidth: '35rem',
-    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-    lineHeight: 1.75,
-    color: 'rgba(247, 241, 232, 0.88)',
-  },
-  highlights: {
-    marginTop: '1.5rem',
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-    gap: '0.875rem',
+    gap: '1rem',
   },
-  highlightCard: {
-    padding: '0.95rem 1rem',
-    borderRadius: '20px',
-    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-    border: '1px solid rgba(247, 241, 232, 0.12)',
-  },
-  highlightLabel: {
-    display: 'block',
-    fontSize: '0.78rem',
-    letterSpacing: '0.08em',
-    textTransform: 'uppercase',
-    color: 'rgba(217, 191, 141, 0.92)',
-  },
-  highlightText: {
-    display: 'block',
-    marginTop: '0.4rem',
+  paragraph: {
+    margin: 0,
+    color: 'rgba(34, 25, 20, 0.78)',
     fontSize: '0.98rem',
-    lineHeight: 1.5,
+    lineHeight: 1.85,
+  },
+  detailsPanel: {
+    display: 'grid',
+    gap: '1rem',
+    alignContent: 'start',
+    padding: 'clamp(1.25rem, 3vw, 2rem)',
+    borderRadius: '28px',
+    backgroundColor: '#221914',
     color: '#f7f1e8',
+  },
+  detailsTitle: {
+    margin: 0,
+    fontFamily: 'Georgia, "Times New Roman", serif',
+    fontSize: '1.55rem',
+    lineHeight: 1.2,
+    fontWeight: 600,
+  },
+  detailsText: {
+    margin: 0,
+    color: 'rgba(247, 241, 232, 0.78)',
+    lineHeight: 1.75,
+  },
+  list: {
+    margin: 0,
+    padding: 0,
+    listStyle: 'none',
+    display: 'grid',
+    gap: '0.85rem',
+  },
+  listItem: {
+    paddingBottom: '0.85rem',
+    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
+    color: '#f7f1e8',
+    lineHeight: 1.7,
+  },
+  action: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 'fit-content',
+    minHeight: '3.1rem',
+    padding: '0.9rem 1.5rem',
+    borderRadius: '999px',
+    backgroundColor: '#d9bf8d',
+    color: '#221914',
+    textDecoration: 'none',
+    fontWeight: 700,
   },
 }
 
-const highlights = [
-  {
-    label: 'Approach',
-    text: 'Tailored hospitality shaped around the rhythm, setting, and guest list of each event.',
-  },
-  {
-    label: 'Standard',
-    text: 'Presentation, timing, and service flow are treated with the same care as the menu itself.',
-  },
-  {
-    label: 'Atmosphere',
-    text: 'Warm Italian refinement designed to feel polished, welcoming, and quietly memorable.',
-  },
+const storyParagraphs = [
+  'Casa Aurea Events was created for hosts who want an event to feel cohesive from the first impression to the final pour. Our work brings catering, bar service, and event atmosphere into one composed experience so every choice feels intentional rather than assembled from separate suppliers.',
+  'The studio grew around a simple idea: premium hospitality should feel warm, calm, and beautifully paced. We shape each proposal around the setting, the guest list, and the tone of the occasion, allowing food, cocktails, styling, and service to move together with quiet precision.',
+  'Whether we are serving a wedding dinner, a private celebration, or a polished corporate evening, the goal stays the same. Guests should feel looked after effortlessly, and the host should see a celebration that reflects both taste and ease.',
 ]
 
-export default function AboutHeroSection() {
+const storyValues = [
+  'Presentation is treated as part of the guest experience, not as decoration added at the end.',
+  'Service rhythm is planned carefully so the event feels fluid, attentive, and never rushed.',
+  'Every menu and bar proposal is tailored to the atmosphere the client wants to create.',
+]
+
+export default function StorySection() {
   return (
-    <section
-      id="about-hero"
-      aria-labelledby="chi-siamo-title"
-      style={heroStyles.section}
-    >
-      <div style={heroStyles.panel}>
-        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
-        <h1 id="chi-siamo-title" style={heroStyles.title}>
-          Hospitality shaped with care, timing, and a refined Italian eye
-        </h1>
-        <p style={heroStyles.body}>
-          We design catering and bar experiences that feel effortless for the
-          host and memorable for every guest, from the first welcome glass to
-          the final toast.
+    <section id="story" aria-labelledby="story-title" style={sectionStyles.section}>
+      <div style={sectionStyles.content}>
+        <p style={sectionStyles.eyebrow}>Our story</p>
+        <h2 id="story-title" style={sectionStyles.title}>
+          Built for occasions that deserve more than standard service
+        </h2>
+        <p style={sectionStyles.intro}>
+          Casa Aurea Events brings together refined catering, elevated bar
+          service, and a strong sense of atmosphere for clients who care about
+          how an event feels as much as how it looks.
         </p>
 
-        <div style={heroStyles.highlights}>
-          {highlights.map((item) => (
-            <div key={item.label} style={heroStyles.highlightCard}>
-              <span style={heroStyles.highlightLabel}>{item.label}</span>
-              <span style={heroStyles.highlightText}>{item.text}</span>
-            </div>
+        <div style={sectionStyles.body}>
+          {storyParagraphs.map((paragraph) => (
+            <p key={paragraph} style={sectionStyles.paragraph}>
+              {paragraph}
+            </p>
           ))}
         </div>
       </div>
+
+      <aside aria-label="Casa Aurea story details" style={sectionStyles.detailsPanel}>
+        <h3 style={sectionStyles.detailsTitle}>What shaped the brand</h3>
+        <p style={sectionStyles.detailsText}>
+          Our approach is informed by modern Italian hospitality: luminous
+          tables, composed service, elegant drinks, and details that feel
+          considered without ever becoming theatrical.
+        </p>
+
+        <ul style={sectionStyles.list}>
+          {storyValues.map((value) => (
+            <li key={value} style={sectionStyles.listItem}>
+              {value}
+            </li>
+          ))}
+        </ul>
+
+        <Link to="/contatti" style={sectionStyles.action}>
+          Request your event proposal
+        </Link>
+      </aside>
     </section>
   )
 }
-apply_patch(auto_approved=true) exited 0 in 56ms:
+apply_patch(auto_approved=true) exited 0 in 49ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/About-heroSection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/StorySection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx
 file update:
-diff --git a/src/components/About-heroSection.jsx b/src/components/About-heroSection.jsx
+diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..fd6cdfbdf6de42da90adb232d7df4bbefa02c4c5
+index 0000000000000000000000000000000000000000..f4e7061aabaac86b2cb8c73d2def80ce3ec0385f
 --- /dev/null
-+++ b/src/components/About-heroSection.jsx
-@@ -0,0 +1,118 @@
-+const heroStyles = {
++++ b/src/components/StorySection.jsx
+@@ -0,0 +1,160 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5rem)',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
++    gap: '1.5rem',
++    padding: 'clamp(1.4rem, 4vw, 2.75rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(52, 38, 31, 0.12) 0%, rgba(31, 23, 18, 0.66) 56%, rgba(20, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(239, 228, 213, 0.92) 100%)',
++    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
 +  },
-+  panel: {
-+    width: 'min(100%, 47rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
++  content: {
++    display: 'grid',
++    gap: '1.1rem',
 +    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
++    color: '#9f7a4b',
 +    fontSize: '0.8rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    maxWidth: '12ch',
++    color: '#221914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 5vw, 3.4rem)',
++    lineHeight: 1.08,
 +    fontWeight: 600,
 +  },
++  intro: {
++    margin: 0,
++    maxWidth: '38rem',
++    color: 'rgba(34, 25, 20, 0.82)',
++    fontSize: '1rem',
++    lineHeight: 1.85,
++  },
 +  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '35rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
-+  },
-+  highlights: {
-+    marginTop: '1.5rem',
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
++    gap: '1rem',
 +  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
-+  },
-+  highlightLabel: {
-+    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
-+  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
++  paragraph: {
++    margin: 0,
++    color: 'rgba(34, 25, 20, 0.78)',
 +    fontSize: '0.98rem',
-+    lineHeight: 1.5,
++    lineHeight: 1.85,
++  },
++  detailsPanel: {
++    display: 'grid',
++    gap: '1rem',
++    alignContent: 'start',
++    padding: 'clamp(1.25rem, 3vw, 2rem)',
++    borderRadius: '28px',
++    backgroundColor: '#221914',
 +    color: '#f7f1e8',
++  },
++  detailsTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.55rem',
++    lineHeight: 1.2,
++    fontWeight: 600,
++  },
++  detailsText: {
++    margin: 0,
++    color: 'rgba(247, 241, 232, 0.78)',
++    lineHeight: 1.75,
++  },
++  list: {
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++    display: 'grid',
++    gap: '0.85rem',
++  },
++  listItem: {
++    paddingBottom: '0.85rem',
++    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
++    color: '#f7f1e8',
++    lineHeight: 1.7,
++  },
++  action: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    width: 'fit-content',
++    minHeight: '3.1rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#221914',
++    textDecoration: 'none',
++    fontWeight: 700,
 +  },
 +}
 +
-+const highlights = [
-+  {
-+    label: 'Approach',
-+    text: 'Tailored hospitality shaped around the rhythm, setting, and guest list of each event.',
-+  },
-+  {
-+    label: 'Standard',
-+    text: 'Presentation, timing, and service flow are treated with the same care as the menu itself.',
-+  },
-+  {
-+    label: 'Atmosphere',
-+    text: 'Warm Italian refinement designed to feel polished, welcoming, and quietly memorable.',
-+  },
++const storyParagraphs = [
++  'Casa Aurea Events was created for hosts who want an event to feel cohesive from the first impression to the final pour. Our work brings catering, bar service, and event atmosphere into one composed experience so every choice feels intentional rather than assembled from separate suppliers.',
++  'The studio grew around a simple idea: premium hospitality should feel warm, calm, and beautifully paced. We shape each proposal around the setting, the guest list, and the tone of the occasion, allowing food, cocktails, styling, and service to move together with quiet precision.',
++  'Whether we are serving a wedding dinner, a private celebration, or a polished corporate evening, the goal stays the same. Guests should feel looked after effortlessly, and the host should see a celebration that reflects both taste and ease.',
 +]
 +
-+export default function AboutHeroSection() {
++const storyValues = [
++  'Presentation is treated as part of the guest experience, not as decoration added at the end.',
++  'Service rhythm is planned carefully so the event feels fluid, attentive, and never rushed.',
++  'Every menu and bar proposal is tailored to the atmosphere the client wants to create.',
++]
++
++export default function StorySection() {
 +  return (
-+    <section
-+      id="about-hero"
-+      aria-labelledby="chi-siamo-title"
-+      style={heroStyles.section}
-+    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
-+        <h1 id="chi-siamo-title" style={heroStyles.title}>
-+          Hospitality shaped with care, timing, and a refined Italian eye
-+        </h1>
-+        <p style={heroStyles.body}>
-+          We design catering and bar experiences that feel effortless for the
-+          host and memorable for every guest, from the first welcome glass to
-+          the final toast.
++    <section id="story" aria-labelledby="story-title" style={sectionStyles.section}>
++      <div style={sectionStyles.content}>
++        <p style={sectionStyles.eyebrow}>Our story</p>
++        <h2 id="story-title" style={sectionStyles.title}>
++          Built for occasions that deserve more than standard service
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together refined catering, elevated bar
++          service, and a strong sense of atmosphere for clients who care about
++          how an event feels as much as how it looks.
 +        </p>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
++        <div style={sectionStyles.body}>
++          {storyParagraphs.map((paragraph) => (
++            <p key={paragraph} style={sectionStyles.paragraph}>
++              {paragraph}
++            </p>
 +          ))}
 +        </div>
 +      </div>
++
++      <aside aria-label="Casa Aurea story details" style={sectionStyles.detailsPanel}>
++        <h3 style={sectionStyles.detailsTitle}>What shaped the brand</h3>
++        <p style={sectionStyles.detailsText}>
++          Our approach is informed by modern Italian hospitality: luminous
++          tables, composed service, elegant drinks, and details that feel
++          considered without ever becoming theatrical.
++        </p>
++
++        <ul style={sectionStyles.list}>
++          {storyValues.map((value) => (
++            <li key={value} style={sectionStyles.listItem}>
++              {value}
++            </li>
++          ))}
++        </ul>
++
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request your event proposal
++        </Link>
++      </aside>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
-index fd90071294a41e31c61b5f0e0ff8d84e993c62c2..00d78aca54f1992ee5db42641e39494e075a67b8
+index 00d78aca54f1992ee5db42641e39494e075a67b8..2f7c912dea055391d084329be56aafcd5a54ed21
 --- a/src/pages/Chi-siamo.jsx
 +++ b/src/pages/Chi-siamo.jsx
-@@ -1,19 +1,9 @@
-+import AboutHeroSection from '../components/About-heroSection'
-+
+@@ -1,26 +1,12 @@
+ import AboutHeroSection from '../components/About-heroSection'
++import StorySection from '../components/StorySection'
+ 
  export default function ChiSiamo() {
    return (
      <article aria-labelledby="chi-siamo-title">
--      <section id="about-hero">
+       <AboutHeroSection />
+ 
+-      <section id="story" aria-labelledby="story-title">
 -        <div>
--          <p>Casa Aurea Events</p>
--          <h1 id="chi-siamo-title">
--            Hospitality shaped with care, timing, and a refined Italian eye
--          </h1>
+-          <h2 id="story-title">Our story</h2>
 -          <p>
--            We design catering and bar experiences that feel effortless for the
--            host and memorable for every guest, from the first welcome glass to
--            the final toast.
+-            Casa Aurea Events was created for clients who want more than a
+-            service list. We bring together elegant food presentation, polished
+-            bar service, and calm event coordination so each celebration feels
+-            cohesive, gracious, and beautifully hosted.
+-          </p>
+-          <p>
+-            From intimate private dinners to larger wedding receptions, our work
+-            is guided by balance: warm hospitality, precise execution, and an
+-            atmosphere that always feels considered rather than overstated.
 -          </p>
 -        </div>
 -      </section>
-+      <AboutHeroSection />
++      <StorySection />
  
-       <section id="story" aria-labelledby="story-title">
+       <section id="philosophy" aria-labelledby="philosophy-title">
          <div>
 
 file update:
-diff --git a/src/components/About-heroSection.jsx b/src/components/About-heroSection.jsx
+diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..fd6cdfbdf6de42da90adb232d7df4bbefa02c4c5
+index 0000000000000000000000000000000000000000..f4e7061aabaac86b2cb8c73d2def80ce3ec0385f
 --- /dev/null
-+++ b/src/components/About-heroSection.jsx
-@@ -0,0 +1,118 @@
-+const heroStyles = {
++++ b/src/components/StorySection.jsx
+@@ -0,0 +1,160 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5rem)',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
++    gap: '1.5rem',
++    padding: 'clamp(1.4rem, 4vw, 2.75rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(52, 38, 31, 0.12) 0%, rgba(31, 23, 18, 0.66) 56%, rgba(20, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(239, 228, 213, 0.92) 100%)',
++    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
 +  },
-+  panel: {
-+    width: 'min(100%, 47rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
++  content: {
++    display: 'grid',
++    gap: '1.1rem',
 +    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
++    color: '#9f7a4b',
 +    fontSize: '0.8rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    maxWidth: '12ch',
++    color: '#221914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 5vw, 3.4rem)',
++    lineHeight: 1.08,
 +    fontWeight: 600,
 +  },
++  intro: {
++    margin: 0,
++    maxWidth: '38rem',
++    color: 'rgba(34, 25, 20, 0.82)',
++    fontSize: '1rem',
++    lineHeight: 1.85,
++  },
 +  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '35rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
-+  },
-+  highlights: {
-+    marginTop: '1.5rem',
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
++    gap: '1rem',
 +  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
-+  },
-+  highlightLabel: {
-+    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
-+  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
++  paragraph: {
++    margin: 0,
++    color: 'rgba(34, 25, 20, 0.78)',
 +    fontSize: '0.98rem',
-+    lineHeight: 1.5,
++    lineHeight: 1.85,
++  },
++  detailsPanel: {
++    display: 'grid',
++    gap: '1rem',
++    alignContent: 'start',
++    padding: 'clamp(1.25rem, 3vw, 2rem)',
++    borderRadius: '28px',
++    backgroundColor: '#221914',
 +    color: '#f7f1e8',
++  },
++  detailsTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.55rem',
++    lineHeight: 1.2,
++    fontWeight: 600,
++  },
++  detailsText: {
++    margin: 0,
++    color: 'rgba(247, 241, 232, 0.78)',
++    lineHeight: 1.75,
++  },
++  list: {
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++    display: 'grid',
++    gap: '0.85rem',
++  },
++  listItem: {
++    paddingBottom: '0.85rem',
++    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
++    color: '#f7f1e8',
++    lineHeight: 1.7,
++  },
++  action: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    width: 'fit-content',
++    minHeight: '3.1rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#221914',
++    textDecoration: 'none',
++    fontWeight: 700,
 +  },
 +}
 +
-+const highlights = [
-+  {
-+    label: 'Approach',
-+    text: 'Tailored hospitality shaped around the rhythm, setting, and guest list of each event.',
-+  },
-+  {
-+    label: 'Standard',
-+    text: 'Presentation, timing, and service flow are treated with the same care as the menu itself.',
-+  },
-+  {
-+    label: 'Atmosphere',
-+    text: 'Warm Italian refinement designed to feel polished, welcoming, and quietly memorable.',
-+  },
++const storyParagraphs = [
++  'Casa Aurea Events was created for hosts who want an event to feel cohesive from the first impression to the final pour. Our work brings catering, bar service, and event atmosphere into one composed experience so every choice feels intentional rather than assembled from separate suppliers.',
++  'The studio grew around a simple idea: premium hospitality should feel warm, calm, and beautifully paced. We shape each proposal around the setting, the guest list, and the tone of the occasion, allowing food, cocktails, styling, and service to move together with quiet precision.',
++  'Whether we are serving a wedding dinner, a private celebration, or a polished corporate evening, the goal stays the same. Guests should feel looked after effortlessly, and the host should see a celebration that reflects both taste and ease.',
 +]
 +
-+export default function AboutHeroSection() {
++const storyValues = [
++  'Presentation is treated as part of the guest experience, not as decoration added at the end.',
++  'Service rhythm is planned carefully so the event feels fluid, attentive, and never rushed.',
++  'Every menu and bar proposal is tailored to the atmosphere the client wants to create.',
++]
++
++export default function StorySection() {
 +  return (
-+    <section
-+      id="about-hero"
-+      aria-labelledby="chi-siamo-title"
-+      style={heroStyles.section}
-+    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
-+        <h1 id="chi-siamo-title" style={heroStyles.title}>
-+          Hospitality shaped with care, timing, and a refined Italian eye
-+        </h1>
-+        <p style={heroStyles.body}>
-+          We design catering and bar experiences that feel effortless for the
-+          host and memorable for every guest, from the first welcome glass to
-+          the final toast.
++    <section id="story" aria-labelledby="story-title" style={sectionStyles.section}>
++      <div style={sectionStyles.content}>
++        <p style={sectionStyles.eyebrow}>Our story</p>
++        <h2 id="story-title" style={sectionStyles.title}>
++          Built for occasions that deserve more than standard service
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together refined catering, elevated bar
++          service, and a strong sense of atmosphere for clients who care about
++          how an event feels as much as how it looks.
 +        </p>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
++        <div style={sectionStyles.body}>
++          {storyParagraphs.map((paragraph) => (
++            <p key={paragraph} style={sectionStyles.paragraph}>
++              {paragraph}
++            </p>
 +          ))}
 +        </div>
 +      </div>
++
++      <aside aria-label="Casa Aurea story details" style={sectionStyles.detailsPanel}>
++        <h3 style={sectionStyles.detailsTitle}>What shaped the brand</h3>
++        <p style={sectionStyles.detailsText}>
++          Our approach is informed by modern Italian hospitality: luminous
++          tables, composed service, elegant drinks, and details that feel
++          considered without ever becoming theatrical.
++        </p>
++
++        <ul style={sectionStyles.list}>
++          {storyValues.map((value) => (
++            <li key={value} style={sectionStyles.listItem}>
++              {value}
++            </li>
++          ))}
++        </ul>
++
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request your event proposal
++        </Link>
++      </aside>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
-index fd90071294a41e31c61b5f0e0ff8d84e993c62c2..00d78aca54f1992ee5db42641e39494e075a67b8
+index 00d78aca54f1992ee5db42641e39494e075a67b8..2f7c912dea055391d084329be56aafcd5a54ed21
 --- a/src/pages/Chi-siamo.jsx
 +++ b/src/pages/Chi-siamo.jsx
-@@ -1,19 +1,9 @@
-+import AboutHeroSection from '../components/About-heroSection'
-+
+@@ -1,26 +1,12 @@
+ import AboutHeroSection from '../components/About-heroSection'
++import StorySection from '../components/StorySection'
+ 
  export default function ChiSiamo() {
    return (
      <article aria-labelledby="chi-siamo-title">
--      <section id="about-hero">
+       <AboutHeroSection />
+ 
+-      <section id="story" aria-labelledby="story-title">
 -        <div>
--          <p>Casa Aurea Events</p>
--          <h1 id="chi-siamo-title">
--            Hospitality shaped with care, timing, and a refined Italian eye
--          </h1>
+-          <h2 id="story-title">Our story</h2>
 -          <p>
--            We design catering and bar experiences that feel effortless for the
--            host and memorable for every guest, from the first welcome glass to
--            the final toast.
+-            Casa Aurea Events was created for clients who want more than a
+-            service list. We bring together elegant food presentation, polished
+-            bar service, and calm event coordination so each celebration feels
+-            cohesive, gracious, and beautifully hosted.
+-          </p>
+-          <p>
+-            From intimate private dinners to larger wedding receptions, our work
+-            is guided by balance: warm hospitality, precise execution, and an
+-            atmosphere that always feels considered rather than overstated.
 -          </p>
 -        </div>
 -      </section>
-+      <AboutHeroSection />
++      <StorySection />
  
-       <section id="story" aria-labelledby="story-title">
+       <section id="philosophy" aria-labelledby="philosophy-title">
          <div>
 
 codex
-The hero component is in place and wired into `chi-siamo`. I’m running the build now to catch any integration errors before I write the task summary into the agent report.
+The story section is now componentized and mounted on `chi-siamo`. I’m running the build check next, then I’ll update the agent report with the task summary.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 828ms:
+/bin/zsh -lc "sed -n '1,260p' src/pages/Chi-siamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,320p' src/components/StorySection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+import AboutHeroSection from '../components/About-heroSection'
+import StorySection from '../components/StorySection'
+
+export default function ChiSiamo() {
+  return (
+    <article aria-labelledby="chi-siamo-title">
+      <AboutHeroSection />
+
+      <StorySection />
+
+      <section id="philosophy" aria-labelledby="philosophy-title">
+        <div>
+          <h2 id="philosophy-title">Our philosophy</h2>
+          <p>
+            We believe premium events are defined by the details guests notice
+            without being told: the pacing of service, the elegance of the
+            setting, the quality of each pour, and the sense that every moment
+            has been prepared with intention.
+          </p>
+          <p>
+ succeeded in 52ms:
+import { Link } from 'react-router-dom'
+
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5rem)',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '1.5rem',
+    padding: 'clamp(1.4rem, 4vw, 2.75rem)',
+    borderRadius: '32px',
+    background:
+      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(239, 228, 213, 0.92) 100%)',
+    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
+  },
+  content: {
+    display: 'grid',
+    gap: '1.1rem',
+    textAlign: 'left',
+  },
+  eyebrow: {
+exec
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 840ms:
 
 > site-create-a-premium-modern-website-for-an-e@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 55 modules transformed.
+✓ 56 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-Ddp6B2sK.js   257.27 kB │ gzip: 80.43 kB
-✓ built in 569ms
+dist/assets/index-CAMKL0HG.js   260.62 kB │ gzip: 81.20 kB
+✓ built in 572ms
 file update:
-diff --git a/src/components/About-heroSection.jsx b/src/components/About-heroSection.jsx
+diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..fd6cdfbdf6de42da90adb232d7df4bbefa02c4c5
+index 0000000000000000000000000000000000000000..f4e7061aabaac86b2cb8c73d2def80ce3ec0385f
 --- /dev/null
-+++ b/src/components/About-heroSection.jsx
-@@ -0,0 +1,118 @@
-+const heroStyles = {
++++ b/src/components/StorySection.jsx
+@@ -0,0 +1,160 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5rem)',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
++    gap: '1.5rem',
++    padding: 'clamp(1.4rem, 4vw, 2.75rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(52, 38, 31, 0.12) 0%, rgba(31, 23, 18, 0.66) 56%, rgba(20, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(239, 228, 213, 0.92) 100%)',
++    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
 +  },
-+  panel: {
-+    width: 'min(100%, 47rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
++  content: {
++    display: 'grid',
++    gap: '1.1rem',
 +    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
++    color: '#9f7a4b',
 +    fontSize: '0.8rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    maxWidth: '12ch',
++    color: '#221914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 5vw, 3.4rem)',
++    lineHeight: 1.08,
 +    fontWeight: 600,
 +  },
++  intro: {
++    margin: 0,
++    maxWidth: '38rem',
++    color: 'rgba(34, 25, 20, 0.82)',
++    fontSize: '1rem',
++    lineHeight: 1.85,
++  },
 +  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '35rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
-+  },
-+  highlights: {
-+    marginTop: '1.5rem',
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
++    gap: '1rem',
 +  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
-+  },
-+  highlightLabel: {
-+    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
-+  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
++  paragraph: {
++    margin: 0,
++    color: 'rgba(34, 25, 20, 0.78)',
 +    fontSize: '0.98rem',
-+    lineHeight: 1.5,
++    lineHeight: 1.85,
++  },
++  detailsPanel: {
++    display: 'grid',
++    gap: '1rem',
++    alignContent: 'start',
++    padding: 'clamp(1.25rem, 3vw, 2rem)',
++    borderRadius: '28px',
++    backgroundColor: '#221914',
 +    color: '#f7f1e8',
++  },
++  detailsTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.55rem',
++    lineHeight: 1.2,
++    fontWeight: 600,
++  },
++  detailsText: {
++    margin: 0,
++    color: 'rgba(247, 241, 232, 0.78)',
++    lineHeight: 1.75,
++  },
++  list: {
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++    display: 'grid',
++    gap: '0.85rem',
++  },
++  listItem: {
++    paddingBottom: '0.85rem',
++    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
++    color: '#f7f1e8',
++    lineHeight: 1.7,
++  },
++  action: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    width: 'fit-content',
++    minHeight: '3.1rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#221914',
++    textDecoration: 'none',
++    fontWeight: 700,
 +  },
 +}
 +
-+const highlights = [
-+  {
-+    label: 'Approach',
-+    text: 'Tailored hospitality shaped around the rhythm, setting, and guest list of each event.',
-+  },
-+  {
-+    label: 'Standard',
-+    text: 'Presentation, timing, and service flow are treated with the same care as the menu itself.',
-+  },
-+  {
-+    label: 'Atmosphere',
-+    text: 'Warm Italian refinement designed to feel polished, welcoming, and quietly memorable.',
-+  },
++const storyParagraphs = [
++  'Casa Aurea Events was created for hosts who want an event to feel cohesive from the first impression to the final pour. Our work brings catering, bar service, and event atmosphere into one composed experience so every choice feels intentional rather than assembled from separate suppliers.',
++  'The studio grew around a simple idea: premium hospitality should feel warm, calm, and beautifully paced. We shape each proposal around the setting, the guest list, and the tone of the occasion, allowing food, cocktails, styling, and service to move together with quiet precision.',
++  'Whether we are serving a wedding dinner, a private celebration, or a polished corporate evening, the goal stays the same. Guests should feel looked after effortlessly, and the host should see a celebration that reflects both taste and ease.',
 +]
 +
-+export default function AboutHeroSection() {
++const storyValues = [
++  'Presentation is treated as part of the guest experience, not as decoration added at the end.',
++  'Service rhythm is planned carefully so the event feels fluid, attentive, and never rushed.',
++  'Every menu and bar proposal is tailored to the atmosphere the client wants to create.',
++]
++
++export default function StorySection() {
 +  return (
-+    <section
-+      id="about-hero"
-+      aria-labelledby="chi-siamo-title"
-+      style={heroStyles.section}
-+    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
-+        <h1 id="chi-siamo-title" style={heroStyles.title}>
-+          Hospitality shaped with care, timing, and a refined Italian eye
-+        </h1>
-+        <p style={heroStyles.body}>
-+          We design catering and bar experiences that feel effortless for the
-+          host and memorable for every guest, from the first welcome glass to
-+          the final toast.
++    <section id="story" aria-labelledby="story-title" style={sectionStyles.section}>
++      <div style={sectionStyles.content}>
++        <p style={sectionStyles.eyebrow}>Our story</p>
++        <h2 id="story-title" style={sectionStyles.title}>
++          Built for occasions that deserve more than standard service
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together refined catering, elevated bar
++          service, and a strong sense of atmosphere for clients who care about
++          how an event feels as much as how it looks.
 +        </p>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
++        <div style={sectionStyles.body}>
++          {storyParagraphs.map((paragraph) => (
++            <p key={paragraph} style={sectionStyles.paragraph}>
++              {paragraph}
++            </p>
 +          ))}
 +        </div>
 +      </div>
++
++      <aside aria-label="Casa Aurea story details" style={sectionStyles.detailsPanel}>
++        <h3 style={sectionStyles.detailsTitle}>What shaped the brand</h3>
++        <p style={sectionStyles.detailsText}>
++          Our approach is informed by modern Italian hospitality: luminous
++          tables, composed service, elegant drinks, and details that feel
++          considered without ever becoming theatrical.
++        </p>
++
++        <ul style={sectionStyles.list}>
++          {storyValues.map((value) => (
++            <li key={value} style={sectionStyles.listItem}>
++              {value}
++            </li>
++          ))}
++        </ul>
++
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request your event proposal
++        </Link>
++      </aside>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
-index fd90071294a41e31c61b5f0e0ff8d84e993c62c2..00d78aca54f1992ee5db42641e39494e075a67b8
+index 00d78aca54f1992ee5db42641e39494e075a67b8..2f7c912dea055391d084329be56aafcd5a54ed21
 --- a/src/pages/Chi-siamo.jsx
 +++ b/src/pages/Chi-siamo.jsx
-@@ -1,19 +1,9 @@
-+import AboutHeroSection from '../components/About-heroSection'
-+
+@@ -1,26 +1,12 @@
+ import AboutHeroSection from '../components/About-heroSection'
++import StorySection from '../components/StorySection'
+ 
  export default function ChiSiamo() {
    return (
      <article aria-labelledby="chi-siamo-title">
--      <section id="about-hero">
+       <AboutHeroSection />
+ 
+-      <section id="story" aria-labelledby="story-title">
 -        <div>
--          <p>Casa Aurea Events</p>
--          <h1 id="chi-siamo-title">
--            Hospitality shaped with care, timing, and a refined Italian eye
--          </h1>
+-          <h2 id="story-title">Our story</h2>
 -          <p>
--            We design catering and bar experiences that feel effortless for the
--            host and memorable for every guest, from the first welcome glass to
--            the final toast.
+-            Casa Aurea Events was created for clients who want more than a
+-            service list. We bring together elegant food presentation, polished
+-            bar service, and calm event coordination so each celebration feels
+-            cohesive, gracious, and beautifully hosted.
+-          </p>
+-          <p>
+-            From intimate private dinners to larger wedding receptions, our work
+-            is guided by balance: warm hospitality, precise execution, and an
+-            atmosphere that always feels considered rather than overstated.
 -          </p>
 -        </div>
 -      </section>
-+      <AboutHeroSection />
++      <StorySection />
  
-       <section id="story" aria-labelledby="story-title">
+       <section id="philosophy" aria-labelledby="philosophy-title">
          <div>
 
 codex
-The build passed. I’m adding the required task note to `agent/AGENT_REPORT.md` and then I’ll summarize the exact files changed and result.
+The build is clean. I’m adding the required task entry to `agent/AGENT_REPORT.md` now and then I’ll return the exact modified files and build result.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 @@ -221,2 +221,20 @@
  
-+Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
++Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
 +
-+Launching Codex for TASK section-chi-siamo-about-hero.
++Launching Codex for TASK section-chi-siamo-story.
 +
-+Completed TASK section-chi-siamo-about-hero.
++Completed TASK section-chi-siamo-story.
 +
-+Implemented a dedicated `About-heroSection` component and rendered it from
-+`src/pages/Chi-siamo.jsx` to replace the inline placeholder hero. The
-+`/chi-siamo` page now includes a premium hero section for `about-hero` with a
-+single `h1`, refined brand copy, and supporting highlight cards aligned to the
-+existing visual language.
++Implemented a dedicated `StorySection` component in
++`src/components/StorySection.jsx` and rendered it from
++`src/pages/Chi-siamo.jsx`. The `chi-siamo` page now includes the required
++editorial story section with premium brand copy, supporting narrative details,
++and a route-safe CTA to the existing `/contatti` page.
 +
-+TASK section-chi-siamo-about-hero executed by Codex.
++TASK section-chi-siamo-story executed by Codex.
 +Waiting for validation.
 +
-+TASK section-chi-siamo-about-hero completed successfully.
++TASK section-chi-siamo-story completed successfully.
 +Build passed.
 +
- Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
-apply_patch(auto_approved=true) exited 0 in 56ms:
+ Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
+apply_patch(auto_approved=true) exited 0 in 59ms:
 Success. Updated the following files:
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 07fd26597cd4416514c311f38e7fa499439e6a58..23568112aedd386b2529c0e2e4a59ae5a5483e18
+index 992d368b33ed213ed6148733b56084d187560e6f..7eec83645eacda8b42ef047e2c517e8178e93b06
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -219,6 +219,24 @@
  Build passed.
  Commit created for TASK section-menu-menu-categories.
  
-+Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
++Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
 +
-+Launching Codex for TASK section-chi-siamo-about-hero.
++Launching Codex for TASK section-chi-siamo-story.
 +
-+Completed TASK section-chi-siamo-about-hero.
++Completed TASK section-chi-siamo-story.
 +
-+Implemented a dedicated `About-heroSection` component and rendered it from
-+`src/pages/Chi-siamo.jsx` to replace the inline placeholder hero. The
-+`/chi-siamo` page now includes a premium hero section for `about-hero` with a
-+single `h1`, refined brand copy, and supporting highlight cards aligned to the
-+existing visual language.
++Implemented a dedicated `StorySection` component in
++`src/components/StorySection.jsx` and rendered it from
++`src/pages/Chi-siamo.jsx`. The `chi-siamo` page now includes the required
++editorial story section with premium brand copy, supporting narrative details,
++and a route-safe CTA to the existing `/contatti` page.
 +
-+TASK section-chi-siamo-about-hero executed by Codex.
++TASK section-chi-siamo-story executed by Codex.
 +Waiting for validation.
 +
-+TASK section-chi-siamo-about-hero completed successfully.
++TASK section-chi-siamo-story completed successfully.
 +Build passed.
 +
- Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
+ Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
  
- Launching Codex for TASK page-chi-siamo-shell.
-diff --git a/src/components/About-heroSection.jsx b/src/components/About-heroSection.jsx
+ Launching Codex for TASK section-chi-siamo-about-hero.
+diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..fd6cdfbdf6de42da90adb232d7df4bbefa02c4c5
+index 0000000000000000000000000000000000000000..f4e7061aabaac86b2cb8c73d2def80ce3ec0385f
 --- /dev/null
-+++ b/src/components/About-heroSection.jsx
-@@ -0,0 +1,118 @@
-+const heroStyles = {
++++ b/src/components/StorySection.jsx
+@@ -0,0 +1,160 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5rem)',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
++    gap: '1.5rem',
++    padding: 'clamp(1.4rem, 4vw, 2.75rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(52, 38, 31, 0.12) 0%, rgba(31, 23, 18, 0.66) 56%, rgba(20, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(239, 228, 213, 0.92) 100%)',
++    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
 +  },
-+  panel: {
-+    width: 'min(100%, 47rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
++  content: {
++    display: 'grid',
++    gap: '1.1rem',
 +    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
++    color: '#9f7a4b',
 +    fontSize: '0.8rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    maxWidth: '12ch',
++    color: '#221914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 5vw, 3.4rem)',
++    lineHeight: 1.08,
 +    fontWeight: 600,
 +  },
++  intro: {
++    margin: 0,
++    maxWidth: '38rem',
++    color: 'rgba(34, 25, 20, 0.82)',
++    fontSize: '1rem',
++    lineHeight: 1.85,
++  },
 +  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '35rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
-+  },
-+  highlights: {
-+    marginTop: '1.5rem',
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
++    gap: '1rem',
 +  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
-+  },
-+  highlightLabel: {
-+    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
-+  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
++  paragraph: {
++    margin: 0,
++    color: 'rgba(34, 25, 20, 0.78)',
 +    fontSize: '0.98rem',
-+    lineHeight: 1.5,
++    lineHeight: 1.85,
++  },
++  detailsPanel: {
++    display: 'grid',
++    gap: '1rem',
++    alignContent: 'start',
++    padding: 'clamp(1.25rem, 3vw, 2rem)',
++    borderRadius: '28px',
++    backgroundColor: '#221914',
 +    color: '#f7f1e8',
++  },
++  detailsTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.55rem',
++    lineHeight: 1.2,
++    fontWeight: 600,
++  },
++  detailsText: {
++    margin: 0,
++    color: 'rgba(247, 241, 232, 0.78)',
++    lineHeight: 1.75,
++  },
++  list: {
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++    display: 'grid',
++    gap: '0.85rem',
++  },
++  listItem: {
++    paddingBottom: '0.85rem',
++    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
++    color: '#f7f1e8',
++    lineHeight: 1.7,
++  },
++  action: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    width: 'fit-content',
++    minHeight: '3.1rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#221914',
++    textDecoration: 'none',
++    fontWeight: 700,
 +  },
 +}
 +
-+const highlights = [
-+  {
-+    label: 'Approach',
-+    text: 'Tailored hospitality shaped around the rhythm, setting, and guest list of each event.',
-+  },
-+  {
-+    label: 'Standard',
-+    text: 'Presentation, timing, and service flow are treated with the same care as the menu itself.',
-+  },
-+  {
-+    label: 'Atmosphere',
-+    text: 'Warm Italian refinement designed to feel polished, welcoming, and quietly memorable.',
-+  },
++const storyParagraphs = [
++  'Casa Aurea Events was created for hosts who want an event to feel cohesive from the first impression to the final pour. Our work brings catering, bar service, and event atmosphere into one composed experience so every choice feels intentional rather than assembled from separate suppliers.',
++  'The studio grew around a simple idea: premium hospitality should feel warm, calm, and beautifully paced. We shape each proposal around the setting, the guest list, and the tone of the occasion, allowing food, cocktails, styling, and service to move together with quiet precision.',
++  'Whether we are serving a wedding dinner, a private celebration, or a polished corporate evening, the goal stays the same. Guests should feel looked after effortlessly, and the host should see a celebration that reflects both taste and ease.',
 +]
 +
-+export default function AboutHeroSection() {
++const storyValues = [
++  'Presentation is treated as part of the guest experience, not as decoration added at the end.',
++  'Service rhythm is planned carefully so the event feels fluid, attentive, and never rushed.',
++  'Every menu and bar proposal is tailored to the atmosphere the client wants to create.',
++]
++
++export default function StorySection() {
 +  return (
-+    <section
-+      id="about-hero"
-+      aria-labelledby="chi-siamo-title"
-+      style={heroStyles.section}
-+    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
-+        <h1 id="chi-siamo-title" style={heroStyles.title}>
-+          Hospitality shaped with care, timing, and a refined Italian eye
-+        </h1>
-+        <p style={heroStyles.body}>
-+          We design catering and bar experiences that feel effortless for the
-+          host and memorable for every guest, from the first welcome glass to
-+          the final toast.
++    <section id="story" aria-labelledby="story-title" style={sectionStyles.section}>
++      <div style={sectionStyles.content}>
++        <p style={sectionStyles.eyebrow}>Our story</p>
++        <h2 id="story-title" style={sectionStyles.title}>
++          Built for occasions that deserve more than standard service
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together refined catering, elevated bar
++          service, and a strong sense of atmosphere for clients who care about
++          how an event feels as much as how it looks.
 +        </p>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
++        <div style={sectionStyles.body}>
++          {storyParagraphs.map((paragraph) => (
++            <p key={paragraph} style={sectionStyles.paragraph}>
++              {paragraph}
++            </p>
 +          ))}
 +        </div>
 +      </div>
++
++      <aside aria-label="Casa Aurea story details" style={sectionStyles.detailsPanel}>
++        <h3 style={sectionStyles.detailsTitle}>What shaped the brand</h3>
++        <p style={sectionStyles.detailsText}>
++          Our approach is informed by modern Italian hospitality: luminous
++          tables, composed service, elegant drinks, and details that feel
++          considered without ever becoming theatrical.
++        </p>
++
++        <ul style={sectionStyles.list}>
++          {storyValues.map((value) => (
++            <li key={value} style={sectionStyles.listItem}>
++              {value}
++            </li>
++          ))}
++        </ul>
++
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request your event proposal
++        </Link>
++      </aside>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
-index fd90071294a41e31c61b5f0e0ff8d84e993c62c2..00d78aca54f1992ee5db42641e39494e075a67b8
+index 00d78aca54f1992ee5db42641e39494e075a67b8..2f7c912dea055391d084329be56aafcd5a54ed21
 --- a/src/pages/Chi-siamo.jsx
 +++ b/src/pages/Chi-siamo.jsx
-@@ -1,19 +1,9 @@
-+import AboutHeroSection from '../components/About-heroSection'
-+
+@@ -1,26 +1,12 @@
+ import AboutHeroSection from '../components/About-heroSection'
++import StorySection from '../components/StorySection'
+ 
  export default function ChiSiamo() {
    return (
      <article aria-labelledby="chi-siamo-title">
--      <section id="about-hero">
+       <AboutHeroSection />
+ 
+-      <section id="story" aria-labelledby="story-title">
 -        <div>
--          <p>Casa Aurea Events</p>
--          <h1 id="chi-siamo-title">
--            Hospitality shaped with care, timing, and a refined Italian eye
--          </h1>
+-          <h2 id="story-title">Our story</h2>
 -          <p>
--            We design catering and bar experiences that feel effortless for the
--            host and memorable for every guest, from the first welcome glass to
--            the final toast.
+-            Casa Aurea Events was created for clients who want more than a
+-            service list. We bring together elegant food presentation, polished
+-            bar service, and calm event coordination so each celebration feels
+-            cohesive, gracious, and beautifully hosted.
+-          </p>
+-          <p>
+-            From intimate private dinners to larger wedding receptions, our work
+-            is guided by balance: warm hospitality, precise execution, and an
+-            atmosphere that always feels considered rather than overstated.
 -          </p>
 -        </div>
 -      </section>
-+      <AboutHeroSection />
++      <StorySection />
  
-       <section id="story" aria-labelledby="story-title">
+       <section id="philosophy" aria-labelledby="philosophy-title">
          <div>
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 07fd26597cd4416514c311f38e7fa499439e6a58..23568112aedd386b2529c0e2e4a59ae5a5483e18
+index 992d368b33ed213ed6148733b56084d187560e6f..7eec83645eacda8b42ef047e2c517e8178e93b06
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -219,6 +219,24 @@
  Build passed.
  Commit created for TASK section-menu-menu-categories.
  
-+Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
++Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
 +
-+Launching Codex for TASK section-chi-siamo-about-hero.
++Launching Codex for TASK section-chi-siamo-story.
 +
-+Completed TASK section-chi-siamo-about-hero.
++Completed TASK section-chi-siamo-story.
 +
-+Implemented a dedicated `About-heroSection` component and rendered it from
-+`src/pages/Chi-siamo.jsx` to replace the inline placeholder hero. The
-+`/chi-siamo` page now includes a premium hero section for `about-hero` with a
-+single `h1`, refined brand copy, and supporting highlight cards aligned to the
-+existing visual language.
++Implemented a dedicated `StorySection` component in
++`src/components/StorySection.jsx` and rendered it from
++`src/pages/Chi-siamo.jsx`. The `chi-siamo` page now includes the required
++editorial story section with premium brand copy, supporting narrative details,
++and a route-safe CTA to the existing `/contatti` page.
 +
-+TASK section-chi-siamo-about-hero executed by Codex.
++TASK section-chi-siamo-story executed by Codex.
 +Waiting for validation.
 +
-+TASK section-chi-siamo-about-hero completed successfully.
++TASK section-chi-siamo-story completed successfully.
 +Build passed.
 +
- Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
+ Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
  
- Launching Codex for TASK page-chi-siamo-shell.
-diff --git a/src/components/About-heroSection.jsx b/src/components/About-heroSection.jsx
+ Launching Codex for TASK section-chi-siamo-about-hero.
+diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..fd6cdfbdf6de42da90adb232d7df4bbefa02c4c5
+index 0000000000000000000000000000000000000000..f4e7061aabaac86b2cb8c73d2def80ce3ec0385f
 --- /dev/null
-+++ b/src/components/About-heroSection.jsx
-@@ -0,0 +1,118 @@
-+const heroStyles = {
++++ b/src/components/StorySection.jsx
+@@ -0,0 +1,160 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5rem)',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
++    gap: '1.5rem',
++    padding: 'clamp(1.4rem, 4vw, 2.75rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(52, 38, 31, 0.12) 0%, rgba(31, 23, 18, 0.66) 56%, rgba(20, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(239, 228, 213, 0.92) 100%)',
++    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
 +  },
-+  panel: {
-+    width: 'min(100%, 47rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
++  content: {
++    display: 'grid',
++    gap: '1.1rem',
 +    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
++    color: '#9f7a4b',
 +    fontSize: '0.8rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    maxWidth: '12ch',
++    color: '#221914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 5vw, 3.4rem)',
++    lineHeight: 1.08,
 +    fontWeight: 600,
 +  },
++  intro: {
++    margin: 0,
++    maxWidth: '38rem',
++    color: 'rgba(34, 25, 20, 0.82)',
++    fontSize: '1rem',
++    lineHeight: 1.85,
++  },
 +  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '35rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
-+  },
-+  highlights: {
-+    marginTop: '1.5rem',
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
++    gap: '1rem',
 +  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
-+  },
-+  highlightLabel: {
-+    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
-+  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
++  paragraph: {
++    margin: 0,
++    color: 'rgba(34, 25, 20, 0.78)',
 +    fontSize: '0.98rem',
-+    lineHeight: 1.5,
++    lineHeight: 1.85,
++  },
++  detailsPanel: {
++    display: 'grid',
++    gap: '1rem',
++    alignContent: 'start',
++    padding: 'clamp(1.25rem, 3vw, 2rem)',
++    borderRadius: '28px',
++    backgroundColor: '#221914',
 +    color: '#f7f1e8',
++  },
++  detailsTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.55rem',
++    lineHeight: 1.2,
++    fontWeight: 600,
++  },
++  detailsText: {
++    margin: 0,
++    color: 'rgba(247, 241, 232, 0.78)',
++    lineHeight: 1.75,
++  },
++  list: {
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++    display: 'grid',
++    gap: '0.85rem',
++  },
++  listItem: {
++    paddingBottom: '0.85rem',
++    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
++    color: '#f7f1e8',
++    lineHeight: 1.7,
++  },
++  action: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    width: 'fit-content',
++    minHeight: '3.1rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#221914',
++    textDecoration: 'none',
++    fontWeight: 700,
 +  },
 +}
 +
-+const highlights = [
-+  {
-+    label: 'Approach',
-+    text: 'Tailored hospitality shaped around the rhythm, setting, and guest list of each event.',
-+  },
-+  {
-+    label: 'Standard',
-+    text: 'Presentation, timing, and service flow are treated with the same care as the menu itself.',
-+  },
-+  {
-+    label: 'Atmosphere',
-+    text: 'Warm Italian refinement designed to feel polished, welcoming, and quietly memorable.',
-+  },
++const storyParagraphs = [
++  'Casa Aurea Events was created for hosts who want an event to feel cohesive from the first impression to the final pour. Our work brings catering, bar service, and event atmosphere into one composed experience so every choice feels intentional rather than assembled from separate suppliers.',
++  'The studio grew around a simple idea: premium hospitality should feel warm, calm, and beautifully paced. We shape each proposal around the setting, the guest list, and the tone of the occasion, allowing food, cocktails, styling, and service to move together with quiet precision.',
++  'Whether we are serving a wedding dinner, a private celebration, or a polished corporate evening, the goal stays the same. Guests should feel looked after effortlessly, and the host should see a celebration that reflects both taste and ease.',
 +]
 +
-+export default function AboutHeroSection() {
++const storyValues = [
++  'Presentation is treated as part of the guest experience, not as decoration added at the end.',
++  'Service rhythm is planned carefully so the event feels fluid, attentive, and never rushed.',
++  'Every menu and bar proposal is tailored to the atmosphere the client wants to create.',
++]
++
++export default function StorySection() {
 +  return (
-+    <section
-+      id="about-hero"
-+      aria-labelledby="chi-siamo-title"
-+      style={heroStyles.section}
-+    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
-+        <h1 id="chi-siamo-title" style={heroStyles.title}>
-+          Hospitality shaped with care, timing, and a refined Italian eye
-+        </h1>
-+        <p style={heroStyles.body}>
-+          We design catering and bar experiences that feel effortless for the
-+          host and memorable for every guest, from the first welcome glass to
-+          the final toast.
++    <section id="story" aria-labelledby="story-title" style={sectionStyles.section}>
++      <div style={sectionStyles.content}>
++        <p style={sectionStyles.eyebrow}>Our story</p>
++        <h2 id="story-title" style={sectionStyles.title}>
++          Built for occasions that deserve more than standard service
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together refined catering, elevated bar
++          service, and a strong sense of atmosphere for clients who care about
++          how an event feels as much as how it looks.
 +        </p>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
++        <div style={sectionStyles.body}>
++          {storyParagraphs.map((paragraph) => (
++            <p key={paragraph} style={sectionStyles.paragraph}>
++              {paragraph}
++            </p>
 +          ))}
 +        </div>
 +      </div>
++
++      <aside aria-label="Casa Aurea story details" style={sectionStyles.detailsPanel}>
++        <h3 style={sectionStyles.detailsTitle}>What shaped the brand</h3>
++        <p style={sectionStyles.detailsText}>
++          Our approach is informed by modern Italian hospitality: luminous
++          tables, composed service, elegant drinks, and details that feel
++          considered without ever becoming theatrical.
++        </p>
++
++        <ul style={sectionStyles.list}>
++          {storyValues.map((value) => (
++            <li key={value} style={sectionStyles.listItem}>
++              {value}
++            </li>
++          ))}
++        </ul>
++
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request your event proposal
++        </Link>
++      </aside>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
-index fd90071294a41e31c61b5f0e0ff8d84e993c62c2..00d78aca54f1992ee5db42641e39494e075a67b8
+index 00d78aca54f1992ee5db42641e39494e075a67b8..2f7c912dea055391d084329be56aafcd5a54ed21
 --- a/src/pages/Chi-siamo.jsx
 +++ b/src/pages/Chi-siamo.jsx
-@@ -1,19 +1,9 @@
-+import AboutHeroSection from '../components/About-heroSection'
-+
+@@ -1,26 +1,12 @@
+ import AboutHeroSection from '../components/About-heroSection'
++import StorySection from '../components/StorySection'
+ 
  export default function ChiSiamo() {
    return (
      <article aria-labelledby="chi-siamo-title">
--      <section id="about-hero">
+       <AboutHeroSection />
+ 
+-      <section id="story" aria-labelledby="story-title">
 -        <div>
--          <p>Casa Aurea Events</p>
--          <h1 id="chi-siamo-title">
--            Hospitality shaped with care, timing, and a refined Italian eye
--          </h1>
+-          <h2 id="story-title">Our story</h2>
 -          <p>
--            We design catering and bar experiences that feel effortless for the
--            host and memorable for every guest, from the first welcome glass to
--            the final toast.
+-            Casa Aurea Events was created for clients who want more than a
+-            service list. We bring together elegant food presentation, polished
+-            bar service, and calm event coordination so each celebration feels
+-            cohesive, gracious, and beautifully hosted.
+-          </p>
+-          <p>
+-            From intimate private dinners to larger wedding receptions, our work
+-            is guided by balance: warm hospitality, precise execution, and an
+-            atmosphere that always feels considered rather than overstated.
 -          </p>
 -        </div>
 -      </section>
-+      <AboutHeroSection />
++      <StorySection />
  
-       <section id="story" aria-labelledby="story-title">
+       <section id="philosophy" aria-labelledby="philosophy-title">
          <div>
 
 codex
-Modified files: [src/components/About-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/About-heroSection.jsx), [src/pages/Chi-siamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+Modified files: [src/components/StorySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/StorySection.jsx), [src/pages/Chi-siamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
 
-Implemented the `about-hero` task by extracting the hero into a dedicated `AboutHeroSection` component and rendering it at the top of the `chi-siamo` page. The section now matches the required hero type with a single `h1`, premium editorial copy, a full-bleed luxury background treatment, and supporting highlight cards, while leaving the other about-page sections unchanged.
+Implemented the `story` section on `chi-siamo` as a dedicated editorial-content component. [StorySection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/StorySection.jsx) adds refined brand-story copy, a supporting detail panel, and a valid CTA to `/contatti`; [Chi-siamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx) now renders that component in place of the inline placeholder markup. I also appended the required task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
 
-Build result: `npm run build` passed successfully with Vite production build completed.
+Build result: `npm run build` passed with Vite production build success.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 07fd26597cd4416514c311f38e7fa499439e6a58..23568112aedd386b2529c0e2e4a59ae5a5483e18
+index 992d368b33ed213ed6148733b56084d187560e6f..7eec83645eacda8b42ef047e2c517e8178e93b06
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
 @@ -219,6 +219,24 @@
  Build passed.
  Commit created for TASK section-menu-menu-categories.
  
-+Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
++Prepared TASK section-chi-siamo-story (Create story section on chi-siamo) for execution.
 +
-+Launching Codex for TASK section-chi-siamo-about-hero.
++Launching Codex for TASK section-chi-siamo-story.
 +
-+Completed TASK section-chi-siamo-about-hero.
++Completed TASK section-chi-siamo-story.
 +
-+Implemented a dedicated `About-heroSection` component and rendered it from
-+`src/pages/Chi-siamo.jsx` to replace the inline placeholder hero. The
-+`/chi-siamo` page now includes a premium hero section for `about-hero` with a
-+single `h1`, refined brand copy, and supporting highlight cards aligned to the
-+existing visual language.
++Implemented a dedicated `StorySection` component in
++`src/components/StorySection.jsx` and rendered it from
++`src/pages/Chi-siamo.jsx`. The `chi-siamo` page now includes the required
++editorial story section with premium brand copy, supporting narrative details,
++and a route-safe CTA to the existing `/contatti` page.
 +
-+TASK section-chi-siamo-about-hero executed by Codex.
++TASK section-chi-siamo-story executed by Codex.
 +Waiting for validation.
 +
-+TASK section-chi-siamo-about-hero completed successfully.
++TASK section-chi-siamo-story completed successfully.
 +Build passed.
 +
- Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
+ Prepared TASK section-chi-siamo-about-hero (Create about-hero section on chi-siamo) for execution.
  
- Launching Codex for TASK page-chi-siamo-shell.
-diff --git a/src/components/About-heroSection.jsx b/src/components/About-heroSection.jsx
+ Launching Codex for TASK section-chi-siamo-about-hero.
+diff --git a/src/components/StorySection.jsx b/src/components/StorySection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..fd6cdfbdf6de42da90adb232d7df4bbefa02c4c5
+index 0000000000000000000000000000000000000000..f4e7061aabaac86b2cb8c73d2def80ce3ec0385f
 --- /dev/null
-+++ b/src/components/About-heroSection.jsx
-@@ -0,0 +1,118 @@
-+const heroStyles = {
++++ b/src/components/StorySection.jsx
+@@ -0,0 +1,160 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5rem)',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
++    gap: '1.5rem',
++    padding: 'clamp(1.4rem, 4vw, 2.75rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(52, 38, 31, 0.12) 0%, rgba(31, 23, 18, 0.66) 56%, rgba(20, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 233, 0.96) 0%, rgba(239, 228, 213, 0.92) 100%)',
++    boxShadow: '0 20px 50px rgba(78, 59, 44, 0.12)',
 +  },
-+  panel: {
-+    width: 'min(100%, 47rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
++  content: {
++    display: 'grid',
++    gap: '1.1rem',
 +    textAlign: 'left',
 +  },
 +  eyebrow: {
 +    margin: 0,
++    color: '#9f7a4b',
 +    fontSize: '0.8rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    maxWidth: '12ch',
++    color: '#221914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 5vw, 3.4rem)',
++    lineHeight: 1.08,
 +    fontWeight: 600,
 +  },
++  intro: {
++    margin: 0,
++    maxWidth: '38rem',
++    color: 'rgba(34, 25, 20, 0.82)',
++    fontSize: '1rem',
++    lineHeight: 1.85,
++  },
 +  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '35rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
-+  },
-+  highlights: {
-+    marginTop: '1.5rem',
 +    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
++    gap: '1rem',
 +  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
-+  },
-+  highlightLabel: {
-+    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
-+  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
++  paragraph: {
++    margin: 0,
++    color: 'rgba(34, 25, 20, 0.78)',
 +    fontSize: '0.98rem',
-+    lineHeight: 1.5,
++    lineHeight: 1.85,
++  },
++  detailsPanel: {
++    display: 'grid',
++    gap: '1rem',
++    alignContent: 'start',
++    padding: 'clamp(1.25rem, 3vw, 2rem)',
++    borderRadius: '28px',
++    backgroundColor: '#221914',
 +    color: '#f7f1e8',
++  },
++  detailsTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.55rem',
++    lineHeight: 1.2,
++    fontWeight: 600,
++  },
++  detailsText: {
++    margin: 0,
++    color: 'rgba(247, 241, 232, 0.78)',
++    lineHeight: 1.75,
++  },
++  list: {
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++    display: 'grid',
++    gap: '0.85rem',
++  },
++  listItem: {
++    paddingBottom: '0.85rem',
++    borderBottom: '1px solid rgba(217, 191, 141, 0.18)',
++    color: '#f7f1e8',
++    lineHeight: 1.7,
++  },
++  action: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    width: 'fit-content',
++    minHeight: '3.1rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#d9bf8d',
++    color: '#221914',
++    textDecoration: 'none',
++    fontWeight: 700,
 +  },
 +}
 +
-+const highlights = [
-+  {
-+    label: 'Approach',
-+    text: 'Tailored hospitality shaped around the rhythm, setting, and guest list of each event.',
-+  },
-+  {
-+    label: 'Standard',
-+    text: 'Presentation, timing, and service flow are treated with the same care as the menu itself.',
-+  },
-+  {
-+    label: 'Atmosphere',
-+    text: 'Warm Italian refinement designed to feel polished, welcoming, and quietly memorable.',
-+  },
++const storyParagraphs = [
++  'Casa Aurea Events was created for hosts who want an event to feel cohesive from the first impression to the final pour. Our work brings catering, bar service, and event atmosphere into one composed experience so every choice feels intentional rather than assembled from separate suppliers.',
++  'The studio grew around a simple idea: premium hospitality should feel warm, calm, and beautifully paced. We shape each proposal around the setting, the guest list, and the tone of the occasion, allowing food, cocktails, styling, and service to move together with quiet precision.',
++  'Whether we are serving a wedding dinner, a private celebration, or a polished corporate evening, the goal stays the same. Guests should feel looked after effortlessly, and the host should see a celebration that reflects both taste and ease.',
 +]
 +
-+export default function AboutHeroSection() {
++const storyValues = [
++  'Presentation is treated as part of the guest experience, not as decoration added at the end.',
++  'Service rhythm is planned carefully so the event feels fluid, attentive, and never rushed.',
++  'Every menu and bar proposal is tailored to the atmosphere the client wants to create.',
++]
++
++export default function StorySection() {
 +  return (
-+    <section
-+      id="about-hero"
-+      aria-labelledby="chi-siamo-title"
-+      style={heroStyles.section}
-+    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
-+        <h1 id="chi-siamo-title" style={heroStyles.title}>
-+          Hospitality shaped with care, timing, and a refined Italian eye
-+        </h1>
-+        <p style={heroStyles.body}>
-+          We design catering and bar experiences that feel effortless for the
-+          host and memorable for every guest, from the first welcome glass to
-+          the final toast.
++    <section id="story" aria-labelledby="story-title" style={sectionStyles.section}>
++      <div style={sectionStyles.content}>
++        <p style={sectionStyles.eyebrow}>Our story</p>
++        <h2 id="story-title" style={sectionStyles.title}>
++          Built for occasions that deserve more than standard service
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together refined catering, elevated bar
++          service, and a strong sense of atmosphere for clients who care about
++          how an event feels as much as how it looks.
 +        </p>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
++        <div style={sectionStyles.body}>
++          {storyParagraphs.map((paragraph) => (
++            <p key={paragraph} style={sectionStyles.paragraph}>
++              {paragraph}
++            </p>
 +          ))}
 +        </div>
 +      </div>
++
++      <aside aria-label="Casa Aurea story details" style={sectionStyles.detailsPanel}>
++        <h3 style={sectionStyles.detailsTitle}>What shaped the brand</h3>
++        <p style={sectionStyles.detailsText}>
++          Our approach is informed by modern Italian hospitality: luminous
++          tables, composed service, elegant drinks, and details that feel
++          considered without ever becoming theatrical.
++        </p>
++
++        <ul style={sectionStyles.list}>
++          {storyValues.map((value) => (
++            <li key={value} style={sectionStyles.listItem}>
++              {value}
++            </li>
++          ))}
++        </ul>
++
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request your event proposal
++        </Link>
++      </aside>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
-index fd90071294a41e31c61b5f0e0ff8d84e993c62c2..00d78aca54f1992ee5db42641e39494e075a67b8
+index 00d78aca54f1992ee5db42641e39494e075a67b8..2f7c912dea055391d084329be56aafcd5a54ed21
 --- a/src/pages/Chi-siamo.jsx
 +++ b/src/pages/Chi-siamo.jsx
-@@ -1,19 +1,9 @@
-+import AboutHeroSection from '../components/About-heroSection'
-+
+@@ -1,26 +1,12 @@
+ import AboutHeroSection from '../components/About-heroSection'
++import StorySection from '../components/StorySection'
+ 
  export default function ChiSiamo() {
    return (
      <article aria-labelledby="chi-siamo-title">
--      <section id="about-hero">
+       <AboutHeroSection />
+ 
+-      <section id="story" aria-labelledby="story-title">
 -        <div>
--          <p>Casa Aurea Events</p>
--          <h1 id="chi-siamo-title">
--            Hospitality shaped with care, timing, and a refined Italian eye
--          </h1>
+-          <h2 id="story-title">Our story</h2>
 -          <p>
--            We design catering and bar experiences that feel effortless for the
--            host and memorable for every guest, from the first welcome glass to
--            the final toast.
+-            Casa Aurea Events was created for clients who want more than a
+-            service list. We bring together elegant food presentation, polished
+-            bar service, and calm event coordination so each celebration feels
+-            cohesive, gracious, and beautifully hosted.
+-          </p>
+-          <p>
+-            From intimate private dinners to larger wedding receptions, our work
+-            is guided by balance: warm hospitality, precise execution, and an
+-            atmosphere that always feels considered rather than overstated.
 -          </p>
 -        </div>
 -      </section>
-+      <AboutHeroSection />
++      <StorySection />
  
-       <section id="story" aria-labelledby="story-title">
+       <section id="philosophy" aria-labelledby="philosophy-title">
          <div>
 
 tokens used
-21.666
+23.069
