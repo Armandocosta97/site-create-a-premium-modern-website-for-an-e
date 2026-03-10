@@ -1,16 +1,8 @@
-Modified files:
-- [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx)
-- [src/components/FloatingWhatsAppButton.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/FloatingWhatsAppButton.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files: [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-What was implemented:
-- Added the `home-whatsapp` CTA to the home page as a floating fixed button.
-- Kept it modular by creating a reusable `FloatingWhatsAppButton` component.
-- Wired the CTA to a valid WhatsApp URL: `https://wa.me/39011000000?...` with a prefilled proposal inquiry message.
-- Rendered it only on the home page to match the current task scope.
+Implemented the `page-menu-shell` task by replacing the placeholder content in [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx) with a semantic menu page shell: an `article`, a real `menu-hero` section, a real `menu-categories` section, premium copy, and one valid page `h1`. The `/menu` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so no route change was needed. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
 
-Build result:
-- `npm run build` passed successfully.
+Build result: `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -21,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd837-1709-7d71-acd8-ac579f9cfd07
+session id: 019cd838-1d99-7542-a441-8cb86d2cc9a1
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1204,41 +1196,32 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-cta-home-home-whatsapp
+page-menu-shell
 
 ## Current task title
-Add CTA home-whatsapp on home
+Create menu page shell
 
 ## Current task type
-cta
+page-shell
 
 ## Current task target
 ```json
 {
-  "pageId": "home",
-  "ctaId": "home-whatsapp",
-  "ctaKind": "external",
-  "destination": {
-    "type": "whatsapp",
-    "value": "whatsapp"
-  },
-  "placement": "floating"
+  "pageId": "menu"
 }
 ```
 
 ## Depends on
-- page-home-shell
+- none
 
 ## Files allowed
-- src/pages/Home.jsx
-- src/components
 - src/App.jsx
-- src/layout/Layout.jsx
+- src/pages/Menu.jsx
 
 ## Definition of done
-- CTA home-whatsapp exists on home
-- CTA home-whatsapp is visible in placement floating
-- CTA home-whatsapp points to a valid destination
+- page shell exists for menu
+- menu route is mounted if required
+- menu page renders without crashing
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1267,88 +1250,12 @@ cta
 
 mcp startup: no servers
 codex
-I’m implementing the current task only: add the floating home WhatsApp CTA, verify it points to a valid WhatsApp destination, then run a build check and update the agent report.
+I’m checking the current app structure and the existing routing so I can add only the menu page shell and mount its route without touching unrelated work.
 exec
-/bin/zsh -lc "sed -n '1,260p' src/layout/Layout.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "pwd && rg --files src agent brief docs | rg '"'^(src/pages/Home.jsx|src/App.jsx|src/layout/Layout.jsx|src/components/|agent/AGENT_REPORT.md|agent/CURRENT_TASK_PROMPT.md|agent/TASK_STATE.json|site-spec.json|docs/DEVELOPMENT_METHOD.md)$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "find src/components -maxdepth 2 -type f | sort | xargs -I{} sh -c \"printf '\\n--- %s ---\\n' '{}' && sed -n '1,220p' '{}'\"" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-import HeroSection from '../components/HeroSection'
-import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
-import SignaturePreviewSection from '../components/SignaturePreviewSection'
-
-export default function Home() {
-  return (
-    <article aria-labelledby="home-title">
-      <HeroSection
-        primaryCta={{
-          label: 'Request your event proposal',
-          to: '/menu',
-        }}
-        secondaryCta={{
-          label: 'Contact us for your event',
-          to: '/contatti',
-        }}
-      />
-      <SignaturePreviewSection />
-      <BrandStoryPreviewSection />
-    </article>
- succeeded in 52ms:
-export default function Layout({ children }) {
-  return (
-    <>
-      <header>
-        <nav aria-label="Main navigation">
-          <a href="#/">Home</a>
-          <a href="#/menu">Menu</a>
-          <a href="#/chi-siamo">Chi siamo</a>
-          <a href="#/gallery">Gallery</a>
-          <a href="#/contatti">Contatti</a>
-          <a href="#/servizi">Servizi</a>
-        </nav>
-      </header>
-
-      <main>{children}</main>
-
-      <footer>
-        <p>© Website</p>
-      </footer>
-    </>
- succeeded in 52ms:
-/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
-docs/DEVELOPMENT_METHOD.md
-agent/CURRENT_TASK_PROMPT.md
-agent/TASK_STATE.json
-agent/AGENT_REPORT.md
-src/pages/Home.jsx
-src/App.jsx
-src/layout/Layout.jsx
- succeeded in 51ms:
-
---- src/components/Brand-story-previewSection.jsx ---
-import { Link } from 'react-router-dom'
-
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: '1.5rem',
-    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    backgroundColor: '#241c17',
-    color: '#f6efe4',
-    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-  },
-  media: {
-    minHeight: '20rem',
-    borderRadius: '28px',
-    backgroundImage:
-codex
-I’ve confirmed the home page currently has no floating CTA. Next I’m checking the route setup so the added button stays isolated to the home page and uses the project’s hash routing correctly.
-exec
-/bin/zsh -lc "sed -n '1,260p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+/bin/zsh -lc "if [ -f agent/AGENT_REPORT.md ]; then sed -n '1,220p' agent/AGENT_REPORT.md; else echo '__MISSING__'; fi" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "if [ -f src/pages/Menu.jsx ]; then sed -n '1,220p' src/pages/Menu.jsx; else echo '__MISSING__'; fi" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'pwd && rg --files .' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
 import { HashRouter, Routes, Route } from "react-router-dom"
 import Layout from "./layout/Layout"
 import Home from "./pages/Home"
@@ -1390,295 +1297,294 @@ Waiting for validation.
 TASK page-home-shell completed successfully.
 Build passed.
 Commit created for TASK page-home-shell.
-codex
-I have enough context. I’m adding a small reusable floating WhatsApp component under `src/components`, wiring it into [`Home.jsx`](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx), and then I’ll run the build and append the task summary to the agent report.
-file update
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/FloatingWhatsAppButton.jsx
-const whatsappStyles = {
-  link: {
-    position: 'fixed',
-    right: 'clamp(1rem, 3vw, 2rem)',
-    bottom: 'clamp(1rem, 3vw, 2rem)',
-    zIndex: 1000,
-    display: 'inline-flex',
-    alignItems: 'center',
-    gap: '0.75rem',
-    minHeight: '3.5rem',
-    padding: '0.85rem 1.1rem',
-    borderRadius: '999px',
-    backgroundColor: '#1c6c4c',
-    color: '#f6efe4',
-    textDecoration: 'none',
-    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
-    border: '1px solid rgba(246, 239, 228, 0.2)',
-  },
-  icon: {
-    width: '1.5rem',
-    height: '1.5rem',
-    flexShrink: 0,
-  },
-  labelGroup: {
-    display: 'grid',
-    lineHeight: 1.2,
-  },
-  eyebrow: {
-    fontSize: '0.7rem',
-    letterSpacing: '0.14em',
-    textTransform: 'uppercase',
-    color: 'rgba(246, 239, 228, 0.72)',
-  },
-  label: {
-    fontSize: '0.95rem',
-    fontWeight: 700,
-  },
-}
-
-const whatsappHref =
-  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
-
-export default function FloatingWhatsAppButton() {
+ succeeded in 52ms:
+export default function Menu() {
   return (
-    <a
-      href={whatsappHref}
-      target="_blank"
-      rel="noreferrer"
-      aria-label="Contact Casa Aurea Events on WhatsApp"
-      style={whatsappStyles.link}
-    >
-      <svg
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-        focusable="false"
-        style={whatsappStyles.icon}
-      >
-        <path
-          fill="currentColor"
-          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
-        />
-      </svg>
-
-      <span style={whatsappStyles.labelGroup}>
-        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
-        <span style={whatsappStyles.label}>Book a quick conversation</span>
-      </span>
-    </a>
+    <>
+      <section id="menu-hero">
+        <h1>Menu Hero</h1>
+        <p>Content for menu-hero will be generated by tasks</p>
+      </section>
+      <section id="menu-categories">
+        <h2>Menu Categories</h2>
+        <p>Content for menu-categories will be generated by tasks</p>
+      </section>
+    </>
   )
 }
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
-@@ -2,2 +2,3 @@
- import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
-+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
-@@ -19,2 +20,3 @@
-       <BrandStoryPreviewSection />
-+      <FloatingWhatsAppButton />
-     </article>
-apply_patch(auto_approved=true) exited 0 in 56ms:
+ succeeded in 52ms:
+/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
+./src/pages/Home.jsx
+./src/pages/Gallery.jsx
+./src/pages/ChiSiamo.jsx
+./src/pages/Contatti.jsx
+./src/pages/Servizi.jsx
+./src/pages/Menu.jsx
+./src/assets/react.svg
+./src/App.jsx
+./src/main.jsx
+./src/components/FloatingWhatsAppButton.jsx
+./src/components/Brand-story-previewSection.jsx
+./src/components/SignaturePreviewSection.jsx
+./src/components/HeroSection.jsx
+./src/index.css
+./src/App.css
+./src/layout/Layout.jsx
+./AGENTS.md
+./eslint.config.js
+./brief/brief-summary.md
+codex
+The route is already mounted. I’ve confirmed `src/pages/Menu.jsx` is still a placeholder, so I’m replacing that with a real semantic shell and then I’ll run a build and append the task report entry.
+exec
+/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Servizi.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+{
+  "name": "site-create-a-premium-modern-website-for-an-e",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test:ui": "playwright test"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.13.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.58.2",
+ succeeded in 51ms:
+export default function ChiSiamo() {
+  return (
+    <>
+      <section id="about-hero">
+        <h1>About Hero</h1>
+        <p>Content for about-hero will be generated by tasks</p>
+      </section>
+      <section id="story">
+        <h2>Story</h2>
+        <p>Content for story will be generated by tasks</p>
+      </section>
+      <section id="philosophy">
+        <h2>Philosophy</h2>
+        <p>Content for philosophy will be generated by tasks</p>
+      </section>
+    </>
+  )
+}
+ succeeded in 51ms:
+import HeroSection from '../components/HeroSection'
+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
+import SignaturePreviewSection from '../components/SignaturePreviewSection'
+
+export default function Home() {
+  return (
+    <article aria-labelledby="home-title">
+      <HeroSection
+        primaryCta={{
+          label: 'Request your event proposal',
+          to: '/menu',
+        }}
+        secondaryCta={{
+          label: 'Contact us for your event',
+          to: '/contatti',
+        }}
+      />
+      <SignaturePreviewSection />
+      <BrandStoryPreviewSection />
+ succeeded in 51ms:
+export default function Servizi() {
+  return (
+    <>
+      <section id="services-hero">
+        <h1>Services Hero</h1>
+        <p>Content for services-hero will be generated by tasks</p>
+      </section>
+      <section id="services-overview">
+        <h2>Services Overview</h2>
+        <p>Content for services-overview will be generated by tasks</p>
+      </section>
+    </>
+  )
+}
+codex
+I have enough context. I’m making one focused edit to replace the menu placeholders with a production-safe page shell that matches the spec’s `menu-hero` and `menu-categories` structure, then I’ll verify with `vite build` and record the task in the agent report.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+@@ -152 +152,11 @@
+ Launching Codex for TASK page-menu-shell.
++
++Completed TASK page-menu-shell.
++
++Implemented a semantic shell for `src/pages/Menu.jsx` with the required
++`menu-hero` and `menu-categories` sections, real premium-facing copy, and a
++single-page `h1` for the `/menu` route. Verified `src/App.jsx` already mounts
++the `/menu` route, so no routing change was required.
++
++TASK page-menu-shell executed by Codex.
++Waiting for validation.
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx
+@@ -2,12 +2,22 @@
+   return (
+-    <>
+-      <section id="menu-hero">
+-        <h1>Menu Hero</h1>
+-        <p>Content for menu-hero will be generated by tasks</p>
++    <article aria-labelledby="menu-title">
++      <section id="menu-hero" aria-labelledby="menu-title">
++        <p>Curated event bar program</p>
++        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
++        <p>
++          Explore the Casa Aurea Events menu page for signature cocktails,
++          aperitivo moments, and premium pours tailored to weddings, private
++          dinners, and refined corporate evenings.
++        </p>
+       </section>
+-      <section id="menu-categories">
+-        <h2>Menu Categories</h2>
+-        <p>Content for menu-categories will be generated by tasks</p>
++
++      <section id="menu-categories" aria-labelledby="menu-categories-title">
++        <h2 id="menu-categories-title">Menu categories</h2>
++        <p>
++          The full drink list will be structured into distinct collections so
++          guests can quickly understand the house signatures, reimagined
++          classics, alcohol-free options, and premium bottle selections.
++        </p>
+       </section>
+-    </>
++    </article>
+   )
+apply_patch(auto_approved=true) exited 0 in 38ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/FloatingWhatsAppButton.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..272ee1ed077805f443407eb0a2f91a7752930f89
---- /dev/null
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -0,0 +1,70 @@
-+const whatsappStyles = {
-+  link: {
-+    position: 'fixed',
-+    right: 'clamp(1rem, 3vw, 2rem)',
-+    bottom: 'clamp(1rem, 3vw, 2rem)',
-+    zIndex: 1000,
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    gap: '0.75rem',
-+    minHeight: '3.5rem',
-+    padding: '0.85rem 1.1rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#1c6c4c',
-+    color: '#f6efe4',
-+    textDecoration: 'none',
-+    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
-+    border: '1px solid rgba(246, 239, 228, 0.2)',
-+  },
-+  icon: {
-+    width: '1.5rem',
-+    height: '1.5rem',
-+    flexShrink: 0,
-+  },
-+  labelGroup: {
-+    display: 'grid',
-+    lineHeight: 1.2,
-+  },
-+  eyebrow: {
-+    fontSize: '0.7rem',
-+    letterSpacing: '0.14em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(246, 239, 228, 0.72)',
-+  },
-+  label: {
-+    fontSize: '0.95rem',
-+    fontWeight: 700,
-+  },
-+}
-+
-+const whatsappHref =
-+  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
-+
-+export default function FloatingWhatsAppButton() {
-+  return (
-+    <a
-+      href={whatsappHref}
-+      target="_blank"
-+      rel="noreferrer"
-+      aria-label="Contact Casa Aurea Events on WhatsApp"
-+      style={whatsappStyles.link}
-+    >
-+      <svg
-+        viewBox="0 0 24 24"
-+        aria-hidden="true"
-+        focusable="false"
-+        style={whatsappStyles.icon}
-+      >
-+        <path
-+          fill="currentColor"
-+          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
-+        />
-+      </svg>
-+
-+      <span style={whatsappStyles.labelGroup}>
-+        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
-+        <span style={whatsappStyles.label}>Book a quick conversation</span>
-+      </span>
-+    </a>
-+  )
-+}
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index ef5813cca6a8811a162967d2365dc47b9837258b..51e6e08d7636a8de8ef4b5a008684701bf737636
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -1,5 +1,6 @@
- import HeroSection from '../components/HeroSection'
- import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
-+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 7cb4d7ea2b41dec997a815c2e1f4e241c8a6d800..afe2f09ea32a893ceb376e6376e318a9487b2da1
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -150,3 +150,13 @@
+ Prepared TASK page-menu-shell (Create menu page shell) for execution.
  
- export default function Home() {
-@@ -17,6 +18,7 @@
-       />
-       <SignaturePreviewSection />
-       <BrandStoryPreviewSection />
-+      <FloatingWhatsAppButton />
-     </article>
+ Launching Codex for TASK page-menu-shell.
++
++Completed TASK page-menu-shell.
++
++Implemented a semantic shell for `src/pages/Menu.jsx` with the required
++`menu-hero` and `menu-categories` sections, real premium-facing copy, and a
++single-page `h1` for the `/menu` route. Verified `src/App.jsx` already mounts
++the `/menu` route, so no routing change was required.
++
++TASK page-menu-shell executed by Codex.
++Waiting for validation.
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index 1a83cadc1d413d772d83d544e70bab727c45c52e..404b260d5e08a21a7f52dbec02fc77aec90ee379
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,14 +1,24 @@
+ export default function Menu() {
+   return (
+-    <>
+-      <section id="menu-hero">
+-        <h1>Menu Hero</h1>
+-        <p>Content for menu-hero will be generated by tasks</p>
++    <article aria-labelledby="menu-title">
++      <section id="menu-hero" aria-labelledby="menu-title">
++        <p>Curated event bar program</p>
++        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
++        <p>
++          Explore the Casa Aurea Events menu page for signature cocktails,
++          aperitivo moments, and premium pours tailored to weddings, private
++          dinners, and refined corporate evenings.
++        </p>
+       </section>
+-      <section id="menu-categories">
+-        <h2>Menu Categories</h2>
+-        <p>Content for menu-categories will be generated by tasks</p>
++
++      <section id="menu-categories" aria-labelledby="menu-categories-title">
++        <h2 id="menu-categories-title">Menu categories</h2>
++        <p>
++          The full drink list will be structured into distinct collections so
++          guests can quickly understand the house signatures, reimagined
++          classics, alcohol-free options, and premium bottle selections.
++        </p>
+       </section>
+-    </>
++    </article>
    )
  }
 
 file update:
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..272ee1ed077805f443407eb0a2f91a7752930f89
---- /dev/null
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -0,0 +1,70 @@
-+const whatsappStyles = {
-+  link: {
-+    position: 'fixed',
-+    right: 'clamp(1rem, 3vw, 2rem)',
-+    bottom: 'clamp(1rem, 3vw, 2rem)',
-+    zIndex: 1000,
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    gap: '0.75rem',
-+    minHeight: '3.5rem',
-+    padding: '0.85rem 1.1rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#1c6c4c',
-+    color: '#f6efe4',
-+    textDecoration: 'none',
-+    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
-+    border: '1px solid rgba(246, 239, 228, 0.2)',
-+  },
-+  icon: {
-+    width: '1.5rem',
-+    height: '1.5rem',
-+    flexShrink: 0,
-+  },
-+  labelGroup: {
-+    display: 'grid',
-+    lineHeight: 1.2,
-+  },
-+  eyebrow: {
-+    fontSize: '0.7rem',
-+    letterSpacing: '0.14em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(246, 239, 228, 0.72)',
-+  },
-+  label: {
-+    fontSize: '0.95rem',
-+    fontWeight: 700,
-+  },
-+}
-+
-+const whatsappHref =
-+  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
-+
-+export default function FloatingWhatsAppButton() {
-+  return (
-+    <a
-+      href={whatsappHref}
-+      target="_blank"
-+      rel="noreferrer"
-+      aria-label="Contact Casa Aurea Events on WhatsApp"
-+      style={whatsappStyles.link}
-+    >
-+      <svg
-+        viewBox="0 0 24 24"
-+        aria-hidden="true"
-+        focusable="false"
-+        style={whatsappStyles.icon}
-+      >
-+        <path
-+          fill="currentColor"
-+          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
-+        />
-+      </svg>
-+
-+      <span style={whatsappStyles.labelGroup}>
-+        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
-+        <span style={whatsappStyles.label}>Book a quick conversation</span>
-+      </span>
-+    </a>
-+  )
-+}
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index ef5813cca6a8811a162967d2365dc47b9837258b..51e6e08d7636a8de8ef4b5a008684701bf737636
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -1,5 +1,6 @@
- import HeroSection from '../components/HeroSection'
- import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
-+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 7cb4d7ea2b41dec997a815c2e1f4e241c8a6d800..afe2f09ea32a893ceb376e6376e318a9487b2da1
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -150,3 +150,13 @@
+ Prepared TASK page-menu-shell (Create menu page shell) for execution.
  
- export default function Home() {
-@@ -17,6 +18,7 @@
-       />
-       <SignaturePreviewSection />
-       <BrandStoryPreviewSection />
-+      <FloatingWhatsAppButton />
-     </article>
+ Launching Codex for TASK page-menu-shell.
++
++Completed TASK page-menu-shell.
++
++Implemented a semantic shell for `src/pages/Menu.jsx` with the required
++`menu-hero` and `menu-categories` sections, real premium-facing copy, and a
++single-page `h1` for the `/menu` route. Verified `src/App.jsx` already mounts
++the `/menu` route, so no routing change was required.
++
++TASK page-menu-shell executed by Codex.
++Waiting for validation.
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index 1a83cadc1d413d772d83d544e70bab727c45c52e..404b260d5e08a21a7f52dbec02fc77aec90ee379
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,14 +1,24 @@
+ export default function Menu() {
+   return (
+-    <>
+-      <section id="menu-hero">
+-        <h1>Menu Hero</h1>
+-        <p>Content for menu-hero will be generated by tasks</p>
++    <article aria-labelledby="menu-title">
++      <section id="menu-hero" aria-labelledby="menu-title">
++        <p>Curated event bar program</p>
++        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
++        <p>
++          Explore the Casa Aurea Events menu page for signature cocktails,
++          aperitivo moments, and premium pours tailored to weddings, private
++          dinners, and refined corporate evenings.
++        </p>
+       </section>
+-      <section id="menu-categories">
+-        <h2>Menu Categories</h2>
+-        <p>Content for menu-categories will be generated by tasks</p>
++
++      <section id="menu-categories" aria-labelledby="menu-categories-title">
++        <h2 id="menu-categories-title">Menu categories</h2>
++        <p>
++          The full drink list will be structured into distinct collections so
++          guests can quickly understand the house signatures, reimagined
++          classics, alcohol-free options, and premium bottle selections.
++        </p>
+       </section>
+-    </>
++    </article>
    )
  }
 
 codex
-The CTA is in place on the home page now as a fixed external WhatsApp action. I’m running the build next to catch any integration issues before I append the task note to the report.
+The page shell is in place. I’m running the build now to confirm the menu route renders cleanly and that this task didn’t introduce any regressions.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 918ms:
-
-> site-create-a-premium-modern-website-for-an-e@0.0.0 build
-> vite build
-
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 781ms:
 vite v7.3.1 building client environment for production...
 transforming...
 ✓ 52 modules transformed.
@@ -1686,498 +1592,127 @@ rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-yfP2BEFS.js   245.63 kB │ gzip: 78.14 kB
-✓ built in 566ms
+dist/assets/index-D8ox5Rxy.js   246.13 kB │ gzip: 78.33 kB
+✓ built in 558ms
 file update:
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..272ee1ed077805f443407eb0a2f91a7752930f89
---- /dev/null
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -0,0 +1,70 @@
-+const whatsappStyles = {
-+  link: {
-+    position: 'fixed',
-+    right: 'clamp(1rem, 3vw, 2rem)',
-+    bottom: 'clamp(1rem, 3vw, 2rem)',
-+    zIndex: 1000,
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    gap: '0.75rem',
-+    minHeight: '3.5rem',
-+    padding: '0.85rem 1.1rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#1c6c4c',
-+    color: '#f6efe4',
-+    textDecoration: 'none',
-+    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
-+    border: '1px solid rgba(246, 239, 228, 0.2)',
-+  },
-+  icon: {
-+    width: '1.5rem',
-+    height: '1.5rem',
-+    flexShrink: 0,
-+  },
-+  labelGroup: {
-+    display: 'grid',
-+    lineHeight: 1.2,
-+  },
-+  eyebrow: {
-+    fontSize: '0.7rem',
-+    letterSpacing: '0.14em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(246, 239, 228, 0.72)',
-+  },
-+  label: {
-+    fontSize: '0.95rem',
-+    fontWeight: 700,
-+  },
-+}
-+
-+const whatsappHref =
-+  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
-+
-+export default function FloatingWhatsAppButton() {
-+  return (
-+    <a
-+      href={whatsappHref}
-+      target="_blank"
-+      rel="noreferrer"
-+      aria-label="Contact Casa Aurea Events on WhatsApp"
-+      style={whatsappStyles.link}
-+    >
-+      <svg
-+        viewBox="0 0 24 24"
-+        aria-hidden="true"
-+        focusable="false"
-+        style={whatsappStyles.icon}
-+      >
-+        <path
-+          fill="currentColor"
-+          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
-+        />
-+      </svg>
-+
-+      <span style={whatsappStyles.labelGroup}>
-+        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
-+        <span style={whatsappStyles.label}>Book a quick conversation</span>
-+      </span>
-+    </a>
-+  )
-+}
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index ef5813cca6a8811a162967d2365dc47b9837258b..51e6e08d7636a8de8ef4b5a008684701bf737636
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -1,5 +1,6 @@
- import HeroSection from '../components/HeroSection'
- import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
-+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 7cb4d7ea2b41dec997a815c2e1f4e241c8a6d800..afe2f09ea32a893ceb376e6376e318a9487b2da1
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -150,3 +150,13 @@
+ Prepared TASK page-menu-shell (Create menu page shell) for execution.
  
- export default function Home() {
-@@ -17,6 +18,7 @@
-       />
-       <SignaturePreviewSection />
-       <BrandStoryPreviewSection />
-+      <FloatingWhatsAppButton />
-     </article>
+ Launching Codex for TASK page-menu-shell.
++
++Completed TASK page-menu-shell.
++
++Implemented a semantic shell for `src/pages/Menu.jsx` with the required
++`menu-hero` and `menu-categories` sections, real premium-facing copy, and a
++single-page `h1` for the `/menu` route. Verified `src/App.jsx` already mounts
++the `/menu` route, so no routing change was required.
++
++TASK page-menu-shell executed by Codex.
++Waiting for validation.
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index 1a83cadc1d413d772d83d544e70bab727c45c52e..404b260d5e08a21a7f52dbec02fc77aec90ee379
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,14 +1,24 @@
+ export default function Menu() {
+   return (
+-    <>
+-      <section id="menu-hero">
+-        <h1>Menu Hero</h1>
+-        <p>Content for menu-hero will be generated by tasks</p>
++    <article aria-labelledby="menu-title">
++      <section id="menu-hero" aria-labelledby="menu-title">
++        <p>Curated event bar program</p>
++        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
++        <p>
++          Explore the Casa Aurea Events menu page for signature cocktails,
++          aperitivo moments, and premium pours tailored to weddings, private
++          dinners, and refined corporate evenings.
++        </p>
+       </section>
+-      <section id="menu-categories">
+-        <h2>Menu Categories</h2>
+-        <p>Content for menu-categories will be generated by tasks</p>
++
++      <section id="menu-categories" aria-labelledby="menu-categories-title">
++        <h2 id="menu-categories-title">Menu categories</h2>
++        <p>
++          The full drink list will be structured into distinct collections so
++          guests can quickly understand the house signatures, reimagined
++          classics, alcohol-free options, and premium bottle selections.
++        </p>
+       </section>
+-    </>
++    </article>
    )
  }
 
 codex
-The build passed cleanly. I’m updating `agent/AGENT_REPORT.md` with a short task summary and then I’ll return the modified files and result.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -127 +127,15 @@
- Launching Codex for TASK cta-home-home-whatsapp.
-+
-+Completed TASK cta-home-home-whatsapp.
-+
-+Implemented a reusable floating WhatsApp CTA in
-+`src/components/FloatingWhatsAppButton.jsx` and rendered it from
-+`src/pages/Home.jsx`. The home page now exposes the required fixed WhatsApp
-+action with a valid `https://wa.me/39011000000` destination and prefilled
-+proposal inquiry message.
-+
-+TASK cta-home-home-whatsapp executed by Codex.
-+Waiting for validation.
-+
-+TASK cta-home-home-whatsapp completed successfully.
-+Build passed.
-apply_patch(auto_approved=true) exited 0 in 59ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+Modified files: [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+
+Implemented the `page-menu-shell` task by replacing the placeholder content in [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx) with a semantic menu page shell: an `article`, a real `menu-hero` section, a real `menu-categories` section, premium copy, and one valid page `h1`. The `/menu` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so no route change was needed. I also appended the task summary to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+
+Build result: `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 5a07e0f44e8d4a5faa7e377fbe057d7d1a87e0d9..6f29b7507833b3a1c1b08a3b8b0cda933cee4b2e
+index 7cb4d7ea2b41dec997a815c2e1f4e241c8a6d800..afe2f09ea32a893ceb376e6376e318a9487b2da1
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -125,3 +125,17 @@
- Prepared TASK cta-home-home-whatsapp (Add CTA home-whatsapp on home) for execution.
+@@ -150,3 +150,13 @@
+ Prepared TASK page-menu-shell (Create menu page shell) for execution.
  
- Launching Codex for TASK cta-home-home-whatsapp.
+ Launching Codex for TASK page-menu-shell.
 +
-+Completed TASK cta-home-home-whatsapp.
++Completed TASK page-menu-shell.
 +
-+Implemented a reusable floating WhatsApp CTA in
-+`src/components/FloatingWhatsAppButton.jsx` and rendered it from
-+`src/pages/Home.jsx`. The home page now exposes the required fixed WhatsApp
-+action with a valid `https://wa.me/39011000000` destination and prefilled
-+proposal inquiry message.
++Implemented a semantic shell for `src/pages/Menu.jsx` with the required
++`menu-hero` and `menu-categories` sections, real premium-facing copy, and a
++single-page `h1` for the `/menu` route. Verified `src/App.jsx` already mounts
++the `/menu` route, so no routing change was required.
 +
-+TASK cta-home-home-whatsapp executed by Codex.
++TASK page-menu-shell executed by Codex.
 +Waiting for validation.
+diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
+index 1a83cadc1d413d772d83d544e70bab727c45c52e..404b260d5e08a21a7f52dbec02fc77aec90ee379
+--- a/src/pages/Menu.jsx
++++ b/src/pages/Menu.jsx
+@@ -1,14 +1,24 @@
+ export default function Menu() {
+   return (
+-    <>
+-      <section id="menu-hero">
+-        <h1>Menu Hero</h1>
+-        <p>Content for menu-hero will be generated by tasks</p>
++    <article aria-labelledby="menu-title">
++      <section id="menu-hero" aria-labelledby="menu-title">
++        <p>Curated event bar program</p>
++        <h1 id="menu-title">Drink selections designed for elegant celebrations</h1>
++        <p>
++          Explore the Casa Aurea Events menu page for signature cocktails,
++          aperitivo moments, and premium pours tailored to weddings, private
++          dinners, and refined corporate evenings.
++        </p>
+       </section>
+-      <section id="menu-categories">
+-        <h2>Menu Categories</h2>
+-        <p>Content for menu-categories will be generated by tasks</p>
 +
-+TASK cta-home-home-whatsapp completed successfully.
-+Build passed.
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..272ee1ed077805f443407eb0a2f91a7752930f89
---- /dev/null
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -0,0 +1,70 @@
-+const whatsappStyles = {
-+  link: {
-+    position: 'fixed',
-+    right: 'clamp(1rem, 3vw, 2rem)',
-+    bottom: 'clamp(1rem, 3vw, 2rem)',
-+    zIndex: 1000,
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    gap: '0.75rem',
-+    minHeight: '3.5rem',
-+    padding: '0.85rem 1.1rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#1c6c4c',
-+    color: '#f6efe4',
-+    textDecoration: 'none',
-+    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
-+    border: '1px solid rgba(246, 239, 228, 0.2)',
-+  },
-+  icon: {
-+    width: '1.5rem',
-+    height: '1.5rem',
-+    flexShrink: 0,
-+  },
-+  labelGroup: {
-+    display: 'grid',
-+    lineHeight: 1.2,
-+  },
-+  eyebrow: {
-+    fontSize: '0.7rem',
-+    letterSpacing: '0.14em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(246, 239, 228, 0.72)',
-+  },
-+  label: {
-+    fontSize: '0.95rem',
-+    fontWeight: 700,
-+  },
-+}
-+
-+const whatsappHref =
-+  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
-+
-+export default function FloatingWhatsAppButton() {
-+  return (
-+    <a
-+      href={whatsappHref}
-+      target="_blank"
-+      rel="noreferrer"
-+      aria-label="Contact Casa Aurea Events on WhatsApp"
-+      style={whatsappStyles.link}
-+    >
-+      <svg
-+        viewBox="0 0 24 24"
-+        aria-hidden="true"
-+        focusable="false"
-+        style={whatsappStyles.icon}
-+      >
-+        <path
-+          fill="currentColor"
-+          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
-+        />
-+      </svg>
-+
-+      <span style={whatsappStyles.labelGroup}>
-+        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
-+        <span style={whatsappStyles.label}>Book a quick conversation</span>
-+      </span>
-+    </a>
-+  )
-+}
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index ef5813cca6a8811a162967d2365dc47b9837258b..51e6e08d7636a8de8ef4b5a008684701bf737636
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -1,5 +1,6 @@
- import HeroSection from '../components/HeroSection'
- import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
-+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
- 
- export default function Home() {
-@@ -17,6 +18,7 @@
-       />
-       <SignaturePreviewSection />
-       <BrandStoryPreviewSection />
-+      <FloatingWhatsAppButton />
-     </article>
-   )
- }
-
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 5a07e0f44e8d4a5faa7e377fbe057d7d1a87e0d9..6f29b7507833b3a1c1b08a3b8b0cda933cee4b2e
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -125,3 +125,17 @@
- Prepared TASK cta-home-home-whatsapp (Add CTA home-whatsapp on home) for execution.
- 
- Launching Codex for TASK cta-home-home-whatsapp.
-+
-+Completed TASK cta-home-home-whatsapp.
-+
-+Implemented a reusable floating WhatsApp CTA in
-+`src/components/FloatingWhatsAppButton.jsx` and rendered it from
-+`src/pages/Home.jsx`. The home page now exposes the required fixed WhatsApp
-+action with a valid `https://wa.me/39011000000` destination and prefilled
-+proposal inquiry message.
-+
-+TASK cta-home-home-whatsapp executed by Codex.
-+Waiting for validation.
-+
-+TASK cta-home-home-whatsapp completed successfully.
-+Build passed.
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..272ee1ed077805f443407eb0a2f91a7752930f89
---- /dev/null
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -0,0 +1,70 @@
-+const whatsappStyles = {
-+  link: {
-+    position: 'fixed',
-+    right: 'clamp(1rem, 3vw, 2rem)',
-+    bottom: 'clamp(1rem, 3vw, 2rem)',
-+    zIndex: 1000,
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    gap: '0.75rem',
-+    minHeight: '3.5rem',
-+    padding: '0.85rem 1.1rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#1c6c4c',
-+    color: '#f6efe4',
-+    textDecoration: 'none',
-+    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
-+    border: '1px solid rgba(246, 239, 228, 0.2)',
-+  },
-+  icon: {
-+    width: '1.5rem',
-+    height: '1.5rem',
-+    flexShrink: 0,
-+  },
-+  labelGroup: {
-+    display: 'grid',
-+    lineHeight: 1.2,
-+  },
-+  eyebrow: {
-+    fontSize: '0.7rem',
-+    letterSpacing: '0.14em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(246, 239, 228, 0.72)',
-+  },
-+  label: {
-+    fontSize: '0.95rem',
-+    fontWeight: 700,
-+  },
-+}
-+
-+const whatsappHref =
-+  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
-+
-+export default function FloatingWhatsAppButton() {
-+  return (
-+    <a
-+      href={whatsappHref}
-+      target="_blank"
-+      rel="noreferrer"
-+      aria-label="Contact Casa Aurea Events on WhatsApp"
-+      style={whatsappStyles.link}
-+    >
-+      <svg
-+        viewBox="0 0 24 24"
-+        aria-hidden="true"
-+        focusable="false"
-+        style={whatsappStyles.icon}
-+      >
-+        <path
-+          fill="currentColor"
-+          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
-+        />
-+      </svg>
-+
-+      <span style={whatsappStyles.labelGroup}>
-+        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
-+        <span style={whatsappStyles.label}>Book a quick conversation</span>
-+      </span>
-+    </a>
-+  )
-+}
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index ef5813cca6a8811a162967d2365dc47b9837258b..51e6e08d7636a8de8ef4b5a008684701bf737636
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -1,5 +1,6 @@
- import HeroSection from '../components/HeroSection'
- import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
-+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
- 
- export default function Home() {
-@@ -17,6 +18,7 @@
-       />
-       <SignaturePreviewSection />
-       <BrandStoryPreviewSection />
-+      <FloatingWhatsAppButton />
-     </article>
-   )
- }
-
-codex
-Modified files:
-- [src/pages/Home.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Home.jsx)
-- [src/components/FloatingWhatsAppButton.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/FloatingWhatsAppButton.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
-
-What was implemented:
-- Added the `home-whatsapp` CTA to the home page as a floating fixed button.
-- Kept it modular by creating a reusable `FloatingWhatsAppButton` component.
-- Wired the CTA to a valid WhatsApp URL: `https://wa.me/39011000000?...` with a prefilled proposal inquiry message.
-- Rendered it only on the home page to match the current task scope.
-
-Build result:
-- `npm run build` passed successfully.
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 5a07e0f44e8d4a5faa7e377fbe057d7d1a87e0d9..6f29b7507833b3a1c1b08a3b8b0cda933cee4b2e
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -125,3 +125,17 @@
- Prepared TASK cta-home-home-whatsapp (Add CTA home-whatsapp on home) for execution.
- 
- Launching Codex for TASK cta-home-home-whatsapp.
-+
-+Completed TASK cta-home-home-whatsapp.
-+
-+Implemented a reusable floating WhatsApp CTA in
-+`src/components/FloatingWhatsAppButton.jsx` and rendered it from
-+`src/pages/Home.jsx`. The home page now exposes the required fixed WhatsApp
-+action with a valid `https://wa.me/39011000000` destination and prefilled
-+proposal inquiry message.
-+
-+TASK cta-home-home-whatsapp executed by Codex.
-+Waiting for validation.
-+
-+TASK cta-home-home-whatsapp completed successfully.
-+Build passed.
-diff --git a/src/components/FloatingWhatsAppButton.jsx b/src/components/FloatingWhatsAppButton.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..272ee1ed077805f443407eb0a2f91a7752930f89
---- /dev/null
-+++ b/src/components/FloatingWhatsAppButton.jsx
-@@ -0,0 +1,70 @@
-+const whatsappStyles = {
-+  link: {
-+    position: 'fixed',
-+    right: 'clamp(1rem, 3vw, 2rem)',
-+    bottom: 'clamp(1rem, 3vw, 2rem)',
-+    zIndex: 1000,
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    gap: '0.75rem',
-+    minHeight: '3.5rem',
-+    padding: '0.85rem 1.1rem',
-+    borderRadius: '999px',
-+    backgroundColor: '#1c6c4c',
-+    color: '#f6efe4',
-+    textDecoration: 'none',
-+    boxShadow: '0 18px 40px rgba(28, 108, 76, 0.28)',
-+    border: '1px solid rgba(246, 239, 228, 0.2)',
-+  },
-+  icon: {
-+    width: '1.5rem',
-+    height: '1.5rem',
-+    flexShrink: 0,
-+  },
-+  labelGroup: {
-+    display: 'grid',
-+    lineHeight: 1.2,
-+  },
-+  eyebrow: {
-+    fontSize: '0.7rem',
-+    letterSpacing: '0.14em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(246, 239, 228, 0.72)',
-+  },
-+  label: {
-+    fontSize: '0.95rem',
-+    fontWeight: 700,
-+  },
-+}
-+
-+const whatsappHref =
-+  'https://wa.me/39011000000?text=Hello%20Casa%20Aurea%20Events%2C%20I%20would%20like%20to%20request%20an%20event%20proposal.'
-+
-+export default function FloatingWhatsAppButton() {
-+  return (
-+    <a
-+      href={whatsappHref}
-+      target="_blank"
-+      rel="noreferrer"
-+      aria-label="Contact Casa Aurea Events on WhatsApp"
-+      style={whatsappStyles.link}
-+    >
-+      <svg
-+        viewBox="0 0 24 24"
-+        aria-hidden="true"
-+        focusable="false"
-+        style={whatsappStyles.icon}
-+      >
-+        <path
-+          fill="currentColor"
-+          d="M12 2a10 10 0 0 0-8.76 14.82L2 22l5.35-1.18A10 10 0 1 0 12 2Zm0 18.18a8.14 8.14 0 0 1-4.15-1.14l-.3-.18-3.17.7.68-3.1-.2-.31A8.18 8.18 0 1 1 12 20.18Zm4.49-6.1c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.93-1.18-.71-.63-1.19-1.41-1.33-1.65-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.48-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2 0 1.18.86 2.32.98 2.48.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.5.58.18 1.1.15 1.52.09.46-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"
-+        />
-+      </svg>
-+
-+      <span style={whatsappStyles.labelGroup}>
-+        <span style={whatsappStyles.eyebrow}>WhatsApp</span>
-+        <span style={whatsappStyles.label}>Book a quick conversation</span>
-+      </span>
-+    </a>
-+  )
-+}
-diff --git a/src/pages/Home.jsx b/src/pages/Home.jsx
-index ef5813cca6a8811a162967d2365dc47b9837258b..51e6e08d7636a8de8ef4b5a008684701bf737636
---- a/src/pages/Home.jsx
-+++ b/src/pages/Home.jsx
-@@ -1,5 +1,6 @@
- import HeroSection from '../components/HeroSection'
- import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
-+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
- import SignaturePreviewSection from '../components/SignaturePreviewSection'
- 
- export default function Home() {
-@@ -17,6 +18,7 @@
-       />
-       <SignaturePreviewSection />
-       <BrandStoryPreviewSection />
-+      <FloatingWhatsAppButton />
-     </article>
++      <section id="menu-categories" aria-labelledby="menu-categories-title">
++        <h2 id="menu-categories-title">Menu categories</h2>
++        <p>
++          The full drink list will be structured into distinct collections so
++          guests can quickly understand the house signatures, reimagined
++          classics, alcohol-free options, and premium bottle selections.
++        </p>
+       </section>
+-    </>
++    </article>
    )
  }
 
 tokens used
-20.092
+15.414
