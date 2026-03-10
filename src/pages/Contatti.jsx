@@ -1,35 +1,12 @@
 import ContactHeroSection from '../components/Contact-heroSection'
+import ContactDetailsSection from '../components/Contact-detailsSection'
 
 export default function Contatti() {
   return (
     <article aria-labelledby="contatti-title">
       <ContactHeroSection />
 
-      <section id="contact-details">
-        <h2>Contact details</h2>
-        <p>
-          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
-          and polished presentation.
-        </p>
-        <dl>
-          <div>
-            <dt>Phone</dt>
-            <dd>
-              <a href="tel:+39011000000">+39 011 000000</a>
-            </dd>
-          </div>
-          <div>
-            <dt>Email</dt>
-            <dd>
-              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
-            </dd>
-          </div>
-          <div>
-            <dt>Service area</dt>
-            <dd>Torino and surrounding areas</dd>
-          </div>
-        </dl>
-      </section>
+      <ContactDetailsSection />
 
       <section id="opening-hours">
         <h2>Availability</h2>

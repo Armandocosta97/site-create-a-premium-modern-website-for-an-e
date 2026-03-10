@@ -219,6 +219,18 @@ Build passed.
 
 Implemented a dedicated `Menu-categoriesSection` component in
 
+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-contact-details.
+
+Completed TASK section-contatti-contact-details.
+
+Implemented a dedicated `Contact-detailsSection` component in
+`src/components/Contact-detailsSection.jsx` and rendered it from
+`src/pages/Contatti.jsx`. The contatti page now includes the required
+`contact-details` contact-block section with premium inquiry copy, linked phone
+and email details, and service area information.
+
 Prepared TASK section-contatti-contact-hero (Create contact-hero section on contatti) for execution.
 
 Launching Codex for TASK section-contatti-contact-hero.
@@ -481,4 +493,15 @@ TASK section-contatti-contact-hero executed by Codex.
 Waiting for validation.
 
 TASK section-contatti-contact-hero completed successfully.
+Build passed.
+Commit created for TASK section-contatti-contact-hero.
+
+Prepared TASK section-contatti-contact-details (Create contact-details section on contatti) for execution.
+
+Launching Codex for TASK section-contatti-contact-details.
+
+TASK section-contatti-contact-details executed by Codex.
+Waiting for validation.
+
+TASK section-contatti-contact-details completed successfully.
 Build passed.
