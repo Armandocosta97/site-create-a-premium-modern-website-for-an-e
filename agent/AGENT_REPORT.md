@@ -218,6 +218,50 @@ TASK section-chi-siamo-philosophy completed successfully.
 Build passed.
 
 Implemented a dedicated `Menu-categoriesSection` component in
+`src/components/Menu-categoriesSection.jsx` and rendered it from
+`src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
+page now includes structured drink families with refined descriptions and
+flavor notes aligned to the premium event-bar positioning.
+
+TASK section-menu-menu-categories executed by Codex.
+Waiting for validation.
+
+TASK section-menu-menu-categories completed successfully.
+Build passed.
+Commit created for TASK section-menu-menu-categories.
+
+Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
+
+Launching Codex for TASK page-gallery-shell.
+
+Completed TASK page-gallery-shell.
+
+Implemented a semantic shell for `src/pages/Gallery.jsx` with the required
+`gallery-hero` and `gallery-grid` sections, preserving a single page `h1` and
+keeping the gallery route ready for dedicated section work.
+
+TASK page-gallery-shell executed by Codex.
+Waiting for validation.
+
+TASK page-gallery-shell completed successfully.
+Build passed.
+Commit created for TASK page-gallery-shell.
+
+Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
+
+Launching Codex for TASK section-gallery-gallery-hero.
+
+Completed TASK section-gallery-gallery-hero.
+
+Implemented a dedicated `Gallery-heroSection` component in
+`src/components/Gallery-heroSection.jsx` and rendered it from
+`src/pages/Gallery.jsx` to replace the inline placeholder hero markup. The
+gallery page now has the required premium hero structure with editorial copy,
+coherent highlights, and the existing `gallery-grid` shell left intact for the
+next task.
+
+TASK section-gallery-gallery-hero executed by Codex.
+Waiting for validation.
 
 Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
 
@@ -347,4 +391,15 @@ TASK page-gallery-shell executed by Codex.
 Waiting for validation.
 
 TASK page-gallery-shell completed successfully.
+Build passed.
+Commit created for TASK page-gallery-shell.
+
+Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
+
+Launching Codex for TASK section-gallery-gallery-hero.
+
+TASK section-gallery-gallery-hero executed by Codex.
+Waiting for validation.
+
+TASK section-gallery-gallery-hero completed successfully.
 Build passed.

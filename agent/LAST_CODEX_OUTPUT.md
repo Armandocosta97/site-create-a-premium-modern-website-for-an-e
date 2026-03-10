@@ -1,8 +1,15 @@
-Modified files: [Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files:
+- [src/components/Gallery-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-heroSection.jsx)
+- [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx)
+- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-Implemented the gallery page shell in [Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx) by replacing placeholder text with a semantic `article` containing the required `gallery-hero` and `gallery-grid` sections, premium copy, and a single page `h1`. The `/gallery` route was already mounted in [App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so no routing change was needed. I also updated [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with a short task summary per project instructions.
+What was implemented:
+- Added a dedicated `GalleryHeroSection` component for the `gallery-hero` section with premium editorial styling, a single page `h1`, and supporting highlight cards.
+- Updated the gallery page to render the new hero component and kept the existing `gallery-grid` shell unchanged.
+- Appended the task summary to `agent/AGENT_REPORT.md`.
 
-Build result: `npm run build` passed successfully.
+Build result:
+- `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +20,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd83f-ff01-7150-85d2-8b46ad09d3c2
+session id: 019cd840-b514-7a33-962b-8f31d98f0d2f
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1196,32 +1203,35 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-page-gallery-shell
+section-gallery-gallery-hero
 
 ## Current task title
-Create gallery page shell
+Create gallery-hero section on gallery
 
 ## Current task type
-page-shell
+section
 
 ## Current task target
 ```json
 {
-  "pageId": "gallery"
+  "pageId": "gallery",
+  "sectionId": "gallery-hero",
+  "sectionType": "hero"
 }
 ```
 
 ## Depends on
-- none
+- page-gallery-shell
 
 ## Files allowed
-- src/App.jsx
 - src/pages/Gallery.jsx
+- src/components/Gallery-heroSection.jsx
+- src/components
 
 ## Definition of done
-- page shell exists for gallery
-- gallery route is mounted if required
-- gallery page renders without crashing
+- section gallery-hero exists on gallery
+- section gallery-hero matches type hero
+- section gallery-hero is rendered in page gallery
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1250,54 +1260,53 @@ page-shell
 
 mcp startup: no servers
 codex
-I’m checking the current app structure and the gallery route setup first so I can add only the shell required for this task and avoid touching unrelated pages.
+I’m checking the current gallery page, the task prompt, and the existing component structure so I can add only the `gallery-hero` section and keep the change inside the allowed scope.
 exec
-/bin/zsh -lc "pwd && rg --files src agent brief docs | rg '"'^(src/App.jsx|src/pages|agent/AGENT_REPORT.md|agent/CURRENT_TASK_PROMPT.md|agent/TASK_STATE.json|site-spec.json|docs/DEVELOPMENT_METHOD.md)$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
 /bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
-/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
-docs/DEVELOPMENT_METHOD.md
-agent/CURRENT_TASK_PROMPT.md
-agent/TASK_STATE.json
-agent/AGENT_REPORT.md
-src/App.jsx
- succeeded in 51ms:
+/bin/zsh -lc "pwd && rg --files src agent brief docs | rg 'Gallery|gallery|AGENT_REPORT|CURRENT_TASK_PROMPT|TASK_STATE|TASK_GRAPH|site-spec|DEVELOPMENT_METHOD'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
 export default function Gallery() {
   return (
-    <>
-      <section id="gallery-hero">
-        <h1>Gallery Hero</h1>
-        <p>Content for gallery-hero will be generated by tasks</p>
+    <article aria-labelledby="gallery-title">
+      <section id="gallery-hero" aria-labelledby="gallery-title">
+        <p>Casa Aurea Events</p>
+        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
+        <p>
+          Explore a gallery of refined tablescapes, signature cocktails, plated
+          service, and celebration settings designed for weddings, private
+          events, and premium corporate evenings.
+        </p>
       </section>
-      <section id="gallery-grid">
-        <h2>Gallery Grid</h2>
-        <p>Content for gallery-grid will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
- succeeded in 51ms:
-import { HashRouter, Routes, Route } from "react-router-dom"
-import Layout from "./layout/Layout"
-import Home from "./pages/Home"
-import Menu from "./pages/Menu"
-import ChiSiamo from "./pages/Chi-siamo"
-import Gallery from "./pages/Gallery"
-import Contatti from "./pages/Contatti"
-import Servizi from "./pages/Servizi"
 
-export default function App() {
-  return (
-    <HashRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
-          <Route path="/chi-siamo" element={<ChiSiamo />} />
-          <Route path="/gallery" element={<Gallery />} />
-          <Route path="/contatti" element={<Contatti />} />
-          <Route path="/servizi" element={<Servizi />} />
+      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+        <h2 id="gallery-grid-title">Gallery collection</h2>
+        <p>
+          This page is prepared for the premium image grid that will showcase
+          catering presentation, cocktail service, event styling, and guest
+          atmosphere across Casa Aurea Events experiences.
+        </p>
+ succeeded in 51ms:
+# CURRENT TASK EXECUTION PROMPT
+
+You are the coding executor for this project.
+
+## Project path
+site-create-a-premium-modern-website-for-an-e
+
+## Source of truth files
+- brief/original-prompt.md
+- brief/brief-summary.md
+- site-spec.json
+- docs/DEVELOPMENT_METHOD.md
+- agent/TASK_GRAPH.json
+- agent/TASK_STATE.json
+- agent/CURRENT_TASK_PROMPT.md
+
+## Development method
+# Development Method
+
+All sites must follow these rules.
  succeeded in 51ms:
 # AGENT REPORT
 
@@ -1319,14 +1328,132 @@ Waiting for validation.
 TASK page-home-shell completed successfully.
 Build passed.
 Commit created for TASK page-home-shell.
+ succeeded in 52ms:
+/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
+docs/DEVELOPMENT_METHOD.md
+agent/TASK_GRAPH.json
+agent/CURRENT_TASK_PROMPT.md
+agent/TASK_STATE.json
+agent/AGENT_REPORT.md
+src/pages/Gallery.jsx
 codex
-The gallery route already exists in `src/App.jsx`. I’m replacing the placeholder page content with a semantic shell that matches the spec, then I’ll run the build and append the task summary to the agent report.
+I found the gallery page still using inline placeholder hero markup. Next I’m matching the existing component style used on other pages, then I’ll replace only the gallery hero with a dedicated reusable section component.
+exec
+/bin/zsh -lc "sed -n '1,260p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/components/HeroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/components/Menu-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'rg --files src/components | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 50ms:
+import { Link } from 'react-router-dom'
+
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(30rem, 72vh, 42rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 46rem)',
+ succeeded in 51ms:
+import MenuHeroSection from '../components/Menu-heroSection'
+import MenuCategoriesSection from '../components/Menu-categoriesSection'
+
+export default function Menu() {
+  return (
+    <article aria-labelledby="menu-title">
+      <MenuHeroSection />
+      <MenuCategoriesSection />
+    </article>
+  )
+}
+ succeeded in 52ms:
+import { Link } from 'react-router-dom'
+
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(32rem, 78vh, 46rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(40, 31, 24, 0.18) 0%, rgba(28, 22, 18, 0.72) 62%, rgba(20, 15, 12, 0.9) 100%), url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 42rem)',
+ succeeded in 51ms:
+import HeroSection from '../components/HeroSection'
+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
+import SignaturePreviewSection from '../components/SignaturePreviewSection'
+
+export default function Home() {
+  return (
+    <article aria-labelledby="home-title">
+      <HeroSection
+        primaryCta={{
+          label: 'Request your event proposal',
+          to: '/menu',
+        }}
+        secondaryCta={{
+          label: 'Contact us for your event',
+          to: '/contatti',
+        }}
+      />
+      <SignaturePreviewSection />
+      <BrandStoryPreviewSection />
+ succeeded in 52ms:
+src/components/About-heroSection.jsx
+src/components/Brand-story-previewSection.jsx
+src/components/FloatingWhatsAppButton.jsx
+src/components/HeroSection.jsx
+src/components/Menu-categoriesSection.jsx
+src/components/Menu-heroSection.jsx
+src/components/PhilosophySection.jsx
+src/components/SignaturePreviewSection.jsx
+src/components/StorySection.jsx
+codex
+The component pattern is consistent: page shells import dedicated section components, and heroes use self-contained inline style objects. I’m keeping the same pattern for `gallery-hero` so the change stays minimal and matches the existing architecture.
 exec
 /bin/zsh -lc "sed -n '1,220p' package.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' 'src/pages/Chi-siamo.jsx'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "rg --files | rg '"'^(package.json|src/pages/Gallery.jsx|src/pages/Menu.jsx|src/pages/Contatti.jsx|src/pages/Chi-siamo.jsx)$'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' src/components/About-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(30rem, 74vh, 43rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(52, 38, 31, 0.12) 0%, rgba(31, 23, 18, 0.66) 56%, rgba(20, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 47rem)',
+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
+    borderRadius: '28px',
+ succeeded in 51ms:
 {
   "name": "site-create-a-premium-modern-website-for-an-e",
   "private": true,
@@ -1347,65 +1474,23 @@ exec
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@playwright/test": "^1.58.2",
- succeeded in 51ms:
-export default function Contatti() {
-  return (
-    <>
-      <section id="contact-hero">
-        <h1>Contact Hero</h1>
-        <p>Content for contact-hero will be generated by tasks</p>
-      </section>
-      <section id="contact-details">
-        <h2>Contact Details</h2>
-        <p>Content for contact-details will be generated by tasks</p>
-      </section>
-      <section id="opening-hours">
-        <h2>Opening Hours</h2>
-        <p>Content for opening-hours will be generated by tasks</p>
-      </section>
-    </>
-  )
-}
- succeeded in 51ms:
-import MenuHeroSection from '../components/Menu-heroSection'
-import MenuCategoriesSection from '../components/Menu-categoriesSection'
-
-export default function Menu() {
-  return (
-    <article aria-labelledby="menu-title">
-      <MenuHeroSection />
-      <MenuCategoriesSection />
-    </article>
-  )
-}
- succeeded in 51ms:
-import AboutHeroSection from '../components/About-heroSection'
-import PhilosophySection from '../components/PhilosophySection'
-import StorySection from '../components/StorySection'
-
-export default function ChiSiamo() {
-  return (
-    <article aria-labelledby="chi-siamo-title">
-      <AboutHeroSection />
-
-      <StorySection />
-
-      <PhilosophySection />
-    </article>
-  )
-}
- succeeded in 51ms:
-src/pages/Gallery.jsx
-src/pages/Chi-siamo.jsx
-src/pages/Contatti.jsx
-src/pages/Menu.jsx
-package.json
 codex
-I have enough context. I’m editing `src/pages/Gallery.jsx` to replace the placeholder with a stable semantic shell, and then I’ll append the task outcome to `agent/AGENT_REPORT.md` as required by the project workflow.
+I have enough context. I’m replacing the inline gallery hero with a dedicated `Gallery-heroSection` component, leaving the `gallery-grid` shell intact, then I’ll run the build and append the task result to `agent/AGENT_REPORT.md`.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -220,2 +220,13 @@
+@@ -220,2 +220,46 @@
  Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Menu-categoriesSection.jsx` and rendered it from
++`src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
++page now includes structured drink families with refined descriptions and
++flavor notes aligned to the premium event-bar positioning.
++
++TASK section-menu-menu-categories executed by Codex.
++Waiting for validation.
++
++TASK section-menu-menu-categories completed successfully.
++Build passed.
++Commit created for TASK section-menu-menu-categories.
 +
 +Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
 +
@@ -1413,56 +1498,195 @@ M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-websit
 +
 +Completed TASK page-gallery-shell.
 +
-+Implemented a semantic shell in `src/pages/Gallery.jsx` with the required
-+`gallery-hero` and `gallery-grid` sections, premium gallery-facing copy, and a
-+single-page `h1` for the `/gallery` route. Verified `src/App.jsx` already
-+mounts the gallery route, so no routing change was required.
- `src/components/Menu-categoriesSection.jsx` and rendered it from
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx
-@@ -2,12 +2,22 @@
-   return (
--    <>
--      <section id="gallery-hero">
--        <h1>Gallery Hero</h1>
--        <p>Content for gallery-hero will be generated by tasks</p>
-+    <article aria-labelledby="gallery-title">
-+      <section id="gallery-hero" aria-labelledby="gallery-title">
-+        <p>Casa Aurea Events</p>
-+        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
-+        <p>
-+          Explore a gallery of refined tablescapes, signature cocktails, plated
-+          service, and celebration settings designed for weddings, private
-+          events, and premium corporate evenings.
-+        </p>
-       </section>
--      <section id="gallery-grid">
--        <h2>Gallery Grid</h2>
--        <p>Content for gallery-grid will be generated by tasks</p>
++Implemented a semantic shell for `src/pages/Gallery.jsx` with the required
++`gallery-hero` and `gallery-grid` sections, preserving a single page `h1` and
++keeping the gallery route ready for dedicated section work.
 +
-+      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-+        <h2 id="gallery-grid-title">Gallery collection</h2>
-+        <p>
-+          This page is prepared for the premium image grid that will showcase
-+          catering presentation, cocktail service, event styling, and guest
-+          atmosphere across Casa Aurea Events experiences.
-+        </p>
-       </section>
--    </>
-+    </article>
-   )
-apply_patch(auto_approved=true) exited 0 in 47ms:
++TASK page-gallery-shell executed by Codex.
++Waiting for validation.
++
++TASK page-gallery-shell completed successfully.
++Build passed.
++Commit created for TASK page-gallery-shell.
++
++Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
++
++Launching Codex for TASK section-gallery-gallery-hero.
++
++Completed TASK section-gallery-gallery-hero.
++
++Implemented a dedicated `Gallery-heroSection` component in
++`src/components/Gallery-heroSection.jsx` and rendered it from
++`src/pages/Gallery.jsx` to replace the inline placeholder hero markup. The
++gallery page now has the required premium hero structure with editorial copy,
++coherent highlights, and the existing `gallery-grid` shell left intact for the
++next task.
++
++TASK section-gallery-gallery-hero executed by Codex.
++Waiting for validation.
+ 
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx
+@@ -1 +1,3 @@
++import GalleryHeroSection from '../components/Gallery-heroSection'
++
+ export default function Gallery() {
+@@ -3,11 +5,3 @@
+     <article aria-labelledby="gallery-title">
+-      <section id="gallery-hero" aria-labelledby="gallery-title">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
+-        <p>
+-          Explore a gallery of refined tablescapes, signature cocktails, plated
+-          service, and celebration settings designed for weddings, private
+-          events, and premium corporate evenings.
+-        </p>
+-      </section>
++      <GalleryHeroSection />
+ 
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-heroSection.jsx
+const heroStyles = {
+  section: {
+    position: 'relative',
+    overflow: 'hidden',
+    borderRadius: '32px',
+    minHeight: 'clamp(30rem, 74vh, 43rem)',
+    padding: 'clamp(1.5rem, 4vw, 3rem)',
+    display: 'flex',
+    alignItems: 'flex-end',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(48, 36, 29, 0.12) 0%, rgba(30, 23, 19, 0.68) 56%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1600&q=80')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    color: '#f7f1e8',
+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  },
+  panel: {
+    width: 'min(100%, 48rem)',
+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
+    borderRadius: '28px',
+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
+    backdropFilter: 'blur(10px)',
+    textAlign: 'left',
+  },
+  eyebrow: {
+    margin: 0,
+    fontSize: '0.8rem',
+    letterSpacing: '0.22em',
+    textTransform: 'uppercase',
+    color: '#d9bf8d',
+  },
+  title: {
+    margin: '1rem 0 0',
+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
+    lineHeight: 1.02,
+    fontFamily: 'Georgia, "Times New Roman", serif',
+    fontWeight: 600,
+  },
+  body: {
+    margin: '1.25rem 0 0',
+    maxWidth: '36rem',
+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
+    lineHeight: 1.75,
+    color: 'rgba(247, 241, 232, 0.88)',
+  },
+  highlights: {
+    marginTop: '1.5rem',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
+    gap: '0.875rem',
+  },
+  highlightCard: {
+    padding: '0.95rem 1rem',
+    borderRadius: '20px',
+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
+    border: '1px solid rgba(247, 241, 232, 0.12)',
+  },
+  highlightLabel: {
+    display: 'block',
+    fontSize: '0.78rem',
+    letterSpacing: '0.08em',
+    textTransform: 'uppercase',
+    color: 'rgba(217, 191, 141, 0.92)',
+  },
+  highlightText: {
+    display: 'block',
+    marginTop: '0.4rem',
+    fontSize: '0.98rem',
+    lineHeight: 1.5,
+    color: '#f7f1e8',
+  },
+}
+
+const highlights = [
+  {
+    label: 'Events captured',
+    text: 'Wedding dinners, cocktail bars, styled tablescapes, and luminous celebration moments.',
+  },
+  {
+    label: 'Visual direction',
+    text: 'Warm editorial imagery with polished presentation, soft light, and a hospitality-first feel.',
+  },
+  {
+    label: 'What it shows',
+    text: 'How Casa Aurea balances food, service, and atmosphere for refined gatherings.',
+  },
+]
+
+export default function GalleryHeroSection() {
+  return (
+    <section
+      id="gallery-hero"
+      aria-labelledby="gallery-title"
+      style={heroStyles.section}
+    >
+      <div style={heroStyles.panel}>
+        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
+        <h1 id="gallery-title" style={heroStyles.title}>
+          A curated view of elegant catering and bar moments
+        </h1>
+        <p style={heroStyles.body}>
+          Explore a visual selection of refined tablescapes, signature
+          cocktails, plated service, and celebration settings designed for
+          weddings, private events, and premium corporate evenings.
+        </p>
+
+        <div style={heroStyles.highlights}>
+          {highlights.map((item) => (
+            <div key={item.label} style={heroStyles.highlightCard}>
+              <span style={heroStyles.highlightLabel}>{item.label}</span>
+              <span style={heroStyles.highlightText}>{item.text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+apply_patch(auto_approved=true) exited 0 in 57ms:
 Success. Updated the following files:
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-heroSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index ba29e89f00d691c09293fcd28b824d8cfa013d88..95ae34640c04218262d6dd0907f784699a45deea
+index 29a29f49b799f127138655d5826d5983334c88e9..c74a6e81d69ef80dfd7a293ef9f544d36729b4c9
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,17 @@
+@@ -218,6 +218,50 @@
  Build passed.
  
  Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Menu-categoriesSection.jsx` and rendered it from
++`src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
++page now includes structured drink families with refined descriptions and
++flavor notes aligned to the premium event-bar positioning.
++
++TASK section-menu-menu-categories executed by Codex.
++Waiting for validation.
++
++TASK section-menu-menu-categories completed successfully.
++Build passed.
++Commit created for TASK section-menu-menu-categories.
 +
 +Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
 +
@@ -1470,60 +1694,203 @@ index ba29e89f00d691c09293fcd28b824d8cfa013d88..95ae34640c04218262d6dd0907f78469
 +
 +Completed TASK page-gallery-shell.
 +
-+Implemented a semantic shell in `src/pages/Gallery.jsx` with the required
-+`gallery-hero` and `gallery-grid` sections, premium gallery-facing copy, and a
-+single-page `h1` for the `/gallery` route. Verified `src/App.jsx` already
-+mounts the gallery route, so no routing change was required.
- `src/components/Menu-categoriesSection.jsx` and rendered it from
- `src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
- page now includes a structured premium menu-categories section with curated
++Implemented a semantic shell for `src/pages/Gallery.jsx` with the required
++`gallery-hero` and `gallery-grid` sections, preserving a single page `h1` and
++keeping the gallery route ready for dedicated section work.
++
++TASK page-gallery-shell executed by Codex.
++Waiting for validation.
++
++TASK page-gallery-shell completed successfully.
++Build passed.
++Commit created for TASK page-gallery-shell.
++
++Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
++
++Launching Codex for TASK section-gallery-gallery-hero.
++
++Completed TASK section-gallery-gallery-hero.
++
++Implemented a dedicated `Gallery-heroSection` component in
++`src/components/Gallery-heroSection.jsx` and rendered it from
++`src/pages/Gallery.jsx` to replace the inline placeholder hero markup. The
++gallery page now has the required premium hero structure with editorial copy,
++coherent highlights, and the existing `gallery-grid` shell left intact for the
++next task.
++
++TASK section-gallery-gallery-hero executed by Codex.
++Waiting for validation.
+ 
+ Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
+ 
+diff --git a/src/components/Gallery-heroSection.jsx b/src/components/Gallery-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..9a6e300582c108903c6d2d6b28301484d7665240
+--- /dev/null
++++ b/src/components/Gallery-heroSection.jsx
+@@ -0,0 +1,118 @@
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 74vh, 43rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(48, 36, 29, 0.12) 0%, rgba(30, 23, 19, 0.68) 56%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 48rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.54)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '36rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Events captured',
++    text: 'Wedding dinners, cocktail bars, styled tablescapes, and luminous celebration moments.',
++  },
++  {
++    label: 'Visual direction',
++    text: 'Warm editorial imagery with polished presentation, soft light, and a hospitality-first feel.',
++  },
++  {
++    label: 'What it shows',
++    text: 'How Casa Aurea balances food, service, and atmosphere for refined gatherings.',
++  },
++]
++
++export default function GalleryHeroSection() {
++  return (
++    <section
++      id="gallery-hero"
++      aria-labelledby="gallery-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
++        <h1 id="gallery-title" style={heroStyles.title}>
++          A curated view of elegant catering and bar moments
++        </h1>
++        <p style={heroStyles.body}>
++          Explore a visual selection of refined tablescapes, signature
++          cocktails, plated service, and celebration settings designed for
++          weddings, private events, and premium corporate evenings.
++        </p>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 235749103c1ac2a2bc18286f9ed0fd9e11479ff2..da346205d6952895461294fcd4d670ea19db49e9
+index da346205d6952895461294fcd4d670ea19db49e9..635220c2e4291cf145334fe5d28d1b8eedc8f02b
 --- a/src/pages/Gallery.jsx
 +++ b/src/pages/Gallery.jsx
-@@ -1,14 +1,24 @@
+@@ -1,15 +1,9 @@
++import GalleryHeroSection from '../components/Gallery-heroSection'
++
  export default function Gallery() {
    return (
--    <>
--      <section id="gallery-hero">
--        <h1>Gallery Hero</h1>
--        <p>Content for gallery-hero will be generated by tasks</p>
-+    <article aria-labelledby="gallery-title">
-+      <section id="gallery-hero" aria-labelledby="gallery-title">
-+        <p>Casa Aurea Events</p>
-+        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
-+        <p>
-+          Explore a gallery of refined tablescapes, signature cocktails, plated
-+          service, and celebration settings designed for weddings, private
-+          events, and premium corporate evenings.
-+        </p>
-       </section>
--      <section id="gallery-grid">
--        <h2>Gallery Grid</h2>
--        <p>Content for gallery-grid will be generated by tasks</p>
-+
-+      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-+        <h2 id="gallery-grid-title">Gallery collection</h2>
-+        <p>
-+          This page is prepared for the premium image grid that will showcase
-+          catering presentation, cocktail service, event styling, and guest
-+          atmosphere across Casa Aurea Events experiences.
-+        </p>
-       </section>
--    </>
-+    </article>
-   )
- }
+     <article aria-labelledby="gallery-title">
+-      <section id="gallery-hero" aria-labelledby="gallery-title">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
+-        <p>
+-          Explore a gallery of refined tablescapes, signature cocktails, plated
+-          service, and celebration settings designed for weddings, private
+-          events, and premium corporate evenings.
+-        </p>
+-      </section>
++      <GalleryHeroSection />
+ 
+       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+         <h2 id="gallery-grid-title">Gallery collection</h2>
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index ba29e89f00d691c09293fcd28b824d8cfa013d88..95ae34640c04218262d6dd0907f784699a45deea
+index 29a29f49b799f127138655d5826d5983334c88e9..c74a6e81d69ef80dfd7a293ef9f544d36729b4c9
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,17 @@
+@@ -218,6 +218,50 @@
  Build passed.
  
  Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Menu-categoriesSection.jsx` and rendered it from
++`src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
++page now includes structured drink families with refined descriptions and
++flavor notes aligned to the premium event-bar positioning.
++
++TASK section-menu-menu-categories executed by Codex.
++Waiting for validation.
++
++TASK section-menu-menu-categories completed successfully.
++Build passed.
++Commit created for TASK section-menu-menu-categories.
 +
 +Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
 +
@@ -1531,73 +1898,220 @@ index ba29e89f00d691c09293fcd28b824d8cfa013d88..95ae34640c04218262d6dd0907f78469
 +
 +Completed TASK page-gallery-shell.
 +
-+Implemented a semantic shell in `src/pages/Gallery.jsx` with the required
-+`gallery-hero` and `gallery-grid` sections, premium gallery-facing copy, and a
-+single-page `h1` for the `/gallery` route. Verified `src/App.jsx` already
-+mounts the gallery route, so no routing change was required.
- `src/components/Menu-categoriesSection.jsx` and rendered it from
- `src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
- page now includes a structured premium menu-categories section with curated
++Implemented a semantic shell for `src/pages/Gallery.jsx` with the required
++`gallery-hero` and `gallery-grid` sections, preserving a single page `h1` and
++keeping the gallery route ready for dedicated section work.
++
++TASK page-gallery-shell executed by Codex.
++Waiting for validation.
++
++TASK page-gallery-shell completed successfully.
++Build passed.
++Commit created for TASK page-gallery-shell.
++
++Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
++
++Launching Codex for TASK section-gallery-gallery-hero.
++
++Completed TASK section-gallery-gallery-hero.
++
++Implemented a dedicated `Gallery-heroSection` component in
++`src/components/Gallery-heroSection.jsx` and rendered it from
++`src/pages/Gallery.jsx` to replace the inline placeholder hero markup. The
++gallery page now has the required premium hero structure with editorial copy,
++coherent highlights, and the existing `gallery-grid` shell left intact for the
++next task.
++
++TASK section-gallery-gallery-hero executed by Codex.
++Waiting for validation.
+ 
+ Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
+ 
+diff --git a/src/components/Gallery-heroSection.jsx b/src/components/Gallery-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..9a6e300582c108903c6d2d6b28301484d7665240
+--- /dev/null
++++ b/src/components/Gallery-heroSection.jsx
+@@ -0,0 +1,118 @@
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 74vh, 43rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(48, 36, 29, 0.12) 0%, rgba(30, 23, 19, 0.68) 56%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 48rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.54)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '36rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Events captured',
++    text: 'Wedding dinners, cocktail bars, styled tablescapes, and luminous celebration moments.',
++  },
++  {
++    label: 'Visual direction',
++    text: 'Warm editorial imagery with polished presentation, soft light, and a hospitality-first feel.',
++  },
++  {
++    label: 'What it shows',
++    text: 'How Casa Aurea balances food, service, and atmosphere for refined gatherings.',
++  },
++]
++
++export default function GalleryHeroSection() {
++  return (
++    <section
++      id="gallery-hero"
++      aria-labelledby="gallery-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
++        <h1 id="gallery-title" style={heroStyles.title}>
++          A curated view of elegant catering and bar moments
++        </h1>
++        <p style={heroStyles.body}>
++          Explore a visual selection of refined tablescapes, signature
++          cocktails, plated service, and celebration settings designed for
++          weddings, private events, and premium corporate evenings.
++        </p>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 235749103c1ac2a2bc18286f9ed0fd9e11479ff2..da346205d6952895461294fcd4d670ea19db49e9
+index da346205d6952895461294fcd4d670ea19db49e9..635220c2e4291cf145334fe5d28d1b8eedc8f02b
 --- a/src/pages/Gallery.jsx
 +++ b/src/pages/Gallery.jsx
-@@ -1,14 +1,24 @@
+@@ -1,15 +1,9 @@
++import GalleryHeroSection from '../components/Gallery-heroSection'
++
  export default function Gallery() {
    return (
--    <>
--      <section id="gallery-hero">
--        <h1>Gallery Hero</h1>
--        <p>Content for gallery-hero will be generated by tasks</p>
-+    <article aria-labelledby="gallery-title">
-+      <section id="gallery-hero" aria-labelledby="gallery-title">
-+        <p>Casa Aurea Events</p>
-+        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
-+        <p>
-+          Explore a gallery of refined tablescapes, signature cocktails, plated
-+          service, and celebration settings designed for weddings, private
-+          events, and premium corporate evenings.
-+        </p>
-       </section>
--      <section id="gallery-grid">
--        <h2>Gallery Grid</h2>
--        <p>Content for gallery-grid will be generated by tasks</p>
-+
-+      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-+        <h2 id="gallery-grid-title">Gallery collection</h2>
-+        <p>
-+          This page is prepared for the premium image grid that will showcase
-+          catering presentation, cocktail service, event styling, and guest
-+          atmosphere across Casa Aurea Events experiences.
-+        </p>
-       </section>
--    </>
-+    </article>
-   )
- }
+     <article aria-labelledby="gallery-title">
+-      <section id="gallery-hero" aria-labelledby="gallery-title">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
+-        <p>
+-          Explore a gallery of refined tablescapes, signature cocktails, plated
+-          service, and celebration settings designed for weddings, private
+-          events, and premium corporate evenings.
+-        </p>
+-      </section>
++      <GalleryHeroSection />
+ 
+       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+         <h2 id="gallery-grid-title">Gallery collection</h2>
 
 codex
-The shell is in place. I’m running the production build now to confirm the gallery page renders cleanly and that the route change doesn’t introduce regressions.
+The hero component is in place and the gallery page now renders it instead of inline placeholder markup. I’m running the build check now to confirm the task is clean and didn’t break routing.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 755ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 828ms:
+
+> site-create-a-premium-modern-website-for-an-e@0.0.0 build
+> vite build
+
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 57 modules transformed.
+✓ 58 modules transformed.
 rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-BtbDGUvM.js   265.09 kB │ gzip: 82.06 kB
-✓ built in 576ms
+dist/assets/index-i_cNafRk.js   267.41 kB │ gzip: 82.29 kB
+✓ built in 564ms
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index ba29e89f00d691c09293fcd28b824d8cfa013d88..95ae34640c04218262d6dd0907f784699a45deea
+index 29a29f49b799f127138655d5826d5983334c88e9..c74a6e81d69ef80dfd7a293ef9f544d36729b4c9
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,17 @@
+@@ -218,6 +218,50 @@
  Build passed.
  
  Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Menu-categoriesSection.jsx` and rendered it from
++`src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
++page now includes structured drink families with refined descriptions and
++flavor notes aligned to the premium event-bar positioning.
++
++TASK section-menu-menu-categories executed by Codex.
++Waiting for validation.
++
++TASK section-menu-menu-categories completed successfully.
++Build passed.
++Commit created for TASK section-menu-menu-categories.
 +
 +Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
 +
@@ -1605,66 +2119,216 @@ index ba29e89f00d691c09293fcd28b824d8cfa013d88..95ae34640c04218262d6dd0907f78469
 +
 +Completed TASK page-gallery-shell.
 +
-+Implemented a semantic shell in `src/pages/Gallery.jsx` with the required
-+`gallery-hero` and `gallery-grid` sections, premium gallery-facing copy, and a
-+single-page `h1` for the `/gallery` route. Verified `src/App.jsx` already
-+mounts the gallery route, so no routing change was required.
- `src/components/Menu-categoriesSection.jsx` and rendered it from
- `src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
- page now includes a structured premium menu-categories section with curated
++Implemented a semantic shell for `src/pages/Gallery.jsx` with the required
++`gallery-hero` and `gallery-grid` sections, preserving a single page `h1` and
++keeping the gallery route ready for dedicated section work.
++
++TASK page-gallery-shell executed by Codex.
++Waiting for validation.
++
++TASK page-gallery-shell completed successfully.
++Build passed.
++Commit created for TASK page-gallery-shell.
++
++Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
++
++Launching Codex for TASK section-gallery-gallery-hero.
++
++Completed TASK section-gallery-gallery-hero.
++
++Implemented a dedicated `Gallery-heroSection` component in
++`src/components/Gallery-heroSection.jsx` and rendered it from
++`src/pages/Gallery.jsx` to replace the inline placeholder hero markup. The
++gallery page now has the required premium hero structure with editorial copy,
++coherent highlights, and the existing `gallery-grid` shell left intact for the
++next task.
++
++TASK section-gallery-gallery-hero executed by Codex.
++Waiting for validation.
+ 
+ Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
+ 
+diff --git a/src/components/Gallery-heroSection.jsx b/src/components/Gallery-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..9a6e300582c108903c6d2d6b28301484d7665240
+--- /dev/null
++++ b/src/components/Gallery-heroSection.jsx
+@@ -0,0 +1,118 @@
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 74vh, 43rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(48, 36, 29, 0.12) 0%, rgba(30, 23, 19, 0.68) 56%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 48rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.54)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '36rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Events captured',
++    text: 'Wedding dinners, cocktail bars, styled tablescapes, and luminous celebration moments.',
++  },
++  {
++    label: 'Visual direction',
++    text: 'Warm editorial imagery with polished presentation, soft light, and a hospitality-first feel.',
++  },
++  {
++    label: 'What it shows',
++    text: 'How Casa Aurea balances food, service, and atmosphere for refined gatherings.',
++  },
++]
++
++export default function GalleryHeroSection() {
++  return (
++    <section
++      id="gallery-hero"
++      aria-labelledby="gallery-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
++        <h1 id="gallery-title" style={heroStyles.title}>
++          A curated view of elegant catering and bar moments
++        </h1>
++        <p style={heroStyles.body}>
++          Explore a visual selection of refined tablescapes, signature
++          cocktails, plated service, and celebration settings designed for
++          weddings, private events, and premium corporate evenings.
++        </p>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 235749103c1ac2a2bc18286f9ed0fd9e11479ff2..da346205d6952895461294fcd4d670ea19db49e9
+index da346205d6952895461294fcd4d670ea19db49e9..635220c2e4291cf145334fe5d28d1b8eedc8f02b
 --- a/src/pages/Gallery.jsx
 +++ b/src/pages/Gallery.jsx
-@@ -1,14 +1,24 @@
+@@ -1,15 +1,9 @@
++import GalleryHeroSection from '../components/Gallery-heroSection'
++
  export default function Gallery() {
    return (
--    <>
--      <section id="gallery-hero">
--        <h1>Gallery Hero</h1>
--        <p>Content for gallery-hero will be generated by tasks</p>
-+    <article aria-labelledby="gallery-title">
-+      <section id="gallery-hero" aria-labelledby="gallery-title">
-+        <p>Casa Aurea Events</p>
-+        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
-+        <p>
-+          Explore a gallery of refined tablescapes, signature cocktails, plated
-+          service, and celebration settings designed for weddings, private
-+          events, and premium corporate evenings.
-+        </p>
-       </section>
--      <section id="gallery-grid">
--        <h2>Gallery Grid</h2>
--        <p>Content for gallery-grid will be generated by tasks</p>
-+
-+      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-+        <h2 id="gallery-grid-title">Gallery collection</h2>
-+        <p>
-+          This page is prepared for the premium image grid that will showcase
-+          catering presentation, cocktail service, event styling, and guest
-+          atmosphere across Casa Aurea Events experiences.
-+        </p>
-       </section>
--    </>
-+    </article>
-   )
- }
+     <article aria-labelledby="gallery-title">
+-      <section id="gallery-hero" aria-labelledby="gallery-title">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
+-        <p>
+-          Explore a gallery of refined tablescapes, signature cocktails, plated
+-          service, and celebration settings designed for weddings, private
+-          events, and premium corporate evenings.
+-        </p>
+-      </section>
++      <GalleryHeroSection />
+ 
+       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+         <h2 id="gallery-grid-title">Gallery collection</h2>
 
 codex
-Modified files: [Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files:
+- [src/components/Gallery-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-heroSection.jsx)
+- [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx)
+- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-Implemented the gallery page shell in [Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx) by replacing placeholder text with a semantic `article` containing the required `gallery-hero` and `gallery-grid` sections, premium copy, and a single page `h1`. The `/gallery` route was already mounted in [App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so no routing change was needed. I also updated [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with a short task summary per project instructions.
+What was implemented:
+- Added a dedicated `GalleryHeroSection` component for the `gallery-hero` section with premium editorial styling, a single page `h1`, and supporting highlight cards.
+- Updated the gallery page to render the new hero component and kept the existing `gallery-grid` shell unchanged.
+- Appended the task summary to `agent/AGENT_REPORT.md`.
 
-Build result: `npm run build` passed successfully.
+Build result:
+- `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index ba29e89f00d691c09293fcd28b824d8cfa013d88..95ae34640c04218262d6dd0907f784699a45deea
+index 29a29f49b799f127138655d5826d5983334c88e9..c74a6e81d69ef80dfd7a293ef9f544d36729b4c9
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,17 @@
+@@ -218,6 +218,50 @@
  Build passed.
  
  Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Menu-categoriesSection.jsx` and rendered it from
++`src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
++page now includes structured drink families with refined descriptions and
++flavor notes aligned to the premium event-bar positioning.
++
++TASK section-menu-menu-categories executed by Codex.
++Waiting for validation.
++
++TASK section-menu-menu-categories completed successfully.
++Build passed.
++Commit created for TASK section-menu-menu-categories.
 +
 +Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
 +
@@ -1672,50 +2336,182 @@ index ba29e89f00d691c09293fcd28b824d8cfa013d88..95ae34640c04218262d6dd0907f78469
 +
 +Completed TASK page-gallery-shell.
 +
-+Implemented a semantic shell in `src/pages/Gallery.jsx` with the required
-+`gallery-hero` and `gallery-grid` sections, premium gallery-facing copy, and a
-+single-page `h1` for the `/gallery` route. Verified `src/App.jsx` already
-+mounts the gallery route, so no routing change was required.
- `src/components/Menu-categoriesSection.jsx` and rendered it from
- `src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
- page now includes a structured premium menu-categories section with curated
++Implemented a semantic shell for `src/pages/Gallery.jsx` with the required
++`gallery-hero` and `gallery-grid` sections, preserving a single page `h1` and
++keeping the gallery route ready for dedicated section work.
++
++TASK page-gallery-shell executed by Codex.
++Waiting for validation.
++
++TASK page-gallery-shell completed successfully.
++Build passed.
++Commit created for TASK page-gallery-shell.
++
++Prepared TASK section-gallery-gallery-hero (Create gallery-hero section on gallery) for execution.
++
++Launching Codex for TASK section-gallery-gallery-hero.
++
++Completed TASK section-gallery-gallery-hero.
++
++Implemented a dedicated `Gallery-heroSection` component in
++`src/components/Gallery-heroSection.jsx` and rendered it from
++`src/pages/Gallery.jsx` to replace the inline placeholder hero markup. The
++gallery page now has the required premium hero structure with editorial copy,
++coherent highlights, and the existing `gallery-grid` shell left intact for the
++next task.
++
++TASK section-gallery-gallery-hero executed by Codex.
++Waiting for validation.
+ 
+ Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
+ 
+diff --git a/src/components/Gallery-heroSection.jsx b/src/components/Gallery-heroSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..9a6e300582c108903c6d2d6b28301484d7665240
+--- /dev/null
++++ b/src/components/Gallery-heroSection.jsx
+@@ -0,0 +1,118 @@
++const heroStyles = {
++  section: {
++    position: 'relative',
++    overflow: 'hidden',
++    borderRadius: '32px',
++    minHeight: 'clamp(30rem, 74vh, 43rem)',
++    padding: 'clamp(1.5rem, 4vw, 3rem)',
++    display: 'flex',
++    alignItems: 'flex-end',
++    backgroundImage:
++      "linear-gradient(180deg, rgba(48, 36, 29, 0.12) 0%, rgba(30, 23, 19, 0.68) 56%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1600&q=80')",
++    backgroundSize: 'cover',
++    backgroundPosition: 'center',
++    color: '#f7f1e8',
++    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++  },
++  panel: {
++    width: 'min(100%, 48rem)',
++    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
++    borderRadius: '28px',
++    backgroundColor: 'rgba(19, 15, 13, 0.54)',
++    backdropFilter: 'blur(10px)',
++    textAlign: 'left',
++  },
++  eyebrow: {
++    margin: 0,
++    fontSize: '0.8rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    color: '#d9bf8d',
++  },
++  title: {
++    margin: '1rem 0 0',
++    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
++    lineHeight: 1.02,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontWeight: 600,
++  },
++  body: {
++    margin: '1.25rem 0 0',
++    maxWidth: '36rem',
++    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
++    lineHeight: 1.75,
++    color: 'rgba(247, 241, 232, 0.88)',
++  },
++  highlights: {
++    marginTop: '1.5rem',
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
++    gap: '0.875rem',
++  },
++  highlightCard: {
++    padding: '0.95rem 1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(247, 241, 232, 0.08)',
++    border: '1px solid rgba(247, 241, 232, 0.12)',
++  },
++  highlightLabel: {
++    display: 'block',
++    fontSize: '0.78rem',
++    letterSpacing: '0.08em',
++    textTransform: 'uppercase',
++    color: 'rgba(217, 191, 141, 0.92)',
++  },
++  highlightText: {
++    display: 'block',
++    marginTop: '0.4rem',
++    fontSize: '0.98rem',
++    lineHeight: 1.5,
++    color: '#f7f1e8',
++  },
++}
++
++const highlights = [
++  {
++    label: 'Events captured',
++    text: 'Wedding dinners, cocktail bars, styled tablescapes, and luminous celebration moments.',
++  },
++  {
++    label: 'Visual direction',
++    text: 'Warm editorial imagery with polished presentation, soft light, and a hospitality-first feel.',
++  },
++  {
++    label: 'What it shows',
++    text: 'How Casa Aurea balances food, service, and atmosphere for refined gatherings.',
++  },
++]
++
++export default function GalleryHeroSection() {
++  return (
++    <section
++      id="gallery-hero"
++      aria-labelledby="gallery-title"
++      style={heroStyles.section}
++    >
++      <div style={heroStyles.panel}>
++        <p style={heroStyles.eyebrow}>Casa Aurea Events</p>
++        <h1 id="gallery-title" style={heroStyles.title}>
++          A curated view of elegant catering and bar moments
++        </h1>
++        <p style={heroStyles.body}>
++          Explore a visual selection of refined tablescapes, signature
++          cocktails, plated service, and celebration settings designed for
++          weddings, private events, and premium corporate evenings.
++        </p>
++
++        <div style={heroStyles.highlights}>
++          {highlights.map((item) => (
++            <div key={item.label} style={heroStyles.highlightCard}>
++              <span style={heroStyles.highlightLabel}>{item.label}</span>
++              <span style={heroStyles.highlightText}>{item.text}</span>
++            </div>
++          ))}
++        </div>
++      </div>
++    </section>
++  )
++}
 diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 235749103c1ac2a2bc18286f9ed0fd9e11479ff2..da346205d6952895461294fcd4d670ea19db49e9
+index da346205d6952895461294fcd4d670ea19db49e9..635220c2e4291cf145334fe5d28d1b8eedc8f02b
 --- a/src/pages/Gallery.jsx
 +++ b/src/pages/Gallery.jsx
-@@ -1,14 +1,24 @@
+@@ -1,15 +1,9 @@
++import GalleryHeroSection from '../components/Gallery-heroSection'
++
  export default function Gallery() {
    return (
--    <>
--      <section id="gallery-hero">
--        <h1>Gallery Hero</h1>
--        <p>Content for gallery-hero will be generated by tasks</p>
-+    <article aria-labelledby="gallery-title">
-+      <section id="gallery-hero" aria-labelledby="gallery-title">
-+        <p>Casa Aurea Events</p>
-+        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
-+        <p>
-+          Explore a gallery of refined tablescapes, signature cocktails, plated
-+          service, and celebration settings designed for weddings, private
-+          events, and premium corporate evenings.
-+        </p>
-       </section>
--      <section id="gallery-grid">
--        <h2>Gallery Grid</h2>
--        <p>Content for gallery-grid will be generated by tasks</p>
-+
-+      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-+        <h2 id="gallery-grid-title">Gallery collection</h2>
-+        <p>
-+          This page is prepared for the premium image grid that will showcase
-+          catering presentation, cocktail service, event styling, and guest
-+          atmosphere across Casa Aurea Events experiences.
-+        </p>
-       </section>
--    </>
-+    </article>
-   )
- }
+     <article aria-labelledby="gallery-title">
+-      <section id="gallery-hero" aria-labelledby="gallery-title">
+-        <p>Casa Aurea Events</p>
+-        <h1 id="gallery-title">A curated view of elegant catering and bar moments</h1>
+-        <p>
+-          Explore a gallery of refined tablescapes, signature cocktails, plated
+-          service, and celebration settings designed for weddings, private
+-          events, and premium corporate evenings.
+-        </p>
+-      </section>
++      <GalleryHeroSection />
+ 
+       <section id="gallery-grid" aria-labelledby="gallery-grid-title">
+         <h2 id="gallery-grid-title">Gallery collection</h2>
 
 tokens used
-6096
+23.325
