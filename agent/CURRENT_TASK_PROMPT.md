@@ -1178,35 +1178,32 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-menu-menu-categories
+page-chi-siamo-shell
 
 ## Current task title
-Create menu-categories section on menu
+Create chi-siamo page shell
 
 ## Current task type
-section
+page-shell
 
 ## Current task target
 ```json
 {
-  "pageId": "menu",
-  "sectionId": "menu-categories",
-  "sectionType": "menu-categories"
+  "pageId": "chi-siamo"
 }
 ```
 
 ## Depends on
-- page-menu-shell
+- none
 
 ## Files allowed
-- src/pages/Menu.jsx
-- src/components/Menu-categoriesSection.jsx
-- src/components
+- src/App.jsx
+- src/pages/Chi-siamo.jsx
 
 ## Definition of done
-- section menu-categories exists on menu
-- section menu-categories matches type menu-categories
-- section menu-categories is rendered in page menu
+- page shell exists for chi-siamo
+- chi-siamo route is mounted if required
+- chi-siamo page renders without crashing
 
 ## Strict execution rules
 - Execute only this current task.

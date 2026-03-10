@@ -1,16 +1,8 @@
-Modified files:
-- [src/components/Menu-categoriesSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Menu-categoriesSection.jsx)
-- [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files: [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), [src/pages/Chi-siamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
 
-What was implemented:
-- Added a dedicated `MenuCategoriesSection` component for the `menu-categories` section on the menu page.
-- Replaced the inline placeholder in [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx) with the new component.
-- The section now renders three premium drink-category cards with curated copy, sample drinks, and a closing note, matching the required `menu-categories` section type.
-- Logged the task completion summary in [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+Implemented the `chi-siamo` page shell as a semantic `article` with the required `about-hero`, `story`, and `philosophy` sections, real premium copy, and a single `h1`. I also updated [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx) to import the task-specified page file so the existing `/chi-siamo` route is mounted from the new shell without crashing.
 
-Build result:
-- `npm run build` passed successfully with Vite production build completed.
+Build result: `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -21,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd83a-0a8d-7b02-98d5-48fe1ba070f4
+session id: 019cd83b-9e9e-74b2-8ac8-12a2273435c4
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1204,35 +1196,32 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-menu-menu-categories
+page-chi-siamo-shell
 
 ## Current task title
-Create menu-categories section on menu
+Create chi-siamo page shell
 
 ## Current task type
-section
+page-shell
 
 ## Current task target
 ```json
 {
-  "pageId": "menu",
-  "sectionId": "menu-categories",
-  "sectionType": "menu-categories"
+  "pageId": "chi-siamo"
 }
 ```
 
 ## Depends on
-- page-menu-shell
+- none
 
 ## Files allowed
-- src/pages/Menu.jsx
-- src/components/Menu-categoriesSection.jsx
-- src/components
+- src/App.jsx
+- src/pages/Chi-siamo.jsx
 
 ## Definition of done
-- section menu-categories exists on menu
-- section menu-categories matches type menu-categories
-- section menu-categories is rendered in page menu
+- page shell exists for chi-siamo
+- chi-siamo route is mounted if required
+- chi-siamo page renders without crashing
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1261,30 +1250,13 @@ section
 
 mcp startup: no servers
 codex
-I’m executing the `section-menu-menu-categories` task only. First I’m checking the current menu page shell and the existing component/style patterns so I can add the section without drifting outside the allowed scope.
+I’m checking the current app structure and the task prompt first so I can add only the `chi-siamo` page shell and the minimal route wiring required for it to render.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
 /bin/zsh -lc "sed -n '1,240p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "rg --files src agent | rg 'Menu|components|AGENT_REPORT|CURRENT_TASK_PROMPT|TASK_STATE|TASK_GRAPH|site-spec|DEVELOPMENT_METHOD'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-import MenuHeroSection from '../components/Menu-heroSection'
-
-export default function Menu() {
-  return (
-    <article aria-labelledby="menu-title">
-      <MenuHeroSection />
-
-      <section id="menu-categories" aria-labelledby="menu-categories-title">
-        <h2 id="menu-categories-title">Menu categories</h2>
-        <p>
-          The full drink list will be structured into distinct collections so
-          guests can quickly understand the house signatures, reimagined
-          classics, alcohol-free options, and premium bottle selections.
-        </p>
-      </section>
-    </article>
-  )
-}
- succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,240p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/Chi-siamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'rg --files' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
 # AGENT REPORT
 
 Project created.
@@ -1305,2024 +1277,626 @@ Waiting for validation.
 TASK page-home-shell completed successfully.
 Build passed.
 Commit created for TASK page-home-shell.
+ succeeded in 51ms:
+import { HashRouter, Routes, Route } from "react-router-dom"
+import Layout from "./layout/Layout"
+import Home from "./pages/Home"
+import Menu from "./pages/Menu"
+import ChiSiamo from "./pages/ChiSiamo"
+import Gallery from "./pages/Gallery"
+import Contatti from "./pages/Contatti"
+import Servizi from "./pages/Servizi"
+
+export default function App() {
+  return (
+    <HashRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/chi-siamo" element={<ChiSiamo />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contatti" element={<Contatti />} />
+          <Route path="/servizi" element={<Servizi />} />
+ exited 1 in 51ms:
+sed: src/pages/Chi-siamo.jsx: No such file or directory
+ succeeded in 51ms:
+# CURRENT TASK EXECUTION PROMPT
+
+You are the coding executor for this project.
+
+## Project path
+site-create-a-premium-modern-website-for-an-e
+
+## Source of truth files
+- brief/original-prompt.md
+- brief/brief-summary.md
+- site-spec.json
+- docs/DEVELOPMENT_METHOD.md
+- agent/TASK_GRAPH.json
+- agent/TASK_STATE.json
+- agent/CURRENT_TASK_PROMPT.md
+
+## Development method
+# Development Method
+
+All sites must follow these rules.
  succeeded in 52ms:
-agent/TASK_GRAPH.json
-agent/CURRENT_TASK_PROMPT.md
-agent/TASK_STATE.json
-agent/AGENT_REPORT.md
+src/pages/Home.jsx
+src/pages/Gallery.jsx
+src/pages/ChiSiamo.jsx
+src/pages/Contatti.jsx
+src/pages/Servizi.jsx
 src/pages/Menu.jsx
+src/assets/react.svg
+src/App.jsx
+src/main.jsx
 src/components/FloatingWhatsAppButton.jsx
 src/components/Brand-story-previewSection.jsx
+src/components/Menu-categoriesSection.jsx
 src/components/Menu-heroSection.jsx
 src/components/SignaturePreviewSection.jsx
 src/components/HeroSection.jsx
+src/index.css
+src/App.css
+src/layout/Layout.jsx
+AGENTS.md
+eslint.config.js
 codex
-The menu page still has inline placeholder markup for `menu-categories`. I’m reading the existing section components now so the new section matches the established structure and visual tone instead of introducing a one-off pattern.
+I found the first constraint mismatch: the task allows `src/pages/Chi-siamo.jsx`, but the codebase currently uses `src/pages/ChiSiamo.jsx` and `src/App.jsx` already imports that path. I’m reading the existing page file now and will keep the change minimal so routing stays stable.
 exec
-/bin/zsh -lc "sed -n '1,260p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' src/components/Menu-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' src/components/Brand-story-previewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-import { Link } from 'react-router-dom'
-
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-    gap: '1.5rem',
-    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    backgroundColor: '#241c17',
-    color: '#f6efe4',
-    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
-  },
-  media: {
-    minHeight: '20rem',
-    borderRadius: '28px',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
-    backgroundSize: 'cover',
- succeeded in 52ms:
-import { Link } from 'react-router-dom'
-
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(30rem, 72vh, 42rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
-  },
-  panel: {
-    width: 'min(100%, 46rem)',
- succeeded in 53ms:
-import { Link } from 'react-router-dom'
-
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    background:
-      'linear-gradient(180deg, rgba(246, 239, 228, 0.9) 0%, rgba(239, 228, 210, 0.72) 100%)',
-    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-  },
-  header: {
-    display: 'grid',
-    gap: '1rem',
-    alignItems: 'end',
-    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
-  },
-  eyebrow: {
-    margin: 0,
-    color: '#9f7b4b',
-codex
-I have enough context. I’m replacing the inline placeholder with a dedicated `Menu-categoriesSection` component that renders structured drink categories and then wiring it into [`Menu.jsx`](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx). After that I’ll run the build and append the task summary to [`AGENT_REPORT.md`](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
-file update
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Menu-categoriesSection.jsx
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    display: 'grid',
-    gap: '1.5rem',
-    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    background:
-      'linear-gradient(180deg, rgba(248, 242, 234, 0.96) 0%, rgba(241, 231, 216, 0.92) 100%)',
-    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-  },
-  header: {
-    display: 'grid',
-    gap: '1rem',
-    maxWidth: '44rem',
-  },
-  eyebrow: {
-    margin: 0,
-    color: '#9f7b4b',
-    fontSize: '0.82rem',
-    letterSpacing: '0.22em',
-    textTransform: 'uppercase',
-    fontWeight: 700,
-  },
-  title: {
-    margin: 0,
-    color: '#201914',
-    fontFamily: 'Georgia, "Times New Roman", serif',
-    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-    lineHeight: 1.05,
-  },
-  intro: {
-    margin: 0,
-    color: 'rgba(32, 25, 20, 0.78)',
-    lineHeight: 1.8,
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-    gap: '1rem',
-  },
-  card: {
-    display: 'grid',
-    gap: '1rem',
-    minHeight: '100%',
-    padding: '1.4rem',
-    borderRadius: '24px',
-    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-    border: '1px solid rgba(159, 123, 75, 0.14)',
-  },
-  category: {
-    margin: 0,
-    color: '#9f7b4b',
-    fontSize: '0.78rem',
-    letterSpacing: '0.16em',
-    textTransform: 'uppercase',
-    fontWeight: 700,
-  },
-  cardTitle: {
-    margin: 0,
-    color: '#201914',
-    fontFamily: 'Georgia, "Times New Roman", serif',
-    fontSize: '1.45rem',
-    lineHeight: 1.15,
-  },
-  cardText: {
-    margin: 0,
-    color: 'rgba(32, 25, 20, 0.76)',
-    lineHeight: 1.75,
-  },
-  list: {
-    display: 'grid',
-    gap: '0.75rem',
-    margin: 0,
-    padding: 0,
-    listStyle: 'none',
-  },
-  listItem: {
-    paddingTop: '0.75rem',
-    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-  },
-  drinkName: {
-    display: 'block',
-    color: '#201914',
-    fontWeight: 700,
-    lineHeight: 1.5,
-  },
-  drinkNote: {
-    display: 'block',
-    marginTop: '0.2rem',
-    color: '#5a4838',
-    fontSize: '0.95rem',
-    lineHeight: 1.6,
-  },
-  footer: {
-    display: 'grid',
-    gap: '0.85rem',
-    paddingTop: '0.5rem',
-    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-  },
-  footerTitle: {
-    margin: 0,
-    color: '#201914',
-    fontFamily: 'Georgia, "Times New Roman", serif',
-    fontSize: '1.2rem',
-  },
-  footerText: {
-    margin: 0,
-    color: 'rgba(32, 25, 20, 0.74)',
-    lineHeight: 1.75,
-  },
-}
-
-const menuCategories = [
-  {
-    category: 'Signature Cocktails',
-    title: 'House creations with an aperitivo soul',
-    description:
-      'Original serves built for receptions and dinners that call for elegance, freshness, and a clear visual identity at the bar.',
-    drinks: [
-      {
-        name: 'Aurea Spritz',
-        note: 'Bergamot, bitter orange, sparkling wine, and a dry herbal finish.',
-      },
-      {
-        name: 'Villa Negroni',
-        note: 'Small-batch gin, vermouth blend, cacao nib, and blood orange.',
-      },
-      {
-        name: 'Rosato Collins',
-        note: 'Rose-infused vodka, citrus cordial, and a polished floral lift.',
-      },
-    ],
-  },
-  {
-    category: 'Classic Reimagined',
-    title: 'Familiar cocktails refined for premium events',
-    description:
-      'Recognizable classics updated with better ingredients, restrained sweetness, and a service style suited to weddings and private evenings.',
-    drinks: [
-      {
-        name: 'Milano Martini',
-        note: 'Gin, dry vermouth, olive oil saline, and Amalfi lemon expression.',
-      },
-      {
-        name: 'Espresso Velvet',
-        note: 'Vodka, espresso concentrate, tonka, and a softer after-dinner profile.',
-      },
-      {
-        name: 'Oak Boulevardier',
-        note: 'Bourbon, red vermouth, bitters, and subtle barrel spice.',
-      },
-    ],
-  },
-  {
-    category: 'Alcohol-Free Signatures',
-    title: 'Complex zero-proof serves that still feel celebratory',
-    description:
-      'Layered alcohol-free drinks designed with the same care as the cocktail list, so every guest feels included in the occasion.',
-    drinks: [
-      {
-        name: 'Garden Fizz',
-        note: 'Cucumber distillate, white peach, basil, and a crisp sparkling finish.',
-      },
-      {
-        name: 'Sera Tonic',
-        note: 'Cedar, grapefruit, and botanical tonic with a bitter aperitivo edge.',
-      },
-      {
-        name: 'Luce Sour',
-        note: 'Verjus, almond, citrus, and silk foam for a bright rounded finish.',
-      },
-    ],
-  },
-]
-
-export default function MenuCategoriesSection() {
+/bin/zsh -lc "sed -n '1,260p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'cat package.json' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/pages/Menu.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/pages/ChiSiamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+export default function ChiSiamo() {
   return (
-    <section
-      id="menu-categories"
-      aria-labelledby="menu-categories-title"
-      style={sectionStyles.section}
-    >
-      <div style={sectionStyles.header}>
-        <p style={sectionStyles.eyebrow}>Menu categories</p>
-        <h2 id="menu-categories-title" style={sectionStyles.title}>
-          A drink program organized for atmosphere, flow, and guest enjoyment
-        </h2>
-        <p style={sectionStyles.intro}>
-          The Casa Aurea menu is structured in clear families so hosts can
-          balance aperitivo moments, dinner pacing, and late-evening toasts with
-          a bar selection that feels polished from start to finish.
-        </p>
-      </div>
-
-      <div style={sectionStyles.grid}>
-        {menuCategories.map((group) => (
-          <article key={group.category} style={sectionStyles.card}>
-            <div>
-              <p style={sectionStyles.category}>{group.category}</p>
-              <h3 style={sectionStyles.cardTitle}>{group.title}</h3>
-            </div>
-
-            <p style={sectionStyles.cardText}>{group.description}</p>
-
-            <ul style={sectionStyles.list}>
-              {group.drinks.map((drink) => (
-                <li key={drink.name} style={sectionStyles.listItem}>
-                  <span style={sectionStyles.drinkName}>{drink.name}</span>
-                  <span style={sectionStyles.drinkNote}>{drink.note}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
-        ))}
-      </div>
-
-      <div style={sectionStyles.footer}>
-        <h3 style={sectionStyles.footerTitle}>Built to adapt to the event</h3>
-        <p style={sectionStyles.footerText}>
-          Each category can be expanded into a tailored event proposal with
-          signature additions, premium spirits, sparkling selections, and
-          service recommendations aligned to your guest count and event style.
-        </p>
-      </div>
-    </section>
+    <>
+      <section id="about-hero">
+        <h1>About Hero</h1>
+        <p>Content for about-hero will be generated by tasks</p>
+      </section>
+      <section id="story">
+        <h2>Story</h2>
+        <p>Content for story will be generated by tasks</p>
+      </section>
+      <section id="philosophy">
+        <h2>Philosophy</h2>
+        <p>Content for philosophy will be generated by tasks</p>
+      </section>
+    </>
   )
 }
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx
-@@ -1,2 +1,3 @@
- import MenuHeroSection from '../components/Menu-heroSection'
-+import MenuCategoriesSection from '../components/Menu-categoriesSection'
- 
-@@ -6,11 +7,3 @@
-       <MenuHeroSection />
--
--      <section id="menu-categories" aria-labelledby="menu-categories-title">
--        <h2 id="menu-categories-title">Menu categories</h2>
--        <p>
--          The full drink list will be structured into distinct collections so
--          guests can quickly understand the house signatures, reimagined
--          classics, alcohol-free options, and premium bottle selections.
--        </p>
--      </section>
-+      <MenuCategoriesSection />
-     </article>
+ succeeded in 52ms:
+import MenuHeroSection from '../components/Menu-heroSection'
+import MenuCategoriesSection from '../components/Menu-categoriesSection'
+
+export default function Menu() {
+  return (
+    <article aria-labelledby="menu-title">
+      <MenuHeroSection />
+      <MenuCategoriesSection />
+    </article>
+  )
+}
+ succeeded in 52ms:
+{
+  "name": "site-create-a-premium-modern-website-for-an-e",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test:ui": "playwright test"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.13.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.58.2",
+ succeeded in 52ms:
+import HeroSection from '../components/HeroSection'
+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
+import SignaturePreviewSection from '../components/SignaturePreviewSection'
+
+export default function Home() {
+  return (
+    <article aria-labelledby="home-title">
+      <HeroSection
+        primaryCta={{
+          label: 'Request your event proposal',
+          to: '/menu',
+        }}
+        secondaryCta={{
+          label: 'Contact us for your event',
+          to: '/contatti',
+        }}
+      />
+      <SignaturePreviewSection />
+      <BrandStoryPreviewSection />
+codex
+I have the context now. I’m adding a real page shell with semantic sections and route-safe wiring by creating `src/pages/Chi-siamo.jsx`, updating `src/App.jsx` to use it, and then I’ll run the build and append the required task note to `agent/AGENT_REPORT.md`.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx
+@@ -4,3 +4,3 @@
+ import Menu from "./pages/Menu"
+-import ChiSiamo from "./pages/ChiSiamo"
++import ChiSiamo from "./pages/Chi-siamo"
+ import Gallery from "./pages/Gallery"
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx
+export default function ChiSiamo() {
+  return (
+    <article aria-labelledby="chi-siamo-title">
+      <section id="about-hero">
+        <div>
+          <p>Casa Aurea Events</p>
+          <h1 id="chi-siamo-title">
+            Hospitality shaped with care, timing, and a refined Italian eye
+          </h1>
+          <p>
+            We design catering and bar experiences that feel effortless for the
+            host and memorable for every guest, from the first welcome glass to
+            the final toast.
+          </p>
+        </div>
+      </section>
+
+      <section id="story" aria-labelledby="story-title">
+        <div>
+          <h2 id="story-title">Our story</h2>
+          <p>
+            Casa Aurea Events was created for clients who want more than a
+            service list. We bring together elegant food presentation, polished
+            bar service, and calm event coordination so each celebration feels
+            cohesive, gracious, and beautifully hosted.
+          </p>
+          <p>
+            From intimate private dinners to larger wedding receptions, our work
+            is guided by balance: warm hospitality, precise execution, and an
+            atmosphere that always feels considered rather than overstated.
+          </p>
+        </div>
+      </section>
+
+      <section id="philosophy" aria-labelledby="philosophy-title">
+        <div>
+          <h2 id="philosophy-title">Our philosophy</h2>
+          <p>
+            We believe premium events are defined by the details guests notice
+            without being told: the pacing of service, the elegance of the
+            setting, the quality of each pour, and the sense that every moment
+            has been prepared with intention.
+          </p>
+          <p>
+            That focus on presentation, timing, and guest comfort is what makes
+            Casa Aurea Events feel personal, polished, and ready for follow-up
+            content in the next tasks.
+          </p>
+        </div>
+      </section>
+    </article>
+  )
+}
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+@@ -224 +224,12 @@
+ Launching Codex for TASK page-chi-siamo-shell.
++
++Completed TASK page-chi-siamo-shell.
++
++Implemented a semantic shell for `src/pages/Chi-siamo.jsx` with the required
++`about-hero`, `story`, and `philosophy` sections, premium brand-aligned copy,
++and a single page `h1`. Updated `src/App.jsx` to mount the existing
++`/chi-siamo` route from the task-specified page file so the page renders
++without crashing.
++
++TASK page-chi-siamo-shell executed by Codex.
++Waiting for validation.
 apply_patch(auto_approved=true) exited 0 in 58ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Menu-categoriesSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
-diff --git a/src/components/Menu-categoriesSection.jsx b/src/components/Menu-categoriesSection.jsx
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 21953d3a80d1921843bf70db77123c8aa923e88a..0ef20e4c103b8dfbc747bf864d4d12db2984fd30
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -222,3 +222,14 @@
+ Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
+ 
+ Launching Codex for TASK page-chi-siamo-shell.
++
++Completed TASK page-chi-siamo-shell.
++
++Implemented a semantic shell for `src/pages/Chi-siamo.jsx` with the required
++`about-hero`, `story`, and `philosophy` sections, premium brand-aligned copy,
++and a single page `h1`. Updated `src/App.jsx` to mount the existing
++`/chi-siamo` route from the task-specified page file so the page renders
++without crashing.
++
++TASK page-chi-siamo-shell executed by Codex.
++Waiting for validation.
+diff --git a/src/App.jsx b/src/App.jsx
+index 588aa688240d929e86ed1586d2b63ec32c4cec5d..c2164f36e0b3673df3539f662c9e1145acb05f13
+--- a/src/App.jsx
++++ b/src/App.jsx
+@@ -2,7 +2,7 @@
+ import Layout from "./layout/Layout"
+ import Home from "./pages/Home"
+ import Menu from "./pages/Menu"
+-import ChiSiamo from "./pages/ChiSiamo"
++import ChiSiamo from "./pages/Chi-siamo"
+ import Gallery from "./pages/Gallery"
+ import Contatti from "./pages/Contatti"
+ import Servizi from "./pages/Servizi"
+diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..89721d69b73b9ee7a2f830342ec66ac94794ae45
+index 0000000000000000000000000000000000000000..fd90071294a41e31c61b5f0e0ff8d84e993c62c2
 --- /dev/null
-+++ b/src/components/Menu-categoriesSection.jsx
-@@ -0,0 +1,228 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.96) 0%, rgba(241, 231, 216, 0.92) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '44rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.78)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    display: 'grid',
-+    gap: '1rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-+    border: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  category: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  cardTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.45rem',
-+    lineHeight: 1.15,
-+  },
-+  cardText: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.75,
-+  },
-+  list: {
-+    display: 'grid',
-+    gap: '0.75rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  listItem: {
-+    paddingTop: '0.75rem',
-+    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  drinkName: {
-+    display: 'block',
-+    color: '#201914',
-+    fontWeight: 700,
-+    lineHeight: 1.5,
-+  },
-+  drinkNote: {
-+    display: 'block',
-+    marginTop: '0.2rem',
-+    color: '#5a4838',
-+    fontSize: '0.95rem',
-+    lineHeight: 1.6,
-+  },
-+  footer: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    paddingTop: '0.5rem',
-+    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  footerTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+  },
-+  footerText: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.74)',
-+    lineHeight: 1.75,
-+  },
-+}
-+
-+const menuCategories = [
-+  {
-+    category: 'Signature Cocktails',
-+    title: 'House creations with an aperitivo soul',
-+    description:
-+      'Original serves built for receptions and dinners that call for elegance, freshness, and a clear visual identity at the bar.',
-+    drinks: [
-+      {
-+        name: 'Aurea Spritz',
-+        note: 'Bergamot, bitter orange, sparkling wine, and a dry herbal finish.',
-+      },
-+      {
-+        name: 'Villa Negroni',
-+        note: 'Small-batch gin, vermouth blend, cacao nib, and blood orange.',
-+      },
-+      {
-+        name: 'Rosato Collins',
-+        note: 'Rose-infused vodka, citrus cordial, and a polished floral lift.',
-+      },
-+    ],
-+  },
-+  {
-+    category: 'Classic Reimagined',
-+    title: 'Familiar cocktails refined for premium events',
-+    description:
-+      'Recognizable classics updated with better ingredients, restrained sweetness, and a service style suited to weddings and private evenings.',
-+    drinks: [
-+      {
-+        name: 'Milano Martini',
-+        note: 'Gin, dry vermouth, olive oil saline, and Amalfi lemon expression.',
-+      },
-+      {
-+        name: 'Espresso Velvet',
-+        note: 'Vodka, espresso concentrate, tonka, and a softer after-dinner profile.',
-+      },
-+      {
-+        name: 'Oak Boulevardier',
-+        note: 'Bourbon, red vermouth, bitters, and subtle barrel spice.',
-+      },
-+    ],
-+  },
-+  {
-+    category: 'Alcohol-Free Signatures',
-+    title: 'Complex zero-proof serves that still feel celebratory',
-+    description:
-+      'Layered alcohol-free drinks designed with the same care as the cocktail list, so every guest feels included in the occasion.',
-+    drinks: [
-+      {
-+        name: 'Garden Fizz',
-+        note: 'Cucumber distillate, white peach, basil, and a crisp sparkling finish.',
-+      },
-+      {
-+        name: 'Sera Tonic',
-+        note: 'Cedar, grapefruit, and botanical tonic with a bitter aperitivo edge.',
-+      },
-+      {
-+        name: 'Luce Sour',
-+        note: 'Verjus, almond, citrus, and silk foam for a bright rounded finish.',
-+      },
-+    ],
-+  },
-+]
-+
-+export default function MenuCategoriesSection() {
++++ b/src/pages/Chi-siamo.jsx
+@@ -0,0 +1,53 @@
++export default function ChiSiamo() {
 +  return (
-+    <section
-+      id="menu-categories"
-+      aria-labelledby="menu-categories-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Menu categories</p>
-+        <h2 id="menu-categories-title" style={sectionStyles.title}>
-+          A drink program organized for atmosphere, flow, and guest enjoyment
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          The Casa Aurea menu is structured in clear families so hosts can
-+          balance aperitivo moments, dinner pacing, and late-evening toasts with
-+          a bar selection that feels polished from start to finish.
-+        </p>
-+      </div>
++    <article aria-labelledby="chi-siamo-title">
++      <section id="about-hero">
++        <div>
++          <p>Casa Aurea Events</p>
++          <h1 id="chi-siamo-title">
++            Hospitality shaped with care, timing, and a refined Italian eye
++          </h1>
++          <p>
++            We design catering and bar experiences that feel effortless for the
++            host and memorable for every guest, from the first welcome glass to
++            the final toast.
++          </p>
++        </div>
++      </section>
 +
-+      <div style={sectionStyles.grid}>
-+        {menuCategories.map((group) => (
-+          <article key={group.category} style={sectionStyles.card}>
-+            <div>
-+              <p style={sectionStyles.category}>{group.category}</p>
-+              <h3 style={sectionStyles.cardTitle}>{group.title}</h3>
-+            </div>
++      <section id="story" aria-labelledby="story-title">
++        <div>
++          <h2 id="story-title">Our story</h2>
++          <p>
++            Casa Aurea Events was created for clients who want more than a
++            service list. We bring together elegant food presentation, polished
++            bar service, and calm event coordination so each celebration feels
++            cohesive, gracious, and beautifully hosted.
++          </p>
++          <p>
++            From intimate private dinners to larger wedding receptions, our work
++            is guided by balance: warm hospitality, precise execution, and an
++            atmosphere that always feels considered rather than overstated.
++          </p>
++        </div>
++      </section>
 +
-+            <p style={sectionStyles.cardText}>{group.description}</p>
-+
-+            <ul style={sectionStyles.list}>
-+              {group.drinks.map((drink) => (
-+                <li key={drink.name} style={sectionStyles.listItem}>
-+                  <span style={sectionStyles.drinkName}>{drink.name}</span>
-+                  <span style={sectionStyles.drinkNote}>{drink.note}</span>
-+                </li>
-+              ))}
-+            </ul>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <div style={sectionStyles.footer}>
-+        <h3 style={sectionStyles.footerTitle}>Built to adapt to the event</h3>
-+        <p style={sectionStyles.footerText}>
-+          Each category can be expanded into a tailored event proposal with
-+          signature additions, premium spirits, sparkling selections, and
-+          service recommendations aligned to your guest count and event style.
-+        </p>
-+      </div>
-+    </section>
++      <section id="philosophy" aria-labelledby="philosophy-title">
++        <div>
++          <h2 id="philosophy-title">Our philosophy</h2>
++          <p>
++            We believe premium events are defined by the details guests notice
++            without being told: the pacing of service, the elegance of the
++            setting, the quality of each pour, and the sense that every moment
++            has been prepared with intention.
++          </p>
++          <p>
++            That focus on presentation, timing, and guest comfort is what makes
++            Casa Aurea Events feel personal, polished, and ready for follow-up
++            content in the next tasks.
++          </p>
++        </div>
++      </section>
++    </article>
 +  )
 +}
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index ae33526f293e8d8974dfc12bff56424470fce774..94bd66127f0afad69527335f439ee95495a90281
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -1,18 +1,11 @@
- import MenuHeroSection from '../components/Menu-heroSection'
-+import MenuCategoriesSection from '../components/Menu-categoriesSection'
- 
- export default function Menu() {
-   return (
-     <article aria-labelledby="menu-title">
-       <MenuHeroSection />
--
--      <section id="menu-categories" aria-labelledby="menu-categories-title">
--        <h2 id="menu-categories-title">Menu categories</h2>
--        <p>
--          The full drink list will be structured into distinct collections so
--          guests can quickly understand the house signatures, reimagined
--          classics, alcohol-free options, and premium bottle selections.
--        </p>
--      </section>
-+      <MenuCategoriesSection />
-     </article>
-   )
- }
 
 file update:
-diff --git a/src/components/Menu-categoriesSection.jsx b/src/components/Menu-categoriesSection.jsx
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 21953d3a80d1921843bf70db77123c8aa923e88a..0ef20e4c103b8dfbc747bf864d4d12db2984fd30
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -222,3 +222,14 @@
+ Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
+ 
+ Launching Codex for TASK page-chi-siamo-shell.
++
++Completed TASK page-chi-siamo-shell.
++
++Implemented a semantic shell for `src/pages/Chi-siamo.jsx` with the required
++`about-hero`, `story`, and `philosophy` sections, premium brand-aligned copy,
++and a single page `h1`. Updated `src/App.jsx` to mount the existing
++`/chi-siamo` route from the task-specified page file so the page renders
++without crashing.
++
++TASK page-chi-siamo-shell executed by Codex.
++Waiting for validation.
+diff --git a/src/App.jsx b/src/App.jsx
+index 588aa688240d929e86ed1586d2b63ec32c4cec5d..c2164f36e0b3673df3539f662c9e1145acb05f13
+--- a/src/App.jsx
++++ b/src/App.jsx
+@@ -2,7 +2,7 @@
+ import Layout from "./layout/Layout"
+ import Home from "./pages/Home"
+ import Menu from "./pages/Menu"
+-import ChiSiamo from "./pages/ChiSiamo"
++import ChiSiamo from "./pages/Chi-siamo"
+ import Gallery from "./pages/Gallery"
+ import Contatti from "./pages/Contatti"
+ import Servizi from "./pages/Servizi"
+diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..89721d69b73b9ee7a2f830342ec66ac94794ae45
+index 0000000000000000000000000000000000000000..fd90071294a41e31c61b5f0e0ff8d84e993c62c2
 --- /dev/null
-+++ b/src/components/Menu-categoriesSection.jsx
-@@ -0,0 +1,228 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.96) 0%, rgba(241, 231, 216, 0.92) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '44rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.78)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    display: 'grid',
-+    gap: '1rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-+    border: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  category: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  cardTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.45rem',
-+    lineHeight: 1.15,
-+  },
-+  cardText: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.75,
-+  },
-+  list: {
-+    display: 'grid',
-+    gap: '0.75rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  listItem: {
-+    paddingTop: '0.75rem',
-+    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  drinkName: {
-+    display: 'block',
-+    color: '#201914',
-+    fontWeight: 700,
-+    lineHeight: 1.5,
-+  },
-+  drinkNote: {
-+    display: 'block',
-+    marginTop: '0.2rem',
-+    color: '#5a4838',
-+    fontSize: '0.95rem',
-+    lineHeight: 1.6,
-+  },
-+  footer: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    paddingTop: '0.5rem',
-+    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  footerTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+  },
-+  footerText: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.74)',
-+    lineHeight: 1.75,
-+  },
-+}
-+
-+const menuCategories = [
-+  {
-+    category: 'Signature Cocktails',
-+    title: 'House creations with an aperitivo soul',
-+    description:
-+      'Original serves built for receptions and dinners that call for elegance, freshness, and a clear visual identity at the bar.',
-+    drinks: [
-+      {
-+        name: 'Aurea Spritz',
-+        note: 'Bergamot, bitter orange, sparkling wine, and a dry herbal finish.',
-+      },
-+      {
-+        name: 'Villa Negroni',
-+        note: 'Small-batch gin, vermouth blend, cacao nib, and blood orange.',
-+      },
-+      {
-+        name: 'Rosato Collins',
-+        note: 'Rose-infused vodka, citrus cordial, and a polished floral lift.',
-+      },
-+    ],
-+  },
-+  {
-+    category: 'Classic Reimagined',
-+    title: 'Familiar cocktails refined for premium events',
-+    description:
-+      'Recognizable classics updated with better ingredients, restrained sweetness, and a service style suited to weddings and private evenings.',
-+    drinks: [
-+      {
-+        name: 'Milano Martini',
-+        note: 'Gin, dry vermouth, olive oil saline, and Amalfi lemon expression.',
-+      },
-+      {
-+        name: 'Espresso Velvet',
-+        note: 'Vodka, espresso concentrate, tonka, and a softer after-dinner profile.',
-+      },
-+      {
-+        name: 'Oak Boulevardier',
-+        note: 'Bourbon, red vermouth, bitters, and subtle barrel spice.',
-+      },
-+    ],
-+  },
-+  {
-+    category: 'Alcohol-Free Signatures',
-+    title: 'Complex zero-proof serves that still feel celebratory',
-+    description:
-+      'Layered alcohol-free drinks designed with the same care as the cocktail list, so every guest feels included in the occasion.',
-+    drinks: [
-+      {
-+        name: 'Garden Fizz',
-+        note: 'Cucumber distillate, white peach, basil, and a crisp sparkling finish.',
-+      },
-+      {
-+        name: 'Sera Tonic',
-+        note: 'Cedar, grapefruit, and botanical tonic with a bitter aperitivo edge.',
-+      },
-+      {
-+        name: 'Luce Sour',
-+        note: 'Verjus, almond, citrus, and silk foam for a bright rounded finish.',
-+      },
-+    ],
-+  },
-+]
-+
-+export default function MenuCategoriesSection() {
++++ b/src/pages/Chi-siamo.jsx
+@@ -0,0 +1,53 @@
++export default function ChiSiamo() {
 +  return (
-+    <section
-+      id="menu-categories"
-+      aria-labelledby="menu-categories-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Menu categories</p>
-+        <h2 id="menu-categories-title" style={sectionStyles.title}>
-+          A drink program organized for atmosphere, flow, and guest enjoyment
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          The Casa Aurea menu is structured in clear families so hosts can
-+          balance aperitivo moments, dinner pacing, and late-evening toasts with
-+          a bar selection that feels polished from start to finish.
-+        </p>
-+      </div>
++    <article aria-labelledby="chi-siamo-title">
++      <section id="about-hero">
++        <div>
++          <p>Casa Aurea Events</p>
++          <h1 id="chi-siamo-title">
++            Hospitality shaped with care, timing, and a refined Italian eye
++          </h1>
++          <p>
++            We design catering and bar experiences that feel effortless for the
++            host and memorable for every guest, from the first welcome glass to
++            the final toast.
++          </p>
++        </div>
++      </section>
 +
-+      <div style={sectionStyles.grid}>
-+        {menuCategories.map((group) => (
-+          <article key={group.category} style={sectionStyles.card}>
-+            <div>
-+              <p style={sectionStyles.category}>{group.category}</p>
-+              <h3 style={sectionStyles.cardTitle}>{group.title}</h3>
-+            </div>
++      <section id="story" aria-labelledby="story-title">
++        <div>
++          <h2 id="story-title">Our story</h2>
++          <p>
++            Casa Aurea Events was created for clients who want more than a
++            service list. We bring together elegant food presentation, polished
++            bar service, and calm event coordination so each celebration feels
++            cohesive, gracious, and beautifully hosted.
++          </p>
++          <p>
++            From intimate private dinners to larger wedding receptions, our work
++            is guided by balance: warm hospitality, precise execution, and an
++            atmosphere that always feels considered rather than overstated.
++          </p>
++        </div>
++      </section>
 +
-+            <p style={sectionStyles.cardText}>{group.description}</p>
-+
-+            <ul style={sectionStyles.list}>
-+              {group.drinks.map((drink) => (
-+                <li key={drink.name} style={sectionStyles.listItem}>
-+                  <span style={sectionStyles.drinkName}>{drink.name}</span>
-+                  <span style={sectionStyles.drinkNote}>{drink.note}</span>
-+                </li>
-+              ))}
-+            </ul>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <div style={sectionStyles.footer}>
-+        <h3 style={sectionStyles.footerTitle}>Built to adapt to the event</h3>
-+        <p style={sectionStyles.footerText}>
-+          Each category can be expanded into a tailored event proposal with
-+          signature additions, premium spirits, sparkling selections, and
-+          service recommendations aligned to your guest count and event style.
-+        </p>
-+      </div>
-+    </section>
++      <section id="philosophy" aria-labelledby="philosophy-title">
++        <div>
++          <h2 id="philosophy-title">Our philosophy</h2>
++          <p>
++            We believe premium events are defined by the details guests notice
++            without being told: the pacing of service, the elegance of the
++            setting, the quality of each pour, and the sense that every moment
++            has been prepared with intention.
++          </p>
++          <p>
++            That focus on presentation, timing, and guest comfort is what makes
++            Casa Aurea Events feel personal, polished, and ready for follow-up
++            content in the next tasks.
++          </p>
++        </div>
++      </section>
++    </article>
 +  )
 +}
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index ae33526f293e8d8974dfc12bff56424470fce774..94bd66127f0afad69527335f439ee95495a90281
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -1,18 +1,11 @@
- import MenuHeroSection from '../components/Menu-heroSection'
-+import MenuCategoriesSection from '../components/Menu-categoriesSection'
- 
- export default function Menu() {
-   return (
-     <article aria-labelledby="menu-title">
-       <MenuHeroSection />
--
--      <section id="menu-categories" aria-labelledby="menu-categories-title">
--        <h2 id="menu-categories-title">Menu categories</h2>
--        <p>
--          The full drink list will be structured into distinct collections so
--          guests can quickly understand the house signatures, reimagined
--          classics, alcohol-free options, and premium bottle selections.
--        </p>
--      </section>
-+      <MenuCategoriesSection />
-     </article>
-   )
- }
 
 codex
-The section component is in place and the menu page now renders it directly. I’m running the build next to catch any integration issues before I log the task outcome in the agent report.
+The page shell is in place and the app now imports the task-specified file path for `/chi-siamo`. I’m running the build check now to verify the route renders cleanly in the current project state.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 735ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 808ms:
+
+> site-create-a-premium-modern-website-for-an-e@0.0.0 build
+> vite build
+
 vite v7.3.1 building client environment for production...
 transforming...
 ✓ 54 modules transformed.
 rendering chunks...
 computing gzip size...
-dist/index.html                   0.50 kB │ gzip:  0.31 kB
+dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-V0iwz-Ti.js   253.74 kB │ gzip: 79.82 kB
-✓ built in 550ms
+dist/assets/index-DrIkStHO.js   254.96 kB │ gzip: 80.21 kB
+✓ built in 557ms
 file update:
-diff --git a/src/components/Menu-categoriesSection.jsx b/src/components/Menu-categoriesSection.jsx
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 21953d3a80d1921843bf70db77123c8aa923e88a..0ef20e4c103b8dfbc747bf864d4d12db2984fd30
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -222,3 +222,14 @@
+ Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
+ 
+ Launching Codex for TASK page-chi-siamo-shell.
++
++Completed TASK page-chi-siamo-shell.
++
++Implemented a semantic shell for `src/pages/Chi-siamo.jsx` with the required
++`about-hero`, `story`, and `philosophy` sections, premium brand-aligned copy,
++and a single page `h1`. Updated `src/App.jsx` to mount the existing
++`/chi-siamo` route from the task-specified page file so the page renders
++without crashing.
++
++TASK page-chi-siamo-shell executed by Codex.
++Waiting for validation.
+diff --git a/src/App.jsx b/src/App.jsx
+index 588aa688240d929e86ed1586d2b63ec32c4cec5d..c2164f36e0b3673df3539f662c9e1145acb05f13
+--- a/src/App.jsx
++++ b/src/App.jsx
+@@ -2,7 +2,7 @@
+ import Layout from "./layout/Layout"
+ import Home from "./pages/Home"
+ import Menu from "./pages/Menu"
+-import ChiSiamo from "./pages/ChiSiamo"
++import ChiSiamo from "./pages/Chi-siamo"
+ import Gallery from "./pages/Gallery"
+ import Contatti from "./pages/Contatti"
+ import Servizi from "./pages/Servizi"
+diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..89721d69b73b9ee7a2f830342ec66ac94794ae45
+index 0000000000000000000000000000000000000000..fd90071294a41e31c61b5f0e0ff8d84e993c62c2
 --- /dev/null
-+++ b/src/components/Menu-categoriesSection.jsx
-@@ -0,0 +1,228 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.96) 0%, rgba(241, 231, 216, 0.92) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '44rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.78)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    display: 'grid',
-+    gap: '1rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-+    border: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  category: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  cardTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.45rem',
-+    lineHeight: 1.15,
-+  },
-+  cardText: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.75,
-+  },
-+  list: {
-+    display: 'grid',
-+    gap: '0.75rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  listItem: {
-+    paddingTop: '0.75rem',
-+    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  drinkName: {
-+    display: 'block',
-+    color: '#201914',
-+    fontWeight: 700,
-+    lineHeight: 1.5,
-+  },
-+  drinkNote: {
-+    display: 'block',
-+    marginTop: '0.2rem',
-+    color: '#5a4838',
-+    fontSize: '0.95rem',
-+    lineHeight: 1.6,
-+  },
-+  footer: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    paddingTop: '0.5rem',
-+    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  footerTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+  },
-+  footerText: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.74)',
-+    lineHeight: 1.75,
-+  },
-+}
-+
-+const menuCategories = [
-+  {
-+    category: 'Signature Cocktails',
-+    title: 'House creations with an aperitivo soul',
-+    description:
-+      'Original serves built for receptions and dinners that call for elegance, freshness, and a clear visual identity at the bar.',
-+    drinks: [
-+      {
-+        name: 'Aurea Spritz',
-+        note: 'Bergamot, bitter orange, sparkling wine, and a dry herbal finish.',
-+      },
-+      {
-+        name: 'Villa Negroni',
-+        note: 'Small-batch gin, vermouth blend, cacao nib, and blood orange.',
-+      },
-+      {
-+        name: 'Rosato Collins',
-+        note: 'Rose-infused vodka, citrus cordial, and a polished floral lift.',
-+      },
-+    ],
-+  },
-+  {
-+    category: 'Classic Reimagined',
-+    title: 'Familiar cocktails refined for premium events',
-+    description:
-+      'Recognizable classics updated with better ingredients, restrained sweetness, and a service style suited to weddings and private evenings.',
-+    drinks: [
-+      {
-+        name: 'Milano Martini',
-+        note: 'Gin, dry vermouth, olive oil saline, and Amalfi lemon expression.',
-+      },
-+      {
-+        name: 'Espresso Velvet',
-+        note: 'Vodka, espresso concentrate, tonka, and a softer after-dinner profile.',
-+      },
-+      {
-+        name: 'Oak Boulevardier',
-+        note: 'Bourbon, red vermouth, bitters, and subtle barrel spice.',
-+      },
-+    ],
-+  },
-+  {
-+    category: 'Alcohol-Free Signatures',
-+    title: 'Complex zero-proof serves that still feel celebratory',
-+    description:
-+      'Layered alcohol-free drinks designed with the same care as the cocktail list, so every guest feels included in the occasion.',
-+    drinks: [
-+      {
-+        name: 'Garden Fizz',
-+        note: 'Cucumber distillate, white peach, basil, and a crisp sparkling finish.',
-+      },
-+      {
-+        name: 'Sera Tonic',
-+        note: 'Cedar, grapefruit, and botanical tonic with a bitter aperitivo edge.',
-+      },
-+      {
-+        name: 'Luce Sour',
-+        note: 'Verjus, almond, citrus, and silk foam for a bright rounded finish.',
-+      },
-+    ],
-+  },
-+]
-+
-+export default function MenuCategoriesSection() {
++++ b/src/pages/Chi-siamo.jsx
+@@ -0,0 +1,53 @@
++export default function ChiSiamo() {
 +  return (
-+    <section
-+      id="menu-categories"
-+      aria-labelledby="menu-categories-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Menu categories</p>
-+        <h2 id="menu-categories-title" style={sectionStyles.title}>
-+          A drink program organized for atmosphere, flow, and guest enjoyment
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          The Casa Aurea menu is structured in clear families so hosts can
-+          balance aperitivo moments, dinner pacing, and late-evening toasts with
-+          a bar selection that feels polished from start to finish.
-+        </p>
-+      </div>
++    <article aria-labelledby="chi-siamo-title">
++      <section id="about-hero">
++        <div>
++          <p>Casa Aurea Events</p>
++          <h1 id="chi-siamo-title">
++            Hospitality shaped with care, timing, and a refined Italian eye
++          </h1>
++          <p>
++            We design catering and bar experiences that feel effortless for the
++            host and memorable for every guest, from the first welcome glass to
++            the final toast.
++          </p>
++        </div>
++      </section>
 +
-+      <div style={sectionStyles.grid}>
-+        {menuCategories.map((group) => (
-+          <article key={group.category} style={sectionStyles.card}>
-+            <div>
-+              <p style={sectionStyles.category}>{group.category}</p>
-+              <h3 style={sectionStyles.cardTitle}>{group.title}</h3>
-+            </div>
++      <section id="story" aria-labelledby="story-title">
++        <div>
++          <h2 id="story-title">Our story</h2>
++          <p>
++            Casa Aurea Events was created for clients who want more than a
++            service list. We bring together elegant food presentation, polished
++            bar service, and calm event coordination so each celebration feels
++            cohesive, gracious, and beautifully hosted.
++          </p>
++          <p>
++            From intimate private dinners to larger wedding receptions, our work
++            is guided by balance: warm hospitality, precise execution, and an
++            atmosphere that always feels considered rather than overstated.
++          </p>
++        </div>
++      </section>
 +
-+            <p style={sectionStyles.cardText}>{group.description}</p>
-+
-+            <ul style={sectionStyles.list}>
-+              {group.drinks.map((drink) => (
-+                <li key={drink.name} style={sectionStyles.listItem}>
-+                  <span style={sectionStyles.drinkName}>{drink.name}</span>
-+                  <span style={sectionStyles.drinkNote}>{drink.note}</span>
-+                </li>
-+              ))}
-+            </ul>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <div style={sectionStyles.footer}>
-+        <h3 style={sectionStyles.footerTitle}>Built to adapt to the event</h3>
-+        <p style={sectionStyles.footerText}>
-+          Each category can be expanded into a tailored event proposal with
-+          signature additions, premium spirits, sparkling selections, and
-+          service recommendations aligned to your guest count and event style.
-+        </p>
-+      </div>
-+    </section>
++      <section id="philosophy" aria-labelledby="philosophy-title">
++        <div>
++          <h2 id="philosophy-title">Our philosophy</h2>
++          <p>
++            We believe premium events are defined by the details guests notice
++            without being told: the pacing of service, the elegance of the
++            setting, the quality of each pour, and the sense that every moment
++            has been prepared with intention.
++          </p>
++          <p>
++            That focus on presentation, timing, and guest comfort is what makes
++            Casa Aurea Events feel personal, polished, and ready for follow-up
++            content in the next tasks.
++          </p>
++        </div>
++      </section>
++    </article>
 +  )
 +}
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index ae33526f293e8d8974dfc12bff56424470fce774..94bd66127f0afad69527335f439ee95495a90281
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -1,18 +1,11 @@
- import MenuHeroSection from '../components/Menu-heroSection'
-+import MenuCategoriesSection from '../components/Menu-categoriesSection'
- 
- export default function Menu() {
-   return (
-     <article aria-labelledby="menu-title">
-       <MenuHeroSection />
--
--      <section id="menu-categories" aria-labelledby="menu-categories-title">
--        <h2 id="menu-categories-title">Menu categories</h2>
--        <p>
--          The full drink list will be structured into distinct collections so
--          guests can quickly understand the house signatures, reimagined
--          classics, alcohol-free options, and premium bottle selections.
--        </p>
--      </section>
-+      <MenuCategoriesSection />
-     </article>
-   )
- }
 
 codex
-The build passed. I’m appending a short task entry to [`AGENT_REPORT.md`](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) now so the project log reflects exactly what changed for this task.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -198 +198,16 @@
- Launching Codex for TASK section-menu-menu-categories.
-+
-+Completed TASK section-menu-menu-categories.
-+
-+Implemented a dedicated `Menu-categoriesSection` component in
-+`src/components/Menu-categoriesSection.jsx` and rendered it from
-+`src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
-+page now includes a structured premium menu-categories section with curated
-+drink groups, example serves, and polished supporting copy aligned to the
-+brand tone.
-+
-+TASK section-menu-menu-categories executed by Codex.
-+Waiting for validation.
-+
-+TASK section-menu-menu-categories completed successfully.
-+Build passed.
-apply_patch(auto_approved=true) exited 0 in 57ms:
-Success. Updated the following files:
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+Modified files: [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), [src/pages/Chi-siamo.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Chi-siamo.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+
+Implemented the `chi-siamo` page shell as a semantic `article` with the required `about-hero`, `story`, and `philosophy` sections, real premium copy, and a single `h1`. I also updated [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx) to import the task-specified page file so the existing `/chi-siamo` route is mounted from the new shell without crashing.
+
+Build result: `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 440c47c34870d08d48965e986b9e0ca9fb6a869d..1977584c6bf190f311908553fe4b02d0d64b9668
+index 21953d3a80d1921843bf70db77123c8aa923e88a..0ef20e4c103b8dfbc747bf864d4d12db2984fd30
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -196,3 +196,18 @@
- Prepared TASK section-menu-menu-categories (Create menu-categories section on menu) for execution.
+@@ -222,3 +222,14 @@
+ Prepared TASK page-chi-siamo-shell (Create chi-siamo page shell) for execution.
  
- Launching Codex for TASK section-menu-menu-categories.
+ Launching Codex for TASK page-chi-siamo-shell.
 +
-+Completed TASK section-menu-menu-categories.
++Completed TASK page-chi-siamo-shell.
 +
-+Implemented a dedicated `Menu-categoriesSection` component in
-+`src/components/Menu-categoriesSection.jsx` and rendered it from
-+`src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
-+page now includes a structured premium menu-categories section with curated
-+drink groups, example serves, and polished supporting copy aligned to the
-+brand tone.
++Implemented a semantic shell for `src/pages/Chi-siamo.jsx` with the required
++`about-hero`, `story`, and `philosophy` sections, premium brand-aligned copy,
++and a single page `h1`. Updated `src/App.jsx` to mount the existing
++`/chi-siamo` route from the task-specified page file so the page renders
++without crashing.
 +
-+TASK section-menu-menu-categories executed by Codex.
++TASK page-chi-siamo-shell executed by Codex.
 +Waiting for validation.
-+
-+TASK section-menu-menu-categories completed successfully.
-+Build passed.
-diff --git a/src/components/Menu-categoriesSection.jsx b/src/components/Menu-categoriesSection.jsx
+diff --git a/src/App.jsx b/src/App.jsx
+index 588aa688240d929e86ed1586d2b63ec32c4cec5d..c2164f36e0b3673df3539f662c9e1145acb05f13
+--- a/src/App.jsx
++++ b/src/App.jsx
+@@ -2,7 +2,7 @@
+ import Layout from "./layout/Layout"
+ import Home from "./pages/Home"
+ import Menu from "./pages/Menu"
+-import ChiSiamo from "./pages/ChiSiamo"
++import ChiSiamo from "./pages/Chi-siamo"
+ import Gallery from "./pages/Gallery"
+ import Contatti from "./pages/Contatti"
+ import Servizi from "./pages/Servizi"
+diff --git a/src/pages/Chi-siamo.jsx b/src/pages/Chi-siamo.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..89721d69b73b9ee7a2f830342ec66ac94794ae45
+index 0000000000000000000000000000000000000000..fd90071294a41e31c61b5f0e0ff8d84e993c62c2
 --- /dev/null
-+++ b/src/components/Menu-categoriesSection.jsx
-@@ -0,0 +1,228 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.96) 0%, rgba(241, 231, 216, 0.92) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '44rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.78)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    display: 'grid',
-+    gap: '1rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-+    border: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  category: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  cardTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.45rem',
-+    lineHeight: 1.15,
-+  },
-+  cardText: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.75,
-+  },
-+  list: {
-+    display: 'grid',
-+    gap: '0.75rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  listItem: {
-+    paddingTop: '0.75rem',
-+    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  drinkName: {
-+    display: 'block',
-+    color: '#201914',
-+    fontWeight: 700,
-+    lineHeight: 1.5,
-+  },
-+  drinkNote: {
-+    display: 'block',
-+    marginTop: '0.2rem',
-+    color: '#5a4838',
-+    fontSize: '0.95rem',
-+    lineHeight: 1.6,
-+  },
-+  footer: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    paddingTop: '0.5rem',
-+    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  footerTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+  },
-+  footerText: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.74)',
-+    lineHeight: 1.75,
-+  },
-+}
-+
-+const menuCategories = [
-+  {
-+    category: 'Signature Cocktails',
-+    title: 'House creations with an aperitivo soul',
-+    description:
-+      'Original serves built for receptions and dinners that call for elegance, freshness, and a clear visual identity at the bar.',
-+    drinks: [
-+      {
-+        name: 'Aurea Spritz',
-+        note: 'Bergamot, bitter orange, sparkling wine, and a dry herbal finish.',
-+      },
-+      {
-+        name: 'Villa Negroni',
-+        note: 'Small-batch gin, vermouth blend, cacao nib, and blood orange.',
-+      },
-+      {
-+        name: 'Rosato Collins',
-+        note: 'Rose-infused vodka, citrus cordial, and a polished floral lift.',
-+      },
-+    ],
-+  },
-+  {
-+    category: 'Classic Reimagined',
-+    title: 'Familiar cocktails refined for premium events',
-+    description:
-+      'Recognizable classics updated with better ingredients, restrained sweetness, and a service style suited to weddings and private evenings.',
-+    drinks: [
-+      {
-+        name: 'Milano Martini',
-+        note: 'Gin, dry vermouth, olive oil saline, and Amalfi lemon expression.',
-+      },
-+      {
-+        name: 'Espresso Velvet',
-+        note: 'Vodka, espresso concentrate, tonka, and a softer after-dinner profile.',
-+      },
-+      {
-+        name: 'Oak Boulevardier',
-+        note: 'Bourbon, red vermouth, bitters, and subtle barrel spice.',
-+      },
-+    ],
-+  },
-+  {
-+    category: 'Alcohol-Free Signatures',
-+    title: 'Complex zero-proof serves that still feel celebratory',
-+    description:
-+      'Layered alcohol-free drinks designed with the same care as the cocktail list, so every guest feels included in the occasion.',
-+    drinks: [
-+      {
-+        name: 'Garden Fizz',
-+        note: 'Cucumber distillate, white peach, basil, and a crisp sparkling finish.',
-+      },
-+      {
-+        name: 'Sera Tonic',
-+        note: 'Cedar, grapefruit, and botanical tonic with a bitter aperitivo edge.',
-+      },
-+      {
-+        name: 'Luce Sour',
-+        note: 'Verjus, almond, citrus, and silk foam for a bright rounded finish.',
-+      },
-+    ],
-+  },
-+]
-+
-+export default function MenuCategoriesSection() {
++++ b/src/pages/Chi-siamo.jsx
+@@ -0,0 +1,53 @@
++export default function ChiSiamo() {
 +  return (
-+    <section
-+      id="menu-categories"
-+      aria-labelledby="menu-categories-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Menu categories</p>
-+        <h2 id="menu-categories-title" style={sectionStyles.title}>
-+          A drink program organized for atmosphere, flow, and guest enjoyment
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          The Casa Aurea menu is structured in clear families so hosts can
-+          balance aperitivo moments, dinner pacing, and late-evening toasts with
-+          a bar selection that feels polished from start to finish.
-+        </p>
-+      </div>
++    <article aria-labelledby="chi-siamo-title">
++      <section id="about-hero">
++        <div>
++          <p>Casa Aurea Events</p>
++          <h1 id="chi-siamo-title">
++            Hospitality shaped with care, timing, and a refined Italian eye
++          </h1>
++          <p>
++            We design catering and bar experiences that feel effortless for the
++            host and memorable for every guest, from the first welcome glass to
++            the final toast.
++          </p>
++        </div>
++      </section>
 +
-+      <div style={sectionStyles.grid}>
-+        {menuCategories.map((group) => (
-+          <article key={group.category} style={sectionStyles.card}>
-+            <div>
-+              <p style={sectionStyles.category}>{group.category}</p>
-+              <h3 style={sectionStyles.cardTitle}>{group.title}</h3>
-+            </div>
++      <section id="story" aria-labelledby="story-title">
++        <div>
++          <h2 id="story-title">Our story</h2>
++          <p>
++            Casa Aurea Events was created for clients who want more than a
++            service list. We bring together elegant food presentation, polished
++            bar service, and calm event coordination so each celebration feels
++            cohesive, gracious, and beautifully hosted.
++          </p>
++          <p>
++            From intimate private dinners to larger wedding receptions, our work
++            is guided by balance: warm hospitality, precise execution, and an
++            atmosphere that always feels considered rather than overstated.
++          </p>
++        </div>
++      </section>
 +
-+            <p style={sectionStyles.cardText}>{group.description}</p>
-+
-+            <ul style={sectionStyles.list}>
-+              {group.drinks.map((drink) => (
-+                <li key={drink.name} style={sectionStyles.listItem}>
-+                  <span style={sectionStyles.drinkName}>{drink.name}</span>
-+                  <span style={sectionStyles.drinkNote}>{drink.note}</span>
-+                </li>
-+              ))}
-+            </ul>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <div style={sectionStyles.footer}>
-+        <h3 style={sectionStyles.footerTitle}>Built to adapt to the event</h3>
-+        <p style={sectionStyles.footerText}>
-+          Each category can be expanded into a tailored event proposal with
-+          signature additions, premium spirits, sparkling selections, and
-+          service recommendations aligned to your guest count and event style.
-+        </p>
-+      </div>
-+    </section>
++      <section id="philosophy" aria-labelledby="philosophy-title">
++        <div>
++          <h2 id="philosophy-title">Our philosophy</h2>
++          <p>
++            We believe premium events are defined by the details guests notice
++            without being told: the pacing of service, the elegance of the
++            setting, the quality of each pour, and the sense that every moment
++            has been prepared with intention.
++          </p>
++          <p>
++            That focus on presentation, timing, and guest comfort is what makes
++            Casa Aurea Events feel personal, polished, and ready for follow-up
++            content in the next tasks.
++          </p>
++        </div>
++      </section>
++    </article>
 +  )
 +}
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index ae33526f293e8d8974dfc12bff56424470fce774..94bd66127f0afad69527335f439ee95495a90281
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -1,18 +1,11 @@
- import MenuHeroSection from '../components/Menu-heroSection'
-+import MenuCategoriesSection from '../components/Menu-categoriesSection'
- 
- export default function Menu() {
-   return (
-     <article aria-labelledby="menu-title">
-       <MenuHeroSection />
--
--      <section id="menu-categories" aria-labelledby="menu-categories-title">
--        <h2 id="menu-categories-title">Menu categories</h2>
--        <p>
--          The full drink list will be structured into distinct collections so
--          guests can quickly understand the house signatures, reimagined
--          classics, alcohol-free options, and premium bottle selections.
--        </p>
--      </section>
-+      <MenuCategoriesSection />
-     </article>
-   )
- }
-
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 440c47c34870d08d48965e986b9e0ca9fb6a869d..1977584c6bf190f311908553fe4b02d0d64b9668
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -196,3 +196,18 @@
- Prepared TASK section-menu-menu-categories (Create menu-categories section on menu) for execution.
- 
- Launching Codex for TASK section-menu-menu-categories.
-+
-+Completed TASK section-menu-menu-categories.
-+
-+Implemented a dedicated `Menu-categoriesSection` component in
-+`src/components/Menu-categoriesSection.jsx` and rendered it from
-+`src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
-+page now includes a structured premium menu-categories section with curated
-+drink groups, example serves, and polished supporting copy aligned to the
-+brand tone.
-+
-+TASK section-menu-menu-categories executed by Codex.
-+Waiting for validation.
-+
-+TASK section-menu-menu-categories completed successfully.
-+Build passed.
-diff --git a/src/components/Menu-categoriesSection.jsx b/src/components/Menu-categoriesSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..89721d69b73b9ee7a2f830342ec66ac94794ae45
---- /dev/null
-+++ b/src/components/Menu-categoriesSection.jsx
-@@ -0,0 +1,228 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.96) 0%, rgba(241, 231, 216, 0.92) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '44rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.78)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    display: 'grid',
-+    gap: '1rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-+    border: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  category: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  cardTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.45rem',
-+    lineHeight: 1.15,
-+  },
-+  cardText: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.75,
-+  },
-+  list: {
-+    display: 'grid',
-+    gap: '0.75rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  listItem: {
-+    paddingTop: '0.75rem',
-+    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  drinkName: {
-+    display: 'block',
-+    color: '#201914',
-+    fontWeight: 700,
-+    lineHeight: 1.5,
-+  },
-+  drinkNote: {
-+    display: 'block',
-+    marginTop: '0.2rem',
-+    color: '#5a4838',
-+    fontSize: '0.95rem',
-+    lineHeight: 1.6,
-+  },
-+  footer: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    paddingTop: '0.5rem',
-+    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  footerTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+  },
-+  footerText: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.74)',
-+    lineHeight: 1.75,
-+  },
-+}
-+
-+const menuCategories = [
-+  {
-+    category: 'Signature Cocktails',
-+    title: 'House creations with an aperitivo soul',
-+    description:
-+      'Original serves built for receptions and dinners that call for elegance, freshness, and a clear visual identity at the bar.',
-+    drinks: [
-+      {
-+        name: 'Aurea Spritz',
-+        note: 'Bergamot, bitter orange, sparkling wine, and a dry herbal finish.',
-+      },
-+      {
-+        name: 'Villa Negroni',
-+        note: 'Small-batch gin, vermouth blend, cacao nib, and blood orange.',
-+      },
-+      {
-+        name: 'Rosato Collins',
-+        note: 'Rose-infused vodka, citrus cordial, and a polished floral lift.',
-+      },
-+    ],
-+  },
-+  {
-+    category: 'Classic Reimagined',
-+    title: 'Familiar cocktails refined for premium events',
-+    description:
-+      'Recognizable classics updated with better ingredients, restrained sweetness, and a service style suited to weddings and private evenings.',
-+    drinks: [
-+      {
-+        name: 'Milano Martini',
-+        note: 'Gin, dry vermouth, olive oil saline, and Amalfi lemon expression.',
-+      },
-+      {
-+        name: 'Espresso Velvet',
-+        note: 'Vodka, espresso concentrate, tonka, and a softer after-dinner profile.',
-+      },
-+      {
-+        name: 'Oak Boulevardier',
-+        note: 'Bourbon, red vermouth, bitters, and subtle barrel spice.',
-+      },
-+    ],
-+  },
-+  {
-+    category: 'Alcohol-Free Signatures',
-+    title: 'Complex zero-proof serves that still feel celebratory',
-+    description:
-+      'Layered alcohol-free drinks designed with the same care as the cocktail list, so every guest feels included in the occasion.',
-+    drinks: [
-+      {
-+        name: 'Garden Fizz',
-+        note: 'Cucumber distillate, white peach, basil, and a crisp sparkling finish.',
-+      },
-+      {
-+        name: 'Sera Tonic',
-+        note: 'Cedar, grapefruit, and botanical tonic with a bitter aperitivo edge.',
-+      },
-+      {
-+        name: 'Luce Sour',
-+        note: 'Verjus, almond, citrus, and silk foam for a bright rounded finish.',
-+      },
-+    ],
-+  },
-+]
-+
-+export default function MenuCategoriesSection() {
-+  return (
-+    <section
-+      id="menu-categories"
-+      aria-labelledby="menu-categories-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Menu categories</p>
-+        <h2 id="menu-categories-title" style={sectionStyles.title}>
-+          A drink program organized for atmosphere, flow, and guest enjoyment
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          The Casa Aurea menu is structured in clear families so hosts can
-+          balance aperitivo moments, dinner pacing, and late-evening toasts with
-+          a bar selection that feels polished from start to finish.
-+        </p>
-+      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {menuCategories.map((group) => (
-+          <article key={group.category} style={sectionStyles.card}>
-+            <div>
-+              <p style={sectionStyles.category}>{group.category}</p>
-+              <h3 style={sectionStyles.cardTitle}>{group.title}</h3>
-+            </div>
-+
-+            <p style={sectionStyles.cardText}>{group.description}</p>
-+
-+            <ul style={sectionStyles.list}>
-+              {group.drinks.map((drink) => (
-+                <li key={drink.name} style={sectionStyles.listItem}>
-+                  <span style={sectionStyles.drinkName}>{drink.name}</span>
-+                  <span style={sectionStyles.drinkNote}>{drink.note}</span>
-+                </li>
-+              ))}
-+            </ul>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <div style={sectionStyles.footer}>
-+        <h3 style={sectionStyles.footerTitle}>Built to adapt to the event</h3>
-+        <p style={sectionStyles.footerText}>
-+          Each category can be expanded into a tailored event proposal with
-+          signature additions, premium spirits, sparkling selections, and
-+          service recommendations aligned to your guest count and event style.
-+        </p>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index ae33526f293e8d8974dfc12bff56424470fce774..94bd66127f0afad69527335f439ee95495a90281
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -1,18 +1,11 @@
- import MenuHeroSection from '../components/Menu-heroSection'
-+import MenuCategoriesSection from '../components/Menu-categoriesSection'
- 
- export default function Menu() {
-   return (
-     <article aria-labelledby="menu-title">
-       <MenuHeroSection />
--
--      <section id="menu-categories" aria-labelledby="menu-categories-title">
--        <h2 id="menu-categories-title">Menu categories</h2>
--        <p>
--          The full drink list will be structured into distinct collections so
--          guests can quickly understand the house signatures, reimagined
--          classics, alcohol-free options, and premium bottle selections.
--        </p>
--      </section>
-+      <MenuCategoriesSection />
-     </article>
-   )
- }
-
-codex
-Modified files:
-- [src/components/Menu-categoriesSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Menu-categoriesSection.jsx)
-- [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
-
-What was implemented:
-- Added a dedicated `MenuCategoriesSection` component for the `menu-categories` section on the menu page.
-- Replaced the inline placeholder in [src/pages/Menu.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Menu.jsx) with the new component.
-- The section now renders three premium drink-category cards with curated copy, sample drinks, and a closing note, matching the required `menu-categories` section type.
-- Logged the task completion summary in [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
-
-Build result:
-- `npm run build` passed successfully with Vite production build completed.
-file update:
-diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 440c47c34870d08d48965e986b9e0ca9fb6a869d..1977584c6bf190f311908553fe4b02d0d64b9668
---- a/agent/AGENT_REPORT.md
-+++ b/agent/AGENT_REPORT.md
-@@ -196,3 +196,18 @@
- Prepared TASK section-menu-menu-categories (Create menu-categories section on menu) for execution.
- 
- Launching Codex for TASK section-menu-menu-categories.
-+
-+Completed TASK section-menu-menu-categories.
-+
-+Implemented a dedicated `Menu-categoriesSection` component in
-+`src/components/Menu-categoriesSection.jsx` and rendered it from
-+`src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
-+page now includes a structured premium menu-categories section with curated
-+drink groups, example serves, and polished supporting copy aligned to the
-+brand tone.
-+
-+TASK section-menu-menu-categories executed by Codex.
-+Waiting for validation.
-+
-+TASK section-menu-menu-categories completed successfully.
-+Build passed.
-diff --git a/src/components/Menu-categoriesSection.jsx b/src/components/Menu-categoriesSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..89721d69b73b9ee7a2f830342ec66ac94794ae45
---- /dev/null
-+++ b/src/components/Menu-categoriesSection.jsx
-@@ -0,0 +1,228 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.96) 0%, rgba(241, 231, 216, 0.92) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '44rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.78)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    display: 'grid',
-+    gap: '1rem',
-+    minHeight: '100%',
-+    padding: '1.4rem',
-+    borderRadius: '24px',
-+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
-+    border: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  category: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.16em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  cardTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.45rem',
-+    lineHeight: 1.15,
-+  },
-+  cardText: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.75,
-+  },
-+  list: {
-+    display: 'grid',
-+    gap: '0.75rem',
-+    margin: 0,
-+    padding: 0,
-+    listStyle: 'none',
-+  },
-+  listItem: {
-+    paddingTop: '0.75rem',
-+    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  drinkName: {
-+    display: 'block',
-+    color: '#201914',
-+    fontWeight: 700,
-+    lineHeight: 1.5,
-+  },
-+  drinkNote: {
-+    display: 'block',
-+    marginTop: '0.2rem',
-+    color: '#5a4838',
-+    fontSize: '0.95rem',
-+    lineHeight: 1.6,
-+  },
-+  footer: {
-+    display: 'grid',
-+    gap: '0.85rem',
-+    paddingTop: '0.5rem',
-+    borderTop: '1px solid rgba(159, 123, 75, 0.14)',
-+  },
-+  footerTitle: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+  },
-+  footerText: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.74)',
-+    lineHeight: 1.75,
-+  },
-+}
-+
-+const menuCategories = [
-+  {
-+    category: 'Signature Cocktails',
-+    title: 'House creations with an aperitivo soul',
-+    description:
-+      'Original serves built for receptions and dinners that call for elegance, freshness, and a clear visual identity at the bar.',
-+    drinks: [
-+      {
-+        name: 'Aurea Spritz',
-+        note: 'Bergamot, bitter orange, sparkling wine, and a dry herbal finish.',
-+      },
-+      {
-+        name: 'Villa Negroni',
-+        note: 'Small-batch gin, vermouth blend, cacao nib, and blood orange.',
-+      },
-+      {
-+        name: 'Rosato Collins',
-+        note: 'Rose-infused vodka, citrus cordial, and a polished floral lift.',
-+      },
-+    ],
-+  },
-+  {
-+    category: 'Classic Reimagined',
-+    title: 'Familiar cocktails refined for premium events',
-+    description:
-+      'Recognizable classics updated with better ingredients, restrained sweetness, and a service style suited to weddings and private evenings.',
-+    drinks: [
-+      {
-+        name: 'Milano Martini',
-+        note: 'Gin, dry vermouth, olive oil saline, and Amalfi lemon expression.',
-+      },
-+      {
-+        name: 'Espresso Velvet',
-+        note: 'Vodka, espresso concentrate, tonka, and a softer after-dinner profile.',
-+      },
-+      {
-+        name: 'Oak Boulevardier',
-+        note: 'Bourbon, red vermouth, bitters, and subtle barrel spice.',
-+      },
-+    ],
-+  },
-+  {
-+    category: 'Alcohol-Free Signatures',
-+    title: 'Complex zero-proof serves that still feel celebratory',
-+    description:
-+      'Layered alcohol-free drinks designed with the same care as the cocktail list, so every guest feels included in the occasion.',
-+    drinks: [
-+      {
-+        name: 'Garden Fizz',
-+        note: 'Cucumber distillate, white peach, basil, and a crisp sparkling finish.',
-+      },
-+      {
-+        name: 'Sera Tonic',
-+        note: 'Cedar, grapefruit, and botanical tonic with a bitter aperitivo edge.',
-+      },
-+      {
-+        name: 'Luce Sour',
-+        note: 'Verjus, almond, citrus, and silk foam for a bright rounded finish.',
-+      },
-+    ],
-+  },
-+]
-+
-+export default function MenuCategoriesSection() {
-+  return (
-+    <section
-+      id="menu-categories"
-+      aria-labelledby="menu-categories-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Menu categories</p>
-+        <h2 id="menu-categories-title" style={sectionStyles.title}>
-+          A drink program organized for atmosphere, flow, and guest enjoyment
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          The Casa Aurea menu is structured in clear families so hosts can
-+          balance aperitivo moments, dinner pacing, and late-evening toasts with
-+          a bar selection that feels polished from start to finish.
-+        </p>
-+      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {menuCategories.map((group) => (
-+          <article key={group.category} style={sectionStyles.card}>
-+            <div>
-+              <p style={sectionStyles.category}>{group.category}</p>
-+              <h3 style={sectionStyles.cardTitle}>{group.title}</h3>
-+            </div>
-+
-+            <p style={sectionStyles.cardText}>{group.description}</p>
-+
-+            <ul style={sectionStyles.list}>
-+              {group.drinks.map((drink) => (
-+                <li key={drink.name} style={sectionStyles.listItem}>
-+                  <span style={sectionStyles.drinkName}>{drink.name}</span>
-+                  <span style={sectionStyles.drinkNote}>{drink.note}</span>
-+                </li>
-+              ))}
-+            </ul>
-+          </article>
-+        ))}
-+      </div>
-+
-+      <div style={sectionStyles.footer}>
-+        <h3 style={sectionStyles.footerTitle}>Built to adapt to the event</h3>
-+        <p style={sectionStyles.footerText}>
-+          Each category can be expanded into a tailored event proposal with
-+          signature additions, premium spirits, sparkling selections, and
-+          service recommendations aligned to your guest count and event style.
-+        </p>
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Menu.jsx b/src/pages/Menu.jsx
-index ae33526f293e8d8974dfc12bff56424470fce774..94bd66127f0afad69527335f439ee95495a90281
---- a/src/pages/Menu.jsx
-+++ b/src/pages/Menu.jsx
-@@ -1,18 +1,11 @@
- import MenuHeroSection from '../components/Menu-heroSection'
-+import MenuCategoriesSection from '../components/Menu-categoriesSection'
- 
- export default function Menu() {
-   return (
-     <article aria-labelledby="menu-title">
-       <MenuHeroSection />
--
--      <section id="menu-categories" aria-labelledby="menu-categories-title">
--        <h2 id="menu-categories-title">Menu categories</h2>
--        <p>
--          The full drink list will be structured into distinct collections so
--          guests can quickly understand the house signatures, reimagined
--          classics, alcohol-free options, and premium bottle selections.
--        </p>
--      </section>
-+      <MenuCategoriesSection />
-     </article>
-   )
- }
 
 tokens used
-33.899
+18.340
