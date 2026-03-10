@@ -1178,35 +1178,32 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-gallery-gallery-grid
+page-contatti-shell
 
 ## Current task title
-Create gallery-grid section on gallery
+Create contatti page shell
 
 ## Current task type
-section
+page-shell
 
 ## Current task target
 ```json
 {
-  "pageId": "gallery",
-  "sectionId": "gallery-grid",
-  "sectionType": "image-grid"
+  "pageId": "contatti"
 }
 ```
 
 ## Depends on
-- page-gallery-shell
+- none
 
 ## Files allowed
-- src/pages/Gallery.jsx
-- src/components/Gallery-gridSection.jsx
-- src/components
+- src/App.jsx
+- src/pages/Contatti.jsx
 
 ## Definition of done
-- section gallery-grid exists on gallery
-- section gallery-grid matches type image-grid
-- section gallery-grid is rendered in page gallery
+- page shell exists for contatti
+- contatti route is mounted if required
+- contatti page renders without crashing
 
 ## Strict execution rules
 - Execute only this current task.

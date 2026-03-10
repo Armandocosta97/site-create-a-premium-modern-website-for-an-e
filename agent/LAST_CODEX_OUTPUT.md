@@ -1,16 +1,8 @@
-Modified files:
-- [src/components/Gallery-gridSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-gridSection.jsx)
-- [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-What was implemented:
-- Added a dedicated `GalleryGridSection` component for the `gallery-grid` section.
-- Replaced the placeholder markup in the gallery page with the new component.
-- Built the section as a responsive image grid with six premium Unsplash images, descriptive captions, meaningful alt text, and lazy loading.
-- Updated the agent report with a short completion summary.
+Implemented the `contatti` page shell in [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx) with the required `contact-hero`, `contact-details`, and `opening-hours` sections, one meaningful `h1`, realistic contact content, and working `tel:` / `mailto:` links. The `/contatti` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so no routing change was needed. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with the task summary.
 
-Build result:
-- `npm run build` passed successfully.
+Build result: `npm run build` passed successfully.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -21,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd841-d0ed-7ce1-bb25-af54fd8e38fd
+session id: 019cd843-1f3d-75e1-b53c-16b8be7a03b2
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1204,35 +1196,32 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-gallery-gallery-grid
+page-contatti-shell
 
 ## Current task title
-Create gallery-grid section on gallery
+Create contatti page shell
 
 ## Current task type
-section
+page-shell
 
 ## Current task target
 ```json
 {
-  "pageId": "gallery",
-  "sectionId": "gallery-grid",
-  "sectionType": "image-grid"
+  "pageId": "contatti"
 }
 ```
 
 ## Depends on
-- page-gallery-shell
+- none
 
 ## Files allowed
-- src/pages/Gallery.jsx
-- src/components/Gallery-gridSection.jsx
-- src/components
+- src/App.jsx
+- src/pages/Contatti.jsx
 
 ## Definition of done
-- section gallery-grid exists on gallery
-- section gallery-grid matches type image-grid
-- section gallery-grid is rendered in page gallery
+- page shell exists for contatti
+- contatti route is mounted if required
+- contatti page renders without crashing
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1261,31 +1250,52 @@ section
 
 mcp startup: no servers
 codex
-I’m executing the current `gallery-grid` task only. First I’m checking the gallery page, current component structure, and task source files so I can add the section without touching unrelated routes or content.
+I’m checking the current app structure and the existing routing/page setup so I can add only the `contatti` page shell and the minimal route wiring this task allows.
 exec
-/bin/zsh -lc "sed -n '1,220p' src/pages/Gallery.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "pwd && rg --files src agent brief docs | rg '("'^src/pages/Gallery.jsx$|''^src/components/|''^agent/CURRENT_TASK_PROMPT.md$|''^agent/TASK_STATE.json$|''^agent/TASK_QUEUE.md$|''^docs/DEVELOPMENT_METHOD.md$|''^site-spec.json$|''^brief/brief-summary.md$)'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "ls -1 src/components && printf '\\n---\\n' && rg -n \"Gallery|gallery|image-grid|Section\" src/components src/pages" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
-import GalleryHeroSection from '../components/Gallery-heroSection'
-
-export default function Gallery() {
+/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' src/App.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc 'pwd && rg --files src agent | sort' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 53ms:
+export default function Contatti() {
   return (
-    <article aria-labelledby="gallery-title">
-      <GalleryHeroSection />
-
-      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
-        <h2 id="gallery-grid-title">Gallery collection</h2>
-        <p>
-          This page is prepared for the premium image grid that will showcase
-          catering presentation, cocktail service, event styling, and guest
-          atmosphere across Casa Aurea Events experiences.
-        </p>
+    <>
+      <section id="contact-hero">
+        <h1>Contact Hero</h1>
+        <p>Content for contact-hero will be generated by tasks</p>
       </section>
-    </article>
+      <section id="contact-details">
+        <h2>Contact Details</h2>
+        <p>Content for contact-details will be generated by tasks</p>
+      </section>
+      <section id="opening-hours">
+        <h2>Opening Hours</h2>
+        <p>Content for opening-hours will be generated by tasks</p>
+      </section>
+    </>
   )
 }
- succeeded in 51ms:
+ succeeded in 53ms:
+import { HashRouter, Routes, Route } from "react-router-dom"
+import Layout from "./layout/Layout"
+import Home from "./pages/Home"
+import Menu from "./pages/Menu"
+import ChiSiamo from "./pages/Chi-siamo"
+import Gallery from "./pages/Gallery"
+import Contatti from "./pages/Contatti"
+import Servizi from "./pages/Servizi"
+
+export default function App() {
+  return (
+    <HashRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/chi-siamo" element={<ChiSiamo />} />
+          <Route path="/gallery" element={<Gallery />} />
+          <Route path="/contatti" element={<Contatti />} />
+          <Route path="/servizi" element={<Servizi />} />
+ succeeded in 53ms:
 # CURRENT TASK EXECUTION PROMPT
 
 You are the coding executor for this project.
@@ -1306,722 +1316,54 @@ site-create-a-premium-modern-website-for-an-e
 # Development Method
 
 All sites must follow these rules.
- succeeded in 51ms:
+ succeeded in 53ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
-docs/DEVELOPMENT_METHOD.md
-src/pages/Gallery.jsx
-src/components/FloatingWhatsAppButton.jsx
-src/components/Brand-story-previewSection.jsx
-src/components/StorySection.jsx
-src/components/Menu-categoriesSection.jsx
-src/components/PhilosophySection.jsx
-src/components/Menu-heroSection.jsx
+agent/AGENT_REPORT.md
+agent/CURRENT_TASK_PROMPT.md
+agent/LAST_CODEX_OUTPUT.md
+agent/PROMPT_ARCHITECTURE.json
+agent/TASK_GRAPH.json
+agent/TASK_QUEUE.md
+agent/TASK_STATE.json
+src/App.css
+src/App.jsx
+src/assets/react.svg
 src/components/About-heroSection.jsx
-src/components/SignaturePreviewSection.jsx
+src/components/Brand-story-previewSection.jsx
+src/components/FloatingWhatsAppButton.jsx
+src/components/Gallery-gridSection.jsx
 src/components/Gallery-heroSection.jsx
 src/components/HeroSection.jsx
-agent/TASK_QUEUE.md
-agent/CURRENT_TASK_PROMPT.md
-agent/TASK_STATE.json
-brief/brief-summary.md
- succeeded in 51ms:
-About-heroSection.jsx
-Brand-story-previewSection.jsx
-FloatingWhatsAppButton.jsx
-Gallery-heroSection.jsx
-HeroSection.jsx
-Menu-categoriesSection.jsx
-Menu-heroSection.jsx
-PhilosophySection.jsx
-SignaturePreviewSection.jsx
-StorySection.jsx
-
----
-src/components/Menu-categoriesSection.jsx:177:export default function MenuCategoriesSection() {
-src/components/Gallery-heroSection.jsx:89:export default function GalleryHeroSection() {
-src/components/Gallery-heroSection.jsx:92:      id="gallery-hero"
-src/components/Gallery-heroSection.jsx:93:      aria-labelledby="gallery-title"
-src/components/Gallery-heroSection.jsx:98:        <h1 id="gallery-title" style={heroStyles.title}>
-src/components/PhilosophySection.jsx:148:export default function PhilosophySection() {
-src/components/HeroSection.jsx:132:export default function HeroSection({
-src/components/StorySection.jsx:115:export default function StorySection() {
+src/components/Menu-categoriesSection.jsx
+src/components/Menu-heroSection.jsx
+src/components/PhilosophySection.jsx
 codex
-The gallery page still has placeholder markup. I’m reading the existing component style patterns now so the new image-grid section matches the project’s current implementation approach and stays within the allowed files.
+The route is already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so the remaining work is to replace the placeholder `contatti` sections with a stable page shell and then run the required build check.
 exec
-/bin/zsh -lc "sed -n '1,260p' src/components/Menu-categoriesSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,240p' src/components/Gallery-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,240p' src/pages/Menu.jsx && printf '\\n---\\n' && sed -n '1,240p' src/pages/Chi-siamo.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    display: 'grid',
-    gap: '1.5rem',
-    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    background:
-      'linear-gradient(180deg, rgba(248, 242, 234, 0.96) 0%, rgba(241, 231, 216, 0.92) 100%)',
-    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
+/bin/zsh -lc "sed -n '1,220p' src/pages/Home.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' package.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 53ms:
+{
+  "name": "site-create-a-premium-modern-website-for-an-e",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test:ui": "playwright test"
   },
-  header: {
-    display: 'grid',
-    gap: '1rem',
-    maxWidth: '44rem',
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.13.1"
   },
-  eyebrow: {
-    margin: 0,
-    color: '#9f7b4b',
-    fontSize: '0.82rem',
- succeeded in 52ms:
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(30rem, 74vh, 43rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(48, 36, 29, 0.12) 0%, rgba(30, 23, 19, 0.68) 56%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
-  },
-  panel: {
-    width: 'min(100%, 48rem)',
-    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-    borderRadius: '28px',
- succeeded in 50ms:
-import MenuHeroSection from '../components/Menu-heroSection'
-import MenuCategoriesSection from '../components/Menu-categoriesSection'
-
-export default function Menu() {
-  return (
-    <article aria-labelledby="menu-title">
-      <MenuHeroSection />
-      <MenuCategoriesSection />
-    </article>
-  )
-}
-
----
-import AboutHeroSection from '../components/About-heroSection'
-import PhilosophySection from '../components/PhilosophySection'
-import StorySection from '../components/StorySection'
-
-export default function ChiSiamo() {
-  return (
-    <article aria-labelledby="chi-siamo-title">
-codex
-I have enough context. Next I’m replacing the placeholder section in [Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx) with a dedicated gallery grid component, then I’ll run the build and append the required agent report entry.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx
-@@ -1,2 +1,3 @@
- import GalleryHeroSection from '../components/Gallery-heroSection'
-+import GalleryGridSection from '../components/Gallery-gridSection'
- 
-@@ -6,11 +7,3 @@
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">Gallery collection</h2>
--        <p>
--          This page is prepared for the premium image grid that will showcase
--          catering presentation, cocktail service, event styling, and guest
--          atmosphere across Casa Aurea Events experiences.
--        </p>
--      </section>
-+      <GalleryGridSection />
-     </article>
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-gridSection.jsx
-const sectionStyles = {
-  section: {
-    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-    display: 'grid',
-    gap: '1.5rem',
-    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-    borderRadius: '32px',
-    background:
-      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
-    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-  },
-  header: {
-    display: 'grid',
-    gap: '1rem',
-    maxWidth: '46rem',
-  },
-  eyebrow: {
-    margin: 0,
-    color: '#9f7b4b',
-    fontSize: '0.82rem',
-    letterSpacing: '0.22em',
-    textTransform: 'uppercase',
-    fontWeight: 700,
-  },
-  title: {
-    margin: 0,
-    color: '#201914',
-    fontFamily: 'Georgia, "Times New Roman", serif',
-    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-    lineHeight: 1.05,
-  },
-  intro: {
-    margin: 0,
-    color: 'rgba(32, 25, 20, 0.76)',
-    lineHeight: 1.8,
-  },
-  grid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-    gap: '1rem',
-  },
-  card: {
-    position: 'relative',
-    minHeight: 'clamp(18rem, 36vw, 26rem)',
-    overflow: 'hidden',
-    borderRadius: '24px',
-    backgroundColor: '#d8c7b0',
-    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-    display: 'block',
-  },
-  overlay: {
-    position: 'absolute',
-    inset: 0,
-    display: 'flex',
-    alignItems: 'flex-end',
-    padding: '1.25rem',
-    background:
-      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
-  },
-  captionBox: {
-    width: '100%',
-    padding: '1rem 1.05rem',
-    borderRadius: '18px',
-    backgroundColor: 'rgba(20, 16, 13, 0.42)',
-    backdropFilter: 'blur(8px)',
-    color: '#f7f1e8',
-  },
-  captionTitle: {
-    margin: 0,
-    fontFamily: 'Georgia, "Times New Roman", serif',
-    fontSize: '1.2rem',
-    lineHeight: 1.2,
-  },
-  captionText: {
-    margin: '0.45rem 0 0',
-    color: 'rgba(247, 241, 232, 0.86)',
-    lineHeight: 1.6,
-    fontSize: '0.95rem',
-  },
-}
-
-const galleryImages = [
-  {
-    title: 'Wedding dinner styling',
-    description:
-      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
-    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
-    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    title: 'Signature cocktail service',
-    description:
-      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
-    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
-    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    title: 'Plated catering presentation',
-    description:
-      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
-    alt: 'Plated fine catering dish presented with modern styling',
-    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    title: 'Reception atmosphere',
-    description:
-      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
-    alt: 'Guests gathered at a stylish reception during an evening event',
-    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    title: 'Aperitivo tablescape',
-    description:
-      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
-    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
-    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    title: 'Celebration toast',
-    description:
-      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
-    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
-    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
-  },
-]
-
-export default function GalleryGridSection() {
-  return (
-    <section
-      id="gallery-grid"
-      aria-labelledby="gallery-grid-title"
-      style={sectionStyles.section}
-    >
-      <div style={sectionStyles.header}>
-        <p style={sectionStyles.eyebrow}>Gallery collection</p>
-        <h2 id="gallery-grid-title" style={sectionStyles.title}>
-          A premium image grid shaped around service, atmosphere, and detail
-        </h2>
-        <p style={sectionStyles.intro}>
-          This collection brings together the visual language of Casa Aurea
-          Events: elegant food presentation, polished bar service, layered
-          styling, and the warm rhythm of celebrations designed with care.
-        </p>
-      </div>
-
-      <div style={sectionStyles.grid}>
-        {galleryImages.map((image) => (
-          <figure key={image.title} style={sectionStyles.card}>
-            <img
-              src={image.src}
-              alt={image.alt}
-              loading="lazy"
-              style={sectionStyles.image}
-            />
-            <figcaption style={sectionStyles.overlay}>
-              <div style={sectionStyles.captionBox}>
-                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
-                <p style={sectionStyles.captionText}>{image.description}</p>
-              </div>
-            </figcaption>
-          </figure>
-        ))}
-      </div>
-    </section>
-  )
-}
-apply_patch(auto_approved=true) exited 0 in 60ms:
-Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-gridSection.jsx
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx
-file update:
-diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
---- /dev/null
-+++ b/src/components/Gallery-gridSection.jsx
-@@ -0,0 +1,171 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '46rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    position: 'relative',
-+    minHeight: 'clamp(18rem, 36vw, 26rem)',
-+    overflow: 'hidden',
-+    borderRadius: '24px',
-+    backgroundColor: '#d8c7b0',
-+    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
-+  },
-+  image: {
-+    width: '100%',
-+    height: '100%',
-+    objectFit: 'cover',
-+    display: 'block',
-+  },
-+  overlay: {
-+    position: 'absolute',
-+    inset: 0,
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    padding: '1.25rem',
-+    background:
-+      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
-+  },
-+  captionBox: {
-+    width: '100%',
-+    padding: '1rem 1.05rem',
-+    borderRadius: '18px',
-+    backgroundColor: 'rgba(20, 16, 13, 0.42)',
-+    backdropFilter: 'blur(8px)',
-+    color: '#f7f1e8',
-+  },
-+  captionTitle: {
-+    margin: 0,
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+    lineHeight: 1.2,
-+  },
-+  captionText: {
-+    margin: '0.45rem 0 0',
-+    color: 'rgba(247, 241, 232, 0.86)',
-+    lineHeight: 1.6,
-+    fontSize: '0.95rem',
-+  },
-+}
-+
-+const galleryImages = [
-+  {
-+    title: 'Wedding dinner styling',
-+    description:
-+      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
-+    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
-+    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Signature cocktail service',
-+    description:
-+      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
-+    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
-+    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Plated catering presentation',
-+    description:
-+      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
-+    alt: 'Plated fine catering dish presented with modern styling',
-+    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Reception atmosphere',
-+    description:
-+      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
-+    alt: 'Guests gathered at a stylish reception during an evening event',
-+    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Aperitivo tablescape',
-+    description:
-+      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
-+    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
-+    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Celebration toast',
-+    description:
-+      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
-+    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
-+    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
-+  },
-+]
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Gallery collection</p>
-+        <h2 id="gallery-grid-title" style={sectionStyles.title}>
-+          A premium image grid shaped around service, atmosphere, and detail
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          This collection brings together the visual language of Casa Aurea
-+          Events: elegant food presentation, polished bar service, layered
-+          styling, and the warm rhythm of celebrations designed with care.
-+        </p>
-+      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {galleryImages.map((image) => (
-+          <figure key={image.title} style={sectionStyles.card}>
-+            <img
-+              src={image.src}
-+              alt={image.alt}
-+              loading="lazy"
-+              style={sectionStyles.image}
-+            />
-+            <figcaption style={sectionStyles.overlay}>
-+              <div style={sectionStyles.captionBox}>
-+                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
-+                <p style={sectionStyles.captionText}>{image.description}</p>
-+              </div>
-+            </figcaption>
-+          </figure>
-+        ))}
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,18 +1,11 @@
- import GalleryHeroSection from '../components/Gallery-heroSection'
-+import GalleryGridSection from '../components/Gallery-gridSection'
- 
- export default function Gallery() {
-   return (
-     <article aria-labelledby="gallery-title">
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">Gallery collection</h2>
--        <p>
--          This page is prepared for the premium image grid that will showcase
--          catering presentation, cocktail service, event styling, and guest
--          atmosphere across Casa Aurea Events experiences.
--        </p>
--      </section>
-+      <GalleryGridSection />
-     </article>
-   )
- }
-
-file update:
-diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
---- /dev/null
-+++ b/src/components/Gallery-gridSection.jsx
-@@ -0,0 +1,171 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '46rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    position: 'relative',
-+    minHeight: 'clamp(18rem, 36vw, 26rem)',
-+    overflow: 'hidden',
-+    borderRadius: '24px',
-+    backgroundColor: '#d8c7b0',
-+    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
-+  },
-+  image: {
-+    width: '100%',
-+    height: '100%',
-+    objectFit: 'cover',
-+    display: 'block',
-+  },
-+  overlay: {
-+    position: 'absolute',
-+    inset: 0,
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    padding: '1.25rem',
-+    background:
-+      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
-+  },
-+  captionBox: {
-+    width: '100%',
-+    padding: '1rem 1.05rem',
-+    borderRadius: '18px',
-+    backgroundColor: 'rgba(20, 16, 13, 0.42)',
-+    backdropFilter: 'blur(8px)',
-+    color: '#f7f1e8',
-+  },
-+  captionTitle: {
-+    margin: 0,
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+    lineHeight: 1.2,
-+  },
-+  captionText: {
-+    margin: '0.45rem 0 0',
-+    color: 'rgba(247, 241, 232, 0.86)',
-+    lineHeight: 1.6,
-+    fontSize: '0.95rem',
-+  },
-+}
-+
-+const galleryImages = [
-+  {
-+    title: 'Wedding dinner styling',
-+    description:
-+      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
-+    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
-+    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Signature cocktail service',
-+    description:
-+      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
-+    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
-+    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Plated catering presentation',
-+    description:
-+      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
-+    alt: 'Plated fine catering dish presented with modern styling',
-+    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Reception atmosphere',
-+    description:
-+      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
-+    alt: 'Guests gathered at a stylish reception during an evening event',
-+    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Aperitivo tablescape',
-+    description:
-+      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
-+    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
-+    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Celebration toast',
-+    description:
-+      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
-+    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
-+    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
-+  },
-+]
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Gallery collection</p>
-+        <h2 id="gallery-grid-title" style={sectionStyles.title}>
-+          A premium image grid shaped around service, atmosphere, and detail
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          This collection brings together the visual language of Casa Aurea
-+          Events: elegant food presentation, polished bar service, layered
-+          styling, and the warm rhythm of celebrations designed with care.
-+        </p>
-+      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {galleryImages.map((image) => (
-+          <figure key={image.title} style={sectionStyles.card}>
-+            <img
-+              src={image.src}
-+              alt={image.alt}
-+              loading="lazy"
-+              style={sectionStyles.image}
-+            />
-+            <figcaption style={sectionStyles.overlay}>
-+              <div style={sectionStyles.captionBox}>
-+                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
-+                <p style={sectionStyles.captionText}>{image.description}</p>
-+              </div>
-+            </figcaption>
-+          </figure>
-+        ))}
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,18 +1,11 @@
- import GalleryHeroSection from '../components/Gallery-heroSection'
-+import GalleryGridSection from '../components/Gallery-gridSection'
- 
- export default function Gallery() {
-   return (
-     <article aria-labelledby="gallery-title">
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">Gallery collection</h2>
--        <p>
--          This page is prepared for the premium image grid that will showcase
--          catering presentation, cocktail service, event styling, and guest
--          atmosphere across Casa Aurea Events experiences.
--        </p>
--      </section>
-+      <GalleryGridSection />
-     </article>
-   )
- }
-
-codex
-The new section is in place. I’m running the build now to catch any integration issues before I touch the report file.
-exec
-/bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.58.2",
+ succeeded in 53ms:
 # AGENT REPORT
 
 Project created.
@@ -2042,12 +1384,295 @@ Waiting for validation.
 TASK page-home-shell completed successfully.
 Build passed.
 Commit created for TASK page-home-shell.
+ succeeded in 53ms:
+import HeroSection from '../components/HeroSection'
+import BrandStoryPreviewSection from '../components/Brand-story-previewSection'
+import FloatingWhatsAppButton from '../components/FloatingWhatsAppButton'
+import SignaturePreviewSection from '../components/SignaturePreviewSection'
+
+export default function Home() {
+  return (
+    <article aria-labelledby="home-title">
+      <HeroSection
+        primaryCta={{
+          label: 'Request your event proposal',
+          to: '/menu',
+        }}
+        secondaryCta={{
+          label: 'Contact us for your event',
+          to: '/contatti',
+        }}
+      />
+      <SignaturePreviewSection />
+      <BrandStoryPreviewSection />
+codex
+I’ve confirmed the task scope is narrow: `App.jsx` already satisfies route mounting, so I’m replacing the placeholder `Contatti` markup with a semantic shell that uses real contact copy and the required section IDs without pulling in future task detail.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx
+@@ -2,16 +2,64 @@
+   return (
+-    <>
++    <article aria-labelledby="contatti-title">
+       <section id="contact-hero">
+-        <h1>Contact Hero</h1>
+-        <p>Content for contact-hero will be generated by tasks</p>
++        <p>Casa Aurea Events</p>
++        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
++        <p>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
++          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
+       </section>
++
+       <section id="contact-details">
+-        <h2>Contact Details</h2>
+-        <p>Content for contact-details will be generated by tasks</p>
++        <h2>Contact details</h2>
++        <p>
++          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
++          and polished presentation.
++        </p>
++        <dl>
++          <div>
++            <dt>Phone</dt>
++            <dd>
++              <a href="tel:+39011000000">+39 011 000000</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Email</dt>
++            <dd>
++              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Service area</dt>
++            <dd>Torino and surrounding areas</dd>
++          </div>
++        </dl>
+       </section>
++
+       <section id="opening-hours">
+-        <h2>Opening Hours</h2>
+-        <p>Content for opening-hours will be generated by tasks</p>
++        <h2>Availability</h2>
++        <p>
++          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
++          corporate clients looking for a tailored proposal.
++        </p>
++        <dl>
++          <div>
++            <dt>Inquiry hours</dt>
++            <dd>Monday to Saturday, 09:00 to 19:00</dd>
++          </div>
++          <div>
++            <dt>Planning calls</dt>
++            <dd>By appointment</dd>
++          </div>
++          <div>
++            <dt>Best next step</dt>
++            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
++          </div>
++        </dl>
++      </section>
++
++      <section aria-label="Contact closing note">
++        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
+       </section>
+-    </>
++    </article>
+   )
+apply_patch(auto_approved=true) exited 0 in 48ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx
+file update:
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 27ef33c6d2801e2478be5154702bdb2f62cc910f..e6d8f3ad9ede68d45764f89f8ffdcce40df233c1
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,18 +1,66 @@
+ export default function Contatti() {
+   return (
+-    <>
++    <article aria-labelledby="contatti-title">
+       <section id="contact-hero">
+-        <h1>Contact Hero</h1>
+-        <p>Content for contact-hero will be generated by tasks</p>
++        <p>Casa Aurea Events</p>
++        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
++        <p>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
++          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
+       </section>
++
+       <section id="contact-details">
+-        <h2>Contact Details</h2>
+-        <p>Content for contact-details will be generated by tasks</p>
++        <h2>Contact details</h2>
++        <p>
++          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
++          and polished presentation.
++        </p>
++        <dl>
++          <div>
++            <dt>Phone</dt>
++            <dd>
++              <a href="tel:+39011000000">+39 011 000000</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Email</dt>
++            <dd>
++              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Service area</dt>
++            <dd>Torino and surrounding areas</dd>
++          </div>
++        </dl>
+       </section>
++
+       <section id="opening-hours">
+-        <h2>Opening Hours</h2>
+-        <p>Content for opening-hours will be generated by tasks</p>
++        <h2>Availability</h2>
++        <p>
++          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
++          corporate clients looking for a tailored proposal.
++        </p>
++        <dl>
++          <div>
++            <dt>Inquiry hours</dt>
++            <dd>Monday to Saturday, 09:00 to 19:00</dd>
++          </div>
++          <div>
++            <dt>Planning calls</dt>
++            <dd>By appointment</dd>
++          </div>
++          <div>
++            <dt>Best next step</dt>
++            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
++          </div>
++        </dl>
++      </section>
++
++      <section aria-label="Contact closing note">
++        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
+       </section>
+-    </>
++    </article>
+   )
+ }
+
+file update:
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 27ef33c6d2801e2478be5154702bdb2f62cc910f..e6d8f3ad9ede68d45764f89f8ffdcce40df233c1
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,18 +1,66 @@
+ export default function Contatti() {
+   return (
+-    <>
++    <article aria-labelledby="contatti-title">
+       <section id="contact-hero">
+-        <h1>Contact Hero</h1>
+-        <p>Content for contact-hero will be generated by tasks</p>
++        <p>Casa Aurea Events</p>
++        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
++        <p>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
++          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
+       </section>
++
+       <section id="contact-details">
+-        <h2>Contact Details</h2>
+-        <p>Content for contact-details will be generated by tasks</p>
++        <h2>Contact details</h2>
++        <p>
++          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
++          and polished presentation.
++        </p>
++        <dl>
++          <div>
++            <dt>Phone</dt>
++            <dd>
++              <a href="tel:+39011000000">+39 011 000000</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Email</dt>
++            <dd>
++              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Service area</dt>
++            <dd>Torino and surrounding areas</dd>
++          </div>
++        </dl>
+       </section>
++
+       <section id="opening-hours">
+-        <h2>Opening Hours</h2>
+-        <p>Content for opening-hours will be generated by tasks</p>
++        <h2>Availability</h2>
++        <p>
++          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
++          corporate clients looking for a tailored proposal.
++        </p>
++        <dl>
++          <div>
++            <dt>Inquiry hours</dt>
++            <dd>Monday to Saturday, 09:00 to 19:00</dd>
++          </div>
++          <div>
++            <dt>Planning calls</dt>
++            <dd>By appointment</dd>
++          </div>
++          <div>
++            <dt>Best next step</dt>
++            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
++          </div>
++        </dl>
++      </section>
++
++      <section aria-label="Contact closing note">
++        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
+       </section>
+-    </>
++    </article>
+   )
+ }
+
+codex
+The page shell is in place in [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx). I’m running the build now, then I’ll append the required task note to the agent report.
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 825ms:
+/bin/zsh -lc "sed -n '1,220p' src/pages/Contatti.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 53ms:
+export default function Contatti() {
+  return (
+    <article aria-labelledby="contatti-title">
+      <section id="contact-hero">
+        <p>Casa Aurea Events</p>
+        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
+        <p>
+          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
+          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
+        </p>
+      </section>
 
-> site-create-a-premium-modern-website-for-an-e@0.0.0 build
-> vite build
-
+      <section id="contact-details">
+        <h2>Contact details</h2>
+        <p>
+          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
+          and polished presentation.
+        </p>
+        <dl>
+          <div>
+exec
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 761ms:
 vite v7.3.1 building client environment for production...
 transforming...
 ✓ 59 modules transformed.
@@ -2055,1140 +1680,448 @@ rendering chunks...
 computing gzip size...
 dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-Bm9y79cw.js   271.49 kB │ gzip: 83.14 kB
-✓ built in 572ms
+dist/assets/index-BzHazAfw.js   273.05 kB │ gzip: 83.61 kB
+✓ built in 568ms
 file update:
-diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
---- /dev/null
-+++ b/src/components/Gallery-gridSection.jsx
-@@ -0,0 +1,171 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '46rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    position: 'relative',
-+    minHeight: 'clamp(18rem, 36vw, 26rem)',
-+    overflow: 'hidden',
-+    borderRadius: '24px',
-+    backgroundColor: '#d8c7b0',
-+    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
-+  },
-+  image: {
-+    width: '100%',
-+    height: '100%',
-+    objectFit: 'cover',
-+    display: 'block',
-+  },
-+  overlay: {
-+    position: 'absolute',
-+    inset: 0,
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    padding: '1.25rem',
-+    background:
-+      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
-+  },
-+  captionBox: {
-+    width: '100%',
-+    padding: '1rem 1.05rem',
-+    borderRadius: '18px',
-+    backgroundColor: 'rgba(20, 16, 13, 0.42)',
-+    backdropFilter: 'blur(8px)',
-+    color: '#f7f1e8',
-+  },
-+  captionTitle: {
-+    margin: 0,
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+    lineHeight: 1.2,
-+  },
-+  captionText: {
-+    margin: '0.45rem 0 0',
-+    color: 'rgba(247, 241, 232, 0.86)',
-+    lineHeight: 1.6,
-+    fontSize: '0.95rem',
-+  },
-+}
-+
-+const galleryImages = [
-+  {
-+    title: 'Wedding dinner styling',
-+    description:
-+      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
-+    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
-+    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Signature cocktail service',
-+    description:
-+      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
-+    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
-+    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Plated catering presentation',
-+    description:
-+      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
-+    alt: 'Plated fine catering dish presented with modern styling',
-+    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Reception atmosphere',
-+    description:
-+      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
-+    alt: 'Guests gathered at a stylish reception during an evening event',
-+    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Aperitivo tablescape',
-+    description:
-+      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
-+    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
-+    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Celebration toast',
-+    description:
-+      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
-+    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
-+    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
-+  },
-+]
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Gallery collection</p>
-+        <h2 id="gallery-grid-title" style={sectionStyles.title}>
-+          A premium image grid shaped around service, atmosphere, and detail
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          This collection brings together the visual language of Casa Aurea
-+          Events: elegant food presentation, polished bar service, layered
-+          styling, and the warm rhythm of celebrations designed with care.
-+        </p>
-+      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {galleryImages.map((image) => (
-+          <figure key={image.title} style={sectionStyles.card}>
-+            <img
-+              src={image.src}
-+              alt={image.alt}
-+              loading="lazy"
-+              style={sectionStyles.image}
-+            />
-+            <figcaption style={sectionStyles.overlay}>
-+              <div style={sectionStyles.captionBox}>
-+                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
-+                <p style={sectionStyles.captionText}>{image.description}</p>
-+              </div>
-+            </figcaption>
-+          </figure>
-+        ))}
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,18 +1,11 @@
- import GalleryHeroSection from '../components/Gallery-heroSection'
-+import GalleryGridSection from '../components/Gallery-gridSection'
- 
- export default function Gallery() {
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 27ef33c6d2801e2478be5154702bdb2f62cc910f..e6d8f3ad9ede68d45764f89f8ffdcce40df233c1
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,18 +1,66 @@
+ export default function Contatti() {
    return (
-     <article aria-labelledby="gallery-title">
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">Gallery collection</h2>
--        <p>
--          This page is prepared for the premium image grid that will showcase
--          catering presentation, cocktail service, event styling, and guest
--          atmosphere across Casa Aurea Events experiences.
--        </p>
--      </section>
-+      <GalleryGridSection />
-     </article>
+-    <>
++    <article aria-labelledby="contatti-title">
+       <section id="contact-hero">
+-        <h1>Contact Hero</h1>
+-        <p>Content for contact-hero will be generated by tasks</p>
++        <p>Casa Aurea Events</p>
++        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
++        <p>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
++          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
+       </section>
++
+       <section id="contact-details">
+-        <h2>Contact Details</h2>
+-        <p>Content for contact-details will be generated by tasks</p>
++        <h2>Contact details</h2>
++        <p>
++          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
++          and polished presentation.
++        </p>
++        <dl>
++          <div>
++            <dt>Phone</dt>
++            <dd>
++              <a href="tel:+39011000000">+39 011 000000</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Email</dt>
++            <dd>
++              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Service area</dt>
++            <dd>Torino and surrounding areas</dd>
++          </div>
++        </dl>
+       </section>
++
+       <section id="opening-hours">
+-        <h2>Opening Hours</h2>
+-        <p>Content for opening-hours will be generated by tasks</p>
++        <h2>Availability</h2>
++        <p>
++          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
++          corporate clients looking for a tailored proposal.
++        </p>
++        <dl>
++          <div>
++            <dt>Inquiry hours</dt>
++            <dd>Monday to Saturday, 09:00 to 19:00</dd>
++          </div>
++          <div>
++            <dt>Planning calls</dt>
++            <dd>By appointment</dd>
++          </div>
++          <div>
++            <dt>Best next step</dt>
++            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
++          </div>
++        </dl>
++      </section>
++
++      <section aria-label="Contact closing note">
++        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
+       </section>
+-    </>
++    </article>
    )
  }
 
 codex
-The build passed. I’m appending a short task entry to `agent/AGENT_REPORT.md` now, keeping it minimal and scoped to this gallery-grid task.
-exec
-/bin/zsh -lc 'tail -n 40 agent/AGENT_REPORT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-TASK section-chi-siamo-story completed successfully.
-Build passed.
-Commit created for TASK section-chi-siamo-story.
-
-Prepared TASK section-chi-siamo-philosophy (Create philosophy section on chi-siamo) for execution.
-
-Launching Codex for TASK section-chi-siamo-philosophy.
-
-TASK section-chi-siamo-philosophy executed by Codex.
-Waiting for validation.
-
-TASK section-chi-siamo-philosophy completed successfully.
-Build passed.
-Commit created for TASK section-chi-siamo-philosophy.
-
-Prepared TASK page-gallery-shell (Create gallery page shell) for execution.
-
-Launching Codex for TASK page-gallery-shell.
-
-TASK page-gallery-shell executed by Codex.
-file update:
-diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
---- /dev/null
-+++ b/src/components/Gallery-gridSection.jsx
-@@ -0,0 +1,171 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '46rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    position: 'relative',
-+    minHeight: 'clamp(18rem, 36vw, 26rem)',
-+    overflow: 'hidden',
-+    borderRadius: '24px',
-+    backgroundColor: '#d8c7b0',
-+    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
-+  },
-+  image: {
-+    width: '100%',
-+    height: '100%',
-+    objectFit: 'cover',
-+    display: 'block',
-+  },
-+  overlay: {
-+    position: 'absolute',
-+    inset: 0,
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    padding: '1.25rem',
-+    background:
-+      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
-+  },
-+  captionBox: {
-+    width: '100%',
-+    padding: '1rem 1.05rem',
-+    borderRadius: '18px',
-+    backgroundColor: 'rgba(20, 16, 13, 0.42)',
-+    backdropFilter: 'blur(8px)',
-+    color: '#f7f1e8',
-+  },
-+  captionTitle: {
-+    margin: 0,
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+    lineHeight: 1.2,
-+  },
-+  captionText: {
-+    margin: '0.45rem 0 0',
-+    color: 'rgba(247, 241, 232, 0.86)',
-+    lineHeight: 1.6,
-+    fontSize: '0.95rem',
-+  },
-+}
-+
-+const galleryImages = [
-+  {
-+    title: 'Wedding dinner styling',
-+    description:
-+      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
-+    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
-+    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Signature cocktail service',
-+    description:
-+      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
-+    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
-+    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Plated catering presentation',
-+    description:
-+      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
-+    alt: 'Plated fine catering dish presented with modern styling',
-+    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Reception atmosphere',
-+    description:
-+      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
-+    alt: 'Guests gathered at a stylish reception during an evening event',
-+    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Aperitivo tablescape',
-+    description:
-+      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
-+    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
-+    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Celebration toast',
-+    description:
-+      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
-+    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
-+    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
-+  },
-+]
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Gallery collection</p>
-+        <h2 id="gallery-grid-title" style={sectionStyles.title}>
-+          A premium image grid shaped around service, atmosphere, and detail
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          This collection brings together the visual language of Casa Aurea
-+          Events: elegant food presentation, polished bar service, layered
-+          styling, and the warm rhythm of celebrations designed with care.
-+        </p>
-+      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {galleryImages.map((image) => (
-+          <figure key={image.title} style={sectionStyles.card}>
-+            <img
-+              src={image.src}
-+              alt={image.alt}
-+              loading="lazy"
-+              style={sectionStyles.image}
-+            />
-+            <figcaption style={sectionStyles.overlay}>
-+              <div style={sectionStyles.captionBox}>
-+                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
-+                <p style={sectionStyles.captionText}>{image.description}</p>
-+              </div>
-+            </figcaption>
-+          </figure>
-+        ))}
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,18 +1,11 @@
- import GalleryHeroSection from '../components/Gallery-heroSection'
-+import GalleryGridSection from '../components/Gallery-gridSection'
- 
- export default function Gallery() {
-   return (
-     <article aria-labelledby="gallery-title">
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">Gallery collection</h2>
--        <p>
--          This page is prepared for the premium image grid that will showcase
--          catering presentation, cocktail service, event styling, and guest
--          atmosphere across Casa Aurea Events experiences.
--        </p>
--      </section>
-+      <GalleryGridSection />
-     </article>
-   )
- }
-
+The build passed. I’m adding the required task entry to [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) now so the execution record stays in sync with the code change.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -410 +410,12 @@
- Launching Codex for TASK section-gallery-gallery-grid.
+@@ -220,2 +220,19 @@
+ Implemented a dedicated `Menu-categoriesSection` component in
 +
-+TASK section-gallery-gallery-grid executed by Codex.
++Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++
++Launching Codex for TASK page-contatti-shell.
++
++Completed TASK page-contatti-shell.
++
++Implemented a semantic shell for `src/pages/Contatti.jsx` with the required
++`contact-hero`, `contact-details`, and `opening-hours` sections, real contact
++copy, and valid `tel:` and `mailto:` actions. Verified `src/App.jsx` already
++mounts the `/contatti` route, so no routing change was required.
++
++TASK page-contatti-shell executed by Codex.
 +Waiting for validation.
 +
-+TASK section-gallery-gallery-grid completed successfully.
-+Implemented a dedicated `GalleryGridSection` in
-+`src/components/Gallery-gridSection.jsx` and rendered it from
-+`src/pages/Gallery.jsx`. The gallery page now includes a responsive premium
-+image grid with six real event visuals, descriptive captions, and lazy-loaded
-+images aligned to the `image-grid` section requirement.
++TASK page-contatti-shell completed successfully.
 +Build passed.
-apply_patch(auto_approved=true) exited 0 in 58ms:
+ `src/components/Menu-categoriesSection.jsx` and rendered it from
+apply_patch(auto_approved=true) exited 0 in 48ms:
 Success. Updated the following files:
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 754a2c30d7a71c1dfd8ab220219849cea1045d8d..bfa01a64455f06eb68fe3c9e12f649cc7dd01a51
+index 1d75cc8f61bc0312e105816152fe26f013a35ae9..3916ee63623f6eb12f233553215b8b6fecdabd94
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -408,3 +408,14 @@
- Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+@@ -218,6 +218,23 @@
+ Build passed.
  
- Launching Codex for TASK section-gallery-gallery-grid.
+ Implemented a dedicated `Menu-categoriesSection` component in
 +
-+TASK section-gallery-gallery-grid executed by Codex.
++Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++
++Launching Codex for TASK page-contatti-shell.
++
++Completed TASK page-contatti-shell.
++
++Implemented a semantic shell for `src/pages/Contatti.jsx` with the required
++`contact-hero`, `contact-details`, and `opening-hours` sections, real contact
++copy, and valid `tel:` and `mailto:` actions. Verified `src/App.jsx` already
++mounts the `/contatti` route, so no routing change was required.
++
++TASK page-contatti-shell executed by Codex.
 +Waiting for validation.
 +
-+TASK section-gallery-gallery-grid completed successfully.
-+Implemented a dedicated `GalleryGridSection` in
-+`src/components/Gallery-gridSection.jsx` and rendered it from
-+`src/pages/Gallery.jsx`. The gallery page now includes a responsive premium
-+image grid with six real event visuals, descriptive captions, and lazy-loaded
-+images aligned to the `image-grid` section requirement.
++TASK page-contatti-shell completed successfully.
 +Build passed.
-diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
---- /dev/null
-+++ b/src/components/Gallery-gridSection.jsx
-@@ -0,0 +1,171 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '46rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    position: 'relative',
-+    minHeight: 'clamp(18rem, 36vw, 26rem)',
-+    overflow: 'hidden',
-+    borderRadius: '24px',
-+    backgroundColor: '#d8c7b0',
-+    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
-+  },
-+  image: {
-+    width: '100%',
-+    height: '100%',
-+    objectFit: 'cover',
-+    display: 'block',
-+  },
-+  overlay: {
-+    position: 'absolute',
-+    inset: 0,
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    padding: '1.25rem',
-+    background:
-+      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
-+  },
-+  captionBox: {
-+    width: '100%',
-+    padding: '1rem 1.05rem',
-+    borderRadius: '18px',
-+    backgroundColor: 'rgba(20, 16, 13, 0.42)',
-+    backdropFilter: 'blur(8px)',
-+    color: '#f7f1e8',
-+  },
-+  captionTitle: {
-+    margin: 0,
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+    lineHeight: 1.2,
-+  },
-+  captionText: {
-+    margin: '0.45rem 0 0',
-+    color: 'rgba(247, 241, 232, 0.86)',
-+    lineHeight: 1.6,
-+    fontSize: '0.95rem',
-+  },
-+}
-+
-+const galleryImages = [
-+  {
-+    title: 'Wedding dinner styling',
-+    description:
-+      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
-+    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
-+    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Signature cocktail service',
-+    description:
-+      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
-+    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
-+    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Plated catering presentation',
-+    description:
-+      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
-+    alt: 'Plated fine catering dish presented with modern styling',
-+    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Reception atmosphere',
-+    description:
-+      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
-+    alt: 'Guests gathered at a stylish reception during an evening event',
-+    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Aperitivo tablescape',
-+    description:
-+      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
-+    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
-+    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Celebration toast',
-+    description:
-+      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
-+    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
-+    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
-+  },
-+]
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Gallery collection</p>
-+        <h2 id="gallery-grid-title" style={sectionStyles.title}>
-+          A premium image grid shaped around service, atmosphere, and detail
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          This collection brings together the visual language of Casa Aurea
-+          Events: elegant food presentation, polished bar service, layered
-+          styling, and the warm rhythm of celebrations designed with care.
-+        </p>
-+      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {galleryImages.map((image) => (
-+          <figure key={image.title} style={sectionStyles.card}>
-+            <img
-+              src={image.src}
-+              alt={image.alt}
-+              loading="lazy"
-+              style={sectionStyles.image}
-+            />
-+            <figcaption style={sectionStyles.overlay}>
-+              <div style={sectionStyles.captionBox}>
-+                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
-+                <p style={sectionStyles.captionText}>{image.description}</p>
-+              </div>
-+            </figcaption>
-+          </figure>
-+        ))}
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,18 +1,11 @@
- import GalleryHeroSection from '../components/Gallery-heroSection'
-+import GalleryGridSection from '../components/Gallery-gridSection'
- 
- export default function Gallery() {
+ `src/components/Menu-categoriesSection.jsx` and rendered it from
+ `src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
+ page now includes structured drink families with refined descriptions and
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 27ef33c6d2801e2478be5154702bdb2f62cc910f..e6d8f3ad9ede68d45764f89f8ffdcce40df233c1
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,18 +1,66 @@
+ export default function Contatti() {
    return (
-     <article aria-labelledby="gallery-title">
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">Gallery collection</h2>
--        <p>
--          This page is prepared for the premium image grid that will showcase
--          catering presentation, cocktail service, event styling, and guest
--          atmosphere across Casa Aurea Events experiences.
--        </p>
--      </section>
-+      <GalleryGridSection />
-     </article>
+-    <>
++    <article aria-labelledby="contatti-title">
+       <section id="contact-hero">
+-        <h1>Contact Hero</h1>
+-        <p>Content for contact-hero will be generated by tasks</p>
++        <p>Casa Aurea Events</p>
++        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
++        <p>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
++          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
+       </section>
++
+       <section id="contact-details">
+-        <h2>Contact Details</h2>
+-        <p>Content for contact-details will be generated by tasks</p>
++        <h2>Contact details</h2>
++        <p>
++          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
++          and polished presentation.
++        </p>
++        <dl>
++          <div>
++            <dt>Phone</dt>
++            <dd>
++              <a href="tel:+39011000000">+39 011 000000</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Email</dt>
++            <dd>
++              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Service area</dt>
++            <dd>Torino and surrounding areas</dd>
++          </div>
++        </dl>
+       </section>
++
+       <section id="opening-hours">
+-        <h2>Opening Hours</h2>
+-        <p>Content for opening-hours will be generated by tasks</p>
++        <h2>Availability</h2>
++        <p>
++          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
++          corporate clients looking for a tailored proposal.
++        </p>
++        <dl>
++          <div>
++            <dt>Inquiry hours</dt>
++            <dd>Monday to Saturday, 09:00 to 19:00</dd>
++          </div>
++          <div>
++            <dt>Planning calls</dt>
++            <dd>By appointment</dd>
++          </div>
++          <div>
++            <dt>Best next step</dt>
++            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
++          </div>
++        </dl>
++      </section>
++
++      <section aria-label="Contact closing note">
++        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
+       </section>
+-    </>
++    </article>
    )
  }
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 754a2c30d7a71c1dfd8ab220219849cea1045d8d..bfa01a64455f06eb68fe3c9e12f649cc7dd01a51
+index 1d75cc8f61bc0312e105816152fe26f013a35ae9..3916ee63623f6eb12f233553215b8b6fecdabd94
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -408,3 +408,14 @@
- Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+@@ -218,6 +218,23 @@
+ Build passed.
  
- Launching Codex for TASK section-gallery-gallery-grid.
+ Implemented a dedicated `Menu-categoriesSection` component in
 +
-+TASK section-gallery-gallery-grid executed by Codex.
++Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++
++Launching Codex for TASK page-contatti-shell.
++
++Completed TASK page-contatti-shell.
++
++Implemented a semantic shell for `src/pages/Contatti.jsx` with the required
++`contact-hero`, `contact-details`, and `opening-hours` sections, real contact
++copy, and valid `tel:` and `mailto:` actions. Verified `src/App.jsx` already
++mounts the `/contatti` route, so no routing change was required.
++
++TASK page-contatti-shell executed by Codex.
 +Waiting for validation.
 +
-+TASK section-gallery-gallery-grid completed successfully.
-+Implemented a dedicated `GalleryGridSection` in
-+`src/components/Gallery-gridSection.jsx` and rendered it from
-+`src/pages/Gallery.jsx`. The gallery page now includes a responsive premium
-+image grid with six real event visuals, descriptive captions, and lazy-loaded
-+images aligned to the `image-grid` section requirement.
++TASK page-contatti-shell completed successfully.
 +Build passed.
-diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
---- /dev/null
-+++ b/src/components/Gallery-gridSection.jsx
-@@ -0,0 +1,171 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '46rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    position: 'relative',
-+    minHeight: 'clamp(18rem, 36vw, 26rem)',
-+    overflow: 'hidden',
-+    borderRadius: '24px',
-+    backgroundColor: '#d8c7b0',
-+    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
-+  },
-+  image: {
-+    width: '100%',
-+    height: '100%',
-+    objectFit: 'cover',
-+    display: 'block',
-+  },
-+  overlay: {
-+    position: 'absolute',
-+    inset: 0,
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    padding: '1.25rem',
-+    background:
-+      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
-+  },
-+  captionBox: {
-+    width: '100%',
-+    padding: '1rem 1.05rem',
-+    borderRadius: '18px',
-+    backgroundColor: 'rgba(20, 16, 13, 0.42)',
-+    backdropFilter: 'blur(8px)',
-+    color: '#f7f1e8',
-+  },
-+  captionTitle: {
-+    margin: 0,
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+    lineHeight: 1.2,
-+  },
-+  captionText: {
-+    margin: '0.45rem 0 0',
-+    color: 'rgba(247, 241, 232, 0.86)',
-+    lineHeight: 1.6,
-+    fontSize: '0.95rem',
-+  },
-+}
-+
-+const galleryImages = [
-+  {
-+    title: 'Wedding dinner styling',
-+    description:
-+      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
-+    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
-+    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Signature cocktail service',
-+    description:
-+      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
-+    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
-+    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Plated catering presentation',
-+    description:
-+      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
-+    alt: 'Plated fine catering dish presented with modern styling',
-+    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Reception atmosphere',
-+    description:
-+      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
-+    alt: 'Guests gathered at a stylish reception during an evening event',
-+    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Aperitivo tablescape',
-+    description:
-+      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
-+    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
-+    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Celebration toast',
-+    description:
-+      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
-+    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
-+    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
-+  },
-+]
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Gallery collection</p>
-+        <h2 id="gallery-grid-title" style={sectionStyles.title}>
-+          A premium image grid shaped around service, atmosphere, and detail
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          This collection brings together the visual language of Casa Aurea
-+          Events: elegant food presentation, polished bar service, layered
-+          styling, and the warm rhythm of celebrations designed with care.
-+        </p>
-+      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {galleryImages.map((image) => (
-+          <figure key={image.title} style={sectionStyles.card}>
-+            <img
-+              src={image.src}
-+              alt={image.alt}
-+              loading="lazy"
-+              style={sectionStyles.image}
-+            />
-+            <figcaption style={sectionStyles.overlay}>
-+              <div style={sectionStyles.captionBox}>
-+                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
-+                <p style={sectionStyles.captionText}>{image.description}</p>
-+              </div>
-+            </figcaption>
-+          </figure>
-+        ))}
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,18 +1,11 @@
- import GalleryHeroSection from '../components/Gallery-heroSection'
-+import GalleryGridSection from '../components/Gallery-gridSection'
- 
- export default function Gallery() {
+ `src/components/Menu-categoriesSection.jsx` and rendered it from
+ `src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
+ page now includes structured drink families with refined descriptions and
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 27ef33c6d2801e2478be5154702bdb2f62cc910f..e6d8f3ad9ede68d45764f89f8ffdcce40df233c1
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,18 +1,66 @@
+ export default function Contatti() {
    return (
-     <article aria-labelledby="gallery-title">
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">Gallery collection</h2>
--        <p>
--          This page is prepared for the premium image grid that will showcase
--          catering presentation, cocktail service, event styling, and guest
--          atmosphere across Casa Aurea Events experiences.
--        </p>
--      </section>
-+      <GalleryGridSection />
-     </article>
+-    <>
++    <article aria-labelledby="contatti-title">
+       <section id="contact-hero">
+-        <h1>Contact Hero</h1>
+-        <p>Content for contact-hero will be generated by tasks</p>
++        <p>Casa Aurea Events</p>
++        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
++        <p>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
++          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
+       </section>
++
+       <section id="contact-details">
+-        <h2>Contact Details</h2>
+-        <p>Content for contact-details will be generated by tasks</p>
++        <h2>Contact details</h2>
++        <p>
++          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
++          and polished presentation.
++        </p>
++        <dl>
++          <div>
++            <dt>Phone</dt>
++            <dd>
++              <a href="tel:+39011000000">+39 011 000000</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Email</dt>
++            <dd>
++              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Service area</dt>
++            <dd>Torino and surrounding areas</dd>
++          </div>
++        </dl>
+       </section>
++
+       <section id="opening-hours">
+-        <h2>Opening Hours</h2>
+-        <p>Content for opening-hours will be generated by tasks</p>
++        <h2>Availability</h2>
++        <p>
++          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
++          corporate clients looking for a tailored proposal.
++        </p>
++        <dl>
++          <div>
++            <dt>Inquiry hours</dt>
++            <dd>Monday to Saturday, 09:00 to 19:00</dd>
++          </div>
++          <div>
++            <dt>Planning calls</dt>
++            <dd>By appointment</dd>
++          </div>
++          <div>
++            <dt>Best next step</dt>
++            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
++          </div>
++        </dl>
++      </section>
++
++      <section aria-label="Contact closing note">
++        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
+       </section>
+-    </>
++    </article>
    )
  }
 
 codex
-Modified files:
-- [src/components/Gallery-gridSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Gallery-gridSection.jsx)
-- [src/pages/Gallery.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Gallery.jsx)
-- [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+Modified files: [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-What was implemented:
-- Added a dedicated `GalleryGridSection` component for the `gallery-grid` section.
-- Replaced the placeholder markup in the gallery page with the new component.
-- Built the section as a responsive image grid with six premium Unsplash images, descriptive captions, meaningful alt text, and lazy loading.
-- Updated the agent report with a short completion summary.
+Implemented the `contatti` page shell in [src/pages/Contatti.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Contatti.jsx) with the required `contact-hero`, `contact-details`, and `opening-hours` sections, one meaningful `h1`, realistic contact content, and working `tel:` / `mailto:` links. The `/contatti` route was already mounted in [src/App.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/App.jsx), so no routing change was needed. I also updated [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md) with the task summary.
 
-Build result:
-- `npm run build` passed successfully.
+Build result: `npm run build` passed successfully.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index 754a2c30d7a71c1dfd8ab220219849cea1045d8d..bfa01a64455f06eb68fe3c9e12f649cc7dd01a51
+index 1d75cc8f61bc0312e105816152fe26f013a35ae9..3916ee63623f6eb12f233553215b8b6fecdabd94
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -408,3 +408,14 @@
- Prepared TASK section-gallery-gallery-grid (Create gallery-grid section on gallery) for execution.
+@@ -218,6 +218,23 @@
+ Build passed.
  
- Launching Codex for TASK section-gallery-gallery-grid.
+ Implemented a dedicated `Menu-categoriesSection` component in
 +
-+TASK section-gallery-gallery-grid executed by Codex.
++Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
++
++Launching Codex for TASK page-contatti-shell.
++
++Completed TASK page-contatti-shell.
++
++Implemented a semantic shell for `src/pages/Contatti.jsx` with the required
++`contact-hero`, `contact-details`, and `opening-hours` sections, real contact
++copy, and valid `tel:` and `mailto:` actions. Verified `src/App.jsx` already
++mounts the `/contatti` route, so no routing change was required.
++
++TASK page-contatti-shell executed by Codex.
 +Waiting for validation.
 +
-+TASK section-gallery-gallery-grid completed successfully.
-+Implemented a dedicated `GalleryGridSection` in
-+`src/components/Gallery-gridSection.jsx` and rendered it from
-+`src/pages/Gallery.jsx`. The gallery page now includes a responsive premium
-+image grid with six real event visuals, descriptive captions, and lazy-loaded
-+images aligned to the `image-grid` section requirement.
++TASK page-contatti-shell completed successfully.
 +Build passed.
-diff --git a/src/components/Gallery-gridSection.jsx b/src/components/Gallery-gridSection.jsx
-new file mode 100644
-index 0000000000000000000000000000000000000000..ea31da3574a5281544c1f710421e1acdbc7fb46e
---- /dev/null
-+++ b/src/components/Gallery-gridSection.jsx
-@@ -0,0 +1,171 @@
-+const sectionStyles = {
-+  section: {
-+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
-+    display: 'grid',
-+    gap: '1.5rem',
-+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
-+    borderRadius: '32px',
-+    background:
-+      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 226, 207, 0.94) 100%)',
-+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
-+  },
-+  header: {
-+    display: 'grid',
-+    gap: '1rem',
-+    maxWidth: '46rem',
-+  },
-+  eyebrow: {
-+    margin: 0,
-+    color: '#9f7b4b',
-+    fontSize: '0.82rem',
-+    letterSpacing: '0.22em',
-+    textTransform: 'uppercase',
-+    fontWeight: 700,
-+  },
-+  title: {
-+    margin: 0,
-+    color: '#201914',
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
-+    lineHeight: 1.05,
-+  },
-+  intro: {
-+    margin: 0,
-+    color: 'rgba(32, 25, 20, 0.76)',
-+    lineHeight: 1.8,
-+  },
-+  grid: {
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-+    gap: '1rem',
-+  },
-+  card: {
-+    position: 'relative',
-+    minHeight: 'clamp(18rem, 36vw, 26rem)',
-+    overflow: 'hidden',
-+    borderRadius: '24px',
-+    backgroundColor: '#d8c7b0',
-+    boxShadow: '0 18px 44px rgba(52, 38, 26, 0.12)',
-+  },
-+  image: {
-+    width: '100%',
-+    height: '100%',
-+    objectFit: 'cover',
-+    display: 'block',
-+  },
-+  overlay: {
-+    position: 'absolute',
-+    inset: 0,
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    padding: '1.25rem',
-+    background:
-+      'linear-gradient(180deg, rgba(23, 18, 15, 0.08) 8%, rgba(23, 18, 15, 0.3) 46%, rgba(23, 18, 15, 0.82) 100%)',
-+  },
-+  captionBox: {
-+    width: '100%',
-+    padding: '1rem 1.05rem',
-+    borderRadius: '18px',
-+    backgroundColor: 'rgba(20, 16, 13, 0.42)',
-+    backdropFilter: 'blur(8px)',
-+    color: '#f7f1e8',
-+  },
-+  captionTitle: {
-+    margin: 0,
-+    fontFamily: 'Georgia, "Times New Roman", serif',
-+    fontSize: '1.2rem',
-+    lineHeight: 1.2,
-+  },
-+  captionText: {
-+    margin: '0.45rem 0 0',
-+    color: 'rgba(247, 241, 232, 0.86)',
-+    lineHeight: 1.6,
-+    fontSize: '0.95rem',
-+  },
-+}
-+
-+const galleryImages = [
-+  {
-+    title: 'Wedding dinner styling',
-+    description:
-+      'Layered tablescapes with candlelight, polished glassware, and service details tailored for elegant receptions.',
-+    alt: 'Elegant wedding dinner table with candles, florals, and refined place settings',
-+    src: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Signature cocktail service',
-+    description:
-+      'A refined bar moment designed for aperitivo pacing, visual polish, and seamless guest flow.',
-+    alt: 'Bartender preparing a premium cocktail at an elegant event bar',
-+    src: 'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Plated catering presentation',
-+    description:
-+      'Balanced courses that feel contemporary, generous, and composed for elevated celebrations.',
-+    alt: 'Plated fine catering dish presented with modern styling',
-+    src: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Reception atmosphere',
-+    description:
-+      'Warm hospitality and luminous evening settings that encourage guests to settle into the occasion.',
-+    alt: 'Guests gathered at a stylish reception during an evening event',
-+    src: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Aperitivo tablescape',
-+    description:
-+      'Textures, glassware, and floral notes arranged to frame the first impression of the event.',
-+    alt: 'Styled aperitivo table with premium cocktails and elegant event decor',
-+    src: 'https://images.unsplash.com/photo-1464306076886-da185f6a9d05?auto=format&fit=crop&w=1200&q=80',
-+  },
-+  {
-+    title: 'Celebration toast',
-+    description:
-+      'Sparkling pours and poised service that turn milestone moments into memorable rituals.',
-+    alt: 'Champagne glasses raised for a celebration toast at an elegant event',
-+    src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&w=1200&q=80',
-+  },
-+]
-+
-+export default function GalleryGridSection() {
-+  return (
-+    <section
-+      id="gallery-grid"
-+      aria-labelledby="gallery-grid-title"
-+      style={sectionStyles.section}
-+    >
-+      <div style={sectionStyles.header}>
-+        <p style={sectionStyles.eyebrow}>Gallery collection</p>
-+        <h2 id="gallery-grid-title" style={sectionStyles.title}>
-+          A premium image grid shaped around service, atmosphere, and detail
-+        </h2>
-+        <p style={sectionStyles.intro}>
-+          This collection brings together the visual language of Casa Aurea
-+          Events: elegant food presentation, polished bar service, layered
-+          styling, and the warm rhythm of celebrations designed with care.
-+        </p>
-+      </div>
-+
-+      <div style={sectionStyles.grid}>
-+        {galleryImages.map((image) => (
-+          <figure key={image.title} style={sectionStyles.card}>
-+            <img
-+              src={image.src}
-+              alt={image.alt}
-+              loading="lazy"
-+              style={sectionStyles.image}
-+            />
-+            <figcaption style={sectionStyles.overlay}>
-+              <div style={sectionStyles.captionBox}>
-+                <h3 style={sectionStyles.captionTitle}>{image.title}</h3>
-+                <p style={sectionStyles.captionText}>{image.description}</p>
-+              </div>
-+            </figcaption>
-+          </figure>
-+        ))}
-+      </div>
-+    </section>
-+  )
-+}
-diff --git a/src/pages/Gallery.jsx b/src/pages/Gallery.jsx
-index 635220c2e4291cf145334fe5d28d1b8eedc8f02b..1dfaaa2dc92615b39c86c53b58547c251d6d5a4d
---- a/src/pages/Gallery.jsx
-+++ b/src/pages/Gallery.jsx
-@@ -1,18 +1,11 @@
- import GalleryHeroSection from '../components/Gallery-heroSection'
-+import GalleryGridSection from '../components/Gallery-gridSection'
- 
- export default function Gallery() {
+ `src/components/Menu-categoriesSection.jsx` and rendered it from
+ `src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
+ page now includes structured drink families with refined descriptions and
+diff --git a/src/pages/Contatti.jsx b/src/pages/Contatti.jsx
+index 27ef33c6d2801e2478be5154702bdb2f62cc910f..e6d8f3ad9ede68d45764f89f8ffdcce40df233c1
+--- a/src/pages/Contatti.jsx
++++ b/src/pages/Contatti.jsx
+@@ -1,18 +1,66 @@
+ export default function Contatti() {
    return (
-     <article aria-labelledby="gallery-title">
-       <GalleryHeroSection />
--
--      <section id="gallery-grid" aria-labelledby="gallery-grid-title">
--        <h2 id="gallery-grid-title">Gallery collection</h2>
--        <p>
--          This page is prepared for the premium image grid that will showcase
--          catering presentation, cocktail service, event styling, and guest
--          atmosphere across Casa Aurea Events experiences.
--        </p>
--      </section>
-+      <GalleryGridSection />
-     </article>
+-    <>
++    <article aria-labelledby="contatti-title">
+       <section id="contact-hero">
+-        <h1>Contact Hero</h1>
+-        <p>Content for contact-hero will be generated by tasks</p>
++        <p>Casa Aurea Events</p>
++        <h1 id="contatti-title">Plan your event with a hospitality team that knows how to host beautifully.</h1>
++        <p>
++          Share the occasion, the atmosphere you want to create, and the guests you are welcoming.
++          We will shape a tailored catering and bar proposal for refined celebrations in Torino and the surrounding area.
++        </p>
+       </section>
++
+       <section id="contact-details">
+-        <h2>Contact Details</h2>
+-        <p>Content for contact-details will be generated by tasks</p>
++        <h2>Contact details</h2>
++        <p>
++          Reach out for weddings, private dinners, brand events, and elevated celebrations that call for warm service
++          and polished presentation.
++        </p>
++        <dl>
++          <div>
++            <dt>Phone</dt>
++            <dd>
++              <a href="tel:+39011000000">+39 011 000000</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Email</dt>
++            <dd>
++              <a href="mailto:hello@casaaureaevents.it">hello@casaaureaevents.it</a>
++            </dd>
++          </div>
++          <div>
++            <dt>Service area</dt>
++            <dd>Torino and surrounding areas</dd>
++          </div>
++        </dl>
+       </section>
++
+       <section id="opening-hours">
+-        <h2>Opening Hours</h2>
+-        <p>Content for opening-hours will be generated by tasks</p>
++        <h2>Availability</h2>
++        <p>
++          We answer event inquiries throughout the week and schedule planning calls for couples, private hosts, and
++          corporate clients looking for a tailored proposal.
++        </p>
++        <dl>
++          <div>
++            <dt>Inquiry hours</dt>
++            <dd>Monday to Saturday, 09:00 to 19:00</dd>
++          </div>
++          <div>
++            <dt>Planning calls</dt>
++            <dd>By appointment</dd>
++          </div>
++          <div>
++            <dt>Best next step</dt>
++            <dd>Send your event date, guest count, and venue details to start the conversation.</dd>
++          </div>
++        </dl>
++      </section>
++
++      <section aria-label="Contact closing note">
++        <p>Every event begins with a thoughtful conversation, careful timing, and a clear sense of occasion.</p>
+       </section>
+-    </>
++    </article>
    )
  }
 
 tokens used
-23.288
+37.339

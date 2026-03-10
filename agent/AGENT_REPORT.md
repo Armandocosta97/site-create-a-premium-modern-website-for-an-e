@@ -218,6 +218,23 @@ TASK section-chi-siamo-philosophy completed successfully.
 Build passed.
 
 Implemented a dedicated `Menu-categoriesSection` component in
+
+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+
+Launching Codex for TASK page-contatti-shell.
+
+Completed TASK page-contatti-shell.
+
+Implemented a semantic shell for `src/pages/Contatti.jsx` with the required
+`contact-hero`, `contact-details`, and `opening-hours` sections, real contact
+copy, and valid `tel:` and `mailto:` actions. Verified `src/App.jsx` already
+mounts the `/contatti` route, so no routing change was required.
+
+TASK page-contatti-shell executed by Codex.
+Waiting for validation.
+
+TASK page-contatti-shell completed successfully.
+Build passed.
 `src/components/Menu-categoriesSection.jsx` and rendered it from
 `src/pages/Menu.jsx` to replace the placeholder category content. The `/menu`
 page now includes structured drink families with refined descriptions and
@@ -424,4 +441,15 @@ TASK section-gallery-gallery-grid executed by Codex.
 Waiting for validation.
 
 TASK section-gallery-gallery-grid completed successfully.
+Build passed.
+Commit created for TASK section-gallery-gallery-grid.
+
+Prepared TASK page-contatti-shell (Create contatti page shell) for execution.
+
+Launching Codex for TASK page-contatti-shell.
+
+TASK page-contatti-shell executed by Codex.
+Waiting for validation.
+
+TASK page-contatti-shell completed successfully.
 Build passed.
