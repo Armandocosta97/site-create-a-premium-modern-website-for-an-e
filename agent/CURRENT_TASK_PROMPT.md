@@ -1178,39 +1178,32 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-cta-contatti-contatti-phone
+page-servizi-shell
 
 ## Current task title
-Add CTA contatti-phone on contatti
+Create servizi page shell
 
 ## Current task type
-cta
+page-shell
 
 ## Current task target
 ```json
 {
-  "pageId": "contatti",
-  "ctaId": "contatti-phone",
-  "ctaKind": "external",
-  "destination": {
-    "type": "phone",
-    "value": "phone"
-  },
-  "placement": "body"
+  "pageId": "servizi"
 }
 ```
 
 ## Depends on
-- page-contatti-shell
+- none
 
 ## Files allowed
-- src/pages/Contatti.jsx
-- src/components
+- src/App.jsx
+- src/pages/Servizi.jsx
 
 ## Definition of done
-- CTA contatti-phone exists on contatti
-- CTA contatti-phone is visible in placement body
-- CTA contatti-phone points to a valid destination
+- page shell exists for servizi
+- servizi route is mounted if required
+- servizi page renders without crashing
 
 ## Strict execution rules
 - Execute only this current task.
