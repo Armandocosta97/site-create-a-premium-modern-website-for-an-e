@@ -1,8 +1,8 @@
-Modified files: [src/components/Services-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Services-heroSection.jsx), [src/pages/Servizi.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Servizi.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
+Modified files: [Servizi.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Servizi.jsx), [Services-overviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Services-overviewSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
 
-Implemented the `services-hero` section as a dedicated reusable component and rendered it at the top of the `servizi` page. The new hero includes the required semantic hero structure, a single page `h1`, premium editorial copy, highlight cards, and valid CTAs to `/contatti` and `/menu` while leaving the existing `services-overview` section untouched.
+Implemented the `services-overview` section on the `servizi` page as a dedicated reusable component and replaced the inline placeholder with it. The new section matches the required `service-list` shape with premium service cards for catering, bar service, weddings, private events, corporate evenings, and styling support, plus a short process block and a valid CTA to `/contatti`.
 
-Build result: `npm run build` passed successfully with Vite production build completed.
+Build result: `npm run build` passed successfully with Vite.
 
 OpenAI Codex v0.111.0 (research preview)
 --------
@@ -13,7 +13,7 @@ approval: never
 sandbox: workspace-write [workdir, /tmp, $TMPDIR, /Users/armandocosta/.codex/memories]
 reasoning effort: none
 reasoning summaries: none
-session id: 019cd84b-6b1a-7951-a420-2085e2118bd7
+session id: 019cd84c-8cb3-7a22-b81a-671c8a719499
 --------
 user
 # CURRENT TASK EXECUTION PROMPT
@@ -1196,10 +1196,10 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-servizi-services-hero
+section-servizi-services-overview
 
 ## Current task title
-Create services-hero section on servizi
+Create services-overview section on servizi
 
 ## Current task type
 section
@@ -1208,8 +1208,8 @@ section
 ```json
 {
   "pageId": "servizi",
-  "sectionId": "services-hero",
-  "sectionType": "hero"
+  "sectionId": "services-overview",
+  "sectionType": "service-list"
 }
 ```
 
@@ -1218,13 +1218,13 @@ section
 
 ## Files allowed
 - src/pages/Servizi.jsx
-- src/components/Services-heroSection.jsx
+- src/components/Services-overviewSection.jsx
 - src/components
 
 ## Definition of done
-- section services-hero exists on servizi
-- section services-hero matches type hero
-- section services-hero is rendered in page servizi
+- section services-overview exists on servizi
+- section services-overview matches type service-list
+- section services-overview is rendered in page servizi
 
 ## Strict execution rules
 - Execute only this current task.
@@ -1253,24 +1253,39 @@ section
 
 mcp startup: no servers
 codex
-I’m implementing only the `services-hero` task on the `servizi` page and will first inspect the current page/component structure so the change fits the existing architecture without touching unrelated sections.
+I’m checking the current implementation around `servizi` and the shared component patterns first so I can add only the required `services-overview` section without drifting into unrelated pages.
 exec
 /bin/zsh -lc "sed -n '1,220p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
 /bin/zsh -lc "sed -n '1,220p' src/pages/Servizi.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,220p' agent/CURRENT_TASK_PROMPT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "pwd && rg --files src agent | rg 'Servizi.jsx|hero|components|AGENT_REPORT.md'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+/bin/zsh -lc "sed -n '1,220p' docs/DEVELOPMENT_METHOD.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "pwd && rg --files src agent brief docs | rg 'Servizi|services|Section|AGENT_REPORT|CURRENT_TASK_PROMPT|TASK_STATE|site-spec|DEVELOPMENT_METHOD'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+# Development Method
+
+All sites must follow these rules.
+
+## Objective
+- Generate production-ready static websites that are clear, stable, responsive, modular, and easy to validate.
+- Prioritize correctness before visual polish.
+- Prefer predictable implementation over improvisation.
+
+## Source of Truth
+- The human prompt is not the implementation source of truth.
+- `site-spec.json` is the only source of truth for pages, sections, navigation, routing, and required features.
+- If supported by the project architecture, `content.json` is the source of truth for copy, labels, CTA text, and contact details.
+- If supported by the project architecture, `theme.json` is the source of truth for colors, typography, spacing, radius, and visual tokens.
+- The implementation flow must be: `prompt -> site-spec.json -> tasks -> code`.
+- Never implement pages, routes, sections, navigation items, or features that are not defined in the spec.
+
+## Core Principles
+- Build for users first: clarity, speed, and clear actions.
+- Keep code modular: reusable components with clear responsibilities.
+ succeeded in 52ms:
+import ServicesHeroSection from '../components/Services-heroSection'
+
 export default function Servizi() {
   return (
     <article aria-labelledby="servizi-title">
-      <section id="services-hero" aria-labelledby="servizi-title">
-        <p>Casa Aurea Events services</p>
-        <h1 id="servizi-title">Hospitality designed for elegant celebrations and polished event service.</h1>
-        <p>
-          Explore our core service areas, from refined catering and premium bar
-          experiences to event support shaped around timing, presentation, and
-          guest comfort.
-        </p>
-      </section>
+      <ServicesHeroSection />
 
       <section id="services-overview" aria-labelledby="services-overview-title">
         <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
@@ -1279,27 +1294,9 @@ export default function Servizi() {
           ready for the detailed service content that follows in upcoming tasks.
         </p>
       </section>
- succeeded in 52ms:
-# CURRENT TASK EXECUTION PROMPT
-
-You are the coding executor for this project.
-
-## Project path
-site-create-a-premium-modern-website-for-an-e
-
-## Source of truth files
-- brief/original-prompt.md
-- brief/brief-summary.md
-- site-spec.json
-- docs/DEVELOPMENT_METHOD.md
-- agent/TASK_GRAPH.json
-- agent/TASK_STATE.json
-- agent/CURRENT_TASK_PROMPT.md
-
-## Development method
-# Development Method
-
-All sites must follow these rules.
+    </article>
+  )
+}
  succeeded in 52ms:
 # AGENT REPORT
 
@@ -1323,11 +1320,13 @@ Build passed.
 Commit created for TASK page-home-shell.
  succeeded in 52ms:
 /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e
+docs/DEVELOPMENT_METHOD.md
+agent/TASK_STATE.json
 agent/AGENT_REPORT.md
+agent/CURRENT_TASK_PROMPT.md
 src/pages/Servizi.jsx
-src/components/FloatingWhatsAppButton.jsx
 src/components/Brand-story-previewSection.jsx
-src/components/ContactWhatsAppCta.jsx
+src/components/Services-heroSection.jsx
 src/components/StorySection.jsx
 src/components/Menu-categoriesSection.jsx
 src/components/Contact-detailsSection.jsx
@@ -1336,117 +1335,38 @@ src/components/PhilosophySection.jsx
 src/components/Menu-heroSection.jsx
 src/components/About-heroSection.jsx
 src/components/Contact-heroSection.jsx
-src/components/ContactPhoneCta.jsx
 src/components/Gallery-gridSection.jsx
 src/components/SignaturePreviewSection.jsx
 src/components/Gallery-heroSection.jsx
 src/components/HeroSection.jsx
 codex
-The `servizi` page is still using inline placeholder markup, so I’m checking the existing section component patterns before replacing only the hero with a dedicated component and leaving the overview section untouched.
+I found an inline placeholder in `src/pages/Servizi.jsx`, so the task is straightforward: extract a dedicated service-list section component, render it from the page, then run the build and append the task result to the agent report.
 exec
-/bin/zsh -lc "sed -n '1,240p' src/components/About-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,260p' src/components/Contact-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,240p' src/components/Menu-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "rg -n \"Servizi|services-overview|servizi-title|menu-hero|heroSection\" src -g '"'!node_modules'"'" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+/bin/zsh -lc "sed -n '1,260p' src/components/SignaturePreviewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,240p' src/components/Services-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/components/Menu-categoriesSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
+/bin/zsh -lc "sed -n '1,260p' src/components/Brand-story-previewSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
 import { Link } from 'react-router-dom'
 
-const heroStyles = {
+const sectionStyles = {
   section: {
-    position: 'relative',
-    overflow: 'hidden',
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
     borderRadius: '32px',
-    minHeight: 'clamp(30rem, 72vh, 42rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(49, 36, 28, 0.16) 0%, rgba(31, 23, 18, 0.72) 58%, rgba(22, 17, 14, 0.92) 100%), url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+    background:
+      'linear-gradient(180deg, rgba(246, 239, 228, 0.9) 0%, rgba(239, 228, 210, 0.72) 100%)',
+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
   },
-  panel: {
-    width: 'min(100%, 46rem)',
- succeeded in 51ms:
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(30rem, 74vh, 43rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(52, 38, 31, 0.12) 0%, rgba(31, 23, 18, 0.66) 56%, rgba(20, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+  header: {
+    display: 'grid',
+    gap: '1rem',
+    alignItems: 'end',
+    marginBottom: 'clamp(1.75rem, 4vw, 2.5rem)',
   },
-  panel: {
-    width: 'min(100%, 47rem)',
-    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-    borderRadius: '28px',
+  eyebrow: {
+    margin: 0,
+    color: '#9f7b4b',
  succeeded in 51ms:
-import { Link } from 'react-router-dom'
-
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(30rem, 74vh, 43rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(53, 40, 32, 0.12) 0%, rgba(30, 23, 19, 0.68) 58%, rgba(18, 15, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
-  },
-  panel: {
-    width: 'min(100%, 48rem)',
- succeeded in 51ms:
-src/pages/Gallery.jsx:1:import GalleryHeroSection from '../components/Gallery-heroSection'
-src/pages/Chi-siamo.jsx:1:import AboutHeroSection from '../components/About-heroSection'
-src/pages/Contatti.jsx:1:import ContactHeroSection from '../components/Contact-heroSection'
-src/pages/Servizi.jsx:1:export default function Servizi() {
-src/pages/Servizi.jsx:3:    <article aria-labelledby="servizi-title">
-src/pages/Servizi.jsx:4:      <section id="services-hero" aria-labelledby="servizi-title">
-src/pages/Servizi.jsx:6:        <h1 id="servizi-title">Hospitality designed for elegant celebrations and polished event service.</h1>
-src/pages/Servizi.jsx:14:      <section id="services-overview" aria-labelledby="services-overview-title">
-src/pages/Servizi.jsx:15:        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
-src/pages/Menu.jsx:1:import MenuHeroSection from '../components/Menu-heroSection'
-src/App.jsx:8:import Servizi from "./pages/Servizi"
-src/App.jsx:20:          <Route path="/servizi" element={<Servizi />} />
-src/layout/Layout.jsx:11:          <a href="#/servizi">Servizi</a>
-src/components/Menu-heroSection.jsx:125:      id="menu-hero"
-codex
-I have enough context. I’m replacing the inline hero in [Servizi.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Servizi.jsx) with a dedicated component that matches the existing premium hero pattern, keeps a single `h1`, and adds route-safe CTAs without altering the separate overview section.
-file update
-M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Servizi.jsx
-@@ -1 +1,3 @@
-+import ServicesHeroSection from '../components/Services-heroSection'
-+
- export default function Servizi() {
-@@ -3,11 +5,3 @@
-     <article aria-labelledby="servizi-title">
--      <section id="services-hero" aria-labelledby="servizi-title">
--        <p>Casa Aurea Events services</p>
--        <h1 id="servizi-title">Hospitality designed for elegant celebrations and polished event service.</h1>
--        <p>
--          Explore our core service areas, from refined catering and premium bar
--          experiences to event support shaped around timing, presentation, and
--          guest comfort.
--        </p>
--      </section>
-+      <ServicesHeroSection />
- 
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Services-heroSection.jsx
 import { Link } from 'react-router-dom'
 
 const heroStyles = {
@@ -1467,1478 +1387,4562 @@ const heroStyles = {
   },
   panel: {
     width: 'min(100%, 48rem)',
-    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-    borderRadius: '28px',
-    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-    backdropFilter: 'blur(10px)',
-    textAlign: 'left',
+ succeeded in 51ms:
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    display: 'grid',
+    gap: '1.5rem',
+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    background:
+      'linear-gradient(180deg, rgba(248, 242, 234, 0.96) 0%, rgba(241, 231, 216, 0.92) 100%)',
+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
+  },
+  header: {
+    display: 'grid',
+    gap: '1rem',
+    maxWidth: '44rem',
   },
   eyebrow: {
     margin: 0,
-    fontSize: '0.8rem',
+    color: '#9f7b4b',
+    fontSize: '0.82rem',
+ succeeded in 52ms:
+import { Link } from 'react-router-dom'
+
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+    gap: '1.5rem',
+    padding: 'clamp(1.25rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    backgroundColor: '#241c17',
+    color: '#f6efe4',
+    boxShadow: '0 24px 60px rgba(36, 28, 23, 0.18)',
+  },
+  media: {
+    minHeight: '20rem',
+    borderRadius: '28px',
+    backgroundImage:
+      "linear-gradient(180deg, rgba(31, 24, 19, 0.16) 0%, rgba(31, 24, 19, 0.5) 100%), url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80')",
+    backgroundSize: 'cover',
+codex
+I have the local patterns now. I’m adding a dedicated `Services-overviewSection` component that matches the existing premium card/grid language, then I’ll wire it into `src/pages/Servizi.jsx` and remove the placeholder copy.
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Servizi.jsx
+@@ -1,2 +1,3 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
+@@ -6,10 +7,3 @@
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
+-        <p>
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
+-        </p>
+-      </section>
++      <ServicesOverviewSection />
+     </article>
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Services-overviewSection.jsx
+import { Link } from 'react-router-dom'
+
+const sectionStyles = {
+  section: {
+    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
+    display: 'grid',
+    gap: '1.5rem',
+    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
+    borderRadius: '32px',
+    background:
+      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
+    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
+  },
+  header: {
+    display: 'grid',
+    gap: '1rem',
+    maxWidth: '46rem',
+  },
+  eyebrow: {
+    margin: 0,
+    color: '#9f7b4b',
+    fontSize: '0.82rem',
     letterSpacing: '0.22em',
     textTransform: 'uppercase',
-    color: '#d9bf8d',
+    fontWeight: 700,
   },
   title: {
-    margin: '1rem 0 0',
-    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-    lineHeight: 1.02,
+    margin: 0,
+    color: '#201914',
     fontFamily: 'Georgia, "Times New Roman", serif',
+    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
+    lineHeight: 1.05,
+  },
+  intro: {
+    margin: 0,
+    color: 'rgba(32, 25, 20, 0.78)',
+    lineHeight: 1.8,
+  },
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+    gap: '1rem',
+  },
+  card: {
+    display: 'grid',
+    gap: '0.9rem',
+    minHeight: '100%',
+    padding: '1.4rem',
+    borderRadius: '24px',
+    backgroundColor: 'rgba(255, 252, 247, 0.84)',
+    border: '1px solid rgba(159, 123, 75, 0.14)',
+  },
+  category: {
+    margin: 0,
+    color: '#9f7b4b',
+    fontSize: '0.78rem',
+    letterSpacing: '0.16em',
+    textTransform: 'uppercase',
+    fontWeight: 700,
+  },
+  cardTitle: {
+    margin: 0,
+    color: '#201914',
+    fontFamily: 'Georgia, "Times New Roman", serif',
+    fontSize: '1.45rem',
+    lineHeight: 1.15,
+  },
+  cardText: {
+    margin: 0,
+    color: 'rgba(32, 25, 20, 0.76)',
+    lineHeight: 1.75,
+  },
+  premiumNote: {
+    margin: 0,
+    color: '#5a4838',
+    fontSize: '0.96rem',
+    lineHeight: 1.65,
     fontWeight: 600,
   },
-  body: {
-    margin: '1.25rem 0 0',
-    maxWidth: '36rem',
-    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-    lineHeight: 1.75,
-    color: 'rgba(247, 241, 232, 0.88)',
+  processPanel: {
+    display: 'grid',
+    gap: '1rem',
+    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
+    borderRadius: '28px',
+    backgroundColor: '#241c17',
+    color: '#f6efe4',
   },
-  actions: {
-    marginTop: '1.75rem',
+  processTitle: {
+    margin: 0,
+    fontFamily: 'Georgia, "Times New Roman", serif',
+    fontSize: '1.6rem',
+    lineHeight: 1.2,
+  },
+  processList: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+    gap: '0.9rem',
+    margin: 0,
+    padding: 0,
+    listStyle: 'none',
+  },
+  processItem: {
+    display: 'grid',
+    gap: '0.45rem',
+    padding: '1rem',
+    borderRadius: '20px',
+    backgroundColor: 'rgba(246, 239, 228, 0.08)',
+    border: '1px solid rgba(217, 191, 141, 0.12)',
+  },
+  processStep: {
+    color: '#d9bf8d',
+    fontSize: '0.76rem',
+    letterSpacing: '0.18em',
+    textTransform: 'uppercase',
+    fontWeight: 700,
+  },
+  processLabel: {
+    color: '#f6efe4',
+    fontWeight: 700,
+    lineHeight: 1.45,
+  },
+  processText: {
+    color: 'rgba(246, 239, 228, 0.74)',
+    lineHeight: 1.7,
+  },
+  footer: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '0.875rem',
+    gap: '1rem',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
-  primaryAction: {
+  footerText: {
+    margin: 0,
+    maxWidth: '40rem',
+    color: 'rgba(32, 25, 20, 0.72)',
+    lineHeight: 1.75,
+  },
+  action: {
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
-    minHeight: '3.25rem',
+    minHeight: '3.15rem',
     padding: '0.9rem 1.5rem',
     borderRadius: '999px',
-    backgroundColor: '#d9bf8d',
-    color: '#1f1813',
+    backgroundColor: '#201914',
+    color: '#f7f1e8',
     textDecoration: 'none',
     fontWeight: 700,
   },
-  secondaryAction: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    minHeight: '3.25rem',
-    padding: '0.9rem 1.5rem',
-    borderRadius: '999px',
-    border: '1px solid rgba(247, 241, 232, 0.42)',
-    color: '#f7f1e8',
-    textDecoration: 'none',
-    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-    fontWeight: 600,
-  },
-  highlights: {
-    marginTop: '1.5rem',
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-    gap: '0.875rem',
-  },
-  highlightCard: {
-    padding: '0.95rem 1rem',
-    borderRadius: '20px',
-    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-    border: '1px solid rgba(247, 241, 232, 0.12)',
-  },
-  highlightLabel: {
-    display: 'block',
-    fontSize: '0.78rem',
-    letterSpacing: '0.08em',
-    textTransform: 'uppercase',
-    color: 'rgba(217, 191, 141, 0.92)',
-  },
-  highlightText: {
-    display: 'block',
-    marginTop: '0.4rem',
-    fontSize: '0.98rem',
-    lineHeight: 1.5,
-    color: '#f7f1e8',
-  },
 }
 
-const highlights = [
+const services = [
   {
-    label: 'Event formats',
-    text: 'Weddings, private celebrations, and corporate evenings shaped with the same polished standard.',
+    category: 'Catering',
+    title: 'Tailored dining with polished presentation',
+    description:
+      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
+    premiumNote:
+      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
   },
   {
-    label: 'Service scope',
-    text: 'Catering, premium mobile bar service, styling support, and full hospitality coordination.',
+    category: 'Premium bar',
+    title: 'Mobile cocktail service with signature character',
+    description:
+      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
+    premiumNote:
+      'Built to create atmosphere without losing precision, pace, or hospitality.',
   },
   {
-    label: 'Hosting focus',
-    text: 'Guest flow, timing, and presentation aligned to the atmosphere of the occasion.',
+    category: 'Weddings',
+    title: 'Service designed for celebration milestones',
+    description:
+      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
+    premiumNote:
+      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
+  },
+  {
+    category: 'Private events',
+    title: 'Elegant hosting for intimate and social occasions',
+    description:
+      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
+    premiumNote:
+      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
+  },
+  {
+    category: 'Corporate evenings',
+    title: 'Hospitality that supports brand presence',
+    description:
+      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
+    premiumNote:
+      'Professional enough for business settings, warm enough to remain memorable.',
+  },
+  {
+    category: 'Styling support',
+    title: 'Atmosphere guided beyond the menu',
+    description:
+      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
+    premiumNote:
+      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
   },
 ]
 
-export default function ServicesHeroSection() {
+const process = [
+  {
+    step: '01',
+    label: 'Consultation',
+    text: 'We define event style, guest count, and the hospitality tone you want to create.',
+  },
+  {
+    step: '02',
+    label: 'Proposal',
+    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
+  },
+  {
+    step: '03',
+    label: 'Refinement',
+    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
+  },
+  {
+    step: '04',
+    label: 'Service day',
+    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
+  },
+]
+
+export default function ServicesOverviewSection() {
   return (
     <section
-      id="services-hero"
-      aria-labelledby="servizi-title"
-      style={heroStyles.section}
+      id="services-overview"
+      aria-labelledby="services-overview-title"
+      style={sectionStyles.section}
     >
-      <div style={heroStyles.panel}>
-        <p style={heroStyles.eyebrow}>Casa Aurea services</p>
-        <h1 id="servizi-title" style={heroStyles.title}>
-          Hospitality services composed for elegant events with a premium, modern touch
-        </h1>
-        <p style={heroStyles.body}>
-          Discover the service offering behind Casa Aurea Events, from tailored
-          catering and signature bar experiences to styling support and service
-          flow designed to make refined occasions feel effortless.
+      <div style={sectionStyles.header}>
+        <p style={sectionStyles.eyebrow}>Service overview</p>
+        <h2 id="services-overview-title" style={sectionStyles.title}>
+          A complete event offering shaped around food, drinks, and atmosphere
+        </h2>
+        <p style={sectionStyles.intro}>
+          Casa Aurea Events brings together premium catering, elevated
+          bartending, and thoughtful styling support so each occasion feels
+          coherent, graceful, and genuinely well hosted. The service structure
+          is flexible enough for intimate private events and robust enough for
+          larger celebrations with layered hospitality needs.
         </p>
+      </div>
 
-        <div style={heroStyles.actions}>
-          <Link to="/contatti" style={heroStyles.primaryAction}>
-            Request your event proposal
-          </Link>
-          <Link to="/menu" style={heroStyles.secondaryAction}>
-            Discover the drink list
-          </Link>
-        </div>
+      <div style={sectionStyles.grid}>
+        {services.map((service) => (
+          <article key={service.title} style={sectionStyles.card}>
+            <p style={sectionStyles.category}>{service.category}</p>
+            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
+            <p style={sectionStyles.cardText}>{service.description}</p>
+            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
+          </article>
+        ))}
+      </div>
 
-        <div style={heroStyles.highlights}>
-          {highlights.map((item) => (
-            <div key={item.label} style={heroStyles.highlightCard}>
-              <span style={heroStyles.highlightLabel}>{item.label}</span>
-              <span style={heroStyles.highlightText}>{item.text}</span>
-            </div>
+      <div style={sectionStyles.processPanel}>
+        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
+        <ul style={sectionStyles.processList}>
+          {process.map((item) => (
+            <li key={item.step} style={sectionStyles.processItem}>
+              <span style={sectionStyles.processStep}>{item.step}</span>
+              <span style={sectionStyles.processLabel}>{item.label}</span>
+              <span style={sectionStyles.processText}>{item.text}</span>
+            </li>
           ))}
-        </div>
+        </ul>
+      </div>
+
+      <div style={sectionStyles.footer}>
+        <p style={sectionStyles.footerText}>
+          Every proposal is adjusted to the event setting, guest profile, and
+          hosting priorities, with clear recommendations on service format,
+          beverage flow, and presentation.
+        </p>
+        <Link to="/contatti" style={sectionStyles.action}>
+          Request a tailored proposal
+        </Link>
       </div>
     </section>
   )
 }
-apply_patch(auto_approved=true) exited 0 in 40ms:
+apply_patch(auto_approved=true) exited 0 in 42ms:
 Success. Updated the following files:
-A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Services-heroSection.jsx
+A /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Services-overviewSection.jsx
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Servizi.jsx
 file update:
-diff --git a/src/components/Services-heroSection.jsx b/src/components/Services-heroSection.jsx
+diff --git a/src/components/Services-overviewSection.jsx b/src/components/Services-overviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..72c0482d7a926c5dc2416a6ba9f50a68bcd6b6a5
+index 0000000000000000000000000000000000000000..c6328f0ac9db51b1363742b1a1168afb085cf13e
 --- /dev/null
-+++ b/src/components/Services-heroSection.jsx
-@@ -0,0 +1,160 @@
++++ b/src/components/Services-overviewSection.jsx
+@@ -0,0 +1,284 @@
 +import { Link } from 'react-router-dom'
 +
-+const heroStyles = {
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(53, 39, 31, 0.14) 0%, rgba(30, 23, 18, 0.7) 58%, rgba(18, 14, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
 +  },
-+  panel: {
-+    width: 'min(100%, 48rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
-+    textAlign: 'left',
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: '0.8rem',
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    color: '#201914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.78)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.9rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(255, 252, 247, 0.84)',
++    border: '1px solid rgba(159, 123, 75, 0.14)',
++  },
++  category: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  cardText: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.75,
++  },
++  premiumNote: {
++    margin: 0,
++    color: '#5a4838',
++    fontSize: '0.96rem',
++    lineHeight: 1.65,
 +    fontWeight: 600,
 +  },
-+  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '36rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
++  processPanel: {
++    display: 'grid',
++    gap: '1rem',
++    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
++    borderRadius: '28px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
 +  },
-+  actions: {
-+    marginTop: '1.75rem',
++  processTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.6rem',
++    lineHeight: 1.2,
++  },
++  processList: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  processItem: {
++    display: 'grid',
++    gap: '0.45rem',
++    padding: '1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(246, 239, 228, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.12)',
++  },
++  processStep: {
++    color: '#d9bf8d',
++    fontSize: '0.76rem',
++    letterSpacing: '0.18em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  processLabel: {
++    color: '#f6efe4',
++    fontWeight: 700,
++    lineHeight: 1.45,
++  },
++  processText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
 +    display: 'flex',
 +    flexWrap: 'wrap',
-+    gap: '0.875rem',
++    gap: '1rem',
++    alignItems: 'center',
++    justifyContent: 'space-between',
 +  },
-+  primaryAction: {
++  footerText: {
++    margin: 0,
++    maxWidth: '40rem',
++    color: 'rgba(32, 25, 20, 0.72)',
++    lineHeight: 1.75,
++  },
++  action: {
 +    display: 'inline-flex',
 +    alignItems: 'center',
 +    justifyContent: 'center',
-+    minHeight: '3.25rem',
++    minHeight: '3.15rem',
 +    padding: '0.9rem 1.5rem',
 +    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#1f1813',
++    backgroundColor: '#201914',
++    color: '#f7f1e8',
 +    textDecoration: 'none',
 +    fontWeight: 700,
 +  },
-+  secondaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.25rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    border: '1px solid rgba(247, 241, 232, 0.42)',
-+    color: '#f7f1e8',
-+    textDecoration: 'none',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    fontWeight: 600,
-+  },
-+  highlights: {
-+    marginTop: '1.5rem',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
-+  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
-+  },
-+  highlightLabel: {
-+    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
-+  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.5,
-+    color: '#f7f1e8',
-+  },
 +}
 +
-+const highlights = [
++const services = [
 +  {
-+    label: 'Event formats',
-+    text: 'Weddings, private celebrations, and corporate evenings shaped with the same polished standard.',
++    category: 'Catering',
++    title: 'Tailored dining with polished presentation',
++    description:
++      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
++    premiumNote:
++      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
 +  },
 +  {
-+    label: 'Service scope',
-+    text: 'Catering, premium mobile bar service, styling support, and full hospitality coordination.',
++    category: 'Premium bar',
++    title: 'Mobile cocktail service with signature character',
++    description:
++      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
++    premiumNote:
++      'Built to create atmosphere without losing precision, pace, or hospitality.',
 +  },
 +  {
-+    label: 'Hosting focus',
-+    text: 'Guest flow, timing, and presentation aligned to the atmosphere of the occasion.',
++    category: 'Weddings',
++    title: 'Service designed for celebration milestones',
++    description:
++      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
++    premiumNote:
++      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
++  },
++  {
++    category: 'Private events',
++    title: 'Elegant hosting for intimate and social occasions',
++    description:
++      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
++    premiumNote:
++      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
++  },
++  {
++    category: 'Corporate evenings',
++    title: 'Hospitality that supports brand presence',
++    description:
++      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
++    premiumNote:
++      'Professional enough for business settings, warm enough to remain memorable.',
++  },
++  {
++    category: 'Styling support',
++    title: 'Atmosphere guided beyond the menu',
++    description:
++      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
++    premiumNote:
++      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
 +  },
 +]
 +
-+export default function ServicesHeroSection() {
++const process = [
++  {
++    step: '01',
++    label: 'Consultation',
++    text: 'We define event style, guest count, and the hospitality tone you want to create.',
++  },
++  {
++    step: '02',
++    label: 'Proposal',
++    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
++  },
++  {
++    step: '03',
++    label: 'Refinement',
++    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
++  },
++  {
++    step: '04',
++    label: 'Service day',
++    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
++  },
++]
++
++export default function ServicesOverviewSection() {
 +  return (
 +    <section
-+      id="services-hero"
-+      aria-labelledby="servizi-title"
-+      style={heroStyles.section}
++      id="services-overview"
++      aria-labelledby="services-overview-title"
++      style={sectionStyles.section}
 +    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea services</p>
-+        <h1 id="servizi-title" style={heroStyles.title}>
-+          Hospitality services composed for elegant events with a premium, modern touch
-+        </h1>
-+        <p style={heroStyles.body}>
-+          Discover the service offering behind Casa Aurea Events, from tailored
-+          catering and signature bar experiences to styling support and service
-+          flow designed to make refined occasions feel effortless.
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Service overview</p>
++        <h2 id="services-overview-title" style={sectionStyles.title}>
++          A complete event offering shaped around food, drinks, and atmosphere
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together premium catering, elevated
++          bartending, and thoughtful styling support so each occasion feels
++          coherent, graceful, and genuinely well hosted. The service structure
++          is flexible enough for intimate private events and robust enough for
++          larger celebrations with layered hospitality needs.
 +        </p>
++      </div>
 +
-+        <div style={heroStyles.actions}>
-+          <Link to="/contatti" style={heroStyles.primaryAction}>
-+            Request your event proposal
-+          </Link>
-+          <Link to="/menu" style={heroStyles.secondaryAction}>
-+            Discover the drink list
-+          </Link>
-+        </div>
++      <div style={sectionStyles.grid}>
++        {services.map((service) => (
++          <article key={service.title} style={sectionStyles.card}>
++            <p style={sectionStyles.category}>{service.category}</p>
++            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
++            <p style={sectionStyles.cardText}>{service.description}</p>
++            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
++          </article>
++        ))}
++      </div>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
++      <div style={sectionStyles.processPanel}>
++        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
++        <ul style={sectionStyles.processList}>
++          {process.map((item) => (
++            <li key={item.step} style={sectionStyles.processItem}>
++              <span style={sectionStyles.processStep}>{item.step}</span>
++              <span style={sectionStyles.processLabel}>{item.label}</span>
++              <span style={sectionStyles.processText}>{item.text}</span>
++            </li>
 +          ))}
-+        </div>
++        </ul>
++      </div>
++
++      <div style={sectionStyles.footer}>
++        <p style={sectionStyles.footerText}>
++          Every proposal is adjusted to the event setting, guest profile, and
++          hosting priorities, with clear recommendations on service format,
++          beverage flow, and presentation.
++        </p>
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request a tailored proposal
++        </Link>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Servizi.jsx b/src/pages/Servizi.jsx
-index 2e6263c5da262ca0d4c884fc21d03993cf138f68..56a913dfa7a20b7743bd16774113f3f540fedfd3
+index 56a913dfa7a20b7743bd16774113f3f540fedfd3..df228235d1062f339175e3071e61d03765a3404d
 --- a/src/pages/Servizi.jsx
 +++ b/src/pages/Servizi.jsx
-@@ -1,15 +1,9 @@
-+import ServicesHeroSection from '../components/Services-heroSection'
-+
+@@ -1,17 +1,11 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
  export default function Servizi() {
    return (
      <article aria-labelledby="servizi-title">
--      <section id="services-hero" aria-labelledby="servizi-title">
--        <p>Casa Aurea Events services</p>
--        <h1 id="servizi-title">Hospitality designed for elegant celebrations and polished event service.</h1>
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
 -        <p>
--          Explore our core service areas, from refined catering and premium bar
--          experiences to event support shaped around timing, presentation, and
--          guest comfort.
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
 -        </p>
 -      </section>
-+      <ServicesHeroSection />
- 
-       <section id="services-overview" aria-labelledby="services-overview-title">
-         <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
++      <ServicesOverviewSection />
+     </article>
+   )
+ }
 
 file update:
-diff --git a/src/components/Services-heroSection.jsx b/src/components/Services-heroSection.jsx
+diff --git a/src/components/Services-overviewSection.jsx b/src/components/Services-overviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..72c0482d7a926c5dc2416a6ba9f50a68bcd6b6a5
+index 0000000000000000000000000000000000000000..c6328f0ac9db51b1363742b1a1168afb085cf13e
 --- /dev/null
-+++ b/src/components/Services-heroSection.jsx
-@@ -0,0 +1,160 @@
++++ b/src/components/Services-overviewSection.jsx
+@@ -0,0 +1,284 @@
 +import { Link } from 'react-router-dom'
 +
-+const heroStyles = {
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(53, 39, 31, 0.14) 0%, rgba(30, 23, 18, 0.7) 58%, rgba(18, 14, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
 +  },
-+  panel: {
-+    width: 'min(100%, 48rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
-+    textAlign: 'left',
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: '0.8rem',
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    color: '#201914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.78)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.9rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(255, 252, 247, 0.84)',
++    border: '1px solid rgba(159, 123, 75, 0.14)',
++  },
++  category: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  cardText: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.75,
++  },
++  premiumNote: {
++    margin: 0,
++    color: '#5a4838',
++    fontSize: '0.96rem',
++    lineHeight: 1.65,
 +    fontWeight: 600,
 +  },
-+  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '36rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
++  processPanel: {
++    display: 'grid',
++    gap: '1rem',
++    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
++    borderRadius: '28px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
 +  },
-+  actions: {
-+    marginTop: '1.75rem',
++  processTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.6rem',
++    lineHeight: 1.2,
++  },
++  processList: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  processItem: {
++    display: 'grid',
++    gap: '0.45rem',
++    padding: '1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(246, 239, 228, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.12)',
++  },
++  processStep: {
++    color: '#d9bf8d',
++    fontSize: '0.76rem',
++    letterSpacing: '0.18em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  processLabel: {
++    color: '#f6efe4',
++    fontWeight: 700,
++    lineHeight: 1.45,
++  },
++  processText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
 +    display: 'flex',
 +    flexWrap: 'wrap',
-+    gap: '0.875rem',
++    gap: '1rem',
++    alignItems: 'center',
++    justifyContent: 'space-between',
 +  },
-+  primaryAction: {
++  footerText: {
++    margin: 0,
++    maxWidth: '40rem',
++    color: 'rgba(32, 25, 20, 0.72)',
++    lineHeight: 1.75,
++  },
++  action: {
 +    display: 'inline-flex',
 +    alignItems: 'center',
 +    justifyContent: 'center',
-+    minHeight: '3.25rem',
++    minHeight: '3.15rem',
 +    padding: '0.9rem 1.5rem',
 +    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#1f1813',
++    backgroundColor: '#201914',
++    color: '#f7f1e8',
 +    textDecoration: 'none',
 +    fontWeight: 700,
 +  },
-+  secondaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.25rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    border: '1px solid rgba(247, 241, 232, 0.42)',
-+    color: '#f7f1e8',
-+    textDecoration: 'none',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    fontWeight: 600,
-+  },
-+  highlights: {
-+    marginTop: '1.5rem',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
-+  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
-+  },
-+  highlightLabel: {
-+    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
-+  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.5,
-+    color: '#f7f1e8',
-+  },
 +}
 +
-+const highlights = [
++const services = [
 +  {
-+    label: 'Event formats',
-+    text: 'Weddings, private celebrations, and corporate evenings shaped with the same polished standard.',
++    category: 'Catering',
++    title: 'Tailored dining with polished presentation',
++    description:
++      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
++    premiumNote:
++      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
 +  },
 +  {
-+    label: 'Service scope',
-+    text: 'Catering, premium mobile bar service, styling support, and full hospitality coordination.',
++    category: 'Premium bar',
++    title: 'Mobile cocktail service with signature character',
++    description:
++      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
++    premiumNote:
++      'Built to create atmosphere without losing precision, pace, or hospitality.',
 +  },
 +  {
-+    label: 'Hosting focus',
-+    text: 'Guest flow, timing, and presentation aligned to the atmosphere of the occasion.',
++    category: 'Weddings',
++    title: 'Service designed for celebration milestones',
++    description:
++      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
++    premiumNote:
++      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
++  },
++  {
++    category: 'Private events',
++    title: 'Elegant hosting for intimate and social occasions',
++    description:
++      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
++    premiumNote:
++      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
++  },
++  {
++    category: 'Corporate evenings',
++    title: 'Hospitality that supports brand presence',
++    description:
++      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
++    premiumNote:
++      'Professional enough for business settings, warm enough to remain memorable.',
++  },
++  {
++    category: 'Styling support',
++    title: 'Atmosphere guided beyond the menu',
++    description:
++      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
++    premiumNote:
++      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
 +  },
 +]
 +
-+export default function ServicesHeroSection() {
++const process = [
++  {
++    step: '01',
++    label: 'Consultation',
++    text: 'We define event style, guest count, and the hospitality tone you want to create.',
++  },
++  {
++    step: '02',
++    label: 'Proposal',
++    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
++  },
++  {
++    step: '03',
++    label: 'Refinement',
++    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
++  },
++  {
++    step: '04',
++    label: 'Service day',
++    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
++  },
++]
++
++export default function ServicesOverviewSection() {
 +  return (
 +    <section
-+      id="services-hero"
-+      aria-labelledby="servizi-title"
-+      style={heroStyles.section}
++      id="services-overview"
++      aria-labelledby="services-overview-title"
++      style={sectionStyles.section}
 +    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea services</p>
-+        <h1 id="servizi-title" style={heroStyles.title}>
-+          Hospitality services composed for elegant events with a premium, modern touch
-+        </h1>
-+        <p style={heroStyles.body}>
-+          Discover the service offering behind Casa Aurea Events, from tailored
-+          catering and signature bar experiences to styling support and service
-+          flow designed to make refined occasions feel effortless.
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Service overview</p>
++        <h2 id="services-overview-title" style={sectionStyles.title}>
++          A complete event offering shaped around food, drinks, and atmosphere
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together premium catering, elevated
++          bartending, and thoughtful styling support so each occasion feels
++          coherent, graceful, and genuinely well hosted. The service structure
++          is flexible enough for intimate private events and robust enough for
++          larger celebrations with layered hospitality needs.
 +        </p>
++      </div>
 +
-+        <div style={heroStyles.actions}>
-+          <Link to="/contatti" style={heroStyles.primaryAction}>
-+            Request your event proposal
-+          </Link>
-+          <Link to="/menu" style={heroStyles.secondaryAction}>
-+            Discover the drink list
-+          </Link>
-+        </div>
++      <div style={sectionStyles.grid}>
++        {services.map((service) => (
++          <article key={service.title} style={sectionStyles.card}>
++            <p style={sectionStyles.category}>{service.category}</p>
++            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
++            <p style={sectionStyles.cardText}>{service.description}</p>
++            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
++          </article>
++        ))}
++      </div>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
++      <div style={sectionStyles.processPanel}>
++        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
++        <ul style={sectionStyles.processList}>
++          {process.map((item) => (
++            <li key={item.step} style={sectionStyles.processItem}>
++              <span style={sectionStyles.processStep}>{item.step}</span>
++              <span style={sectionStyles.processLabel}>{item.label}</span>
++              <span style={sectionStyles.processText}>{item.text}</span>
++            </li>
 +          ))}
-+        </div>
++        </ul>
++      </div>
++
++      <div style={sectionStyles.footer}>
++        <p style={sectionStyles.footerText}>
++          Every proposal is adjusted to the event setting, guest profile, and
++          hosting priorities, with clear recommendations on service format,
++          beverage flow, and presentation.
++        </p>
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request a tailored proposal
++        </Link>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Servizi.jsx b/src/pages/Servizi.jsx
-index 2e6263c5da262ca0d4c884fc21d03993cf138f68..56a913dfa7a20b7743bd16774113f3f540fedfd3
+index 56a913dfa7a20b7743bd16774113f3f540fedfd3..df228235d1062f339175e3071e61d03765a3404d
 --- a/src/pages/Servizi.jsx
 +++ b/src/pages/Servizi.jsx
-@@ -1,15 +1,9 @@
-+import ServicesHeroSection from '../components/Services-heroSection'
-+
+@@ -1,17 +1,11 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
  export default function Servizi() {
    return (
      <article aria-labelledby="servizi-title">
--      <section id="services-hero" aria-labelledby="servizi-title">
--        <p>Casa Aurea Events services</p>
--        <h1 id="servizi-title">Hospitality designed for elegant celebrations and polished event service.</h1>
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
 -        <p>
--          Explore our core service areas, from refined catering and premium bar
--          experiences to event support shaped around timing, presentation, and
--          guest comfort.
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
 -        </p>
 -      </section>
-+      <ServicesHeroSection />
- 
-       <section id="services-overview" aria-labelledby="services-overview-title">
-         <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
++      <ServicesOverviewSection />
+     </article>
+   )
+ }
 
 codex
-The hero component is in place. I’m running a build now to catch any integration issues before I append the task summary to the agent report.
+The section is in place. I’m running the build now to catch any integration issues before I update the task report.
 exec
-/bin/zsh -lc "sed -n '1,260p' src/pages/Servizi.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-eexec
-/bin/zsh -lc "sed -n '1,280p' src/components/Services-heroSection.jsx" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
-import ServicesHeroSection from '../components/Services-heroSection'
-
-export default function Servizi() {
-  return (
-    <article aria-labelledby="servizi-title">
-      <ServicesHeroSection />
-
-      <section id="services-overview" aria-labelledby="services-overview-title">
-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
-        <p>
-          This page introduces the structure for our service offering and is
-          ready for the detailed service content that follows in upcoming tasks.
-        </p>
-      </section>
-    </article>
-  )
-}
- succeeded in 52ms:
-import { Link } from 'react-router-dom'
-
-const heroStyles = {
-  section: {
-    position: 'relative',
-    overflow: 'hidden',
-    borderRadius: '32px',
-    minHeight: 'clamp(30rem, 74vh, 43rem)',
-    padding: 'clamp(1.5rem, 4vw, 3rem)',
-    display: 'flex',
-    alignItems: 'flex-end',
-    backgroundImage:
-      "linear-gradient(180deg, rgba(53, 39, 31, 0.14) 0%, rgba(30, 23, 18, 0.7) 58%, rgba(18, 14, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1600&q=80')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    color: '#f7f1e8',
-    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
+/bin/zsh -lc "sed -n '1,220p' package.json" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+{
+  "name": "site-create-a-premium-modern-website-for-an-e",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "test:ui": "playwright test"
   },
-  panel: {
-    width: 'min(100%, 48rem)',
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.13.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@playwright/test": "^1.58.2",
 exec
-/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 896ms:
+/bin/zsh -lc 'npm run build' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 848ms:
 
 > site-create-a-premium-modern-website-for-an-e@0.0.0 build
 > vite build
 
 vite v7.3.1 building client environment for production...
 transforming...
-✓ 65 modules transformed.
+✓ 66 modules transformed.
 rendering chunks...
 computing gzip size...
-dist/index.html                   0.50 kB │ gzip:  0.31 kB
+dist/index.html                   0.50 kB │ gzip:  0.32 kB
 dist/assets/index-DQ3P1g1z.css    0.91 kB │ gzip:  0.49 kB
-dist/assets/index-hbmluQ8p.js   288.34 kB │ gzip: 85.63 kB
-✓ built in 625ms
+dist/assets/index-B1485Vzx.js   294.89 kB │ gzip: 87.07 kB
+✓ built in 591ms
 file update:
-diff --git a/src/components/Services-heroSection.jsx b/src/components/Services-heroSection.jsx
+diff --git a/src/components/Services-overviewSection.jsx b/src/components/Services-overviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..72c0482d7a926c5dc2416a6ba9f50a68bcd6b6a5
+index 0000000000000000000000000000000000000000..c6328f0ac9db51b1363742b1a1168afb085cf13e
 --- /dev/null
-+++ b/src/components/Services-heroSection.jsx
-@@ -0,0 +1,160 @@
++++ b/src/components/Services-overviewSection.jsx
+@@ -0,0 +1,284 @@
 +import { Link } from 'react-router-dom'
 +
-+const heroStyles = {
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(53, 39, 31, 0.14) 0%, rgba(30, 23, 18, 0.7) 58%, rgba(18, 14, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
 +  },
-+  panel: {
-+    width: 'min(100%, 48rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
-+    textAlign: 'left',
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: '0.8rem',
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    color: '#201914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.78)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.9rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(255, 252, 247, 0.84)',
++    border: '1px solid rgba(159, 123, 75, 0.14)',
++  },
++  category: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  cardText: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.75,
++  },
++  premiumNote: {
++    margin: 0,
++    color: '#5a4838',
++    fontSize: '0.96rem',
++    lineHeight: 1.65,
 +    fontWeight: 600,
 +  },
-+  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '36rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
++  processPanel: {
++    display: 'grid',
++    gap: '1rem',
++    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
++    borderRadius: '28px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
 +  },
-+  actions: {
-+    marginTop: '1.75rem',
++  processTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.6rem',
++    lineHeight: 1.2,
++  },
++  processList: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  processItem: {
++    display: 'grid',
++    gap: '0.45rem',
++    padding: '1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(246, 239, 228, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.12)',
++  },
++  processStep: {
++    color: '#d9bf8d',
++    fontSize: '0.76rem',
++    letterSpacing: '0.18em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  processLabel: {
++    color: '#f6efe4',
++    fontWeight: 700,
++    lineHeight: 1.45,
++  },
++  processText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
 +    display: 'flex',
 +    flexWrap: 'wrap',
-+    gap: '0.875rem',
++    gap: '1rem',
++    alignItems: 'center',
++    justifyContent: 'space-between',
 +  },
-+  primaryAction: {
++  footerText: {
++    margin: 0,
++    maxWidth: '40rem',
++    color: 'rgba(32, 25, 20, 0.72)',
++    lineHeight: 1.75,
++  },
++  action: {
 +    display: 'inline-flex',
 +    alignItems: 'center',
 +    justifyContent: 'center',
-+    minHeight: '3.25rem',
++    minHeight: '3.15rem',
 +    padding: '0.9rem 1.5rem',
 +    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#1f1813',
++    backgroundColor: '#201914',
++    color: '#f7f1e8',
 +    textDecoration: 'none',
 +    fontWeight: 700,
 +  },
-+  secondaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.25rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    border: '1px solid rgba(247, 241, 232, 0.42)',
-+    color: '#f7f1e8',
-+    textDecoration: 'none',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    fontWeight: 600,
-+  },
-+  highlights: {
-+    marginTop: '1.5rem',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
-+  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
-+  },
-+  highlightLabel: {
-+    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
-+  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.5,
-+    color: '#f7f1e8',
-+  },
 +}
 +
-+const highlights = [
++const services = [
 +  {
-+    label: 'Event formats',
-+    text: 'Weddings, private celebrations, and corporate evenings shaped with the same polished standard.',
++    category: 'Catering',
++    title: 'Tailored dining with polished presentation',
++    description:
++      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
++    premiumNote:
++      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
 +  },
 +  {
-+    label: 'Service scope',
-+    text: 'Catering, premium mobile bar service, styling support, and full hospitality coordination.',
++    category: 'Premium bar',
++    title: 'Mobile cocktail service with signature character',
++    description:
++      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
++    premiumNote:
++      'Built to create atmosphere without losing precision, pace, or hospitality.',
 +  },
 +  {
-+    label: 'Hosting focus',
-+    text: 'Guest flow, timing, and presentation aligned to the atmosphere of the occasion.',
++    category: 'Weddings',
++    title: 'Service designed for celebration milestones',
++    description:
++      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
++    premiumNote:
++      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
++  },
++  {
++    category: 'Private events',
++    title: 'Elegant hosting for intimate and social occasions',
++    description:
++      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
++    premiumNote:
++      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
++  },
++  {
++    category: 'Corporate evenings',
++    title: 'Hospitality that supports brand presence',
++    description:
++      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
++    premiumNote:
++      'Professional enough for business settings, warm enough to remain memorable.',
++  },
++  {
++    category: 'Styling support',
++    title: 'Atmosphere guided beyond the menu',
++    description:
++      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
++    premiumNote:
++      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
 +  },
 +]
 +
-+export default function ServicesHeroSection() {
++const process = [
++  {
++    step: '01',
++    label: 'Consultation',
++    text: 'We define event style, guest count, and the hospitality tone you want to create.',
++  },
++  {
++    step: '02',
++    label: 'Proposal',
++    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
++  },
++  {
++    step: '03',
++    label: 'Refinement',
++    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
++  },
++  {
++    step: '04',
++    label: 'Service day',
++    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
++  },
++]
++
++export default function ServicesOverviewSection() {
 +  return (
 +    <section
-+      id="services-hero"
-+      aria-labelledby="servizi-title"
-+      style={heroStyles.section}
++      id="services-overview"
++      aria-labelledby="services-overview-title"
++      style={sectionStyles.section}
 +    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea services</p>
-+        <h1 id="servizi-title" style={heroStyles.title}>
-+          Hospitality services composed for elegant events with a premium, modern touch
-+        </h1>
-+        <p style={heroStyles.body}>
-+          Discover the service offering behind Casa Aurea Events, from tailored
-+          catering and signature bar experiences to styling support and service
-+          flow designed to make refined occasions feel effortless.
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Service overview</p>
++        <h2 id="services-overview-title" style={sectionStyles.title}>
++          A complete event offering shaped around food, drinks, and atmosphere
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together premium catering, elevated
++          bartending, and thoughtful styling support so each occasion feels
++          coherent, graceful, and genuinely well hosted. The service structure
++          is flexible enough for intimate private events and robust enough for
++          larger celebrations with layered hospitality needs.
 +        </p>
++      </div>
 +
-+        <div style={heroStyles.actions}>
-+          <Link to="/contatti" style={heroStyles.primaryAction}>
-+            Request your event proposal
-+          </Link>
-+          <Link to="/menu" style={heroStyles.secondaryAction}>
-+            Discover the drink list
-+          </Link>
-+        </div>
++      <div style={sectionStyles.grid}>
++        {services.map((service) => (
++          <article key={service.title} style={sectionStyles.card}>
++            <p style={sectionStyles.category}>{service.category}</p>
++            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
++            <p style={sectionStyles.cardText}>{service.description}</p>
++            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
++          </article>
++        ))}
++      </div>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
++      <div style={sectionStyles.processPanel}>
++        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
++        <ul style={sectionStyles.processList}>
++          {process.map((item) => (
++            <li key={item.step} style={sectionStyles.processItem}>
++              <span style={sectionStyles.processStep}>{item.step}</span>
++              <span style={sectionStyles.processLabel}>{item.label}</span>
++              <span style={sectionStyles.processText}>{item.text}</span>
++            </li>
 +          ))}
-+        </div>
++        </ul>
++      </div>
++
++      <div style={sectionStyles.footer}>
++        <p style={sectionStyles.footerText}>
++          Every proposal is adjusted to the event setting, guest profile, and
++          hosting priorities, with clear recommendations on service format,
++          beverage flow, and presentation.
++        </p>
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request a tailored proposal
++        </Link>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Servizi.jsx b/src/pages/Servizi.jsx
-index 2e6263c5da262ca0d4c884fc21d03993cf138f68..56a913dfa7a20b7743bd16774113f3f540fedfd3
+index 56a913dfa7a20b7743bd16774113f3f540fedfd3..df228235d1062f339175e3071e61d03765a3404d
 --- a/src/pages/Servizi.jsx
 +++ b/src/pages/Servizi.jsx
-@@ -1,15 +1,9 @@
-+import ServicesHeroSection from '../components/Services-heroSection'
-+
+@@ -1,17 +1,11 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
  export default function Servizi() {
    return (
      <article aria-labelledby="servizi-title">
--      <section id="services-hero" aria-labelledby="servizi-title">
--        <p>Casa Aurea Events services</p>
--        <h1 id="servizi-title">Hospitality designed for elegant celebrations and polished event service.</h1>
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
 -        <p>
--          Explore our core service areas, from refined catering and premium bar
--          experiences to event support shaped around timing, presentation, and
--          guest comfort.
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
 -        </p>
 -      </section>
-+      <ServicesHeroSection />
- 
-       <section id="services-overview" aria-labelledby="services-overview-title">
-         <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
++      <ServicesOverviewSection />
+     </article>
+   )
+ }
 
 codex
-The build passed. I’m appending the required task record to `agent/AGENT_REPORT.md` now, keeping it limited to this `services-hero` implementation and its verification result.
+The build passed. I’m appending the task outcome to `agent/AGENT_REPORT.md` now so the execution log reflects exactly what changed for `services-overview`.
 file update
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
-@@ -220,2 +220,21 @@
+@@ -220,2 +220,13 @@
  Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
 +
-+Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
-+
-+Launching Codex for TASK section-servizi-services-hero.
-+
-+Completed TASK section-servizi-services-hero.
-+
-+Implemented a dedicated `ServicesHeroSection` component in
-+`src/components/Services-heroSection.jsx` and rendered it from
-+`src/pages/Servizi.jsx` to replace the inline placeholder hero. The servizi
-+page now exposes the required `services-hero` section with premium brand copy,
-+highlight cards, and route-safe CTAs to the existing `/contatti` and `/menu`
-+pages.
-+
-+TASK section-servizi-services-hero executed by Codex.
++TASK section-servizi-services-overview executed by Codex.
 +Waiting for validation.
 +
-+TASK section-servizi-services-hero completed successfully.
++TASK section-servizi-services-overview completed successfully.
 +Build passed.
- Prepared TASK page-servizi-shell (Create servizi page shell) for execution.
-apply_patch(auto_approved=true) exited 0 in 66ms:
+ 
+apply_patch(auto_approved=true) exited 0 in 58ms:
 Success. Updated the following files:
 M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index ba82ae0ffd67fea0b6832bf77561f55826fd08a8..281ab621ca8b4f150fc852c84747a2b6039ad9cf
+index 6b01ac147992cb98d8fb71ce1f9aa4bb5f08c1dc..7c4d610e8b552059172503e8a2fca5c9147b8ab3
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,25 @@
+@@ -218,6 +218,17 @@
  Build passed.
  
  Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
 +
-+Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
-+
-+Launching Codex for TASK section-servizi-services-hero.
-+
-+Completed TASK section-servizi-services-hero.
-+
-+Implemented a dedicated `ServicesHeroSection` component in
-+`src/components/Services-heroSection.jsx` and rendered it from
-+`src/pages/Servizi.jsx` to replace the inline placeholder hero. The servizi
-+page now exposes the required `services-hero` section with premium brand copy,
-+highlight cards, and route-safe CTAs to the existing `/contatti` and `/menu`
-+pages.
-+
-+TASK section-servizi-services-hero executed by Codex.
++TASK section-servizi-services-overview executed by Codex.
 +Waiting for validation.
 +
-+TASK section-servizi-services-hero completed successfully.
++TASK section-servizi-services-overview completed successfully.
 +Build passed.
- Prepared TASK page-servizi-shell (Create servizi page shell) for execution.
  
- Launching Codex for TASK page-servizi-shell.
-diff --git a/src/components/Services-heroSection.jsx b/src/components/Services-heroSection.jsx
+ Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+ 
+diff --git a/src/components/Services-overviewSection.jsx b/src/components/Services-overviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..72c0482d7a926c5dc2416a6ba9f50a68bcd6b6a5
+index 0000000000000000000000000000000000000000..c6328f0ac9db51b1363742b1a1168afb085cf13e
 --- /dev/null
-+++ b/src/components/Services-heroSection.jsx
-@@ -0,0 +1,160 @@
++++ b/src/components/Services-overviewSection.jsx
+@@ -0,0 +1,284 @@
 +import { Link } from 'react-router-dom'
 +
-+const heroStyles = {
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(53, 39, 31, 0.14) 0%, rgba(30, 23, 18, 0.7) 58%, rgba(18, 14, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
 +  },
-+  panel: {
-+    width: 'min(100%, 48rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
-+    textAlign: 'left',
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: '0.8rem',
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    color: '#201914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.78)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.9rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(255, 252, 247, 0.84)',
++    border: '1px solid rgba(159, 123, 75, 0.14)',
++  },
++  category: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  cardText: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.75,
++  },
++  premiumNote: {
++    margin: 0,
++    color: '#5a4838',
++    fontSize: '0.96rem',
++    lineHeight: 1.65,
 +    fontWeight: 600,
 +  },
-+  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '36rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
++  processPanel: {
++    display: 'grid',
++    gap: '1rem',
++    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
++    borderRadius: '28px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
 +  },
-+  actions: {
-+    marginTop: '1.75rem',
++  processTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.6rem',
++    lineHeight: 1.2,
++  },
++  processList: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  processItem: {
++    display: 'grid',
++    gap: '0.45rem',
++    padding: '1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(246, 239, 228, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.12)',
++  },
++  processStep: {
++    color: '#d9bf8d',
++    fontSize: '0.76rem',
++    letterSpacing: '0.18em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  processLabel: {
++    color: '#f6efe4',
++    fontWeight: 700,
++    lineHeight: 1.45,
++  },
++  processText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
 +    display: 'flex',
 +    flexWrap: 'wrap',
-+    gap: '0.875rem',
++    gap: '1rem',
++    alignItems: 'center',
++    justifyContent: 'space-between',
 +  },
-+  primaryAction: {
++  footerText: {
++    margin: 0,
++    maxWidth: '40rem',
++    color: 'rgba(32, 25, 20, 0.72)',
++    lineHeight: 1.75,
++  },
++  action: {
 +    display: 'inline-flex',
 +    alignItems: 'center',
 +    justifyContent: 'center',
-+    minHeight: '3.25rem',
++    minHeight: '3.15rem',
 +    padding: '0.9rem 1.5rem',
 +    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#1f1813',
++    backgroundColor: '#201914',
++    color: '#f7f1e8',
 +    textDecoration: 'none',
 +    fontWeight: 700,
 +  },
-+  secondaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.25rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    border: '1px solid rgba(247, 241, 232, 0.42)',
-+    color: '#f7f1e8',
-+    textDecoration: 'none',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    fontWeight: 600,
-+  },
-+  highlights: {
-+    marginTop: '1.5rem',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
-+  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
-+  },
-+  highlightLabel: {
-+    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
-+  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.5,
-+    color: '#f7f1e8',
-+  },
 +}
 +
-+const highlights = [
++const services = [
 +  {
-+    label: 'Event formats',
-+    text: 'Weddings, private celebrations, and corporate evenings shaped with the same polished standard.',
++    category: 'Catering',
++    title: 'Tailored dining with polished presentation',
++    description:
++      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
++    premiumNote:
++      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
 +  },
 +  {
-+    label: 'Service scope',
-+    text: 'Catering, premium mobile bar service, styling support, and full hospitality coordination.',
++    category: 'Premium bar',
++    title: 'Mobile cocktail service with signature character',
++    description:
++      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
++    premiumNote:
++      'Built to create atmosphere without losing precision, pace, or hospitality.',
 +  },
 +  {
-+    label: 'Hosting focus',
-+    text: 'Guest flow, timing, and presentation aligned to the atmosphere of the occasion.',
++    category: 'Weddings',
++    title: 'Service designed for celebration milestones',
++    description:
++      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
++    premiumNote:
++      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
++  },
++  {
++    category: 'Private events',
++    title: 'Elegant hosting for intimate and social occasions',
++    description:
++      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
++    premiumNote:
++      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
++  },
++  {
++    category: 'Corporate evenings',
++    title: 'Hospitality that supports brand presence',
++    description:
++      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
++    premiumNote:
++      'Professional enough for business settings, warm enough to remain memorable.',
++  },
++  {
++    category: 'Styling support',
++    title: 'Atmosphere guided beyond the menu',
++    description:
++      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
++    premiumNote:
++      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
 +  },
 +]
 +
-+export default function ServicesHeroSection() {
++const process = [
++  {
++    step: '01',
++    label: 'Consultation',
++    text: 'We define event style, guest count, and the hospitality tone you want to create.',
++  },
++  {
++    step: '02',
++    label: 'Proposal',
++    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
++  },
++  {
++    step: '03',
++    label: 'Refinement',
++    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
++  },
++  {
++    step: '04',
++    label: 'Service day',
++    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
++  },
++]
++
++export default function ServicesOverviewSection() {
 +  return (
 +    <section
-+      id="services-hero"
-+      aria-labelledby="servizi-title"
-+      style={heroStyles.section}
++      id="services-overview"
++      aria-labelledby="services-overview-title"
++      style={sectionStyles.section}
 +    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea services</p>
-+        <h1 id="servizi-title" style={heroStyles.title}>
-+          Hospitality services composed for elegant events with a premium, modern touch
-+        </h1>
-+        <p style={heroStyles.body}>
-+          Discover the service offering behind Casa Aurea Events, from tailored
-+          catering and signature bar experiences to styling support and service
-+          flow designed to make refined occasions feel effortless.
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Service overview</p>
++        <h2 id="services-overview-title" style={sectionStyles.title}>
++          A complete event offering shaped around food, drinks, and atmosphere
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together premium catering, elevated
++          bartending, and thoughtful styling support so each occasion feels
++          coherent, graceful, and genuinely well hosted. The service structure
++          is flexible enough for intimate private events and robust enough for
++          larger celebrations with layered hospitality needs.
 +        </p>
++      </div>
 +
-+        <div style={heroStyles.actions}>
-+          <Link to="/contatti" style={heroStyles.primaryAction}>
-+            Request your event proposal
-+          </Link>
-+          <Link to="/menu" style={heroStyles.secondaryAction}>
-+            Discover the drink list
-+          </Link>
-+        </div>
++      <div style={sectionStyles.grid}>
++        {services.map((service) => (
++          <article key={service.title} style={sectionStyles.card}>
++            <p style={sectionStyles.category}>{service.category}</p>
++            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
++            <p style={sectionStyles.cardText}>{service.description}</p>
++            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
++          </article>
++        ))}
++      </div>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
++      <div style={sectionStyles.processPanel}>
++        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
++        <ul style={sectionStyles.processList}>
++          {process.map((item) => (
++            <li key={item.step} style={sectionStyles.processItem}>
++              <span style={sectionStyles.processStep}>{item.step}</span>
++              <span style={sectionStyles.processLabel}>{item.label}</span>
++              <span style={sectionStyles.processText}>{item.text}</span>
++            </li>
 +          ))}
-+        </div>
++        </ul>
++      </div>
++
++      <div style={sectionStyles.footer}>
++        <p style={sectionStyles.footerText}>
++          Every proposal is adjusted to the event setting, guest profile, and
++          hosting priorities, with clear recommendations on service format,
++          beverage flow, and presentation.
++        </p>
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request a tailored proposal
++        </Link>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Servizi.jsx b/src/pages/Servizi.jsx
-index 2e6263c5da262ca0d4c884fc21d03993cf138f68..56a913dfa7a20b7743bd16774113f3f540fedfd3
+index 56a913dfa7a20b7743bd16774113f3f540fedfd3..df228235d1062f339175e3071e61d03765a3404d
 --- a/src/pages/Servizi.jsx
 +++ b/src/pages/Servizi.jsx
-@@ -1,15 +1,9 @@
-+import ServicesHeroSection from '../components/Services-heroSection'
-+
+@@ -1,17 +1,11 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
  export default function Servizi() {
    return (
      <article aria-labelledby="servizi-title">
--      <section id="services-hero" aria-labelledby="servizi-title">
--        <p>Casa Aurea Events services</p>
--        <h1 id="servizi-title">Hospitality designed for elegant celebrations and polished event service.</h1>
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
 -        <p>
--          Explore our core service areas, from refined catering and premium bar
--          experiences to event support shaped around timing, presentation, and
--          guest comfort.
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
 -        </p>
 -      </section>
-+      <ServicesHeroSection />
- 
-       <section id="services-overview" aria-labelledby="services-overview-title">
-         <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
++      <ServicesOverviewSection />
+     </article>
+   )
+ }
 
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index ba82ae0ffd67fea0b6832bf77561f55826fd08a8..281ab621ca8b4f150fc852c84747a2b6039ad9cf
+index 6b01ac147992cb98d8fb71ce1f9aa4bb5f08c1dc..7c4d610e8b552059172503e8a2fca5c9147b8ab3
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,25 @@
+@@ -218,6 +218,17 @@
  Build passed.
  
  Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
 +
-+Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
-+
-+Launching Codex for TASK section-servizi-services-hero.
-+
-+Completed TASK section-servizi-services-hero.
-+
-+Implemented a dedicated `ServicesHeroSection` component in
-+`src/components/Services-heroSection.jsx` and rendered it from
-+`src/pages/Servizi.jsx` to replace the inline placeholder hero. The servizi
-+page now exposes the required `services-hero` section with premium brand copy,
-+highlight cards, and route-safe CTAs to the existing `/contatti` and `/menu`
-+pages.
-+
-+TASK section-servizi-services-hero executed by Codex.
++TASK section-servizi-services-overview executed by Codex.
 +Waiting for validation.
 +
-+TASK section-servizi-services-hero completed successfully.
++TASK section-servizi-services-overview completed successfully.
 +Build passed.
- Prepared TASK page-servizi-shell (Create servizi page shell) for execution.
  
- Launching Codex for TASK page-servizi-shell.
-diff --git a/src/components/Services-heroSection.jsx b/src/components/Services-heroSection.jsx
+ Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+ 
+diff --git a/src/components/Services-overviewSection.jsx b/src/components/Services-overviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..72c0482d7a926c5dc2416a6ba9f50a68bcd6b6a5
+index 0000000000000000000000000000000000000000..c6328f0ac9db51b1363742b1a1168afb085cf13e
 --- /dev/null
-+++ b/src/components/Services-heroSection.jsx
-@@ -0,0 +1,160 @@
++++ b/src/components/Services-overviewSection.jsx
+@@ -0,0 +1,284 @@
 +import { Link } from 'react-router-dom'
 +
-+const heroStyles = {
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(53, 39, 31, 0.14) 0%, rgba(30, 23, 18, 0.7) 58%, rgba(18, 14, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
 +  },
-+  panel: {
-+    width: 'min(100%, 48rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
-+    textAlign: 'left',
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: '0.8rem',
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    color: '#201914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.78)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.9rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(255, 252, 247, 0.84)',
++    border: '1px solid rgba(159, 123, 75, 0.14)',
++  },
++  category: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  cardText: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.75,
++  },
++  premiumNote: {
++    margin: 0,
++    color: '#5a4838',
++    fontSize: '0.96rem',
++    lineHeight: 1.65,
 +    fontWeight: 600,
 +  },
-+  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '36rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
++  processPanel: {
++    display: 'grid',
++    gap: '1rem',
++    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
++    borderRadius: '28px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
 +  },
-+  actions: {
-+    marginTop: '1.75rem',
++  processTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.6rem',
++    lineHeight: 1.2,
++  },
++  processList: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  processItem: {
++    display: 'grid',
++    gap: '0.45rem',
++    padding: '1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(246, 239, 228, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.12)',
++  },
++  processStep: {
++    color: '#d9bf8d',
++    fontSize: '0.76rem',
++    letterSpacing: '0.18em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  processLabel: {
++    color: '#f6efe4',
++    fontWeight: 700,
++    lineHeight: 1.45,
++  },
++  processText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
 +    display: 'flex',
 +    flexWrap: 'wrap',
-+    gap: '0.875rem',
++    gap: '1rem',
++    alignItems: 'center',
++    justifyContent: 'space-between',
 +  },
-+  primaryAction: {
++  footerText: {
++    margin: 0,
++    maxWidth: '40rem',
++    color: 'rgba(32, 25, 20, 0.72)',
++    lineHeight: 1.75,
++  },
++  action: {
 +    display: 'inline-flex',
 +    alignItems: 'center',
 +    justifyContent: 'center',
-+    minHeight: '3.25rem',
++    minHeight: '3.15rem',
 +    padding: '0.9rem 1.5rem',
 +    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#1f1813',
++    backgroundColor: '#201914',
++    color: '#f7f1e8',
 +    textDecoration: 'none',
 +    fontWeight: 700,
 +  },
-+  secondaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.25rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    border: '1px solid rgba(247, 241, 232, 0.42)',
-+    color: '#f7f1e8',
-+    textDecoration: 'none',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    fontWeight: 600,
-+  },
-+  highlights: {
-+    marginTop: '1.5rem',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
-+  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
-+  },
-+  highlightLabel: {
-+    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
-+  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.5,
-+    color: '#f7f1e8',
-+  },
 +}
 +
-+const highlights = [
++const services = [
 +  {
-+    label: 'Event formats',
-+    text: 'Weddings, private celebrations, and corporate evenings shaped with the same polished standard.',
++    category: 'Catering',
++    title: 'Tailored dining with polished presentation',
++    description:
++      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
++    premiumNote:
++      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
 +  },
 +  {
-+    label: 'Service scope',
-+    text: 'Catering, premium mobile bar service, styling support, and full hospitality coordination.',
++    category: 'Premium bar',
++    title: 'Mobile cocktail service with signature character',
++    description:
++      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
++    premiumNote:
++      'Built to create atmosphere without losing precision, pace, or hospitality.',
 +  },
 +  {
-+    label: 'Hosting focus',
-+    text: 'Guest flow, timing, and presentation aligned to the atmosphere of the occasion.',
++    category: 'Weddings',
++    title: 'Service designed for celebration milestones',
++    description:
++      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
++    premiumNote:
++      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
++  },
++  {
++    category: 'Private events',
++    title: 'Elegant hosting for intimate and social occasions',
++    description:
++      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
++    premiumNote:
++      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
++  },
++  {
++    category: 'Corporate evenings',
++    title: 'Hospitality that supports brand presence',
++    description:
++      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
++    premiumNote:
++      'Professional enough for business settings, warm enough to remain memorable.',
++  },
++  {
++    category: 'Styling support',
++    title: 'Atmosphere guided beyond the menu',
++    description:
++      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
++    premiumNote:
++      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
 +  },
 +]
 +
-+export default function ServicesHeroSection() {
++const process = [
++  {
++    step: '01',
++    label: 'Consultation',
++    text: 'We define event style, guest count, and the hospitality tone you want to create.',
++  },
++  {
++    step: '02',
++    label: 'Proposal',
++    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
++  },
++  {
++    step: '03',
++    label: 'Refinement',
++    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
++  },
++  {
++    step: '04',
++    label: 'Service day',
++    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
++  },
++]
++
++export default function ServicesOverviewSection() {
 +  return (
 +    <section
-+      id="services-hero"
-+      aria-labelledby="servizi-title"
-+      style={heroStyles.section}
++      id="services-overview"
++      aria-labelledby="services-overview-title"
++      style={sectionStyles.section}
 +    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea services</p>
-+        <h1 id="servizi-title" style={heroStyles.title}>
-+          Hospitality services composed for elegant events with a premium, modern touch
-+        </h1>
-+        <p style={heroStyles.body}>
-+          Discover the service offering behind Casa Aurea Events, from tailored
-+          catering and signature bar experiences to styling support and service
-+          flow designed to make refined occasions feel effortless.
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Service overview</p>
++        <h2 id="services-overview-title" style={sectionStyles.title}>
++          A complete event offering shaped around food, drinks, and atmosphere
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together premium catering, elevated
++          bartending, and thoughtful styling support so each occasion feels
++          coherent, graceful, and genuinely well hosted. The service structure
++          is flexible enough for intimate private events and robust enough for
++          larger celebrations with layered hospitality needs.
 +        </p>
++      </div>
 +
-+        <div style={heroStyles.actions}>
-+          <Link to="/contatti" style={heroStyles.primaryAction}>
-+            Request your event proposal
-+          </Link>
-+          <Link to="/menu" style={heroStyles.secondaryAction}>
-+            Discover the drink list
-+          </Link>
-+        </div>
++      <div style={sectionStyles.grid}>
++        {services.map((service) => (
++          <article key={service.title} style={sectionStyles.card}>
++            <p style={sectionStyles.category}>{service.category}</p>
++            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
++            <p style={sectionStyles.cardText}>{service.description}</p>
++            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
++          </article>
++        ))}
++      </div>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
++      <div style={sectionStyles.processPanel}>
++        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
++        <ul style={sectionStyles.processList}>
++          {process.map((item) => (
++            <li key={item.step} style={sectionStyles.processItem}>
++              <span style={sectionStyles.processStep}>{item.step}</span>
++              <span style={sectionStyles.processLabel}>{item.label}</span>
++              <span style={sectionStyles.processText}>{item.text}</span>
++            </li>
 +          ))}
-+        </div>
++        </ul>
++      </div>
++
++      <div style={sectionStyles.footer}>
++        <p style={sectionStyles.footerText}>
++          Every proposal is adjusted to the event setting, guest profile, and
++          hosting priorities, with clear recommendations on service format,
++          beverage flow, and presentation.
++        </p>
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request a tailored proposal
++        </Link>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Servizi.jsx b/src/pages/Servizi.jsx
-index 2e6263c5da262ca0d4c884fc21d03993cf138f68..56a913dfa7a20b7743bd16774113f3f540fedfd3
+index 56a913dfa7a20b7743bd16774113f3f540fedfd3..df228235d1062f339175e3071e61d03765a3404d
 --- a/src/pages/Servizi.jsx
 +++ b/src/pages/Servizi.jsx
-@@ -1,15 +1,9 @@
-+import ServicesHeroSection from '../components/Services-heroSection'
-+
+@@ -1,17 +1,11 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
  export default function Servizi() {
    return (
      <article aria-labelledby="servizi-title">
--      <section id="services-hero" aria-labelledby="servizi-title">
--        <p>Casa Aurea Events services</p>
--        <h1 id="servizi-title">Hospitality designed for elegant celebrations and polished event service.</h1>
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
 -        <p>
--          Explore our core service areas, from refined catering and premium bar
--          experiences to event support shaped around timing, presentation, and
--          guest comfort.
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
 -        </p>
 -      </section>
-+      <ServicesHeroSection />
++      <ServicesOverviewSection />
+     </article>
+   )
+ }
+
+exec
+/bin/zsh -lc 'tail -n 30 agent/AGENT_REPORT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+
+Launching Codex for TASK page-servizi-shell.
+Completed TASK page-servizi-shell.
+
+Implemented a semantic shell in `src/pages/Servizi.jsx` for the `/servizi`
+route with the required `services-hero` and `services-overview` sections,
+real premium-facing copy, and a single page-level `h1`. Verified `src/App.jsx`
+already mounts the `Servizi` page, so no routing change was required.
+
+TASK page-servizi-shell executed by Codex.
+Waiting for validation.
+
+TASK page-servizi-shell completed successfully.
+Build passed.
+Commit created for TASK page-servizi-shell.
+
+Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+
+Launching Codex for TASK section-servizi-services-hero.
+
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 6b01ac147992cb98d8fb71ce1f9aa4bb5f08c1dc..7c4d610e8b552059172503e8a2fca5c9147b8ab3
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -218,6 +218,17 @@
+ Build passed.
  
-       <section id="services-overview" aria-labelledby="services-overview-title">
-         <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
+ Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
++
++TASK section-servizi-services-overview executed by Codex.
++Waiting for validation.
++
++TASK section-servizi-services-overview completed successfully.
++Build passed.
+ 
+ Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+ 
+diff --git a/src/components/Services-overviewSection.jsx b/src/components/Services-overviewSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..c6328f0ac9db51b1363742b1a1168afb085cf13e
+--- /dev/null
++++ b/src/components/Services-overviewSection.jsx
+@@ -0,0 +1,284 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++  },
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.78)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.9rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(255, 252, 247, 0.84)',
++    border: '1px solid rgba(159, 123, 75, 0.14)',
++  },
++  category: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  cardText: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.75,
++  },
++  premiumNote: {
++    margin: 0,
++    color: '#5a4838',
++    fontSize: '0.96rem',
++    lineHeight: 1.65,
++    fontWeight: 600,
++  },
++  processPanel: {
++    display: 'grid',
++    gap: '1rem',
++    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
++    borderRadius: '28px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
++  },
++  processTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.6rem',
++    lineHeight: 1.2,
++  },
++  processList: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  processItem: {
++    display: 'grid',
++    gap: '0.45rem',
++    padding: '1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(246, 239, 228, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.12)',
++  },
++  processStep: {
++    color: '#d9bf8d',
++    fontSize: '0.76rem',
++    letterSpacing: '0.18em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  processLabel: {
++    color: '#f6efe4',
++    fontWeight: 700,
++    lineHeight: 1.45,
++  },
++  processText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '1rem',
++    alignItems: 'center',
++    justifyContent: 'space-between',
++  },
++  footerText: {
++    margin: 0,
++    maxWidth: '40rem',
++    color: 'rgba(32, 25, 20, 0.72)',
++    lineHeight: 1.75,
++  },
++  action: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#201914',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++}
++
++const services = [
++  {
++    category: 'Catering',
++    title: 'Tailored dining with polished presentation',
++    description:
++      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
++    premiumNote:
++      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
++  },
++  {
++    category: 'Premium bar',
++    title: 'Mobile cocktail service with signature character',
++    description:
++      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
++    premiumNote:
++      'Built to create atmosphere without losing precision, pace, or hospitality.',
++  },
++  {
++    category: 'Weddings',
++    title: 'Service designed for celebration milestones',
++    description:
++      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
++    premiumNote:
++      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
++  },
++  {
++    category: 'Private events',
++    title: 'Elegant hosting for intimate and social occasions',
++    description:
++      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
++    premiumNote:
++      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
++  },
++  {
++    category: 'Corporate evenings',
++    title: 'Hospitality that supports brand presence',
++    description:
++      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
++    premiumNote:
++      'Professional enough for business settings, warm enough to remain memorable.',
++  },
++  {
++    category: 'Styling support',
++    title: 'Atmosphere guided beyond the menu',
++    description:
++      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
++    premiumNote:
++      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
++  },
++]
++
++const process = [
++  {
++    step: '01',
++    label: 'Consultation',
++    text: 'We define event style, guest count, and the hospitality tone you want to create.',
++  },
++  {
++    step: '02',
++    label: 'Proposal',
++    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
++  },
++  {
++    step: '03',
++    label: 'Refinement',
++    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
++  },
++  {
++    step: '04',
++    label: 'Service day',
++    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
++  },
++]
++
++export default function ServicesOverviewSection() {
++  return (
++    <section
++      id="services-overview"
++      aria-labelledby="services-overview-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Service overview</p>
++        <h2 id="services-overview-title" style={sectionStyles.title}>
++          A complete event offering shaped around food, drinks, and atmosphere
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together premium catering, elevated
++          bartending, and thoughtful styling support so each occasion feels
++          coherent, graceful, and genuinely well hosted. The service structure
++          is flexible enough for intimate private events and robust enough for
++          larger celebrations with layered hospitality needs.
++        </p>
++      </div>
++
++      <div style={sectionStyles.grid}>
++        {services.map((service) => (
++          <article key={service.title} style={sectionStyles.card}>
++            <p style={sectionStyles.category}>{service.category}</p>
++            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
++            <p style={sectionStyles.cardText}>{service.description}</p>
++            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
++          </article>
++        ))}
++      </div>
++
++      <div style={sectionStyles.processPanel}>
++        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
++        <ul style={sectionStyles.processList}>
++          {process.map((item) => (
++            <li key={item.step} style={sectionStyles.processItem}>
++              <span style={sectionStyles.processStep}>{item.step}</span>
++              <span style={sectionStyles.processLabel}>{item.label}</span>
++              <span style={sectionStyles.processText}>{item.text}</span>
++            </li>
++          ))}
++        </ul>
++      </div>
++
++      <div style={sectionStyles.footer}>
++        <p style={sectionStyles.footerText}>
++          Every proposal is adjusted to the event setting, guest profile, and
++          hosting priorities, with clear recommendations on service format,
++          beverage flow, and presentation.
++        </p>
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request a tailored proposal
++        </Link>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Servizi.jsx b/src/pages/Servizi.jsx
+index 56a913dfa7a20b7743bd16774113f3f540fedfd3..df228235d1062f339175e3071e61d03765a3404d
+--- a/src/pages/Servizi.jsx
++++ b/src/pages/Servizi.jsx
+@@ -1,17 +1,11 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
+ export default function Servizi() {
+   return (
+     <article aria-labelledby="servizi-title">
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
+-        <p>
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
+-        </p>
+-      </section>
++      <ServicesOverviewSection />
+     </article>
+   )
+ }
+
+exec
+/bin/zsh -lc "sed -n '220,320p' agent/AGENT_REPORT.md" in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 51ms:
+Implemented a dedicated `Menu-categoriesSection` component in
+`src/components/Services-overviewSection.jsx` and rendered it from
+`src/pages/Servizi.jsx` to replace the inline placeholder content. The
+`servizi` page now includes the required `services-overview` service-list
+section with premium service cards, a concise process block, and a route-safe
+CTA to `/contatti`.
+
+TASK section-servizi-services-overview executed by Codex.
+Waiting for validation.
+
+TASK section-servizi-services-overview completed successfully.
+Build passed.
+
+Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+
+Launching Codex for TASK section-servizi-services-hero.
+
+Completed TASK section-servizi-services-hero.
+
+Implemented a dedicated `ServicesHeroSection` component in
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 6b01ac147992cb98d8fb71ce1f9aa4bb5f08c1dc..7c4d610e8b552059172503e8a2fca5c9147b8ab3
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -218,6 +218,17 @@
+ Build passed.
+ 
+ Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
++
++TASK section-servizi-services-overview executed by Codex.
++Waiting for validation.
++
++TASK section-servizi-services-overview completed successfully.
++Build passed.
+ 
+ Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+ 
+diff --git a/src/components/Services-overviewSection.jsx b/src/components/Services-overviewSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..c6328f0ac9db51b1363742b1a1168afb085cf13e
+--- /dev/null
++++ b/src/components/Services-overviewSection.jsx
+@@ -0,0 +1,284 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++  },
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.78)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.9rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(255, 252, 247, 0.84)',
++    border: '1px solid rgba(159, 123, 75, 0.14)',
++  },
++  category: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  cardText: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.75,
++  },
++  premiumNote: {
++    margin: 0,
++    color: '#5a4838',
++    fontSize: '0.96rem',
++    lineHeight: 1.65,
++    fontWeight: 600,
++  },
++  processPanel: {
++    display: 'grid',
++    gap: '1rem',
++    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
++    borderRadius: '28px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
++  },
++  processTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.6rem',
++    lineHeight: 1.2,
++  },
++  processList: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  processItem: {
++    display: 'grid',
++    gap: '0.45rem',
++    padding: '1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(246, 239, 228, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.12)',
++  },
++  processStep: {
++    color: '#d9bf8d',
++    fontSize: '0.76rem',
++    letterSpacing: '0.18em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  processLabel: {
++    color: '#f6efe4',
++    fontWeight: 700,
++    lineHeight: 1.45,
++  },
++  processText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '1rem',
++    alignItems: 'center',
++    justifyContent: 'space-between',
++  },
++  footerText: {
++    margin: 0,
++    maxWidth: '40rem',
++    color: 'rgba(32, 25, 20, 0.72)',
++    lineHeight: 1.75,
++  },
++  action: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#201914',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++}
++
++const services = [
++  {
++    category: 'Catering',
++    title: 'Tailored dining with polished presentation',
++    description:
++      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
++    premiumNote:
++      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
++  },
++  {
++    category: 'Premium bar',
++    title: 'Mobile cocktail service with signature character',
++    description:
++      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
++    premiumNote:
++      'Built to create atmosphere without losing precision, pace, or hospitality.',
++  },
++  {
++    category: 'Weddings',
++    title: 'Service designed for celebration milestones',
++    description:
++      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
++    premiumNote:
++      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
++  },
++  {
++    category: 'Private events',
++    title: 'Elegant hosting for intimate and social occasions',
++    description:
++      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
++    premiumNote:
++      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
++  },
++  {
++    category: 'Corporate evenings',
++    title: 'Hospitality that supports brand presence',
++    description:
++      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
++    premiumNote:
++      'Professional enough for business settings, warm enough to remain memorable.',
++  },
++  {
++    category: 'Styling support',
++    title: 'Atmosphere guided beyond the menu',
++    description:
++      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
++    premiumNote:
++      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
++  },
++]
++
++const process = [
++  {
++    step: '01',
++    label: 'Consultation',
++    text: 'We define event style, guest count, and the hospitality tone you want to create.',
++  },
++  {
++    step: '02',
++    label: 'Proposal',
++    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
++  },
++  {
++    step: '03',
++    label: 'Refinement',
++    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
++  },
++  {
++    step: '04',
++    label: 'Service day',
++    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
++  },
++]
++
++export default function ServicesOverviewSection() {
++  return (
++    <section
++      id="services-overview"
++      aria-labelledby="services-overview-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Service overview</p>
++        <h2 id="services-overview-title" style={sectionStyles.title}>
++          A complete event offering shaped around food, drinks, and atmosphere
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together premium catering, elevated
++          bartending, and thoughtful styling support so each occasion feels
++          coherent, graceful, and genuinely well hosted. The service structure
++          is flexible enough for intimate private events and robust enough for
++          larger celebrations with layered hospitality needs.
++        </p>
++      </div>
++
++      <div style={sectionStyles.grid}>
++        {services.map((service) => (
++          <article key={service.title} style={sectionStyles.card}>
++            <p style={sectionStyles.category}>{service.category}</p>
++            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
++            <p style={sectionStyles.cardText}>{service.description}</p>
++            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
++          </article>
++        ))}
++      </div>
++
++      <div style={sectionStyles.processPanel}>
++        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
++        <ul style={sectionStyles.processList}>
++          {process.map((item) => (
++            <li key={item.step} style={sectionStyles.processItem}>
++              <span style={sectionStyles.processStep}>{item.step}</span>
++              <span style={sectionStyles.processLabel}>{item.label}</span>
++              <span style={sectionStyles.processText}>{item.text}</span>
++            </li>
++          ))}
++        </ul>
++      </div>
++
++      <div style={sectionStyles.footer}>
++        <p style={sectionStyles.footerText}>
++          Every proposal is adjusted to the event setting, guest profile, and
++          hosting priorities, with clear recommendations on service format,
++          beverage flow, and presentation.
++        </p>
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request a tailored proposal
++        </Link>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Servizi.jsx b/src/pages/Servizi.jsx
+index 56a913dfa7a20b7743bd16774113f3f540fedfd3..df228235d1062f339175e3071e61d03765a3404d
+--- a/src/pages/Servizi.jsx
++++ b/src/pages/Servizi.jsx
+@@ -1,17 +1,11 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
+ export default function Servizi() {
+   return (
+     <article aria-labelledby="servizi-title">
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
+-        <p>
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
+-        </p>
+-      </section>
++      <ServicesOverviewSection />
+     </article>
+   )
+ }
 
 codex
-Modified files: [src/components/Services-heroSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Services-heroSection.jsx), [src/pages/Servizi.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Servizi.jsx), [agent/AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md).
-
-Implemented the `services-hero` section as a dedicated reusable component and rendered it at the top of the `servizi` page. The new hero includes the required semantic hero structure, a single page `h1`, premium editorial copy, highlight cards, and valid CTAs to `/contatti` and `/menu` while leaving the existing `services-overview` section untouched.
-
-Build result: `npm run build` passed successfully with Vite production build completed.
+The report file already had earlier entries out of order, and my first patch landed near an existing truncated block. I’m adding the current task entry again at the end so the latest execution is recorded cleanly and unambiguously.
 file update:
 diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
-index ba82ae0ffd67fea0b6832bf77561f55826fd08a8..281ab621ca8b4f150fc852c84747a2b6039ad9cf
+index 6b01ac147992cb98d8fb71ce1f9aa4bb5f08c1dc..7c4d610e8b552059172503e8a2fca5c9147b8ab3
 --- a/agent/AGENT_REPORT.md
 +++ b/agent/AGENT_REPORT.md
-@@ -218,6 +218,25 @@
+@@ -218,6 +218,17 @@
  Build passed.
  
  Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
 +
-+Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
-+
-+Launching Codex for TASK section-servizi-services-hero.
-+
-+Completed TASK section-servizi-services-hero.
-+
-+Implemented a dedicated `ServicesHeroSection` component in
-+`src/components/Services-heroSection.jsx` and rendered it from
-+`src/pages/Servizi.jsx` to replace the inline placeholder hero. The servizi
-+page now exposes the required `services-hero` section with premium brand copy,
-+highlight cards, and route-safe CTAs to the existing `/contatti` and `/menu`
-+pages.
-+
-+TASK section-servizi-services-hero executed by Codex.
++TASK section-servizi-services-overview executed by Codex.
 +Waiting for validation.
 +
-+TASK section-servizi-services-hero completed successfully.
++TASK section-servizi-services-overview completed successfully.
 +Build passed.
- Prepared TASK page-servizi-shell (Create servizi page shell) for execution.
  
- Launching Codex for TASK page-servizi-shell.
-diff --git a/src/components/Services-heroSection.jsx b/src/components/Services-heroSection.jsx
+ Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+ 
+diff --git a/src/components/Services-overviewSection.jsx b/src/components/Services-overviewSection.jsx
 new file mode 100644
-index 0000000000000000000000000000000000000000..72c0482d7a926c5dc2416a6ba9f50a68bcd6b6a5
+index 0000000000000000000000000000000000000000..c6328f0ac9db51b1363742b1a1168afb085cf13e
 --- /dev/null
-+++ b/src/components/Services-heroSection.jsx
-@@ -0,0 +1,160 @@
++++ b/src/components/Services-overviewSection.jsx
+@@ -0,0 +1,284 @@
 +import { Link } from 'react-router-dom'
 +
-+const heroStyles = {
++const sectionStyles = {
 +  section: {
-+    position: 'relative',
-+    overflow: 'hidden',
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
 +    borderRadius: '32px',
-+    minHeight: 'clamp(30rem, 74vh, 43rem)',
-+    padding: 'clamp(1.5rem, 4vw, 3rem)',
-+    display: 'flex',
-+    alignItems: 'flex-end',
-+    backgroundImage:
-+      "linear-gradient(180deg, rgba(53, 39, 31, 0.14) 0%, rgba(30, 23, 18, 0.7) 58%, rgba(18, 14, 12, 0.92) 100%), url('https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=1600&q=80')",
-+    backgroundSize: 'cover',
-+    backgroundPosition: 'center',
-+    color: '#f7f1e8',
-+    boxShadow: '0 24px 60px rgba(41, 29, 20, 0.18)',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
 +  },
-+  panel: {
-+    width: 'min(100%, 48rem)',
-+    padding: 'clamp(1.5rem, 3vw, 2.5rem)',
-+    borderRadius: '28px',
-+    backgroundColor: 'rgba(19, 15, 13, 0.54)',
-+    backdropFilter: 'blur(10px)',
-+    textAlign: 'left',
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
 +  },
 +  eyebrow: {
 +    margin: 0,
-+    fontSize: '0.8rem',
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
 +    letterSpacing: '0.22em',
 +    textTransform: 'uppercase',
-+    color: '#d9bf8d',
++    fontWeight: 700,
 +  },
 +  title: {
-+    margin: '1rem 0 0',
-+    fontSize: 'clamp(2.5rem, 6vw, 4.75rem)',
-+    lineHeight: 1.02,
++    margin: 0,
++    color: '#201914',
 +    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.78)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.9rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(255, 252, 247, 0.84)',
++    border: '1px solid rgba(159, 123, 75, 0.14)',
++  },
++  category: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  cardText: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.75,
++  },
++  premiumNote: {
++    margin: 0,
++    color: '#5a4838',
++    fontSize: '0.96rem',
++    lineHeight: 1.65,
 +    fontWeight: 600,
 +  },
-+  body: {
-+    margin: '1.25rem 0 0',
-+    maxWidth: '36rem',
-+    fontSize: 'clamp(1rem, 2vw, 1.125rem)',
-+    lineHeight: 1.75,
-+    color: 'rgba(247, 241, 232, 0.88)',
++  processPanel: {
++    display: 'grid',
++    gap: '1rem',
++    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
++    borderRadius: '28px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
 +  },
-+  actions: {
-+    marginTop: '1.75rem',
++  processTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.6rem',
++    lineHeight: 1.2,
++  },
++  processList: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  processItem: {
++    display: 'grid',
++    gap: '0.45rem',
++    padding: '1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(246, 239, 228, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.12)',
++  },
++  processStep: {
++    color: '#d9bf8d',
++    fontSize: '0.76rem',
++    letterSpacing: '0.18em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  processLabel: {
++    color: '#f6efe4',
++    fontWeight: 700,
++    lineHeight: 1.45,
++  },
++  processText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
 +    display: 'flex',
 +    flexWrap: 'wrap',
-+    gap: '0.875rem',
++    gap: '1rem',
++    alignItems: 'center',
++    justifyContent: 'space-between',
 +  },
-+  primaryAction: {
++  footerText: {
++    margin: 0,
++    maxWidth: '40rem',
++    color: 'rgba(32, 25, 20, 0.72)',
++    lineHeight: 1.75,
++  },
++  action: {
 +    display: 'inline-flex',
 +    alignItems: 'center',
 +    justifyContent: 'center',
-+    minHeight: '3.25rem',
++    minHeight: '3.15rem',
 +    padding: '0.9rem 1.5rem',
 +    borderRadius: '999px',
-+    backgroundColor: '#d9bf8d',
-+    color: '#1f1813',
++    backgroundColor: '#201914',
++    color: '#f7f1e8',
 +    textDecoration: 'none',
 +    fontWeight: 700,
 +  },
-+  secondaryAction: {
-+    display: 'inline-flex',
-+    alignItems: 'center',
-+    justifyContent: 'center',
-+    minHeight: '3.25rem',
-+    padding: '0.9rem 1.5rem',
-+    borderRadius: '999px',
-+    border: '1px solid rgba(247, 241, 232, 0.42)',
-+    color: '#f7f1e8',
-+    textDecoration: 'none',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    fontWeight: 600,
-+  },
-+  highlights: {
-+    marginTop: '1.5rem',
-+    display: 'grid',
-+    gridTemplateColumns: 'repeat(auto-fit, minmax(10rem, 1fr))',
-+    gap: '0.875rem',
-+  },
-+  highlightCard: {
-+    padding: '0.95rem 1rem',
-+    borderRadius: '20px',
-+    backgroundColor: 'rgba(247, 241, 232, 0.08)',
-+    border: '1px solid rgba(247, 241, 232, 0.12)',
-+  },
-+  highlightLabel: {
-+    display: 'block',
-+    fontSize: '0.78rem',
-+    letterSpacing: '0.08em',
-+    textTransform: 'uppercase',
-+    color: 'rgba(217, 191, 141, 0.92)',
-+  },
-+  highlightText: {
-+    display: 'block',
-+    marginTop: '0.4rem',
-+    fontSize: '0.98rem',
-+    lineHeight: 1.5,
-+    color: '#f7f1e8',
-+  },
 +}
 +
-+const highlights = [
++const services = [
 +  {
-+    label: 'Event formats',
-+    text: 'Weddings, private celebrations, and corporate evenings shaped with the same polished standard.',
++    category: 'Catering',
++    title: 'Tailored dining with polished presentation',
++    description:
++      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
++    premiumNote:
++      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
 +  },
 +  {
-+    label: 'Service scope',
-+    text: 'Catering, premium mobile bar service, styling support, and full hospitality coordination.',
++    category: 'Premium bar',
++    title: 'Mobile cocktail service with signature character',
++    description:
++      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
++    premiumNote:
++      'Built to create atmosphere without losing precision, pace, or hospitality.',
 +  },
 +  {
-+    label: 'Hosting focus',
-+    text: 'Guest flow, timing, and presentation aligned to the atmosphere of the occasion.',
++    category: 'Weddings',
++    title: 'Service designed for celebration milestones',
++    description:
++      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
++    premiumNote:
++      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
++  },
++  {
++    category: 'Private events',
++    title: 'Elegant hosting for intimate and social occasions',
++    description:
++      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
++    premiumNote:
++      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
++  },
++  {
++    category: 'Corporate evenings',
++    title: 'Hospitality that supports brand presence',
++    description:
++      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
++    premiumNote:
++      'Professional enough for business settings, warm enough to remain memorable.',
++  },
++  {
++    category: 'Styling support',
++    title: 'Atmosphere guided beyond the menu',
++    description:
++      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
++    premiumNote:
++      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
 +  },
 +]
 +
-+export default function ServicesHeroSection() {
++const process = [
++  {
++    step: '01',
++    label: 'Consultation',
++    text: 'We define event style, guest count, and the hospitality tone you want to create.',
++  },
++  {
++    step: '02',
++    label: 'Proposal',
++    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
++  },
++  {
++    step: '03',
++    label: 'Refinement',
++    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
++  },
++  {
++    step: '04',
++    label: 'Service day',
++    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
++  },
++]
++
++export default function ServicesOverviewSection() {
 +  return (
 +    <section
-+      id="services-hero"
-+      aria-labelledby="servizi-title"
-+      style={heroStyles.section}
++      id="services-overview"
++      aria-labelledby="services-overview-title"
++      style={sectionStyles.section}
 +    >
-+      <div style={heroStyles.panel}>
-+        <p style={heroStyles.eyebrow}>Casa Aurea services</p>
-+        <h1 id="servizi-title" style={heroStyles.title}>
-+          Hospitality services composed for elegant events with a premium, modern touch
-+        </h1>
-+        <p style={heroStyles.body}>
-+          Discover the service offering behind Casa Aurea Events, from tailored
-+          catering and signature bar experiences to styling support and service
-+          flow designed to make refined occasions feel effortless.
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Service overview</p>
++        <h2 id="services-overview-title" style={sectionStyles.title}>
++          A complete event offering shaped around food, drinks, and atmosphere
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together premium catering, elevated
++          bartending, and thoughtful styling support so each occasion feels
++          coherent, graceful, and genuinely well hosted. The service structure
++          is flexible enough for intimate private events and robust enough for
++          larger celebrations with layered hospitality needs.
 +        </p>
++      </div>
 +
-+        <div style={heroStyles.actions}>
-+          <Link to="/contatti" style={heroStyles.primaryAction}>
-+            Request your event proposal
-+          </Link>
-+          <Link to="/menu" style={heroStyles.secondaryAction}>
-+            Discover the drink list
-+          </Link>
-+        </div>
++      <div style={sectionStyles.grid}>
++        {services.map((service) => (
++          <article key={service.title} style={sectionStyles.card}>
++            <p style={sectionStyles.category}>{service.category}</p>
++            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
++            <p style={sectionStyles.cardText}>{service.description}</p>
++            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
++          </article>
++        ))}
++      </div>
 +
-+        <div style={heroStyles.highlights}>
-+          {highlights.map((item) => (
-+            <div key={item.label} style={heroStyles.highlightCard}>
-+              <span style={heroStyles.highlightLabel}>{item.label}</span>
-+              <span style={heroStyles.highlightText}>{item.text}</span>
-+            </div>
++      <div style={sectionStyles.processPanel}>
++        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
++        <ul style={sectionStyles.processList}>
++          {process.map((item) => (
++            <li key={item.step} style={sectionStyles.processItem}>
++              <span style={sectionStyles.processStep}>{item.step}</span>
++              <span style={sectionStyles.processLabel}>{item.label}</span>
++              <span style={sectionStyles.processText}>{item.text}</span>
++            </li>
 +          ))}
-+        </div>
++        </ul>
++      </div>
++
++      <div style={sectionStyles.footer}>
++        <p style={sectionStyles.footerText}>
++          Every proposal is adjusted to the event setting, guest profile, and
++          hosting priorities, with clear recommendations on service format,
++          beverage flow, and presentation.
++        </p>
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request a tailored proposal
++        </Link>
 +      </div>
 +    </section>
 +  )
 +}
 diff --git a/src/pages/Servizi.jsx b/src/pages/Servizi.jsx
-index 2e6263c5da262ca0d4c884fc21d03993cf138f68..56a913dfa7a20b7743bd16774113f3f540fedfd3
+index 56a913dfa7a20b7743bd16774113f3f540fedfd3..df228235d1062f339175e3071e61d03765a3404d
 --- a/src/pages/Servizi.jsx
 +++ b/src/pages/Servizi.jsx
-@@ -1,15 +1,9 @@
-+import ServicesHeroSection from '../components/Services-heroSection'
-+
+@@ -1,17 +1,11 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
  export default function Servizi() {
    return (
      <article aria-labelledby="servizi-title">
--      <section id="services-hero" aria-labelledby="servizi-title">
--        <p>Casa Aurea Events services</p>
--        <h1 id="servizi-title">Hospitality designed for elegant celebrations and polished event service.</h1>
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
 -        <p>
--          Explore our core service areas, from refined catering and premium bar
--          experiences to event support shaped around timing, presentation, and
--          guest comfort.
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
 -        </p>
 -      </section>
-+      <ServicesHeroSection />
++      <ServicesOverviewSection />
+     </article>
+   )
+ }
+
+exec
+/bin/zsh -lc 'tail -n 40 agent/AGENT_REPORT.md' in /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e succeeded in 52ms:
+Launching Codex for TASK cta-contatti-contatti-phone.
+
+TASK cta-contatti-contatti-phone executed by Codex.
+Waiting for validation.
+
+TASK cta-contatti-contatti-phone completed successfully.
+Build passed.
+Commit created for TASK cta-contatti-contatti-phone.
+
+Prepared TASK page-servizi-shell (Create servizi page shell) for execution.
+
+Launching Codex for TASK page-servizi-shell.
+Completed TASK page-servizi-shell.
+
+Implemented a semantic shell in `src/pages/Servizi.jsx` for the `/servizi`
+route with the required `services-hero` and `services-overview` sections,
+real premium-facing copy, and a single page-level `h1`. Verified `src/App.jsx`
+already mounts the `Servizi` page, so no routing change was required.
+
+TASK page-servizi-shell executed by Codex.
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 6b01ac147992cb98d8fb71ce1f9aa4bb5f08c1dc..7c4d610e8b552059172503e8a2fca5c9147b8ab3
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -218,6 +218,17 @@
+ Build passed.
  
-       <section id="services-overview" aria-labelledby="services-overview-title">
-         <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
+ Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
++
++TASK section-servizi-services-overview executed by Codex.
++Waiting for validation.
++
++TASK section-servizi-services-overview completed successfully.
++Build passed.
+ 
+ Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+ 
+diff --git a/src/components/Services-overviewSection.jsx b/src/components/Services-overviewSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..c6328f0ac9db51b1363742b1a1168afb085cf13e
+--- /dev/null
++++ b/src/components/Services-overviewSection.jsx
+@@ -0,0 +1,284 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++  },
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.78)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.9rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(255, 252, 247, 0.84)',
++    border: '1px solid rgba(159, 123, 75, 0.14)',
++  },
++  category: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  cardText: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.75,
++  },
++  premiumNote: {
++    margin: 0,
++    color: '#5a4838',
++    fontSize: '0.96rem',
++    lineHeight: 1.65,
++    fontWeight: 600,
++  },
++  processPanel: {
++    display: 'grid',
++    gap: '1rem',
++    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
++    borderRadius: '28px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
++  },
++  processTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.6rem',
++    lineHeight: 1.2,
++  },
++  processList: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  processItem: {
++    display: 'grid',
++    gap: '0.45rem',
++    padding: '1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(246, 239, 228, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.12)',
++  },
++  processStep: {
++    color: '#d9bf8d',
++    fontSize: '0.76rem',
++    letterSpacing: '0.18em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  processLabel: {
++    color: '#f6efe4',
++    fontWeight: 700,
++    lineHeight: 1.45,
++  },
++  processText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '1rem',
++    alignItems: 'center',
++    justifyContent: 'space-between',
++  },
++  footerText: {
++    margin: 0,
++    maxWidth: '40rem',
++    color: 'rgba(32, 25, 20, 0.72)',
++    lineHeight: 1.75,
++  },
++  action: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#201914',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++}
++
++const services = [
++  {
++    category: 'Catering',
++    title: 'Tailored dining with polished presentation',
++    description:
++      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
++    premiumNote:
++      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
++  },
++  {
++    category: 'Premium bar',
++    title: 'Mobile cocktail service with signature character',
++    description:
++      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
++    premiumNote:
++      'Built to create atmosphere without losing precision, pace, or hospitality.',
++  },
++  {
++    category: 'Weddings',
++    title: 'Service designed for celebration milestones',
++    description:
++      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
++    premiumNote:
++      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
++  },
++  {
++    category: 'Private events',
++    title: 'Elegant hosting for intimate and social occasions',
++    description:
++      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
++    premiumNote:
++      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
++  },
++  {
++    category: 'Corporate evenings',
++    title: 'Hospitality that supports brand presence',
++    description:
++      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
++    premiumNote:
++      'Professional enough for business settings, warm enough to remain memorable.',
++  },
++  {
++    category: 'Styling support',
++    title: 'Atmosphere guided beyond the menu',
++    description:
++      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
++    premiumNote:
++      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
++  },
++]
++
++const process = [
++  {
++    step: '01',
++    label: 'Consultation',
++    text: 'We define event style, guest count, and the hospitality tone you want to create.',
++  },
++  {
++    step: '02',
++    label: 'Proposal',
++    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
++  },
++  {
++    step: '03',
++    label: 'Refinement',
++    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
++  },
++  {
++    step: '04',
++    label: 'Service day',
++    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
++  },
++]
++
++export default function ServicesOverviewSection() {
++  return (
++    <section
++      id="services-overview"
++      aria-labelledby="services-overview-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Service overview</p>
++        <h2 id="services-overview-title" style={sectionStyles.title}>
++          A complete event offering shaped around food, drinks, and atmosphere
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together premium catering, elevated
++          bartending, and thoughtful styling support so each occasion feels
++          coherent, graceful, and genuinely well hosted. The service structure
++          is flexible enough for intimate private events and robust enough for
++          larger celebrations with layered hospitality needs.
++        </p>
++      </div>
++
++      <div style={sectionStyles.grid}>
++        {services.map((service) => (
++          <article key={service.title} style={sectionStyles.card}>
++            <p style={sectionStyles.category}>{service.category}</p>
++            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
++            <p style={sectionStyles.cardText}>{service.description}</p>
++            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
++          </article>
++        ))}
++      </div>
++
++      <div style={sectionStyles.processPanel}>
++        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
++        <ul style={sectionStyles.processList}>
++          {process.map((item) => (
++            <li key={item.step} style={sectionStyles.processItem}>
++              <span style={sectionStyles.processStep}>{item.step}</span>
++              <span style={sectionStyles.processLabel}>{item.label}</span>
++              <span style={sectionStyles.processText}>{item.text}</span>
++            </li>
++          ))}
++        </ul>
++      </div>
++
++      <div style={sectionStyles.footer}>
++        <p style={sectionStyles.footerText}>
++          Every proposal is adjusted to the event setting, guest profile, and
++          hosting priorities, with clear recommendations on service format,
++          beverage flow, and presentation.
++        </p>
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request a tailored proposal
++        </Link>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Servizi.jsx b/src/pages/Servizi.jsx
+index 56a913dfa7a20b7743bd16774113f3f540fedfd3..df228235d1062f339175e3071e61d03765a3404d
+--- a/src/pages/Servizi.jsx
++++ b/src/pages/Servizi.jsx
+@@ -1,17 +1,11 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
+ export default function Servizi() {
+   return (
+     <article aria-labelledby="servizi-title">
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
+-        <p>
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
+-        </p>
+-      </section>
++      <ServicesOverviewSection />
+     </article>
+   )
+ }
+
+file update
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+@@ -682 +682,16 @@
+ Launching Codex for TASK section-servizi-services-overview.
++
++Completed TASK section-servizi-services-overview.
++
++Implemented a dedicated `Services-overviewSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
++
++TASK section-servizi-services-overview executed by Codex.
++Waiting for validation.
++
++TASK section-servizi-services-overview completed successfully.
++Build passed.
+apply_patch(auto_approved=true) exited 0 in 72ms:
+Success. Updated the following files:
+M /Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 6b01ac147992cb98d8fb71ce1f9aa4bb5f08c1dc..8d7cf8e755fe069652a9f601f82f09121e2f3ab1
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -218,7 +218,18 @@
+ Build passed.
+ 
+ Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
+ 
++TASK section-servizi-services-overview executed by Codex.
++Waiting for validation.
++
++TASK section-servizi-services-overview completed successfully.
++Build passed.
++
+ Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+ 
+ Launching Codex for TASK section-servizi-services-hero.
+@@ -669,3 +680,18 @@
+ Prepared TASK section-servizi-services-overview (Create services-overview section on servizi) for execution.
+ 
+ Launching Codex for TASK section-servizi-services-overview.
++
++Completed TASK section-servizi-services-overview.
++
++Implemented a dedicated `Services-overviewSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
++
++TASK section-servizi-services-overview executed by Codex.
++Waiting for validation.
++
++TASK section-servizi-services-overview completed successfully.
++Build passed.
+diff --git a/src/components/Services-overviewSection.jsx b/src/components/Services-overviewSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..c6328f0ac9db51b1363742b1a1168afb085cf13e
+--- /dev/null
++++ b/src/components/Services-overviewSection.jsx
+@@ -0,0 +1,284 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++  },
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.78)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.9rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(255, 252, 247, 0.84)',
++    border: '1px solid rgba(159, 123, 75, 0.14)',
++  },
++  category: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  cardText: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.75,
++  },
++  premiumNote: {
++    margin: 0,
++    color: '#5a4838',
++    fontSize: '0.96rem',
++    lineHeight: 1.65,
++    fontWeight: 600,
++  },
++  processPanel: {
++    display: 'grid',
++    gap: '1rem',
++    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
++    borderRadius: '28px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
++  },
++  processTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.6rem',
++    lineHeight: 1.2,
++  },
++  processList: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  processItem: {
++    display: 'grid',
++    gap: '0.45rem',
++    padding: '1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(246, 239, 228, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.12)',
++  },
++  processStep: {
++    color: '#d9bf8d',
++    fontSize: '0.76rem',
++    letterSpacing: '0.18em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  processLabel: {
++    color: '#f6efe4',
++    fontWeight: 700,
++    lineHeight: 1.45,
++  },
++  processText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '1rem',
++    alignItems: 'center',
++    justifyContent: 'space-between',
++  },
++  footerText: {
++    margin: 0,
++    maxWidth: '40rem',
++    color: 'rgba(32, 25, 20, 0.72)',
++    lineHeight: 1.75,
++  },
++  action: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#201914',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++}
++
++const services = [
++  {
++    category: 'Catering',
++    title: 'Tailored dining with polished presentation',
++    description:
++      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
++    premiumNote:
++      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
++  },
++  {
++    category: 'Premium bar',
++    title: 'Mobile cocktail service with signature character',
++    description:
++      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
++    premiumNote:
++      'Built to create atmosphere without losing precision, pace, or hospitality.',
++  },
++  {
++    category: 'Weddings',
++    title: 'Service designed for celebration milestones',
++    description:
++      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
++    premiumNote:
++      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
++  },
++  {
++    category: 'Private events',
++    title: 'Elegant hosting for intimate and social occasions',
++    description:
++      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
++    premiumNote:
++      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
++  },
++  {
++    category: 'Corporate evenings',
++    title: 'Hospitality that supports brand presence',
++    description:
++      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
++    premiumNote:
++      'Professional enough for business settings, warm enough to remain memorable.',
++  },
++  {
++    category: 'Styling support',
++    title: 'Atmosphere guided beyond the menu',
++    description:
++      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
++    premiumNote:
++      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
++  },
++]
++
++const process = [
++  {
++    step: '01',
++    label: 'Consultation',
++    text: 'We define event style, guest count, and the hospitality tone you want to create.',
++  },
++  {
++    step: '02',
++    label: 'Proposal',
++    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
++  },
++  {
++    step: '03',
++    label: 'Refinement',
++    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
++  },
++  {
++    step: '04',
++    label: 'Service day',
++    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
++  },
++]
++
++export default function ServicesOverviewSection() {
++  return (
++    <section
++      id="services-overview"
++      aria-labelledby="services-overview-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Service overview</p>
++        <h2 id="services-overview-title" style={sectionStyles.title}>
++          A complete event offering shaped around food, drinks, and atmosphere
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together premium catering, elevated
++          bartending, and thoughtful styling support so each occasion feels
++          coherent, graceful, and genuinely well hosted. The service structure
++          is flexible enough for intimate private events and robust enough for
++          larger celebrations with layered hospitality needs.
++        </p>
++      </div>
++
++      <div style={sectionStyles.grid}>
++        {services.map((service) => (
++          <article key={service.title} style={sectionStyles.card}>
++            <p style={sectionStyles.category}>{service.category}</p>
++            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
++            <p style={sectionStyles.cardText}>{service.description}</p>
++            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
++          </article>
++        ))}
++      </div>
++
++      <div style={sectionStyles.processPanel}>
++        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
++        <ul style={sectionStyles.processList}>
++          {process.map((item) => (
++            <li key={item.step} style={sectionStyles.processItem}>
++              <span style={sectionStyles.processStep}>{item.step}</span>
++              <span style={sectionStyles.processLabel}>{item.label}</span>
++              <span style={sectionStyles.processText}>{item.text}</span>
++            </li>
++          ))}
++        </ul>
++      </div>
++
++      <div style={sectionStyles.footer}>
++        <p style={sectionStyles.footerText}>
++          Every proposal is adjusted to the event setting, guest profile, and
++          hosting priorities, with clear recommendations on service format,
++          beverage flow, and presentation.
++        </p>
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request a tailored proposal
++        </Link>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Servizi.jsx b/src/pages/Servizi.jsx
+index 56a913dfa7a20b7743bd16774113f3f540fedfd3..df228235d1062f339175e3071e61d03765a3404d
+--- a/src/pages/Servizi.jsx
++++ b/src/pages/Servizi.jsx
+@@ -1,17 +1,11 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
+ export default function Servizi() {
+   return (
+     <article aria-labelledby="servizi-title">
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
+-        <p>
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
+-        </p>
+-      </section>
++      <ServicesOverviewSection />
+     </article>
+   )
+ }
+
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 6b01ac147992cb98d8fb71ce1f9aa4bb5f08c1dc..8d7cf8e755fe069652a9f601f82f09121e2f3ab1
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -218,7 +218,18 @@
+ Build passed.
+ 
+ Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
+ 
++TASK section-servizi-services-overview executed by Codex.
++Waiting for validation.
++
++TASK section-servizi-services-overview completed successfully.
++Build passed.
++
+ Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+ 
+ Launching Codex for TASK section-servizi-services-hero.
+@@ -669,3 +680,18 @@
+ Prepared TASK section-servizi-services-overview (Create services-overview section on servizi) for execution.
+ 
+ Launching Codex for TASK section-servizi-services-overview.
++
++Completed TASK section-servizi-services-overview.
++
++Implemented a dedicated `Services-overviewSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
++
++TASK section-servizi-services-overview executed by Codex.
++Waiting for validation.
++
++TASK section-servizi-services-overview completed successfully.
++Build passed.
+diff --git a/src/components/Services-overviewSection.jsx b/src/components/Services-overviewSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..c6328f0ac9db51b1363742b1a1168afb085cf13e
+--- /dev/null
++++ b/src/components/Services-overviewSection.jsx
+@@ -0,0 +1,284 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++  },
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.78)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.9rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(255, 252, 247, 0.84)',
++    border: '1px solid rgba(159, 123, 75, 0.14)',
++  },
++  category: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  cardText: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.75,
++  },
++  premiumNote: {
++    margin: 0,
++    color: '#5a4838',
++    fontSize: '0.96rem',
++    lineHeight: 1.65,
++    fontWeight: 600,
++  },
++  processPanel: {
++    display: 'grid',
++    gap: '1rem',
++    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
++    borderRadius: '28px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
++  },
++  processTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.6rem',
++    lineHeight: 1.2,
++  },
++  processList: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  processItem: {
++    display: 'grid',
++    gap: '0.45rem',
++    padding: '1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(246, 239, 228, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.12)',
++  },
++  processStep: {
++    color: '#d9bf8d',
++    fontSize: '0.76rem',
++    letterSpacing: '0.18em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  processLabel: {
++    color: '#f6efe4',
++    fontWeight: 700,
++    lineHeight: 1.45,
++  },
++  processText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '1rem',
++    alignItems: 'center',
++    justifyContent: 'space-between',
++  },
++  footerText: {
++    margin: 0,
++    maxWidth: '40rem',
++    color: 'rgba(32, 25, 20, 0.72)',
++    lineHeight: 1.75,
++  },
++  action: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#201914',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++}
++
++const services = [
++  {
++    category: 'Catering',
++    title: 'Tailored dining with polished presentation',
++    description:
++      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
++    premiumNote:
++      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
++  },
++  {
++    category: 'Premium bar',
++    title: 'Mobile cocktail service with signature character',
++    description:
++      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
++    premiumNote:
++      'Built to create atmosphere without losing precision, pace, or hospitality.',
++  },
++  {
++    category: 'Weddings',
++    title: 'Service designed for celebration milestones',
++    description:
++      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
++    premiumNote:
++      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
++  },
++  {
++    category: 'Private events',
++    title: 'Elegant hosting for intimate and social occasions',
++    description:
++      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
++    premiumNote:
++      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
++  },
++  {
++    category: 'Corporate evenings',
++    title: 'Hospitality that supports brand presence',
++    description:
++      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
++    premiumNote:
++      'Professional enough for business settings, warm enough to remain memorable.',
++  },
++  {
++    category: 'Styling support',
++    title: 'Atmosphere guided beyond the menu',
++    description:
++      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
++    premiumNote:
++      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
++  },
++]
++
++const process = [
++  {
++    step: '01',
++    label: 'Consultation',
++    text: 'We define event style, guest count, and the hospitality tone you want to create.',
++  },
++  {
++    step: '02',
++    label: 'Proposal',
++    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
++  },
++  {
++    step: '03',
++    label: 'Refinement',
++    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
++  },
++  {
++    step: '04',
++    label: 'Service day',
++    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
++  },
++]
++
++export default function ServicesOverviewSection() {
++  return (
++    <section
++      id="services-overview"
++      aria-labelledby="services-overview-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Service overview</p>
++        <h2 id="services-overview-title" style={sectionStyles.title}>
++          A complete event offering shaped around food, drinks, and atmosphere
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together premium catering, elevated
++          bartending, and thoughtful styling support so each occasion feels
++          coherent, graceful, and genuinely well hosted. The service structure
++          is flexible enough for intimate private events and robust enough for
++          larger celebrations with layered hospitality needs.
++        </p>
++      </div>
++
++      <div style={sectionStyles.grid}>
++        {services.map((service) => (
++          <article key={service.title} style={sectionStyles.card}>
++            <p style={sectionStyles.category}>{service.category}</p>
++            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
++            <p style={sectionStyles.cardText}>{service.description}</p>
++            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
++          </article>
++        ))}
++      </div>
++
++      <div style={sectionStyles.processPanel}>
++        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
++        <ul style={sectionStyles.processList}>
++          {process.map((item) => (
++            <li key={item.step} style={sectionStyles.processItem}>
++              <span style={sectionStyles.processStep}>{item.step}</span>
++              <span style={sectionStyles.processLabel}>{item.label}</span>
++              <span style={sectionStyles.processText}>{item.text}</span>
++            </li>
++          ))}
++        </ul>
++      </div>
++
++      <div style={sectionStyles.footer}>
++        <p style={sectionStyles.footerText}>
++          Every proposal is adjusted to the event setting, guest profile, and
++          hosting priorities, with clear recommendations on service format,
++          beverage flow, and presentation.
++        </p>
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request a tailored proposal
++        </Link>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Servizi.jsx b/src/pages/Servizi.jsx
+index 56a913dfa7a20b7743bd16774113f3f540fedfd3..df228235d1062f339175e3071e61d03765a3404d
+--- a/src/pages/Servizi.jsx
++++ b/src/pages/Servizi.jsx
+@@ -1,17 +1,11 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
+ export default function Servizi() {
+   return (
+     <article aria-labelledby="servizi-title">
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
+-        <p>
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
+-        </p>
+-      </section>
++      <ServicesOverviewSection />
+     </article>
+   )
+ }
+
+codex
+Modified files: [Servizi.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/pages/Servizi.jsx), [Services-overviewSection.jsx](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/src/components/Services-overviewSection.jsx), [AGENT_REPORT.md](/Users/armandocosta/Desktop/ai-site-engine/site-create-a-premium-modern-website-for-an-e/agent/AGENT_REPORT.md)
+
+Implemented the `services-overview` section on the `servizi` page as a dedicated reusable component and replaced the inline placeholder with it. The new section matches the required `service-list` shape with premium service cards for catering, bar service, weddings, private events, corporate evenings, and styling support, plus a short process block and a valid CTA to `/contatti`.
+
+Build result: `npm run build` passed successfully with Vite.
+file update:
+diff --git a/agent/AGENT_REPORT.md b/agent/AGENT_REPORT.md
+index 6b01ac147992cb98d8fb71ce1f9aa4bb5f08c1dc..8d7cf8e755fe069652a9f601f82f09121e2f3ab1
+--- a/agent/AGENT_REPORT.md
++++ b/agent/AGENT_REPORT.md
+@@ -218,7 +218,18 @@
+ Build passed.
+ 
+ Implemented a dedicated `Menu-categoriesSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
+ 
++TASK section-servizi-services-overview executed by Codex.
++Waiting for validation.
++
++TASK section-servizi-services-overview completed successfully.
++Build passed.
++
+ Prepared TASK section-servizi-services-hero (Create services-hero section on servizi) for execution.
+ 
+ Launching Codex for TASK section-servizi-services-hero.
+@@ -669,3 +680,18 @@
+ Prepared TASK section-servizi-services-overview (Create services-overview section on servizi) for execution.
+ 
+ Launching Codex for TASK section-servizi-services-overview.
++
++Completed TASK section-servizi-services-overview.
++
++Implemented a dedicated `Services-overviewSection` component in
++`src/components/Services-overviewSection.jsx` and rendered it from
++`src/pages/Servizi.jsx` to replace the inline placeholder content. The
++`servizi` page now includes the required `services-overview` service-list
++section with premium service cards, a concise process block, and a route-safe
++CTA to `/contatti`.
++
++TASK section-servizi-services-overview executed by Codex.
++Waiting for validation.
++
++TASK section-servizi-services-overview completed successfully.
++Build passed.
+diff --git a/src/components/Services-overviewSection.jsx b/src/components/Services-overviewSection.jsx
+new file mode 100644
+index 0000000000000000000000000000000000000000..c6328f0ac9db51b1363742b1a1168afb085cf13e
+--- /dev/null
++++ b/src/components/Services-overviewSection.jsx
+@@ -0,0 +1,284 @@
++import { Link } from 'react-router-dom'
++
++const sectionStyles = {
++  section: {
++    marginTop: 'clamp(3rem, 7vw, 5.5rem)',
++    display: 'grid',
++    gap: '1.5rem',
++    padding: 'clamp(1.5rem, 4vw, 2.5rem)',
++    borderRadius: '32px',
++    background:
++      'linear-gradient(180deg, rgba(248, 242, 234, 0.98) 0%, rgba(238, 227, 211, 0.9) 100%)',
++    boxShadow: '0 24px 60px rgba(52, 38, 26, 0.08)',
++  },
++  header: {
++    display: 'grid',
++    gap: '1rem',
++    maxWidth: '46rem',
++  },
++  eyebrow: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.82rem',
++    letterSpacing: '0.22em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  title: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: 'clamp(2rem, 4.8vw, 3.5rem)',
++    lineHeight: 1.05,
++  },
++  intro: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.78)',
++    lineHeight: 1.8,
++  },
++  grid: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
++    gap: '1rem',
++  },
++  card: {
++    display: 'grid',
++    gap: '0.9rem',
++    minHeight: '100%',
++    padding: '1.4rem',
++    borderRadius: '24px',
++    backgroundColor: 'rgba(255, 252, 247, 0.84)',
++    border: '1px solid rgba(159, 123, 75, 0.14)',
++  },
++  category: {
++    margin: 0,
++    color: '#9f7b4b',
++    fontSize: '0.78rem',
++    letterSpacing: '0.16em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  cardTitle: {
++    margin: 0,
++    color: '#201914',
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.45rem',
++    lineHeight: 1.15,
++  },
++  cardText: {
++    margin: 0,
++    color: 'rgba(32, 25, 20, 0.76)',
++    lineHeight: 1.75,
++  },
++  premiumNote: {
++    margin: 0,
++    color: '#5a4838',
++    fontSize: '0.96rem',
++    lineHeight: 1.65,
++    fontWeight: 600,
++  },
++  processPanel: {
++    display: 'grid',
++    gap: '1rem',
++    padding: 'clamp(1.25rem, 3vw, 1.75rem)',
++    borderRadius: '28px',
++    backgroundColor: '#241c17',
++    color: '#f6efe4',
++  },
++  processTitle: {
++    margin: 0,
++    fontFamily: 'Georgia, "Times New Roman", serif',
++    fontSize: '1.6rem',
++    lineHeight: 1.2,
++  },
++  processList: {
++    display: 'grid',
++    gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
++    gap: '0.9rem',
++    margin: 0,
++    padding: 0,
++    listStyle: 'none',
++  },
++  processItem: {
++    display: 'grid',
++    gap: '0.45rem',
++    padding: '1rem',
++    borderRadius: '20px',
++    backgroundColor: 'rgba(246, 239, 228, 0.08)',
++    border: '1px solid rgba(217, 191, 141, 0.12)',
++  },
++  processStep: {
++    color: '#d9bf8d',
++    fontSize: '0.76rem',
++    letterSpacing: '0.18em',
++    textTransform: 'uppercase',
++    fontWeight: 700,
++  },
++  processLabel: {
++    color: '#f6efe4',
++    fontWeight: 700,
++    lineHeight: 1.45,
++  },
++  processText: {
++    color: 'rgba(246, 239, 228, 0.74)',
++    lineHeight: 1.7,
++  },
++  footer: {
++    display: 'flex',
++    flexWrap: 'wrap',
++    gap: '1rem',
++    alignItems: 'center',
++    justifyContent: 'space-between',
++  },
++  footerText: {
++    margin: 0,
++    maxWidth: '40rem',
++    color: 'rgba(32, 25, 20, 0.72)',
++    lineHeight: 1.75,
++  },
++  action: {
++    display: 'inline-flex',
++    alignItems: 'center',
++    justifyContent: 'center',
++    minHeight: '3.15rem',
++    padding: '0.9rem 1.5rem',
++    borderRadius: '999px',
++    backgroundColor: '#201914',
++    color: '#f7f1e8',
++    textDecoration: 'none',
++    fontWeight: 700,
++  },
++}
++
++const services = [
++  {
++    category: 'Catering',
++    title: 'Tailored dining with polished presentation',
++    description:
++      'From aperitivo tables to plated dinners, menus are shaped around seasonality, guest flow, and a refined visual tone suited to the occasion.',
++    premiumNote:
++      'Designed for hosts who want cuisine to feel as considered as the setting itself.',
++  },
++  {
++    category: 'Premium bar',
++    title: 'Mobile cocktail service with signature character',
++    description:
++      'Our bar program pairs elegant classics, house signatures, and premium pours with bartending that complements the rhythm of weddings, private parties, and corporate evenings.',
++    premiumNote:
++      'Built to create atmosphere without losing precision, pace, or hospitality.',
++  },
++  {
++    category: 'Weddings',
++    title: 'Service designed for celebration milestones',
++    description:
++      'Casa Aurea supports the full wedding experience, from welcome drinks and dinner service to dessert moments, toasts, and a composed open-bar close.',
++    premiumNote:
++      'Aspirational in feel, but carefully organized so the day remains effortless for the couple.',
++  },
++  {
++    category: 'Private events',
++    title: 'Elegant hosting for intimate and social occasions',
++    description:
++      'Birthday dinners, villa gatherings, anniversaries, and at-home receptions receive the same premium service standard and attention to guest experience.',
++    premiumNote:
++      'Scaled with care so smaller events still feel generous, elevated, and beautifully hosted.',
++  },
++  {
++    category: 'Corporate evenings',
++    title: 'Hospitality that supports brand presence',
++    description:
++      'For launches, partner dinners, and executive events, we build food and drink service that feels credible, smooth, and aligned with the tone of the brand.',
++    premiumNote:
++      'Professional enough for business settings, warm enough to remain memorable.',
++  },
++  {
++    category: 'Styling support',
++    title: 'Atmosphere guided beyond the menu',
++    description:
++      'We advise on mise en place, bar presentation, guest-facing details, and service styling so the event reads as one coherent experience.',
++    premiumNote:
++      'The difference is often in timing, restraint, and the quiet details guests immediately feel.',
++  },
++]
++
++const process = [
++  {
++    step: '01',
++    label: 'Consultation',
++    text: 'We define event style, guest count, and the hospitality tone you want to create.',
++  },
++  {
++    step: '02',
++    label: 'Proposal',
++    text: 'A tailored service direction is composed around catering, bar format, and presentation priorities.',
++  },
++  {
++    step: '03',
++    label: 'Refinement',
++    text: 'Menus, signature drinks, and styling details are adjusted until the experience feels fully aligned.',
++  },
++  {
++    step: '04',
++    label: 'Service day',
++    text: 'Our team delivers with calm coordination, attentive pacing, and a premium standard from first welcome to final toast.',
++  },
++]
++
++export default function ServicesOverviewSection() {
++  return (
++    <section
++      id="services-overview"
++      aria-labelledby="services-overview-title"
++      style={sectionStyles.section}
++    >
++      <div style={sectionStyles.header}>
++        <p style={sectionStyles.eyebrow}>Service overview</p>
++        <h2 id="services-overview-title" style={sectionStyles.title}>
++          A complete event offering shaped around food, drinks, and atmosphere
++        </h2>
++        <p style={sectionStyles.intro}>
++          Casa Aurea Events brings together premium catering, elevated
++          bartending, and thoughtful styling support so each occasion feels
++          coherent, graceful, and genuinely well hosted. The service structure
++          is flexible enough for intimate private events and robust enough for
++          larger celebrations with layered hospitality needs.
++        </p>
++      </div>
++
++      <div style={sectionStyles.grid}>
++        {services.map((service) => (
++          <article key={service.title} style={sectionStyles.card}>
++            <p style={sectionStyles.category}>{service.category}</p>
++            <h3 style={sectionStyles.cardTitle}>{service.title}</h3>
++            <p style={sectionStyles.cardText}>{service.description}</p>
++            <p style={sectionStyles.premiumNote}>{service.premiumNote}</p>
++          </article>
++        ))}
++      </div>
++
++      <div style={sectionStyles.processPanel}>
++        <h3 style={sectionStyles.processTitle}>How the service comes together</h3>
++        <ul style={sectionStyles.processList}>
++          {process.map((item) => (
++            <li key={item.step} style={sectionStyles.processItem}>
++              <span style={sectionStyles.processStep}>{item.step}</span>
++              <span style={sectionStyles.processLabel}>{item.label}</span>
++              <span style={sectionStyles.processText}>{item.text}</span>
++            </li>
++          ))}
++        </ul>
++      </div>
++
++      <div style={sectionStyles.footer}>
++        <p style={sectionStyles.footerText}>
++          Every proposal is adjusted to the event setting, guest profile, and
++          hosting priorities, with clear recommendations on service format,
++          beverage flow, and presentation.
++        </p>
++        <Link to="/contatti" style={sectionStyles.action}>
++          Request a tailored proposal
++        </Link>
++      </div>
++    </section>
++  )
++}
+diff --git a/src/pages/Servizi.jsx b/src/pages/Servizi.jsx
+index 56a913dfa7a20b7743bd16774113f3f540fedfd3..df228235d1062f339175e3071e61d03765a3404d
+--- a/src/pages/Servizi.jsx
++++ b/src/pages/Servizi.jsx
+@@ -1,17 +1,11 @@
+ import ServicesHeroSection from '../components/Services-heroSection'
++import ServicesOverviewSection from '../components/Services-overviewSection'
+ 
+ export default function Servizi() {
+   return (
+     <article aria-labelledby="servizi-title">
+       <ServicesHeroSection />
+-
+-      <section id="services-overview" aria-labelledby="services-overview-title">
+-        <h2 id="services-overview-title">An overview of the Casa Aurea approach.</h2>
+-        <p>
+-          This page introduces the structure for our service offering and is
+-          ready for the detailed service content that follows in upcoming tasks.
+-        </p>
+-      </section>
++      <ServicesOverviewSection />
+     </article>
+   )
+ }
 
 tokens used
-35.453
+56.815

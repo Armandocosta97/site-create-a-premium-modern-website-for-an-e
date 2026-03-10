@@ -1178,10 +1178,10 @@ Each page must have a real purpose and different content.
 ```
 
 ## Current task id
-section-servizi-services-hero
+section-servizi-services-overview
 
 ## Current task title
-Create services-hero section on servizi
+Create services-overview section on servizi
 
 ## Current task type
 section
@@ -1190,8 +1190,8 @@ section
 ```json
 {
   "pageId": "servizi",
-  "sectionId": "services-hero",
-  "sectionType": "hero"
+  "sectionId": "services-overview",
+  "sectionType": "service-list"
 }
 ```
 
@@ -1200,13 +1200,13 @@ section
 
 ## Files allowed
 - src/pages/Servizi.jsx
-- src/components/Services-heroSection.jsx
+- src/components/Services-overviewSection.jsx
 - src/components
 
 ## Definition of done
-- section services-hero exists on servizi
-- section services-hero matches type hero
-- section services-hero is rendered in page servizi
+- section services-overview exists on servizi
+- section services-overview matches type service-list
+- section services-overview is rendered in page servizi
 
 ## Strict execution rules
 - Execute only this current task.
