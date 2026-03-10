@@ -191,3 +191,29 @@ Waiting for validation.
 
 TASK section-menu-menu-hero completed successfully.
 Build passed.
+Commit created for TASK section-menu-menu-hero.
+
+Prepared TASK section-menu-menu-categories (Create menu-categories section on menu) for execution.
+
+Launching Codex for TASK section-menu-menu-categories.
+
+Completed TASK section-menu-menu-categories.
+
+Implemented a dedicated `Menu-categoriesSection` component in
+`src/components/Menu-categoriesSection.jsx` and rendered it from
+`src/pages/Menu.jsx` to replace the inline placeholder section. The `/menu`
+page now includes a structured premium menu-categories section with curated
+drink groups, example serves, and polished supporting copy aligned to the
+brand tone.
+
+TASK section-menu-menu-categories executed by Codex.
+Waiting for validation.
+
+TASK section-menu-menu-categories completed successfully.
+Build passed.
+
+TASK section-menu-menu-categories executed by Codex.
+Waiting for validation.
+
+TASK section-menu-menu-categories completed successfully.
+Build passed.
